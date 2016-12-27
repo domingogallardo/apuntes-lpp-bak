@@ -1,29 +1,17 @@
 
 ## Tema 1: Historia y conceptos de los lenguajes de programación
 
-**Objetivos del tema**
+### Contenidos 
 
-* **Conocer la historia de los lenguajes de programación** más importantes: quiénes los desarrollaron, dónde, en qué época, qué lenguajes han influido en qué otros.
+- [1. Historia de los lenguajes de programación](#1)
+    - [1.1. Calcular y computar](#1-1)
+    - [1.2. Avances previos a los primeros computadores](#1-2)
 
-* **Conocer a los diseñadores de los lenguajes de programación**: ser capaz de dar ejemplos de que los lenguajes de programación son diseñados por investigadores de Informática (*computer science*), por especialistas del mundo *open source* y, cada vez más, por desarrolladores que necesitan automatizar procesos y sistemas (lenguajes DSL, ver siguiente punto).
-
-* Conocer que **el diseño de nuevos lenguajes de programación es algo cada vez más habitual**. Por un lado, cada vez es más fácil diseñar un lenguaje de programación y programar un intérprete o un compilador (asignatura *Procesadores de Lenguajes*). Por otro lado, herramientas y construcciones en nuevos lenguajes de programación hacen posible el diseño de DSLs (*Domain Specific Languages*) orientados a una tarea o proceso muy concreto.
-
-* Conocer distintas **definiciones** de *Lenguaje de Programación* y los aspectos comunes de todas ellas. Entender características generales de los lenguajes de programación: expresividad, sintaxis.
-
-* Entender el concepto de **abstracción** y su importancia en la programación. Entender un lenguaje de programación como una herramienta para construir abstracciones (APIs, clases, tipos de datos, funciones, etc.) que nos van a permitir construir de forma correcta y eficiente una solución informática (un conjunto de programas que forman un sistema informático que se aplica en un cierto dominio).
-
-* Comprender que el objetivo principal de los programas escritos en lenguajes de programación es proporcionar una **descripción de alto nivel**, entendible y comunicable entre humanos, de un proceso que se ejecuta en un procesador. Un programa siempre va a terminar convertido en instrucciones en código máquina en algún procesador.
-
-* Comprender los distintos **tipos de ejecución de los lenguajes de programación**: lenguajes compilados a código máquina, compilados a bytecodes o interpretados. Entender las implicaciones de cada tipo de ejecución y qué lenguaje pertenece a qué tipo.
-
-* **Conocer el concepto de paradigma de programación y los paradigmas más importantes**. Entender que los paradigmas definen una clasificación arbitraria (y a muchas veces difusa) de los distintos lenguajes de programación. Los diseñadores de lenguajes intentan que los lenguajes sean modernos, expresivos y originales y esto les lleva cada vez  más a mezclar libremente características de múltiples paradigmas (ejemplo: Scala y Ruby).
-
-### 1. Historia de los lenguajes de programación
+### <a name="1"/> 1. Historia de los lenguajes de programación
 
 Un lenguaje de programación permite especificar programas que se ejecutan en computadores, programas que definen el comportamiento del computador. Para entender en profundidad qué es un lenguaje de programación es fundamental conocer cuáles son los elementos fundamentales, determinantes, de los computadores. Y para ello es necesario conocer su historia.
 
-#### 1.1. Calcular y computar
+#### <a name="1-1"/> 1.1. Calcular y computar
 
 Los avances tecnológicos en distintos campos (astronomía, armamento, comercio, etc.) en los siglos XVI y XVII provocan la necesidad de acelerar y mejorar la precisión de los cálculos.
 
@@ -91,7 +79,7 @@ Ada Lovelace tuvo un papel fundamental en la divulgación de la máquina, de sus
 
 Babbage trabajó durante más de 30 años para intentar construir la máquina. Tenían una enorme complejidad para la época y necesitaba muchísima financiación. En 1871 murió habiendo podido construir sólo una parte.
 
-#### 1.2. Avances previos a los primeros computadores
+#### <a name="1-2"/> 1.2. Avances previos a los primeros computadores
 
 Todas estas máquinas calculadoras representan avances en el proceso del desarrollo de los primeros computadores, pero a finales del siglo XIX todavía no existía la tecnología ni la teoría matemática necesaria para construir un computador de propósito general. Son ideas de genios inventores adelantados a su tiempo.
 
