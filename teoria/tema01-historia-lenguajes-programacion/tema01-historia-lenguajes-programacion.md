@@ -977,7 +977,7 @@ El proceso de compilación de un programa consiste en la traducción del código
 - Mayor eficiencia
 
 
-#### <a name="5-3"/> 5.2. Interpretación
+#### <a name="5-2"/> 5.2. Interpretación
 
 <img src="imagenes/interpretacion.png" style="width:500px;"/>
 
