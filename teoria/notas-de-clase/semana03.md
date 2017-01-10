@@ -168,11 +168,11 @@ Lo probamos ...
                 (cons 3 4)))
 ```
 
-<img src="./imagenes/tema03-programacion_funcional/pareja-pareja.png" style="width: 300px;"/>
+<img src="../tema02-programacion-funcional/imagenes/pareja-pareja.png" width="300px"/>
 
 Diagramas *caja-y-puntero* (*box-and-pointer* en inglés):
 
-<img src="./imagenes/tema03-programacion_funcional/pareja-pareja2.png" style="width: 250px;"/>
+<img src="../tema02-programacion-funcional/imagenes/pareja-pareja2.png" width="250px"/>
 
 ----
 
@@ -303,7 +303,7 @@ La pareja cumple las condiciones anteriores:
 * La parte izquierda de la pareja es el primer elemento de la lista (el número 1)
 * La parte derecha es el resto de la lista (la lista vacía)
 
-<img src="./imagenes/tema03-programacion_funcional/pareja-lista.png" style="width: 150px;"/>
+<img src="../tema02-programacion-funcional/imagenes/pareja-lista.png" width="150px"/>
 
 
 - Es al mismo tiempo una pareja y una lista:
@@ -331,7 +331,7 @@ La pareja cumple las condiciones anteriores:
 * Su primer elemento es el 1
 * Su parte derecha es la lista '(2 3 4)
 
-<img src="./imagenes/tema03-programacion_funcional/lista.png" style="width: 400px;"/>
+<img src="../tema02-programacion-funcional/imagenes/lista.png" width="400px"/>
 
 ----
 

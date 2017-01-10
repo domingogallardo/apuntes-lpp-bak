@@ -650,7 +650,7 @@ Vamos a empezar por diseñar el caso general de la recursión. ¿Cómo podemos h
 
 Para calcular la suma hasta 5, llamamos a la recursión para que calcule la suma hasta 4 y al resultado que devuelve la llamada le sumo el propio número 5. Lo podemos expresar con el siguiente dibujo:
 
-<img src="imagenes/suma-hasta.png" style="width:600px;"/>
+<img src="imagenes/suma-hasta.png" width="600px"/>
 
 Generalizamos este ejemplo y lo expresamos en Scheme de la siguiente forma:
 
@@ -683,7 +683,7 @@ Para diseñar una implementación recursiva de la función tenemos que pensar en
 
 Por ejemplo, en este caso podemos pensar que para sumar la lista de números `(12 3 5 1 8)` podemos obtener un problema más sencillo (una lista más pequeña) haciendo el `cdr` de la lista de números y llamando a la recursión con el resultado. La llamada recursiva devolverá la suma de esos números (confiamos en la recursión) y a ese valor basta con sumarle el primer número de la lista. Lo podemos representar en el siguiente dibujo:
 
-<img src="imagenes/suma-lista.png" style="width:600px;"/>
+<img src="imagenes/suma-lista.png" width="600px"/>
 
 Podemos generalizar este ejemplo y expresarlo en Scheme de la siguiente forma:
 
@@ -747,7 +747,7 @@ Ya hemos visto en el seminario de Scheme que el tipo de dato compuesto más simp
 
 Dibujamos la pareja anterior y la variable `c` que la referencia de la siguiente forma:
 
-<img src="imagenes/pareja.png" style="width:200px;"/>
+<img src="imagenes/pareja.png" width="200px"/>
 
 *Tipo compuesto pareja*
 
@@ -869,13 +869,13 @@ Expresión equivalente:
  
  Podríamos representar esta estructura así:
 
-<img src="imagenes/pareja-pareja.png" style="width:300px;"/>
+<img src="imagenes/pareja-pareja.png" width="300px"/>
 
 *Propiedad de clausura: las parejas pueden contener parejas*
 
 Pero se haría muy complicado representar muchos niveles de anidamiento. Por eso utilizamos la siguiente representación:
 
-<img src="imagenes/pareja-pareja2.png" style="width:250px;"/>
+<img src="imagenes/pareja-pareja2.png" width="250px"/>
 
 Llamamos a estos diagramas *diagramas caja-y-puntero* (*box-and-pointer* en inglés).
 
@@ -895,7 +895,7 @@ Para entender la construcción de estas estructuras es importante recordar que l
 
 Solución:
 
-<img src="imagenes/pareja-pareja3.png" style="width:200px;"/>
+<img src="imagenes/pareja-pareja3.png" width="200px"/>
 
 Es importante tener en cuenta que cada caja del diagrama representa una pareja creada en la memoria del intérprete con la instrucción `cons` y que el resultado de evaluar una variable en la que se ha guardado una pareja devuelve la pareja recién creada. Por ejemplo, si el intérprete evalúa `p` después de haber hecho la sentencia anterior devuelve la pareja contenida en `p`, no se crea una pareja nueva. 
 
@@ -907,7 +907,7 @@ Por ejemplo, si después de haber evaluado la sentencia anterior evaluamos la si
 
 El diagrama caja y puntero resultante sería el siguiente:
 
-<img src="imagenes/box-and-pointer2.png" style="width:250px;"/>
+<img src="imagenes/box-and-pointer2.png" width="250px"/>
 
 Vemos que en la pareja que se crea con `(cons p 6)` se guarda en la parte izquierda **la misma pareja que hay en `p`**. Lo representamos con una flecha que apunta a la misma pareja que `p`. 
 
@@ -1018,7 +1018,7 @@ La pareja cumple las condiciones anteriores:
 * La parte izquierda de la pareja es el primer elemento de la lista (el número 1)
 * La parte derecha es el resto de la lista (la lista vacía)
 
-<img src="imagenes/pareja-lista.png" style="width:150px;"/>
+<img src="imagenes/pareja-lista.png" width="150px"/>
 
 *La lista {1}*
 
@@ -1045,7 +1045,7 @@ La primera pareja cumple las condiciones de ser una lista:
 * Su primer elemento es el 1
 * Su parte derecha es la lista '(2 3 4)
 
-<img src="imagenes/lista.png" style="width:400px;"/>
+<img src="imagenes/lista.png" width="400px"/>
 
 *Parejas formando una lista*
 
@@ -1092,7 +1092,7 @@ La siguiente estructura se denomina *lista de asociación*. Son listas cuyos ele
 
 ¿Cuál sería el diagrama *box and pointer* de la estructura anterior?
 
-<img src="imagenes/lista-parejas.png" style="width:400px;"/>
+<img src="imagenes/lista-parejas.png" width="400px"/>
 
 La expresión equivalente utilizando conses es:
 
@@ -1119,7 +1119,7 @@ La lista anterior también se puede definir con quote:
 
 El diagrama *box and pointer* de la lista es:
 
-<img src="imagenes/lista-lista.png" style="width:500px;"/>
+<img src="imagenes/lista-lista.png" width="500px"/>
 
 *Lista que contiene otra lista como segundo elemento*
 
@@ -1465,11 +1465,11 @@ Hemos visto que la característica fundamental de la programación fundamental e
 
 Para simbolizar el hecho de que las funciones toman parámetros de entrada y devuelven una única salida, vamos a representar las funciones como un símbolo especial, una pequeña casa invertida con unas flechas en la parte superior que representan las entradas y una única flecha que representa la salida. Por ejemplo, podemos representar de la siguiente forma la función que eleva al cuadrado un número:
 
-<img src="imagenes/funcion-cuadrado.png" style="width:80px;"/>
+<img src="imagenes/funcion-cuadrado.png" width="80px"/>
 
 También podemos representar la función que suma dos parejas:
 
-<img src="imagenes/esquema-suma-parejas.png" style="width:200px;"/>
+<img src="imagenes/esquema-suma-parejas.png" width="200px"/>
 
 Una de las características fundamentales de la programación funcional es considerar a las funciones como *objetos de primera clase*. Recordemos que un tipo de primera clase es aquel que:
 
@@ -1687,7 +1687,7 @@ Podemos asignar funciones ya existentes a nuevos identificadores usando `define`
 
 Es muy importante darse cuenta que la expresión `(define suma +)` se evalúa de forma idéntica a `(define y x)`. Primero se evalúa el identificador `+`, que devuelve el *objeto función* suma, que se asigna a la variable `suma`. El resultado final es que tanto `+` como `suma` tienen como valor el mismo procedimiento:
 
-<img src="imagenes/suma.png" style="width:100px;"/>
+<img src="imagenes/suma.png" width="100px"/>
 
 
 La forma especial `define` para definir una función no es más que *azucar sintáctico*.

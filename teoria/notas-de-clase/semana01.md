@@ -43,15 +43,15 @@
 
 ### Máquina de sumar del alemán Wilhelm Schickard (1623)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/SchickardMachine.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/SchickardMachine.jpg" width="300px"/>
 
 ----
 
 ### Calculadora de Pascal (1650) (*Pascalina*),
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/Pascaline_from_1652_year.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/Pascaline_from_1652_year.jpg" width="300px"/>
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/PascaleneLidOpened.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/PascaleneLidOpened.jpg" width="300px"/>
 
 - La primera máquina de calcular que podía hacer sumas, restas, multiplicaciones y divisiones:
 - Se construyeron alrededor de 50 unidades.
@@ -60,7 +60,7 @@
 
 ### Motor de diferencias de Babbage (1820)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/Charles_Babbage.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/Charles_Babbage.jpg" width="300px"/>
 
 - Charles Babbage 
 - Objetivo: calcular e imprimir tablas numéricas de logaritmos utilizando el [método de las diferencias](http://acarol.woz.org/difference_engine.html#HowDoesDifferenceEngine)
@@ -69,13 +69,13 @@
 - Babbage trabajó durante varios años en la máquina sin poder completarla
 - En 2002 el  *Science Museum* de Londres presentó una reconstrucción totalmente funcional ([ver vídeo](http://www.youtube.com/watch?v=0anIyVGeWOI))
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/motor-diferencias.jpg" style="width:400px"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/motor-diferencias.jpg" width="400px"/>
 
 ----
 
 ### Motor analítico de Babbage (1840)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/analytical-engine.png" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/analytical-engine.png" width="500px"/>
 
 - Babbage toma la idea de los telares programables que permiten dibujar distintos diseños a usar tarjetas perforadas
 - Diseñado con la idea de usar tarjetas perforadas para realizar *cualquier cálculo* mediante programación
@@ -85,13 +85,13 @@
 - Ada Lovelace tuvo un papel fundamental en la divulgación de la máquina, de sus sistema de programación y fue la primera que entendió sus posibilidades más allá del cálculo de fórmulas
 - Babbage trabajó durante más de 30 años para intentar construir la máquina, se agotaron todos sus fondos y murió en 1871 habiendo podido construir sólo una parte
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/ada-lovelace.jpg" style="width:200px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/ada-lovelace.jpg" width="200px"/>
 
 ----
 
 ### Codificación de la información: tarjetas perforadas
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/tarjeta-perforada.png" style="width:400px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/tarjeta-perforada.png" width="400px"/>
 
 - Tienen su origen en Herman Hollerith, que las inventó a finales del siglo XIX para automatizar el procesamiento del censo en los Estados Unidos
 - Las tarjetas perforadas usadas en los primeros computadores utilizan una codificación
@@ -101,19 +101,19 @@
 
 #### Relés electromecánicos
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/relay-telegrafo.png" style="width:450px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/relay-telegrafo.png" width="450px"/>
 
 - Inventados alrededor de 1835
 - Morse los utiliza en la patente del telégrafo (1837)
 - Puerta AND implementada con dos relés electromecánicos:
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/and-reles.png" style="width:200px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/and-reles.png" width="200px"/>
 
 ----
 
 ### La máquina universal de Turing (1935)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/Alan_Turing.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/Alan_Turing.jpg" width="300px"/>
 
 - La Máquina de Turing es un *modelo computacional* que formula Alan Turing para estudiar matemáticamente cuáles son los límites del cálculo y la computación
 - Turing lo inventa para contestar a a la pregunta ¿cuál es el modelo más simple que puede implementar un algoritmo?
@@ -146,12 +146,12 @@
 
 ### 1941: la máquina de calcular Z3 de Zuse
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/Zuse_Z3.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/Zuse_Z3.jpg" width="300px"/>
 
 - Electromecánica 
 - 2.300 relés
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/paper-tape-univac.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/paper-tape-univac.jpg" width="300px"/>
 
 - Sólo podía ejecutar secuencias fijas de operaciones aritméticas en punto flotante (suma, resta, multiplicación, división y raíz cuadrada) codificadas en una cinta perforada
 - El programa se codificaba en una cinta externa y se leía paso a paso de forma mecánica
@@ -185,7 +185,7 @@ Un ejemplo de programa:
 
 ##### **ABC** (1942, USA)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/ABCreplica.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/ABCreplica.jpg" width="300px"/>
 
 - El profesor estadounidense John Vincent Atanasoff en la universidad de Iowa diseñan  y desarrollan el primer computador totalmente electrónico, utilizando unas 300 válvulas de vacío (**ABC**, *Atanasoff-Berry Computer*).
 - No se trataba de un computador genérico, sino de una máquina de cálculo orientada a la resolución de sistemas lineales de ecuaciones algebráicas
@@ -200,7 +200,7 @@ Un ejemplo de programa:
 
 ### **Colossus** (1944, UK)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/Colossus.jpg" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/Colossus.jpg" width="300px"/>
 
 - Colossus es el primer computador electrónico digital capaz de funcionar de forma continua
 - Se desarrolló en el centro de investigación británico de Bletchley Park en para automatizar la descodificación de los mensajes alemanes durante la Segunda Guerra Mundial
@@ -216,7 +216,7 @@ Un ejemplo de programa:
 
 ### **Mark-1** (1944, USA)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/mark-1.jpg" style="width:400px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/mark-1.jpg" width="400px"/>
 
 - Mark-1 fue diseñada por el profesor Howard Aiken de Harvard y construida por IBM
 - El objetivo del Mark-1 era el cálculo de tablas resultantes de funciones matemáticas, por ejemplo, tablas balísticas para el lanzamiento de misiles.
@@ -230,7 +230,7 @@ Un ejemplo de programa:
 
 ##### **ENIAC** (1945, USA)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/eniac.jpg" style="width:400px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/eniac.jpg" width="400px"/>
 
 - ENIAC es el primer computador electrónico construido en los EEUU, en la Moore School de la universidad de Pensilvania
 - ENIAC tenía una tecnología similar a Colossus, pero era considerablemente más grande y más flexible (aunque aun estaba lejos de ser un computador de propósito general)
@@ -246,7 +246,7 @@ Un ejemplo de programa:
 
 ### EDVAC: la arquitectura von Neumann (1945, USA)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/John_von_Neumann.gif" style="width:300px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/John_von_Neumann.gif" width="300px"/>
 
 - En 1944 John von Neumann se unió al grupo de desarrollo del ENIAC y aconsejó modificaciones en la arquitectura que llevaron, en 1948, a introducir un mecanismo primitivo de programa almacenado en memoria.
 - En 1945, trabajando en la Universidad de Princeton (EEUU) escribió su famoso informe *First Draft of a Report on the EDVAC* en el que propone la arquitectura básica de un computador digital de propósito general con **programas almacenados en memoria** (*stored-program electronic computer*) que denominó **EDVAC**.
@@ -300,7 +300,7 @@ Para la programación del EDSAC, Wilkes estableció una biblioteca de programas 
 - A finales de la década de los 40 se empiezan a intentar resolver con los primeros computadores los primeros problemas  matemáticos distintos de operaciones numéricas: codificación y descodificación, problemas combinatorios como el coloreado del mapa o problemas de ordenación.
 - Uno de los primeros algoritmos de von Neumann realiza una ordenación de un conjunto de números. Von Neumann lo describe en una carta fechada en 1945. Utiliza el conjunto de instrucciones del EDSAC cuando todavía no se había construido:
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/von-neumann-first-program.png" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/von-neumann-first-program.png" width="500px"/>
 
 ----
 
@@ -313,12 +313,12 @@ Para la programación del EDSAC, Wilkes estableció una biblioteca de programas 
 
 ### El nacimiento de los computadores comerciales (1951)
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/univac.jpg" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/univac.jpg" width="500px"/>
 
 - El [UNIVAC](http://en.wikipedia.org/wiki/UNIVAC_I) fue el primer computador comercial (1951). Con este computadora aparece por primera vez la figura del programador: manuales, cursos de formación, ofertas de empleo, etc.
 - Instalaciones comerciales del UNIVAC:
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/instalaciones-univac.png" style="width:600px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/instalaciones-univac.png" width="600px"/>
 
 ----
 
@@ -328,17 +328,17 @@ Para la programación del EDSAC, Wilkes estableció una biblioteca de programas 
 - La complejidad de las tareas a programar es pequeña y es suficiente con los programas en ensamblador
 - El [manual de 1959 de programación del UNIVAC](http://www.bitsavers.org/pdf/univac/univac1/UNIVAC1_Programming_1959.pdf) es una referencia histórica de gran interés de la que hemos extraído las siguientes imágenes:
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-0.png" style="width:400px"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-0.png" width="400px"/>
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-1.png" style="width:400px"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-1.png" width="400px"/>
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-2.png" style="width:500px"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-2.png" width="500px"/>
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-3.png" style="width:500px"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/manual-univac-3.png" width="500px"/>
 
 - Se realizan los primeros anuncios y reportajes de televisión sobre computadores ([YouTube](https://www.youtube.com/watch?v=Pd63MHGQygQ))
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/anuncio-univac.png" style="width:400px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/anuncio-univac.png" width="400px"/>
 
 ----
 
@@ -348,7 +348,7 @@ Para la programación del EDSAC, Wilkes estableció una biblioteca de programas 
 - Tuvo una difusión mucho mayor que el UNIVAC: centros gubernamentales, universidades.
 - Los primeros lenguajes de programación de alto nivel se desarrollan para este computador.
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/IBM-704.jpg" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/IBM-704.jpg" width="500px"/>
 
 ----
 
@@ -381,11 +381,11 @@ Cita de John Backus ([Wikipedia sobre FORTRAN](http://en.wikipedia.org/wiki/Fort
 
 > Much of my work has come from being lazy. I didn't like writing programs, and so, when I was working on the IBM 701, writing programs for computing missile trajectories, I started work on a programming system to make it easier to write programs.
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/john-backus.png" style="width:150px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/john-backus.png" width="150px"/>
 
 *John Backus*
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/codigo-FORTRAN.png" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/codigo-FORTRAN.png" width="500px"/>
 
 *Ejemplo FORTRAN*
 
@@ -427,7 +427,7 @@ Entre 1952 y 1972 alrededor de 200 lenguajes. Una decena fueron realmente sigini
 
 ### Genealogía de los lenguajes de programación
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/genealogia-de-los-lp.png" style="width:600px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/genealogia-de-los-lp.png" width="600px"/>
 
 ----
 
@@ -460,11 +460,11 @@ Si comprobamos la historia de los lenguajes de programación, podemos clasificar
 
 El índice [TIOBE](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html) es un indicador de la popularidad de los lenguajes de programación. 
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/lista-tiobe.png" style="width:800px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/lista-tiobe.png" width="800px"/>
 
 También es muy interesante comprobar la evolución de los 10 lenguajes más populares en los últimos 10 años.
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/tpci_trends.png" style="width:800px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/tpci_trends.png" width="800px"/>
 
 ----
 
@@ -474,7 +474,7 @@ Ejemplos de nuevos lenguajes y sus creadores:
 
 **Ruby**
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/yukihiromatsumoto.jpg" style="width:150px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/yukihiromatsumoto.jpg" width="150px"/>
 
 *Yukihiro Matsumoto*
 
@@ -484,7 +484,7 @@ Ejemplos de nuevos lenguajes y sus creadores:
 
 **Scala**
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/oderski.jpg" style="width:150px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/oderski.jpg" width="150px"/>
 
 *Martin Odersky*
 
@@ -494,7 +494,7 @@ Ejemplos de nuevos lenguajes y sus creadores:
 
 **Go**
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/thompson.jpeg" style="width:150px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/thompson.jpeg" width="150px"/>
 
 *Ken Thompson*
 
@@ -505,7 +505,7 @@ y también multiparadigma.
 
 **Swift**
 
-<img src="../tema01-historia-lenguajes-programacion/imagenes/ChrisLattner.jpg" style="width:150px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/ChrisLattner.jpg" width="150px"/>
 
 *Chris Lattner*
 

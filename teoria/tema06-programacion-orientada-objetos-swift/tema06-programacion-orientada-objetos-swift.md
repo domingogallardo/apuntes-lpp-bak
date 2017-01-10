@@ -368,7 +368,7 @@ Accedemos entonces a la propiedad `centro` de la variable `cuadrado` usando la s
 
 Después la propiedad centro se actualiza al nuevo valor de `(15, 15)` lo que mueve el cuadrado arriba a la derecha, a la nueva posición mostrada por el cuadrado naranja en el diagrama de abajo. Al asignar el nuevo valor a la propiedad se llama al _setter_ del centro, lo que modifica los valores `x` e `y` de las propiedades almacenadas originales, y mueve el cuadrado a su nueva posición.
 
-<img src="imagenes/computedProperties.png" style="width: 300px;"/>
+<img src="imagenes/computedProperties.png" width="300px"/>
 
 Se puede definir una versión acortada del _setter_ usando la variable por defecto `newValue` que contiene el nuevo valor asignado en el _setter_:
 

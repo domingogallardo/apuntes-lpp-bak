@@ -442,7 +442,7 @@ El siguiente código es una variante del anterior que dibuja un triángulo rect�
 
 ##### 1.5.2. Triángulo de Sierpinski
 
-<img src="imagenes/sierpinski.png" style="width:400px"/>
+<img src="imagenes/sierpinski.png" width="400px"/>
 
 *Triángulo de Sierpinski*
 
@@ -532,7 +532,7 @@ La llamada a
 
 Produce la figura que vimos al principio del apartado:
 
-<img src="imagenes/sierpinski.png" style="width:400px;"/>
+<img src="imagenes/sierpinski.png" width="400px"/>
 
 Para ocupar la venta completa debemos desplazar la tortuga hacia atrás antes de invocar a `sierpinski`:
 
@@ -574,7 +574,7 @@ La curva de Hilbert es una curva fractal que tiene la propiedad de rellenar comp
 
 Su dibujo tiene una formulación recursiva:
 
-<img src="imagenes/hilbert.png" style="width:600px;"/>
+<img src="imagenes/hilbert.png" width="600px"/>
 
 La curva H3 se puede construir a partir de la curva H2. El algoritmo recursivo se formula dibujando la curva i-ésima a partir de la curva i-1.
 
@@ -841,7 +841,7 @@ Las listas estructuradas definen una estructura de niveles, donde la lista inici
 
 Por ejemplo, la representación en forma de niveles de la lista `{{a b c} d e}` es la siguiente:
 
-<img src="imagenes/expresion-e-1.png" style="width:350px;"/>
+<img src="imagenes/expresion-e-1.png" width="350px"/>
 
 Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y las hojas `a`, `b` y `c` en el nivel 2 y en la posición 1 de la lista.
 
@@ -854,7 +854,7 @@ Otro ejemplo. ¿Cuál sería la representación en niveles de la siguiente lista
 	      {y 5}}
 	   {+ x y}}}
 
-<img src="imagenes/expresion-e-2.png" style="width:300px;"/>
+<img src="imagenes/expresion-e-2.png" width="300px"/>
 
 #### <a name="2-2"></a> 2.2. Funciones recursivas sobre listas estructuradas
 
@@ -875,7 +875,7 @@ La definición de este caso general usando _pseudocódigo_ es:
 
 > El número de hojas de una lista estructurada es la suma del número de hojas de su primer elemento (que puede ser otra lista) y del número de hojas del resto.
 
-<img src="imagenes/num-hojas-estructurada.png" style="width:400px;"/>
+<img src="imagenes/num-hojas-estructurada.png" width="400px"/>
 
 Como casos base, podemos considerar cuando la lista es vacía (el número de hojas es 0) y cuando la lista no es tal, sino que es un dato (una hoja), en cuyo caso es 1. La implementación en Scheme es:
 
@@ -922,7 +922,7 @@ La *altura* de una lista estructurada viene dada por su número de niveles: una 
 
 Para calcular la altura de una lista estructurada tenemos que obtener (de forma recursiva) la altura de su primer elemento, y la altura del resto de la lista, sumarle 1 a la altura del primer elemento y devolver el máximo de los dos números.
 
-<img src="imagenes/altura-estructurada.png" style="width:300px;"/>
+<img src="imagenes/altura-estructurada.png" width="300px"/>
 
 Como casos base, la altura de una lista vacía o de una hoja (dato) es 0.
 
@@ -1092,11 +1092,11 @@ Un **árbol** se puede definir recursivamente de la siguiente forma:
 
 Un ejemplo de árbol:
 
-<img src="imagenes/arbol-sencillo.png" style="width:250px;"/>
+<img src="imagenes/arbol-sencillo.png" width="250px"/>
 
 El árbol anterior tiene como dato de la raíz es el símbolo `+` y tiene 3 árboles hijos:
 
-<img src="imagenes/arboles-hijos.png" style="width:300px;"/>
+<img src="imagenes/arboles-hijos.png" width="300px"/>
 
 - El primer hijo es un árbol hoja, con valor 5 y sin hijos
 - El segundo hijo es un árbol con valor `*` y dos hijos hoja, el 2 y el 3
@@ -1138,7 +1138,7 @@ Podríamos definir el árbol con la siguiente sentencia:
 
 Otro ejemplo más. ¿Cómo se implementa en Scheme el árbol de la siguiente figura?
 
-<img src="imagenes/binario-2.png" style="width:300px"/>
+<img src="imagenes/binario-2.png" width="300px"/>
 
 Se haría con la lista de la siguiente sentencia:
 

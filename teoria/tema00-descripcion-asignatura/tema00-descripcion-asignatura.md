@@ -73,7 +73,7 @@ Al comienzo de cada sesión de prácticas el profesor resolverá dudas sobre la 
 
 La distribución de grupos del curso 2015-16 es la siguiente:
 
-<img src="imagenes/horario.png" style="width: 700px"/>
+<img src="imagenes/horario.png" width="700px"/>
 
 ### Evaluación
 
@@ -142,13 +142,13 @@ En Moodle se irán publicando semana a semana los apuntes de la asignatura, con 
 
 Para ampliar algunos conceptos se recomiendan los dos siguientes manuales:
 
-<img src="imagenes/sicp-cover.jpg" style="width: 170px"/>
+<img src="imagenes/sicp-cover.jpg" width="170px"/>
 
 * Harold Abelson y Gerald Jay Sussman, *Structure and Interpretation of Computer Programs*, MIT Press, 1996
 * [Enlace a la edición on-line](http://mitpress.mit.edu/sicp/full-text/book/book.html)
 * Signatura en la Biblioteca Politécnica: I.06/ABE/STR
 
-<img src="imagenes/swift-cover.png" style="width: 170px"/>
+<img src="imagenes/swift-cover.png" width="170px"/>
 
 * Apple, *The Swift Programming Language (Swift 2.1)*, 2015
 * [Web](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/)

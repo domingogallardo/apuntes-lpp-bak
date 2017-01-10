@@ -99,7 +99,7 @@ $$hipot(x) = \sqrt{x^2+x^2} = x \sqrt{2}$$
 
 ### 1.5.2. Triángulo de Sierpinski
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/sierpinski.png" style="width:400px"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/sierpinski.png" width="400px"/>
 
 *Triángulo de Sierpinski*
 
@@ -214,7 +214,7 @@ Programas en Scheme:
 
 - Su dibujo tiene una formulación recursiva:
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/hilbert.png" style="width:600px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/hilbert.png" width="600px"/>
 
 La curva H3 se puede construir a partir de la curva H2. El algoritmo recursivo se formula dibujando la curva i-ésima a partir de la curva i-1.
 
@@ -473,7 +473,7 @@ Realmente bastaría con haber hecho una de las dos definiciones y escribir la ot
 
 - Por ejemplo, la representación en forma de niveles de la lista `{{a b c} d e}` es la siguiente:
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/expresion-e-1.png" style="width:350px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/expresion-e-1.png" width="350px"/>
 
 Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y las hojas `a`, `b` y `c` en el nivel 2 y en la posición 1 de la lista.
 
@@ -504,7 +504,7 @@ Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y
 (num-hojas '((1 2) (3 4 (5) 6) (7))) ⇒ 7
 ```
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/num-hojas-estructurada.png" style="width:400px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/num-hojas-estructurada.png" width=400px"/>
 
 - Podemos definir la función obteniendo el primer elemento y el resto de la lista, y contando recursivamente el número de hojas del primer elemento y del resto. 
 - Al ser una lista estructurada, **el primer elemento puede ser a su vez otra lista, por lo que llamamos a la recursión para contar sus hojas**.
@@ -563,7 +563,7 @@ Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y
 (altura '(1 (2 (3)) 3)) ⇒ 3
 ```
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/altura-estructurada.png" style="width:300px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/altura-estructurada.png" width="300px"/>
 
 > Para calcular la altura de una lista estructurada tenemos que obtener (de forma recursiva) la altura de su primer elemento, y la altura del resto de la lista, sumarle 1 a la altura del primer elemento y devolver el máximo de los dos números.
 

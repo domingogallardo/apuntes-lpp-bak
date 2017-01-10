@@ -78,11 +78,11 @@ Notas de clase Semana 4
 
 Función que eleva al cuadrado un número:
 
-<img src="./imagenes/tema03-programacion_funcional/funcion-cuadrado.png" style="width: 80px;"/>
+<img src="../tema02-programacion-funcional/imagenes/funcion-cuadrado.png" width="80px"/>
 
 Función que suma dos parejas:
 
-<img src="./imagenes/tema02-programacion_funcional/esquema-suma-parejas.png" style="width: 200px;"/>
+<img src="../tema02-programacion-funcional/imagenes/esquema-suma-parejas.png" width="200px"/>
 
 
 ----
@@ -308,7 +308,7 @@ Integer x -> {x*x}
 ⇒ 10
 ```
 
-<img src="./imagenes/tema03-programacion_funcional/suma.png" style="width:100px;"/>
+<img src="../tema02-programacion-funcional/imagenes/suma.png" width="100px"/>
 
 
 ----

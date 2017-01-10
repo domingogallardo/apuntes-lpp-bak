@@ -69,7 +69,7 @@ Para Abelson y Sussman, todos los lenguajes de progamación permiten combinar id
 * Las abstracciones que vamos construyendo van apoyándose unas en otras y permiten hacer compresible y comunicable un problema complejo
 * Ejemplo: el modelado del funcionamiento de una biblioteca contiene abstracciones como "libros", "préstamo", "reserva", o "libros disponibles" que representan conceptos del dominio que deben ser implementados en nuestra solución
 
-<img src="./imagenes/tema01-historia_lenguajes_programacion/casosDeUsoRegistrado.png" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/casosDeUsoRegistrado.png" width="500px"/>
 
 ----
 
@@ -291,7 +291,7 @@ Ejemplo (Java):
 
 La siguiente figura (tomada, como las demás de este apartado del *Programming Language Pragmatics*) muestra el proceso  de generación y ejecución de un programa compilado.
 
-<img src="./imagenes/tema01-historia_lenguajes_programacion/compilacion.png" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/compilacion.png" width="500px"/>
 
 - El proceso de compilación de un programa consiste en la traducción del código fuente original al código máquina específico 
 - El código máquina resultante sólo corre en el procesador para el que se ha generado. 
@@ -304,7 +304,7 @@ La siguiente figura (tomada, como las demás de este apartado del *Programming L
 
 ### Interpretación
 
-<img src="./imagenes/tema01-historia_lenguajes_programacion/interpretacion.png" style=" width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/interpretacion.png" style=" width:500px"/>
 
 *Interpretación*
 
@@ -323,7 +323,7 @@ La siguiente figura (tomada, como las demás de este apartado del *Programming L
 - En una primera fase el compilador de Java (`javac`) realiza una traducción del código fuente original a un _código intermedio_ binario independiente del procesado, denominado _bytecode_. Este código binario es multiplataforma.
 - El código intermedio es interpretado después por un el intérprete (`java`) que ya sí que es dependiente de la plataforma. En la figura el intérprete se denomina _Virtual machine_ (no confundir con el concepto de _máquina virtual_ que permite emular un sistema operativo, por ejemplo VirtualBox).
 
-<img src="./imagenes/tema01-historia_lenguajes_programacion/maquina-virtual.png" style="width:500px;"/>
+<img src="../tema01-historia-lenguajes-programacion/imagenes/maquina-virtual.png" width="500px"/>
 
 - Ejemplos: Java, Scala
 

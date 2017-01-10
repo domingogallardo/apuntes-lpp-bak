@@ -34,7 +34,7 @@ Notas de clase Semana 8
 
 Un ejemplo de árbol:
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/arbol-sencillo.png" style="width:250px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/arbol-sencillo.png" width="250px"/>
 
 - ¿Cuál es el dato de su raíz? 
 - ¿Cuáles son sus hijos? 
@@ -45,7 +45,7 @@ Un ejemplo de árbol:
 
 El árbol anterior tiene como dato de la raíz es el símbolo `+` y tiene 3 árboles hijos:
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/arboles-hijos.png" style="width:300px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/arboles-hijos.png" width="300px"/>
 
 - El primer hijo es un árbol hoja, con valor 5 y sin hijos
 - El segundo hijo es un árbol con valor `*` y dos hijos hoja, el 2 y el 3
@@ -94,7 +94,7 @@ Podríamos definir el árbol con la siguiente sentencia:
 
 Otro ejemplo más. ¿Cómo se implementa en Scheme el árbol de la siguiente figura?
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/binario-2.png" style="width:300px"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/binario-2.png" width="300px"/>
 
 <p style="margin-bottom:4cm;"/>
 
@@ -144,7 +144,7 @@ Es importante tener claro los tipos devueltos por las dos primeras funciones:
 
 Por ejemplo, si usamos el árbol `arbol1` 
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/arbol-sencillo.png" style="width:200px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/arbol-sencillo.png" width="200px"/>
 
 ```scheme
 (define arbol1 '(+ (5) (* (2) (3)) (10)))
@@ -202,7 +202,7 @@ Funciones que permiten construir un nuevo árbol:
 
 El árbol `arbol1` 
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/arbol-sencillo.png" style="width:200px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/arbol-sencillo.png" width="200px"/>
 
 se puede construir con las siguientes llamadas a los constructores:
 
@@ -222,7 +222,7 @@ se puede construir con las siguientes llamadas a los constructores:
 - Aunque un árbol se implementa en Scheme con una lista estructurada, a la hora de trabajar con árboles usaremos su barrera de abstracción propia, para resaltar trabajar con el nivel de abstracción correcto y esconder la implementación.
 - El siguiente esquema resumen las características de la barrera de abstracción de listas y árboles:
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/barrera-abstraccion.png" width="550px">
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/barrera-abstraccion.png" width="550px">
 
 ----
 
@@ -819,7 +819,7 @@ Ejemplo:
 
 <p style="margin-bottom:4cm;"/>
 
-<img src="imagenes/tema05-programacion_imperativa/datos.png" width="250px">
+<img src="../tema04-programacion-imperativa/imagenes/datos.png" width="250px">
 
 - Vamos ahora a *mutar* la estructura utilizando las sentencias `set-car!` y `set-cdr!`. 
 - Para mutar una pareja debemos obtener una referencia a la pareja y modificar su parte derecha o su parte izquierda con las sentencias anteriores.
@@ -841,7 +841,7 @@ Por ejemplo, ¿cómo cambiaríamos el `8` por un `18`? Deberíamos obtener la pa
 - En el ejemplo anterior hemos mutado un dato por otro. 
 - También podemos mutar las referencias a las parejas. Por ejemplo, la parte derecha de la pareja que contiene el 5 para que apunte a la pareja `(3 . 4)`:
 
-<img src="imagenes/tema05-programacion_imperativa/datos-mutados.png" width="250px">
+<img src="../tema04-programacion-imperativa/imagenes/datos-mutados.png" width="250px">
 
 ¿Cómo lo haríamos? 
 
@@ -862,7 +862,7 @@ Habría que obtener la pareja que contiene el 5 con la expresión `(car (cdr dat
 - Primer ejemplo: concatenación de listas
 - Definimos una función `(append! lista1 lista2)` que concatena dos listas usando la mutación: se modifica la parte derecha de la última pareja de la primera lista sustituyendo su lista vacía por una referencia a la primera pareja de la segunda lista.
 
-<img src="imagenes/tema05-programacion_imperativa/append.png" width="400px">
+<img src="../tema04-programacion-imperativa/imagenes/append.png" width="400px">
 
 ```scheme
 (define (append! l1 l2)

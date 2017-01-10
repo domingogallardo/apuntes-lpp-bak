@@ -34,7 +34,7 @@ Notas de clase Semana 9
 Como ejemplo inicial, la siguiente función es la versión mutadora de `append`. 
 La llamamos `append!`:
 
-<img src="imagenes/tema05-programacion_imperativa/append.png" width="400px">
+<img src="../tema04-programacion-imperativa/imagenes/append.png" width="400px">
 
 
 ```scheme
@@ -80,7 +80,7 @@ Implementaremos el tipo de datos con una lista normal con una pareja adicional e
 ```scheme
 (define lista '(*olist* 10 20 30))
 ```
-<img src="imagenes/tema05-programacion_imperativa/olist.png" width="600px">
+<img src="../tema04-programacion-imperativa/imagenes/olist.png" width="600px">
 
 **Selectores**
 
@@ -126,7 +126,7 @@ Las funciones mutadoras modifican la estructura de datos.
 
 Comenzamos con la función `(borra-primero-olist! olist)` que elimina con mutación el primer elemento de la lista ordenada:
 
-<img src="imagenes/tema05-programacion_imperativa/olist2.png" width="600px">
+<img src="../tema04-programacion-imperativa/imagenes/olist2.png" width="600px">
 
 ```scheme
 (define (borra-primero-olist! olist)
@@ -150,7 +150,7 @@ La función `(add-item! item ref)` es la función clave que crea una nueva parej
         (else (inserta-olist! (cdr olist) n))))
 ```
 
-<img src="imagenes/tema05-programacion_imperativa/olist3.png" width="600px">
+<img src="../tema04-programacion-imperativa/imagenes/olist3.png" width="600px">
 
 Ejemplo de uso:
 
