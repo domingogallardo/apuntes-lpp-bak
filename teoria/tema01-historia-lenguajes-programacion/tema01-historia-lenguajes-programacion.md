@@ -57,7 +57,7 @@ En los siglos XVII al XIX científicos, relojeros y aficionados construyeron un 
 
 ##### Máquina de sumar del alemán Wilhelm Schickard (1623)
 
-<img src="imagenes/SchickardMachine.jpg" style="width:300px;"/>
+<img src="imagenes/SchickardMachine.jpg" width="300px"/>
 
 *Máquina de Schickard*
 
@@ -65,11 +65,11 @@ En los siglos XVII al XIX científicos, relojeros y aficionados construyeron un 
 
 La primera máquina de calcular que podía hacer sumas, restas, multiplicaciones y divisiones:
 
-<img src="imagenes/Pascaline_from_1652_year.jpg" style="width:300px;"/>
+<img src="imagenes/Pascaline_from_1652_year.jpg" width="300px"/>
 
 *Máquina de Pascal*
 
-<img src="imagenes/PascaleneLidOpened.jpg" style="width:300px;"/>
+<img src="imagenes/PascaleneLidOpened.jpg" width="300px"/>
 
 *Máquina de Pascal abierta*
 
@@ -79,13 +79,13 @@ Se construyeron alrededor de 50 unidades.
 
 En 1820 el ingeniero inglés Charles Babbage diseñó el motor de diferencias (*Babbage difference engine*) para poder calcular e imprimir tablas numéricas de logaritmos utilizando el [método de las diferencias](http://acarol.woz.org/difference_engine.html#HowDoesDifferenceEngine) para calcular valores de un polinomio.
 
-<img src="imagenes/Charles_Babbage.jpg" style="width:300px;"/>
+<img src="imagenes/Charles_Babbage.jpg" width="300px"/>
 
 *Charles Babbage*
 
 Utilizaba un sistema de numeración decimal y consistía en más de 8.000 piezas que se movían con una palanca giratoria. Babbage trabajó durante varios años en la máquina sin poder completarla. En 2002 el  *Science Museum* de Londres presentó una reconstrucción totalmente funcional ([ver vídeo](http://www.youtube.com/watch?v=0anIyVGeWOI)).
 
-<img src="imagenes/motor-diferencias.jpg" style="width:400px"/>
+<img src="imagenes/motor-diferencias.jpg" width="400px"/>
 
 *Motor de diferencias de Babbage*
 
@@ -93,7 +93,7 @@ Todas las máquinas de calcular construidas hasta anteriormente eran manuales, u
 
 ##### Motor analítico de Babbage
 
-<img src="imagenes/analytical-engine.png" style="width:500px;"/>
+<img src="imagenes/analytical-engine.png" width="500px"/>
 
 *Motor analítico de Babbage*
 
@@ -103,7 +103,7 @@ Se trata de una máquina totalmente mecánica, similar al motor de diferencias, 
 
 La máquina estaba diseñada para trabajar en base 10 y se podía conseguir que sus cálculos realizaran saltos condicionales y bucles.
 
-<img src="imagenes/ada-lovelace.jpg" style="width:200px;"/>
+<img src="imagenes/ada-lovelace.jpg" width="200px"/>
 
 *Ada Lovelace*
 
@@ -127,7 +127,7 @@ En su origen cada tarjeta guardaba los datos de una persona y usaban una codific
 
 Las tarjetas perforadas usadas en los primeros computadores ya utilizan una codificación. Cada columna (o fila) define un carácter utilizando alguna combinación de agujeros. Cada tarjeta perforada representa una línea de texto.
 
-<img src="imagenes/tarjeta-perforada.png" style="width:400px;"/>
+<img src="imagenes/tarjeta-perforada.png" width="400px"/>
 
 *Tarjeta perforada*
 
@@ -136,13 +136,13 @@ Podemos probar un [simulador de tarjetas perforadas](http://www.kloth.net/servic
 
 ##### Relés electromecánicos
 
-<img src="imagenes/relay-telegrafo.png" style="width:450px;"/>
+<img src="imagenes/relay-telegrafo.png" width="450px"/>
 
 - Inventados alrededor de 1835
 - Morse los utiliza en la patente del telégrafo (1837)
 - Puerta AND implementada con dos relés electromecánicos:
 
-<img src="imagenes/and-reles.png" style="width:200px;"/>
+<img src="imagenes/and-reles.png" width="200px"/>
 
 
 ##### Máquina universal de Turing
@@ -151,7 +151,7 @@ La máquina de Turing no es un computador real, no existe físicamente. Es un *m
 
 Alan Turing, en la Universidad de Cambridge, publicó en 1935 su trabajo "On Computable Numbers, with an Application to the Entscheidungsproblem" en el que demuestra que su nuevo modelo computacional es equivalente a cualquier modelo computacional planteado y que existen problemas que no pueden resueltos por ninguna computación. Este modelo computacional es muy sencillo y muy elegante, con las características abstractas esenciales de un instrumento de computación. La máquina de Turing es muy similar a un computador físico, pero contiene elementos ideales y poco eficientes que hacen imposible tomarlo como un diseño de a partir del que construir un computador físico.
 
-<img src="imagenes/Alan_Turing.jpg" style="width:200px;"/>
+<img src="imagenes/Alan_Turing.jpg" width="200px"/>
 
 *Alan Turing*
 
@@ -179,7 +179,7 @@ En la década 1940-50 se cristalizan todas las ideas previas y se produce un ava
 
 ##### 1941: la máquina de calcular Z3 de Zuse
 
-<img src="imagenes/Zuse_Z3.jpg" style="width:300px;"/>
+<img src="imagenes/Zuse_Z3.jpg" width="300px"/>
 
 *Máquina de calcular Z3*
 
@@ -221,7 +221,7 @@ Debido al estallido de la Segunda Guerra Mundial el trabajo de Zuse quedó olvid
 
 ##### **ABC** (1942, USA)
 
-<img src="imagenes/ABCreplica.jpg" style="width:300px;"/>
+<img src="imagenes/ABCreplica.jpg" width="300px"/>
 
 *ABC*
 
@@ -238,7 +238,7 @@ Aunque la parte electrónica se terminó con éxito, el computador no llegó nun
 
 ##### **Colossus** (1944, UK)
 
-<img src="imagenes/Colossus.jpg" style="width:300px;"/>
+<img src="imagenes/Colossus.jpg" width="300px"/>
 
 *Colossus*
 
@@ -258,7 +258,7 @@ Todos estos trabajos fueron declarados secretos por el gobierno inglés hasta 19
 
 ##### **Mark-1** (1944, USA)
 
-<img src="imagenes/mark-1.jpg" style="width:400px;"/>
+<img src="imagenes/mark-1.jpg" width="400px"/>
 
 *Mark-1*
 
@@ -271,7 +271,7 @@ Mark-1 fue diseñada por el profesor Howard Aiken de Harvard y construida por IB
 
 ##### **ENIAC** (1945, USA)
 
-<img src="imagenes/eniac.jpg" style="width:400px;"/>
+<img src="imagenes/eniac.jpg" width="400px"/>
 
 *ENIAC*
 
@@ -283,7 +283,7 @@ ENIAC no tenía tampoco un programa almacenado y para modificar su funcionamient
 
 En 1944 John von Neumann se unió al grupo de desarrollo del ENIAC y aconsejó modificaciones en la arquitectura que llevaron, en 1948, a introducir un mecanismo primitivo de programa almacenado en memoria.
 
-<img src="imagenes/John_von_Neumann.gif" style="width:300px;"/>
+<img src="imagenes/John_von_Neumann.gif" width="300px"/>
 
 *John von Neumann*
 
@@ -388,7 +388,7 @@ A finales de la década de los 40 se empiezan a intentar resolver con los primer
 
 Uno de los primeros algoritmos de von Neumann realiza una ordenación de un conjunto de números. Von Neumann lo describe en una carta fechada en 1945. Utiliza el conjunto de instrucciones del EDSAC cuando todavía no se había construido. El programa fue estudiado por Donald Knuth en el artículo *Von Neumann's first Computer Program*, en donde documenta que había un bug en las primeras instrucciones. Es el primer bug escrito del que se tiene historia. Si Von Neumann hubiera podido ejecutar el programa en el EDSAC se hubiera dado cuenta del error y hubiera sido la primera depuración de un programa.
 
-<img src="imagenes/von-neumann-first-program.png" style="width:500px;"/>
+<img src="imagenes/von-neumann-first-program.png" width="500px"/>
 
 *Primer programa de Von Neumann*
 
@@ -399,11 +399,11 @@ Uno de los primeros algoritmos de von Neumann realiza una ordenación de un conj
 
 El [UNIVAC](http://en.wikipedia.org/wiki/UNIVAC_I) fue el primer computador comercial (1951). Con este computadora aparece por primera vez la figura del programador: manuales, cursos de formación, ofertas de empleo, etc.
 
-<img src="imagenes/univac.jpg" style="width:500px;"/>
+<img src="imagenes/univac.jpg" width="500px"/>
 
 *UNIVAC*
 
-<img src="imagenes/instalaciones-univac.png" style="width:600px;"/>
+<img src="imagenes/instalaciones-univac.png" width="600px"/>
 
 *Instalaciones comerciales del UNIVAC*
 
@@ -417,22 +417,22 @@ La complejidad de las tareas a programar es pequeña y es suficiente con los pro
 
 El [manual de 1959 de programación del UNIVAC](http://www.bitsavers.org/pdf/univac/univac1/UNIVAC1_Programming_1959.pdf) es una referencia histórica de gran interés de la que hemos extraído las siguientes imágenes:
 
-<img src="imagenes/manual-univac-0.png" style="width:400px"/>
+<img src="imagenes/manual-univac-0.png" width="400px"/>
 
 *Manual del UNIVAC*
 
-<img src="imagenes/manual-univac-1.png" style="width:400px"/>
+<img src="imagenes/manual-univac-1.png" width="400px"/>
 *Programación del UNIVAC*
 
-<img src="imagenes/manual-univac-2.png" style="width:500px"/>
+<img src="imagenes/manual-univac-2.png" width="500px"/>
 *Algoritmo UNIVAC*
 
-<img src="imagenes/manual-univac-3.png" style="width:500px"/>
+<img src="imagenes/manual-univac-3.png" width="500px"/>
 *Codigo UNIVAC*
 
 Se realizan los primeros anuncios y reportajes de televisión sobre computadores ([YouTube](https://www.youtube.com/watch?v=Pd63MHGQygQ))
 
-<img src="imagenes/anuncio-univac.png" style="width:400px;"/>
+<img src="imagenes/anuncio-univac.png" width="400px"/>
 
 *Anuncio UNIVAC*
 
@@ -444,7 +444,7 @@ Tuvo una difusión mucho mayor que el UNIVAC: centros gubernamentales, universid
 
 Los primeros lenguajes de programación de alto nivel se desarrollan para este computador.
 
-<img src="imagenes/IBM-704.jpg" style="width:500px;"/>
+<img src="imagenes/IBM-704.jpg" width="500px"/>
 
 *Foto IBM 704*
 
@@ -487,11 +487,11 @@ Cita de John Backus ([Wikipedia sobre FORTRAN](http://en.wikipedia.org/wiki/Fort
 
 > Much of my work has come from being lazy. I didn't like writing programs, and so, when I was working on the IBM 701, writing programs for computing missile trajectories, I started work on a programming system to make it easier to write programs.
 
-<img src="imagenes/john-backus.png" style="width:150px;"/>
+<img src="imagenes/john-backus.png" width="150px"/>
 
 *John Backus*
 
-<img src="imagenes/codigo-FORTRAN.png" style="width:500px;"/>
+<img src="imagenes/codigo-FORTRAN.png" width="500px"/>
 
 *Ejemplo FORTRAN*
 
@@ -539,7 +539,7 @@ Entre 1952 y 1972 alrededor de 200 lenguajes. Una decena fueron realmente sigini
 
 ##### Genealogía de los lenguajes de programación
 
-<img src="imagenes/genealogia-de-los-lp.png" style="width:600px;"/>
+<img src="imagenes/genealogia-de-los-lp.png" width="600px"/>
 
 *Genealogía de los LP*
 
@@ -596,13 +596,13 @@ El índice [TIOBE](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.h
 
 El índice TIOBE no trata de medir el número de líneas escritas en los lenguajes de programación sino su *popularidad* e *importancia* en la comunidad.
 
-<img src="imagenes/lista-tiobe.png" style="width:800px;"/>
+<img src="imagenes/lista-tiobe.png" width="800px"/>
 
 *Lista TIOBE*
 
 También es muy interesante comprobar la evolución de los 10 lenguajes más populares en los últimos 10 años.
 
-<img src="imagenes/tpci_trends.png" style="width:800px;"/>
+<img src="imagenes/tpci_trends.png" width="800px"/>
 
 *Evolución TIOBE*
 
@@ -614,7 +614,7 @@ Ejemplos de nuevos lenguajes y sus creadores:
 
 **Ruby**
 
-<img src="imagenes/yukihiromatsumoto.jpg" style="width:150px;"/>
+<img src="imagenes/yukihiromatsumoto.jpg" width="150px"/>
 
 *Yukihiro Matsumoto*
 
@@ -624,7 +624,7 @@ Ejemplos de nuevos lenguajes y sus creadores:
 
 **Scala**
 
-<img src="imagenes/oderski.jpg" style="width:150px;"/>
+<img src="imagenes/oderski.jpg" width="150px"/>
 
 *Martin Odersky*
 
@@ -634,7 +634,7 @@ Ejemplos de nuevos lenguajes y sus creadores:
 
 **Go**
 
-<img src="imagenes/thompson.jpeg" style="width:150px;"/>
+<img src="imagenes/thompson.jpeg" width="150px"/>
 
 *Ken Thompson*
 
@@ -645,7 +645,7 @@ y también multiparadigma.
 
 **Swift**
 
-<img src="imagenes/ChrisLattner.jpg" style="width:150px;"/>
+<img src="imagenes/ChrisLattner.jpg" width="150px"/>
 
 *Chris Lattner*
 
@@ -727,7 +727,7 @@ Escoger un buen nombre para los elementos que vamos construyendo en nuestro prog
 * Las abstracciones que vamos construyendo van apoyándose unas en otras y permiten hacer compresible y comunicable un problema complejo
 * Ejemplo: el modelado del funcionamiento de una biblioteca contiene abstracciones como "libros", "préstamo", "reserva", o "libros disponibles" que representan conceptos del dominio que deben ser implementados en nuestra solución
 
-<img src="imagenes/casosDeUsoRegistrado.png" style="width:500px;"/>
+<img src="imagenes/casosDeUsoRegistrado.png" width="500px"/>
 
 *Casos de uso biblioteca*
 
@@ -953,7 +953,7 @@ Ejemplo (Java):
 
 En el nivel de abstracción más bajo, la ejecución de un programa en un computador consiste en la ejecución de un conjunto de instrucciones del código máquina del procesador. Por ejemplo, la siguiente figura muestra un ejemplo de un programa en ensamblador para un antiguo procesador (el Z80, procesador de 8 bits del mítico [ZX Spectrum](http://es.wikipedia.org/wiki/Sinclair_ZX_Spectrum), uno de los primeros ordenadores personales en Europa):
 
-<img src="imagenes/ensamblador.png" style="width:500px;"/>
+<img src="imagenes/ensamblador.png" width="500px"/>
 
 *Ensamblador Z80*
 
@@ -966,7 +966,7 @@ Dependiendo del tipo de lenguaje de programación en el que esté escrito este p
 
 La siguiente figura (tomada, como las demás de este apartado del *Programming Language Pragmatics*) muestra el proceso  de generación y ejecución de un programa compilado.
 
-<img src="imagenes/compilacion.png" style="width:500px;"/>
+<img src="imagenes/compilacion.png" width="500px"/>
 
 *Compilación*
 
@@ -979,7 +979,7 @@ El proceso de compilación de un programa consiste en la traducción del código
 
 #### <a name="5-2"/> 5.2. Interpretación
 
-<img src="imagenes/interpretacion.png" style="width:500px;"/>
+<img src="imagenes/interpretacion.png" width="500px"/>
 
 *Interpretación*
 
@@ -997,7 +997,7 @@ En una primera fase el compilador de Java (`javac`) realiza una traducción del 
 
 El código intermedio es interpretado después por un el intérprete (`java`) que ya sí que es dependiente de la plataforma. En la figura el intérprete se denomina _Virtual machine_ (no confundir con el concepto de _máquina virtual_ que permite emular un sistema operativo, por ejemplo VirtualBox).
 
-<img src="imagenes/maquina-virtual.png" style="width:500px;"/>
+<img src="imagenes/maquina-virtual.png" width="500px"/>
 
 *Enfoque mixto (Java)*
 
