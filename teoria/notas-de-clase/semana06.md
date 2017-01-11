@@ -27,17 +27,26 @@ Notas de clase Semana 6
 ### 1.5. Recursión y gráficos de tortuga
 
 - Último ejemplo algo distinto de los vistos hasta ahora
-- Usaremos la recursión para dibujar figuras fractales usando los denominados *gráficos de tortuga*
-- Estilo de programación **no funcional**, dibujando los distintos trazos de las figuras con pasos de ejecución secuenciales con la primitiva imperativa `begin` 
+- Usaremos la recursión para dibujar figuras fractales usando los
+  denominados *gráficos de tortuga*
+- Estilo de programación **no funcional**, dibujando los distintos
+  trazos de las figuras con pasos de ejecución secuenciales con la
+  primitiva imperativa `begin`
 
-> Ten cuidado con la forma especial `begin`, es una forma especial imperativa. No debes usarla en la implementación de ninguna función cuando estemos usando el paradigma funcional.
+> Ten cuidado con la forma especial `begin`, es una forma especial
+> imperativa. No debes usarla en la implementación de ninguna función
+> cuando estemos usando el paradigma funcional.
 
 ----
 
 ### 1.5.1. Gráficos de tortuga en Racket
 
-- Los [gráficos de tortuga](http://en.wikipedia.org/wiki/Turtle_graphics) se crearon en el lenguaje de programación Logo, para enseñar a programar a niños y jóvenes, en los años 80.
-- Se pueden utilizar los  en Racket cargando la librería `(graphics turtles)`: 
+- Los
+  [gráficos de tortuga](http://en.wikipedia.org/wiki/Turtle_graphics)
+  se crearon en el lenguaje de programación Logo, para enseñar a
+  programar a niños y jóvenes, en los años 80.
+- Se pueden utilizar los en Racket cargando la librería `(graphics
+  turtles)`:
 
 ```scheme
 #lang r6rs
@@ -46,11 +55,14 @@ Notas de clase Semana 6
 ```
 
 - Los comandos más importantes de esta librería son:
-    - `(turtles #t)`: abre una ventana y coloca la tortuga en el centro, mirando hacia el eje X (derecha)
+    - `(turtles #t)`: abre una ventana y coloca la tortuga en el
+      centro, mirando hacia el eje X (derecha)
     - `(clear)`: borra la ventana y coloca la tortuga en el centro
-    - `(draw d)`: avanza la tortuga dibujando *d* píxeles 
-    - `(move d)`: mueve la tortuga *d* píxeles hacia adelante (sin dibujar)
-    - `(turn g)`: gira la tortuga *g* grados (positivos: en el sentido contrario a las agujas del reloj)
+    - `(draw d)`: avanza la tortuga dibujando *d* píxeles
+    - `(move d)`: mueve la tortuga *d* píxeles hacia adelante (sin
+      dibujar)
+    - `(turn g)`: gira la tortuga *g* grados (positivos: en el sentido
+      contrario a las agujas del reloj)
 
 -----
 
@@ -73,7 +85,9 @@ Notas de clase Semana 6
 (triangulo-rectangulo 100)
 ```
 
-La función `(hipot x)` devuelve la longitud de la hipotenusa de un triángulo rectángulo con dos lados de longitud `x`. O sea, la expresión:
+La función `(hipot x)` devuelve la longitud de la hipotenusa de un
+triángulo rectángulo con dos lados de longitud `x`. O sea, la
+expresión:
 
 $$hipot(x) = \sqrt{x^2+x^2} = x \sqrt{2}$$
 
@@ -81,7 +95,8 @@ $$hipot(x) = \sqrt{x^2+x^2} = x \sqrt{2}$$
 
 ### Triángulo de base `w` y lados `w/2`
 
-- El siguiente código es una variante del anterior que dibuja un triángulo rectángulo de base `w` y lados `w/2`. 
+- El siguiente código es una variante del anterior que dibuja un
+  triángulo rectángulo de base `w` y lados `w/2`.
 - va a ser la figura base del triángulo de Sierpinski.
 
 ```scheme
@@ -99,31 +114,40 @@ $$hipot(x) = \sqrt{x^2+x^2} = x \sqrt{2}$$
 
 ### 1.5.2. Triángulo de Sierpinski
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/sierpinski.png" style="width:400px"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/sierpinski.png" width="400px"/>
 
 *Triángulo de Sierpinski*
 
-- ¿Ves alguna recursión en la figura? 
-- ¿Cuál podría ser el parámetro de la función que la dibujara? 
+- ¿Ves alguna recursión en la figura?
+- ¿Cuál podría ser el parámetro de la función que la dibujara?
 - ¿Se te ocurre un algoritmo recursivo que la dibuje?
 
 ----
 
 ### Primera idea del algoritmo recursivo
 
-- Podríamos construir un triángulo de Sierpinski más grande dibujando 3 veces el mismo triángulo, pero en distintas posiciones:
+- Podríamos construir un triángulo de Sierpinski más grande dibujando
+  3 veces el mismo triángulo, pero en distintas posiciones:
     - Triángulo 1 en la posición (0,0)
     - Triángulo 2 en la posición (h/2,h/2)
     - Triángulo 3 en la posición (h,0)
-- El algoritmo recursivo se basa en la misma idea, pero *hacia atrás*. Debemos intentar dibujar un triángulo de altura *h* situado en la posición *x*, *y* basándonos en 3 llamadas recursivas a triángulos más pequeños. En el caso base, cuando *h* sea menor que un umbral, dibujaremos un triángulo de lado *h* y altura *h/2*:
+- El algoritmo recursivo se basa en la misma idea, pero *hacia
+  atrás*. Debemos intentar dibujar un triángulo de altura *h* situado
+  en la posición *x*, *y* basándonos en 3 llamadas recursivas a
+  triángulos más pequeños. En el caso base, cuando *h* sea menor que
+  un umbral, dibujaremos un triángulo de lado *h* y altura *h/2*:
 
 ----
 
 ### Algoritmo recursivo 
 
-- Para dibujar un triángulo de Sierpinski de base *h* y altura *h/2* debemos:
-    - Dibujar tres triángulos de Sierpinsky de la mitad del tamaño del original (*h/2*) situadas en las posiciones *(x,y)*, *(x+h/4, y+h/4)* y *(x+h/2,y)*
-    - En el caso base de la recursión, en el que *h* es menor que una constante, se dibuja un triángulo de base *h* y altura *h/2*.
+- Para dibujar un triángulo de Sierpinski de base *h* y altura *h/2*
+  debemos:
+    - Dibujar tres triángulos de Sierpinsky de la mitad del tamaño del
+      original (*h/2*) situadas en las posiciones *(x,y)*, *(x+h/4,
+      y+h/4)* y *(x+h/2,y)*
+    - En el caso base de la recursión, en el que *h* es menor que una
+      constante, se dibuja un triángulo de base *h* y altura *h/2*.
 
 Una versión del algoritmo en *pseudocódigo*:
 
@@ -185,7 +209,8 @@ Sierpinsky (x, y, h):
 
 ### 1.5.4. Recursión mutua
 
-- En la recursión mutua definimos una función en base a una segunda, que a su vez se define en base a la primera. 
+- En la recursión mutua definimos una función en base a una segunda,
+  que a su vez se define en base a la primera.
 - También debe haber un caso base que termine la recursión
 - Por ejemplo:
     - x es par si x-1 es impar
@@ -210,19 +235,24 @@ Programas en Scheme:
 
 ### 1.5.5. Otra figura recursiva: curvas de Hilbert
 
-- La curva de Hilbert es una curva fractal que tiene la propiedad de rellenar completamente el espacio
+- La curva de Hilbert es una curva fractal que tiene la propiedad de
+  rellenar completamente el espacio
 
 - Su dibujo tiene una formulación recursiva:
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/hilbert.png" style="width:600px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/hilbert.png" width="600px"/>
 
-La curva H3 se puede construir a partir de la curva H2. El algoritmo recursivo se formula dibujando la curva i-ésima a partir de la curva i-1.
+La curva H3 se puede construir a partir de la curva H2. El algoritmo
+recursivo se formula dibujando la curva i-ésima a partir de la curva
+i-1.
 
 ----
 
 ### Algoritmo recursivo
 
-- El algoritmo para dibujar una curva de Hilbert de orden 3 a la *izquierda* de la tortuga sería el siguiente (seguir los pasos con el dibujo):
+- El algoritmo para dibujar una curva de Hilbert de orden 3 a la
+  *izquierda* de la tortuga sería el siguiente (seguir los pasos con
+  el dibujo):
 
 	1. Gira la tortuga 90
 	2. Dibuja una curva de orden 2 a la derecha
@@ -279,7 +309,8 @@ La curva H3 se puede construir a partir de la curva H2. El algoritmo recursivo s
 ```
 
 
-Podemos probarlo con distintos parámetros de grado de curva y longitud de trazo.
+Podemos probarlo con distintos parámetros de grado de curva y longitud
+de trazo.
 
 Curva de Hilbert de nivel 3 con trazo de longitud 20:
 
@@ -313,23 +344,33 @@ Curva de Hilbert de nivel 7 con trazo de longitud 5:
 
 ### 2. Listas estructuradas
 
-- Recordemos las listas: una pareja que enlaza en su parte derecha el resto de la lista y que termina con una parte derecha en la que hay una lista vacía. 
+- Recordemos las listas: una pareja que enlaza en su parte derecha el
+  resto de la lista y que termina con una parte derecha en la que hay
+  una lista vacía.
 
 - Funciones:
 
     - `(car lista)` para obtener el primer elemento de una lista
     - `(cdr lista)` para obtener el resto de la lista
-    - `(cons dato lista)` para construir una nueva lista con el dato como primer elemento
+    - `(cons dato lista)` para construir una nueva lista con el dato
+      como primer elemento
 
-- En este apartado vamos a estudiar cómo trabajar con *listas que contienen otras listas*. 
+- En este apartado vamos a estudiar cómo trabajar con *listas que
+  contienen otras listas*.
 
 ----
 
 #### 2.1. Definición y ejemplos
 
-- Llamaremos **lista estructurada** a una lista que contiene otras sublistas. Lo contrario de lista estructurada es una **lista plana**, una lista formada por elementos que no son listas. Llamaremos **hojas** a los elementos de una lista que no son sublistas.
+- Llamaremos **lista estructurada** a una lista que contiene otras
+  sublistas. Lo contrario de lista estructurada es una **lista
+  plana**, una lista formada por elementos que no son
+  listas. Llamaremos **hojas** a los elementos de una lista que no son
+  sublistas.
 
-- A las listas estructuradas cuyas hojas son símbolos se les denomina en el contexto de la programación funcional _expresiones-S_ ([S-expression](http://en.wikipedia.org/wiki/S-expression)).
+- A las listas estructuradas cuyas hojas son símbolos se les denomina
+  en el contexto de la programación funcional _expresiones-S_
+  ([S-expression](http://en.wikipedia.org/wiki/S-expression)).
 
 - Por ejemplo, la lista estructurada:
 
@@ -344,7 +385,8 @@ Curva de Hilbert de nivel 7 con trazo de longitud 5:
     - La lista plana `{c d e}`
     - La lista estructurada `{f {g h}}`
 
-- Una lista formada por parejas la consideraremos una lista plana, ya que no contiene ninguna sublista. Por ejemplo, la lista
+- Una lista formada por parejas la consideraremos una lista plana, ya
+  que no contiene ninguna sublista. Por ejemplo, la lista
 
     ```scheme
     {{a . 3} {b . 5} {c . 12}}
@@ -369,7 +411,9 @@ Curva de Hilbert de nivel 7 con trazo de longitud 5:
     {{1 2} 3 4 {5 6}}
     ```
 
-    Es una lista de 4 elementos, siendo el primero y el último otras sublistas y el segundo y el tercero hojas. Podemos comprobar si son o no hojas sus elementos:
+    Es una lista de 4 elementos, siendo el primero y el último otras
+    sublistas y el segundo y el tercero hojas. Podemos comprobar si
+    son o no hojas sus elementos:
 
     ```scheme
     (define lista '((1 2) 3 4 (5 6)))
@@ -391,13 +435,15 @@ Curva de Hilbert de nivel 7 con trazo de longitud 5:
 
 - Una definición recursiva de lista plana:
 
->Una lista es plana si y solo si el primer elemento es una hoja y el resto es plana.
+>Una lista es plana si y solo si el primer elemento es una hoja y el
+>resto es plana.
 
 - Y el caso base:
 
 >Una lista vacía es plana.
 
-- Usando esta definición recursiva, podemos implementar en Scheme la función `(plana? lista)` que comprueba si una lista es plana:
+- Usando esta definición recursiva, podemos implementar en Scheme la
+  función `(plana? lista)` que comprueba si una lista es plana:
 
 ```scheme
 (define (plana? lista)
@@ -449,7 +495,9 @@ Realmente bastaría con haber hecho una de las dos definiciones y escribir la ot
 
 ### 2.1.2. Ejemplos de listas estructuradas
 
-- Las listas estructuradas son muy útiles para representar información jerárquica en donde queremos representar elementos que contienen otros elementos.
+- Las listas estructuradas son muy útiles para representar información
+  jerárquica en donde queremos representar elementos que contienen
+  otros elementos.
 
 - Por ejemplo, las expresiones de Scheme son listas estructuradas:
 
@@ -459,7 +507,9 @@ Realmente bastaría con haber hecho una de las dos definiciones y escribir la ot
     (define (factorial x) (if (= x 0) 1 (* x (factorial (- x 1)))))
     ```
 
-- El análisis sintáctico de una oración puede generar una lista estructurada de símbolos, en donde se agrupan los distintos elementos de la oración:
+- El análisis sintáctico de una oración puede generar una lista
+  estructurada de símbolos, en donde se agrupan los distintos
+  elementos de la oración:
 
     ```scheme
     {{Juan} {compró} {la entrada {de los Miserables}} {el viernes por la tarde}}
@@ -469,18 +519,26 @@ Realmente bastaría con haber hecho una de las dos definiciones y escribir la ot
 
 ### 2.1.3. *Pseudo árboles* con niveles
 
-- Las listas estructuradas definen una estructura de niveles, donde la lista inicial representa el primer nivel, y cada sublista representa un nivel inferior. Los datos de las listas representan las hojas.
+- Las listas estructuradas definen una estructura de niveles, donde la
+  lista inicial representa el primer nivel, y cada sublista representa
+  un nivel inferior. Los datos de las listas representan las hojas.
 
-- Por ejemplo, la representación en forma de niveles de la lista `{{a b c} d e}` es la siguiente:
+- Por ejemplo, la representación en forma de niveles de la lista `{{a
+  b c} d e}` es la siguiente:
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/expresion-e-1.png" style="width:350px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/expresion-e-1.png" width="350px"/>
 
-Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y las hojas `a`, `b` y `c` en el nivel 2 y en la posición 1 de la lista.
+Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de
+la lista y las hojas `a`, `b` y `c` en el nivel 2 y en la posición 1
+de la lista.
 
 > UNA LISTA ESTRUCTURADA NO ES UN ÁRBOL  
-> Una lista estructurada no es un árbol propiamente dicho, porque todos los datos están en las hojas.
+> Una lista estructurada no es un árbol propiamente dicho, porque
+> todos los datos están en las hojas.
 
-- Otro ejemplo. ¿Cuál sería la representación en niveles de la siguiente lista estructurada?: 
+- Otro ejemplo. ¿Cuál sería la representación en niveles de la
+  siguiente lista estructurada?:
+
     ```scheme
 	{let {{x 12}
 	      {y 5}}
@@ -504,13 +562,18 @@ Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y
 (num-hojas '((1 2) (3 4 (5) 6) (7))) ⇒ 7
 ```
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/num-hojas-estructurada.png" style="width:400px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/num-hojas-estructurada.png" width=400px"/>
 
-- Podemos definir la función obteniendo el primer elemento y el resto de la lista, y contando recursivamente el número de hojas del primer elemento y del resto. 
-- Al ser una lista estructurada, **el primer elemento puede ser a su vez otra lista, por lo que llamamos a la recursión para contar sus hojas**.
+- Podemos definir la función obteniendo el primer elemento y el resto de la lista, y contando recursivamente el número de hojas del primer elemento y
+  del resto.
+- Al ser una lista estructurada, **el primer elemento puede ser a su
+  vez otra lista, por lo que llamamos a la recursión para contar sus
+  hojas**.
 - La definición de este caso general usando _pseudocódigo_ es:
 
-> El número de hojas de una lista estructurada es la suma del número de hojas de su primer elemento (que puede ser otra lista) y del número de hojas del resto.
+> El número de hojas de una lista estructurada es la suma del número
+> de hojas de su primer elemento (que puede ser otra lista) y del
+> número de hojas del resto.
 
 - En Scheme:
 
@@ -523,16 +586,24 @@ Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y
                (num-hojas (cdr lista))))))
 ```
 
-- Hay que hacer notar que el parámetro `lista` puede ser tanto una lista como un dato atómico. Estamos aprovechándonos de la característica de Scheme de ser débilmente tipeado para hacer un código bastante conciso.
+- Hay que hacer notar que el parámetro `lista` puede ser tanto una
+  lista como un dato atómico. Estamos aprovechándonos de la
+  característica de Scheme de ser débilmente tipeado para hacer un
+  código bastante conciso.
 
 ----
 
 ### Versión con funciones de orden superior
 
-- Podemos usar también las funciones de orden superior `map` y `fold-right` para obtener una versión más concisa. 
-- Una lista estructurada tiene como elementos hojas o listas. 
-- Podemos entonces mapear una expresión lambda con _la propia función que estamos definiendo_ sobre sus elementos, poniendo como caso especial el hecho de que la lista sea una hoja. 
-- El resultado será una lista de números (el número de hojas de cada componente), que podemos sumar haciendo un `fold-right` con la función `+`:
+- Podemos usar también las funciones de orden superior `map` y
+  `fold-right` para obtener una versión más concisa.
+- Una lista estructurada tiene como elementos hojas o listas.
+- Podemos entonces mapear una expresión lambda con _la propia función
+  que estamos definiendo_ sobre sus elementos, poniendo como caso
+  especial el hecho de que la lista sea una hoja.
+- El resultado será una lista de números (el número de hojas de cada
+  componente), que podemos sumar haciendo un `fold-right` con la
+  función `+`:
 
 ```scheme
 (define (num-hojas-fos lista)
@@ -555,15 +626,17 @@ Las hojas `d` y `e` están en el nivel 1 y en las posiciones 2 y 3 de la lista y
 
 ### 2.2.2. Altura de una lista estructurada
 
-- La *altura* de una lista estructurada viene dada por su número de niveles
-- Una lista plana tiene una altura de 1, la lista `'((1 2 3) 4 5)` tiene una altura de 2.
+- La *altura* de una lista estructurada viene dada por su número de
+  niveles
+- Una lista plana tiene una altura de 1, la lista `'((1 2 3) 4 5)`
+  tiene una altura de 2.
 
 ```scheme
 (altura '(1 (2 3) 4)) ⇒ 2
 (altura '(1 (2 (3)) 3)) ⇒ 3
 ```
 
-<img src="imagenes/tema04-procedimientos_estructuras_recursivas/altura-estructurada.png" style="width:300px;"/>
+<img src="../tema03-procedimientos-estructuras-recursivas/imagenes/altura-estructurada.png" width="300px"/>
 
 > Para calcular la altura de una lista estructurada tenemos que obtener (de forma recursiva) la altura de su primer elemento, y la altura del resto de la lista, sumarle 1 a la altura del primer elemento y devolver el máximo de los dos números.
 
@@ -582,7 +655,9 @@ En Scheme:
 
 ### Versión con funciones de orden superior
 
-Y la segunda versión, usando las funciones de orden superior `map` para obtener la altura de las sublistas y `fold-right` para quedarse con el máximo.
+Y la segunda versión, usando las funciones de orden superior `map`
+para obtener la altura de las sublistas y `fold-right` para quedarse
+con el máximo.
 
 ```scheme
 (define (altura-fos lista)
@@ -605,12 +680,18 @@ Otra versión de esta función, también correcta:
 
 ### 2.2.3. Otras funciones recursivas
 
-Vamos a diseñar otras funciones recursivas que trabajan con la estructura jerárquica de las listas estructuradas.
+Vamos a diseñar otras funciones recursivas que trabajan con la
+estructura jerárquica de las listas estructuradas.
 
-* `(pertenece-lista? dato lista)`: busca una hoja en una lista estructurada
-* `(nivel-lista dato lista)`: devuelve el nivel en el que se encuentra un dato en una lista
-* `(cuadrado-lista lista)`: eleva todas las hojas al cuadrado (suponemos que la lista estructurada contiene números)
-* `(map-lista f lista)`: similar a map, aplica una función a todas las hojas de la lista estructurada y devuelve el resultado (otra lista estructurada)
+* `(pertenece-lista? dato lista)`: busca una hoja en una lista
+  estructurada
+* `(nivel-lista dato lista)`: devuelve el nivel en el que se encuentra
+  un dato en una lista
+* `(cuadrado-lista lista)`: eleva todas las hojas al cuadrado
+  (suponemos que la lista estructurada contiene números)
+* `(map-lista f lista)`: similar a map, aplica una función a todas las
+  hojas de la lista estructurada y devuelve el resultado (otra lista
+  estructurada)
 
 ---
 
@@ -638,7 +719,11 @@ Ejemplos:
 
 ### `(nivel-lista dato lista)`
 
-- Veamos la función `(nivel-lista dato lista)` que recorre la lista buscando el dato y devuelve el nivel en que se encuentra. Si el dato no se encuentra en la lista, se devolverá 0. Si el dato se encuentra en más de un lugar de la lista se devolverá el nivel del primero que se encuentre.
+- Veamos la función `(nivel-lista dato lista)` que recorre la lista
+  buscando el dato y devuelve el nivel en que se encuentra. Si el dato
+  no se encuentra en la lista, se devolverá 0. Si el dato se encuentra
+  en más de un lugar de la lista se devolverá el nivel del primero que
+  se encuentre.
 
 Ejemplos:
 
@@ -649,7 +734,9 @@ Ejemplos:
 (nivel-hoja 'b '(a c d ((e)))) ; ⇒ 0
 ```
 
-- Vamos a implementar la función con una recursión por la cola en la que pasamos como parámetro el nivel en el que se encuentra la recursión. 
+- Vamos a implementar la función con una recursión por la cola en la
+  que pasamos como parámetro el nivel en el que se encuentra la
+  recursión.
 
 ```scheme
 (define (nivel-lista dato lista)
@@ -671,7 +758,8 @@ Ejemplos:
 
 ### `(cuadrado-lista lista)`
 
-- Devuelve una lista estructurada con la misma estructura y sus números elevados al cuadrado. 
+- Devuelve una lista estructurada con la misma estructura y sus
+  números elevados al cuadrado.
 
 ```scheme
 (define (cuadrado-lista lista)
@@ -691,7 +779,8 @@ Ejemplos:
 
 ### `(map-lista f lista)`
 
-- Devuelve una lista estructurada igual que la original con el resultado de aplicar a cada uno de sus hojas la función f 
+- Devuelve una lista estructurada igual que la original con el
+  resultado de aplicar a cada uno de sus hojas la función f
  
 ```scheme
 (define (map-lista f lista)

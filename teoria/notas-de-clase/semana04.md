@@ -45,12 +45,14 @@ Notas de clase Semana 4
     (funcion-dos-o-mas-args 1 2 3 4 5 6)
     ```
 	
-- En la llamada, los parámetros `x` e `y` tomarán los valores 1 y 2. 
-- El parámetro `lista-args` tomará como valor una lista con los argumentos restantes `(3 4 5 6)`.
+- En la llamada, los parámetros `x` e `y` tomarán los valores 1 y 2.
+- El parámetro `lista-args` tomará como valor una lista con los
+  argumentos restantes `(3 4 5 6)`.
 
 <p style="margin-bottom:2cm;"/>
 
-- También es posible permitir que todos los argumentos sean opcionales no poniendo ningún argumento antes del punto::
+- También es posible permitir que todos los argumentos sean opcionales
+  no poniendo ningún argumento antes del punto::
 
     ```scheme
     (define (funcion-cualquier-numero-args . lista-args) 
@@ -78,11 +80,11 @@ Notas de clase Semana 4
 
 Función que eleva al cuadrado un número:
 
-<img src="./imagenes/tema03-programacion_funcional/funcion-cuadrado.png" style="width: 80px;"/>
+<img src="../tema02-programacion-funcional/imagenes/funcion-cuadrado.png" width="80px"/>
 
 Función que suma dos parejas:
 
-<img src="./imagenes/tema02-programacion_funcional/esquema-suma-parejas.png" style="width: 200px;"/>
+<img src="../tema02-programacion-funcional/imagenes/esquema-suma-parejas.png" width="200px"/>
 
 
 ----
@@ -99,9 +101,11 @@ Recordemos que un tipo de primera clase es aquel que:
 Con funciones:
 
 1. Una función se puede asignar a una variable
-2. Una función se puede pasar como parámetro de otras funciones 
-3. Una función se puede devolver como resultado de una invocación a otra función
-4. Una función se puede guardar en tipos de datos compuestos como listas
+2. Una función se puede pasar como parámetro de otras funciones
+3. Una función se puede devolver como resultado de una invocación a
+   otra función
+4. Una función se puede guardar en tipos de datos compuestos como
+   listas
 
 Es una característica de muchos lenguajes multi-paradigma con características funcionales como [JavaScript](http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/), [Python](https://thenewcircle.com/static/bookshelf/python_fundamentals_tutorial/functional_programming.html), [Swift](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html) o incluso en la última versión de Java, [Java 8](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html), (donde se denominan *expresiones lambda*).
 
@@ -109,9 +113,10 @@ Es una característica de muchos lenguajes multi-paradigma con características 
 
 ### <a name="5-1"></a>5.1. Un primer ejemplo: la función `map`
 
-- Función `(map func lista)` de Scheme 
+- Función `(map func lista)` de Scheme
 - Toma como parámetro **una función** y una lista
-- Devuelve la lista resultante de  *mapear* (aplicar) la función `func` a todos y cada unos de los elementos de la lista original
+- Devuelve la lista resultante de *mapear* (aplicar) la función `func`
+  a todos y cada unos de los elementos de la lista original
 
 Ejemplo:
 
@@ -124,7 +129,9 @@ Ejemplo:
 ⇒ (1 4 9 16 25)
 ```
 
-- Podemos pasar cualquier función a `map`, siempre que sea una función de un parámetro que se pueda aplicar a los elementos de la lista. ¿Qué devolverían las siguientes expresiones?
+- Podemos pasar cualquier función a `map`, siempre que sea una función
+  de un parámetro que se pueda aplicar a los elementos de la
+  lista. ¿Qué devolverían las siguientes expresiones?
 
 
 ```scheme
@@ -165,7 +172,9 @@ La sintaxis de la forma especial `lambda` es:
     <cuerpo>)
 ```
 
-El cuerpo del lambda define un *bloque de código* y sus argumentos son los parámetros necesarios para ejecutar ese bloque de código. Llamamos a la función resultante una *función anónima*.
+El cuerpo del lambda define un *bloque de código* y sus argumentos son
+los parámetros necesarios para ejecutar ese bloque de código. Llamamos
+a la función resultante una *función anónima*.
 
 Una función anónima que suma dos parejas:
 
@@ -188,16 +197,18 @@ Una función anónima que devuelve el mayor de dos números:
 
 ### Semántica de la forma especial `lambda`
 
-- La invocación a la forma especial `lambda` construye una función anónima en tiempo de ejecución.
+- La invocación a la forma especial `lambda` construye una función
+  anónima en tiempo de ejecución.
 
 ```scheme
 (lambda (x) (* x x))
 ⇒ #<procedure>
 ```
 
-- El procedimiento construido es un bloque de código que devuelve el cuadrado de un número. 
+- El procedimiento construido es un bloque de código que devuelve el
+  cuadrado de un número.
 
-- ¿Qué podemos hacer con este procedimiento? 
+- ¿Qué podemos hacer con este procedimiento?
 
 ----
 
@@ -207,14 +218,16 @@ Una función anónima que devuelve el mayor de dos números:
 > (define cuadrado (lambda (x) (* x x)))
 ```
 
-- Scheme devuelve el procedimiento al evaluar el identificador `cuadrado`:
+- Scheme devuelve el procedimiento al evaluar el identificador
+  `cuadrado`:
 
 ```
 > cuadrado
 #<procedure:cuadrado>
 ```
 
-Podemos usar la función cuadrado como si la hubiéramos creado de la forma habitual:
+Podemos usar la función cuadrado como si la hubiéramos creado de la
+forma habitual:
 
 ```
 (cuadrado 3) ⇒ 9
@@ -229,7 +242,8 @@ Podemos usar la función cuadrado como si la hubiéramos creado de la forma habi
 ((lambda (x) (* x x)) 3) ⇒ 9
 ```
 
-La llamada a `lambda` crea un procedimiento y el paréntesis a su izquierda lo invoca con el parámetro 3:
+La llamada a `lambda` crea un procedimiento y el paréntesis a su
+izquierda lo invoca con el parámetro 3:
 
 ```
 ((lambda (x) (* x x)) 3) => (#<procedure> 3) ⇒ 9
@@ -244,7 +258,8 @@ La llamada a `lambda` crea un procedimiento y el paréntesis a su izquierda lo i
    (func (func x)))
 ```
 
-- Lo podemos invocar pasándole cualquier función de un argumento y cualquier dato:
+- Lo podemos invocar pasándole cualquier función de un argumento y
+  cualquier dato:
 
 ```
 (aplica-dos-veces (lambda (x)
@@ -298,7 +313,8 @@ Integer x -> {x*x}
 ⇒ <procedure:+>
 ```
 
-- Podemos asignar funciones ya existentes a nuevos identificadores usando `define`, como en el ejemplo siguiente:
+- Podemos asignar funciones ya existentes a nuevos identificadores
+  usando `define`, como en el ejemplo siguiente:
 
 ```
 > +
@@ -308,7 +324,7 @@ Integer x -> {x*x}
 ⇒ 10
 ```
 
-<img src="./imagenes/tema03-programacion_funcional/suma.png" style="width:100px;"/>
+<img src="../tema02-programacion-funcional/imagenes/suma.png" width="100px"/>
 
 
 ----
@@ -348,7 +364,8 @@ es equivalente a:
 
 ### Predicado `procedure?`
 
-- Podemos comprobar si algo es una función utilizando el predicado de Scheme `procedure?`.
+- Podemos comprobar si algo es una función utilizando el predicado de
+  Scheme `procedure?`.
 
 Por ejemplo:
 
@@ -372,9 +389,14 @@ Veamos más ejemplos de funciones que reciben otras funciones.
 
 ### Función `aplica`
 
-- Función `(aplica func x y)` que recibe una función de dos argumentos (`func`) y dos argumentos `x` e `y`. Queremos que en el cuerpo de `aplica` se invoque la función `func` con los argumentos `x` e `y`
+- Función `(aplica func x y)` que recibe una función de dos argumentos
+  (`func`) y dos argumentos `x` e `y`. Queremos que en el cuerpo de
+  `aplica` se invoque la función `func` con los argumentos `x` e `y`
 
-- Para realizar la invocación a la función que se pasa como parámetro basta con usar `func` como su nombre. La función se ha ligado al nombre `func` en el momento de la invocación a `aplica`, de la misma forma que los argumentos se ligan a los parámetros `x` e `y`:
+- Para realizar la invocación a la función que se pasa como parámetro
+  basta con usar `func` como su nombre. La función se ha ligado al
+  nombre `func` en el momento de la invocación a `aplica`, de la misma
+  forma que los argumentos se ligan a los parámetros `x` e `y`:
 
 ```
 (define (aplica func x y)
@@ -402,7 +424,9 @@ Veamos más ejemplos de funciones que reciben otras funciones.
 
 ### Función `aplica-2` 
 
-- Otro ejemplo, la función `aplica-2` que toma dos funciones `f` y `g` y un argumento `x` y devuelve el resultado de aplicar `f` a lo que devuelve la invocación de `g` con `x`:
+- Otro ejemplo, la función `aplica-2` que toma dos funciones `f` y `g`
+  y un argumento `x` y devuelve el resultado de aplicar `f` a lo que
+  devuelve la invocación de `g` con `x`:
 
 ```
 (define (aplica-2 f g x)
@@ -430,7 +454,8 @@ Veamos más ejemplos de funciones que reciben otras funciones.
 
 ### Construcción de listas de funciones
 
-Para construir una lista de funciones debemos llamar a `list` con las funciones como parámetros
+Para construir una lista de funciones debemos llamar a `list` con las
+funciones como parámetros
 
 ```
 (define lista (list cuadrado suma-1 doble))
@@ -438,7 +463,8 @@ lista
 ⇒ {#<procedure:cuadrado>  #<procedure:suma-1>  #<procedure:doble>}
 ```
 
-También podemos evaluar una expresión lambda y añadir el procedimiento resultante:
+También podemos evaluar una expresión lambda y añadir el procedimiento
+resultante:
 
 ```
 (define lista2 (cons (lambda (x) (+ x 5)) lista))
@@ -450,8 +476,11 @@ lista2
 
 ### Invocación a funciones de una lista
 
-- Una vez creada una lista con funciones, ¿cómo podemos invocar a alguna de ellas?. 
-- Debemos tratarlas de la misma forma que tratamos cualquier otro dato guardado en la lista, las recuperamos con las funciones `car` o `list-ref` y las invocamos. 
+- Una vez creada una lista con funciones, ¿cómo podemos invocar a
+  alguna de ellas?.
+- Debemos tratarlas de la misma forma que tratamos cualquier otro dato
+  guardado en la lista, las recuperamos con las funciones `car` o
+  `list-ref` y las invocamos.
 
 - Por ejemplo, para invocar a la primera función de `lista2`:
 
@@ -463,9 +492,12 @@ lista2
 
 ### Ejemplo de función que trabaja con listas de funciones: `aplica-funcs`
 
-- Veamos un ejemplo de una función `(aplica-funcs lista-funcs x)` que recibe una lista de funciones en el parámetro `lista-funcs` y las aplica todas al número que pasamos en el parámetro `x`.
+- Veamos un ejemplo de una función `(aplica-funcs lista-funcs x)` que
+  recibe una lista de funciones en el parámetro `lista-funcs` y las
+  aplica todas al número que pasamos en el parámetro `x`.
 
-- Por ejemplo, si construimos una lista con las funciones `cuadrado`, `cubo` y `suma-1`:
+- Por ejemplo, si construimos una lista con las funciones `cuadrado`,
+  `cubo` y `suma-1`:
 
 ```
 (define lista (list cuadrado cubo suma-1))
@@ -528,15 +560,18 @@ Un ejemplo de uso:
 
 ### 5.5. Funciones de orden superior
 
-> Las funciones de orden superior (*higher order functions* en inglés) son funciones que reciben como parámetro otras funciones.
+> Las funciones de orden superior (*higher order functions* en inglés)
+> son funciones que reciben como parámetro otras funciones.
 
 ----
 
 ### Ejemplo de uso de parámetros de tipo función para generalizar
 
-- La posibilidad de pasar funciones como parámetros de otras es una poderosa herramienta de abstracción. Veamos un ejemplo.
+- La posibilidad de pasar funciones como parámetros de otras es una
+  poderosa herramienta de abstracción. Veamos un ejemplo.
 
-- Supongamos que queremos calcular el sumatorio de `a` hasta `b`. ¿Cómo lo haríamos de forma recursiva?
+- Supongamos que queremos calcular el sumatorio de `a` hasta
+  `b`. ¿Cómo lo haríamos de forma recursiva?
 
 <p style="margin-bottom:3cm;"/>
 
@@ -550,7 +585,8 @@ Un ejemplo de uso:
 ⇒ 55
 ```
 
-- Supongamos ahora que queremos calcular el sumatorio de `a` hasta `b` **sumando los números al cuadrado**. ¿Cómo lo haríamos?
+- Supongamos ahora que queremos calcular el sumatorio de `a` hasta `b`
+  **sumando los números al cuadrado**. ¿Cómo lo haríamos?
 
 
 <p style="margin-bottom:3cm;"/>
@@ -579,9 +615,12 @@ Un ejemplo de uso:
 ⇒ 3025
 ```
 
-- El código de las tres funciones anteriores es muy similar. 
-- Podemos generalizarlo definiendo una función que haga la recursión y que reciba como parámetro otra función que se aplica a los números.
-- Podemos definir una función genérica `sum-f-x` que generaliza las tres funciones anteriores: el sumatorio desde `a` hasta `b` de `f(x)`:
+- El código de las tres funciones anteriores es muy similar.
+- Podemos generalizarlo definiendo una función que haga la recursión y
+  que reciba como parámetro otra función que se aplica a los números.
+- Podemos definir una función genérica `sum-f-x` que generaliza las
+  tres funciones anteriores: el sumatorio desde `a` hasta `b` de
+  `f(x)`:
 
 ```
 (define (sum-f-x f a b)
@@ -590,7 +629,9 @@ Un ejemplo de uso:
         (+ (f a) (sum-f-x f (+ a 1) b))))
 ```
 
-Las funciones anteriores son casos particulares de esta función que las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta 10 de `x` al cubo:
+Las funciones anteriores son casos particulares de esta función que
+las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta
+10 de `x` al cubo:
 
 ```
 (define (cubo x)
@@ -604,17 +645,27 @@ Las funciones anteriores son casos particulares de esta función que las general
 
 ### ¿Qué es una función de orden superior?
 
-- Llamamos funciones de orden superior (*higher order functions* en inglés) a las funciones que toman otras como parámetro o devuelven otra función. Permiten generalizar soluciones con un alto grado de abstracción.
+- Llamamos funciones de orden superior (*higher order functions* en
+  inglés) a las funciones que toman otras como parámetro o devuelven
+  otra función. Permiten generalizar soluciones con un alto grado de
+  abstracción.
 
-- Los lenguajes de programación funcional como Scheme, Scala o Java 8 tienen ya predefinidas algunas funciones de orden superior que permiten tratar listas o *streams* de una forma muy concisa y compacta.
+- Los lenguajes de programación funcional como Scheme, Scala o Java 8
+  tienen ya predefinidas algunas funciones de orden superior que
+  permiten tratar listas o *streams* de una forma muy concisa y
+  compacta.
 
 Veremos:
 
-- La función `map` de Scheme, como ejemplo típico de función de orden superior
-- Después definiremos nosotros las funciones `filter` y `fold`. 
-- Terminaremos viendo cómo la utilización de funciones de orden superior es una excelente herramienta de la programación funcional que permite hacer código muy conciso y expresivo.
+- La función `map` de Scheme, como ejemplo típico de función de orden
+  superior
+- Después definiremos nosotros las funciones `filter` y `fold`.
+- Terminaremos viendo cómo la utilización de funciones de orden
+  superior es una excelente herramienta de la programación funcional
+  que permite hacer código muy conciso y expresivo.
 
-> La combinación de funciones de nivel superior con listas es una de las características más potentes de la programación funcional.
+> La combinación de funciones de nivel superior con listas es una de
+> las características más potentes de la programación funcional.
 
 
 ----
@@ -650,8 +701,11 @@ Llamamos a la función `mi-map`. La implementación es la siguiente:
 
 ### Función `filter`
 
-- La función `(filter predicado lista)` toma como parámetro un predicado y una lista y devuelve como resultado los elementos de la lista que cumplen el predicado.
-- En Scheme R6RS existe esa función si importamos todas las bibliotecas:
+- La función `(filter predicado lista)` toma como parámetro un
+  predicado y una lista y devuelve como resultado los elementos de la
+  lista que cumplen el predicado.
+- En Scheme R6RS existe esa función si importamos todas las
+  bibliotecas:
 
     ```scheme
     #lang r6rs
@@ -682,13 +736,17 @@ Llamamos a la función `mi-map`. La implementación es la siguiente:
 
 ### Función `fold`
 
-- La función `(fold func base lista)` permite recorrer una lista aplicando una función binaria de forma acumulativa a sus elementos.
+- La función `(fold func base lista)` permite recorrer una lista
+  aplicando una función binaria de forma acumulativa a sus elementos.
 - El nombre `fold` significa *plegado*.
 - La función equivalente en Scheme R6RS es `fold-right`.
 
 Su definición recursiva es:
 
-> Para hacer el *fold* de una función `f` de dos argumentos y de una lista, debemos llamar a `f` con el primer elemento de la lista y el resultado de hacer el *fold* del resto de la lista. En el caso en que la lista no tenga elementos, se devolverá el caso base.
+> Para hacer el *fold* de una función `f` de dos argumentos y de una
+> lista, debemos llamar a `f` con el primer elemento de la lista y el
+> resultado de hacer el *fold* del resto de la lista. En el caso en
+> que la lista no tenga elementos, se devolverá el caso base.
 
 Veamos cómo funcionan las llamadas recursivas:
 
@@ -729,9 +787,12 @@ Ejemplos de uso:
 
 ### Función `(suma-n lista n)`
 
-- Es posible utilizar en el cuerpo de las expresiones lambda algún parámetro de la función principal.
+- Es posible utilizar en el cuerpo de las expresiones lambda algún
+  parámetro de la función principal.
 
-- Supongamos que queremos definir una función `(suma-n lista n)` que devuelve la lista resultante el resultado de sumar un número `n` a todos los elementos de una lista.
+- Supongamos que queremos definir una función `(suma-n lista n)` que
+  devuelve la lista resultante el resultado de sumar un número `n` a
+  todos los elementos de una lista.
 
 - Podemos hacerlo de forma recursiva:
 
@@ -769,21 +830,26 @@ Funciona de la siguiente manera:
 
 #### Función `(contienen-letra? caracter lista-pal)`
 
-- Último ejemplo, queremos definir la función `(contienen-letra caracter lista-pal)` que devuelve las palabras de una lista que contienen un determinado carácter, usando la función `filter` y alguna función auxiliar
+- Último ejemplo, queremos definir la función `(contienen-letra
+  caracter lista-pal)` que devuelve las palabras de una lista que
+  contienen un determinado carácter, usando la función `filter` y
+  alguna función auxiliar
 
 Por ejemplo:
 
 ```scheme
 (contienen-letra #\a '("En" "un" "lugar" "de" "la" "Mancha")) ⇒ ("lugar" "la" "Mancha")
 ```
-- Necesitamos el predicado auxiliar `(letra-en-str? caracter pal)` que comprueba si una cadena contiene un carácter. Por ejemplo:
+- Necesitamos el predicado auxiliar `(letra-en-str? caracter pal)` que
+  comprueba si una cadena contiene un carácter. Por ejemplo:
 
 ```
 (letra-en-str? #\a "Hola") ⇒ #t
 (letra-en-str? #\a "Pepe") ⇒ #f
 ```
 
-- ¿Lo podemos implementar obteniendo una lista de caracteres a partir de la cadena y usando la función `filter`?
+- ¿Lo podemos implementar obteniendo una lista de caracteres a partir
+  de la cadena y usando la función `filter`?
 
 <p style="margin-bottom:3cm;"/>
 
@@ -793,7 +859,9 @@ Por ejemplo:
                            (equal? c caracter)) (string->list palabra))))
 ```
 
-- Ahora ya podemos implementar `contienen-letra` usando otra vez la función de orden superior `filter` y la función anterior en la expresión lambda que hace el filtrado:
+- Ahora ya podemos implementar `contienen-letra` usando otra vez la
+  función de orden superior `filter` y la función anterior en la
+  expresión lambda que hace el filtrado:
 
 ```scheme
 (define (contienen-letra caracter lista-pal)

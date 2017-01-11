@@ -36,7 +36,8 @@
 
 ### Bibliografía - SICP
 
-En este tema explicamos conceptos de los siguientes capítulos del libro *Structure and Intepretation of Computer Programs*:
+En este tema explicamos conceptos de los siguientes capítulos del
+libro *Structure and Intepretation of Computer Programs*:
 
 - [1.1.1 - Expressions](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-10.html#%_sec_1.1.1)
 - [1.1.2 - Naming and environment](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-10.html#%_sec_1.1.2)
@@ -53,11 +54,18 @@ En este tema explicamos conceptos de los siguientes capítulos del libro *Struct
 
 #### <a name="1-1"></a> 1.1. Historia y características del paradigma funcional
 
-En una definición muy breve y concisa la programación funcional define un programa como una función matemática que convierte unas entradas en unas salidas, sin ningún estado interno y ningún efecto lateral.
+En una definición muy breve y concisa la programación funcional define
+un programa como una función matemática que convierte unas entradas en
+unas salidas, sin ningún estado interno y ningún efecto lateral.
 
-La no existencia de estado interno (variables las que se guardan y se modifican valores) y la ausencia de efectos laterales es una característica también de la **programación declarativa**. En este sentido, la programación funcional es un tipo concreto de programación declarativa.
+La no existencia de estado interno (variables las que se guardan y se
+modifican valores) y la ausencia de efectos laterales es una
+característica también de la **programación declarativa**. En este
+sentido, la programación funcional es un tipo concreto de programación
+declarativa.
 
-Otras características adicionales del paradigma funcional son las siguientes:
+Otras características adicionales del paradigma funcional son las
+siguientes:
 
 * Uso profuso de la recursión en la definición de las funciones
 * Funciones como tipos de datos primitivos
@@ -65,104 +73,270 @@ Otras características adicionales del paradigma funcional son las siguientes:
 
 ##### 1.1.1 Orígenes históricos
 
-En los años 30, junto con la máquina de Turing, se propusieron distintos modelos computacionales que formalizaban el concepto de *algoritmo*. Uno de estos modelos fue el denominado [*Cálculo lambda*](https://en.wikipedia.org/wiki/Lambda_calculus) propuesto por Alonzo Church en los años 30 y basado en la evaluación de expresiones matemáticas. En este formalismo se expresan los algoritmos mediante funciones matemáticas en las que puede ser usada la recursión. Una función matemática recibe parámetros de entrada y devuelve un valor. La evaluación de la función se realiza evaluando sus expresiones matemáticas mediante la sustitución de los parámetros formales por los valores reales que se utilizan en la invocación.
+En los años 30, junto con la máquina de Turing, se propusieron
+distintos modelos computacionales que formalizaban el concepto de
+*algoritmo*. Uno de estos modelos fue el denominado
+[*Cálculo lambda*](https://en.wikipedia.org/wiki/Lambda_calculus)
+propuesto por Alonzo Church en los años 30 y basado en la evaluación
+de expresiones matemáticas. En este formalismo se expresan los
+algoritmos mediante funciones matemáticas en las que puede ser usada
+la recursión. Una función matemática recibe parámetros de entrada y
+devuelve un valor. La evaluación de la función se realiza evaluando
+sus expresiones matemáticas mediante la sustitución de los parámetros
+formales por los valores reales que se utilizan en la invocación.
 
-Turing demostró que este modelo matemático era equivalente al su máquina, demostrando que es posible construir una maquina equivalente a cualquier función lambda existente, una máquina que devuelva exactamente los mismos resultados que la función lambda. El hecho de que ambos modelos computacionales sean equivalentes significa que cualquier cualquier algoritmo que podamos definir con una máquina de Turing, puede ser definido también con una función del cálculo lambda. Y viceversa: cualquier función definida con el cálculo lambda puede ser implementada por alguna máquina de Turing. 
+Turing demostró que este modelo matemático era equivalente al su
+máquina, demostrando que es posible construir una maquina equivalente
+a cualquier función lambda existente, una máquina que devuelva
+exactamente los mismos resultados que la función lambda. El hecho de
+que ambos modelos computacionales sean equivalentes significa que
+cualquier cualquier algoritmo que podamos definir con una máquina de
+Turing, puede ser definido también con una función del cálculo
+lambda. Y viceversa: cualquier función definida con el cálculo lambda
+puede ser implementada por alguna máquina de Turing.
 
-El cálculo lambda es un formalismo matemático, basado en operaciones abstractas. Dos décadas después, cuando los primeros computadores electrónicos estaban empezando a utilizarse en grandes empresas y en universidades, este formalismo dio origen a algo mucho más tangible y práctico: un lenguaje de alto nivel, mucho más expresivo que el ensamblador, con el que expresar operaciones y funciones **evaluadas en el computador**.
+El cálculo lambda es un formalismo matemático, basado en operaciones
+abstractas. Dos décadas después, cuando los primeros computadores
+electrónicos estaban empezando a utilizarse en grandes empresas y en
+universidades, este formalismo dio origen a algo mucho más tangible y
+práctico: un lenguaje de alto nivel, mucho más expresivo que el
+ensamblador, con el que expresar operaciones y funciones **evaluadas
+en el computador**.
 
 ##### 1.1.2 Historia y características del Lisp
 
-* [Lisp](http://en.wikipedia.org/wiki/Lisp_(programming_language)) es el primer lenguaje de programación de alto nivel basado en el paradigma funcional.
+* [Lisp](http://en.wikipedia.org/wiki/Lisp_(programming_language)) es
+  el primer lenguaje de programación de alto nivel basado en el
+  paradigma funcional.
 * Creado en 1958 por John McCarthy.
-* Lisp es un lenguaje revolucionario e introduce nuevos conceptos de programación no existentes en la época en la que nace: funciones como objetos primitivos, funciones de orden superior, polimorfismo, listas, recursión, símbolos, homogeneidad de datos y programas, bucle REPL (*Read-Eval-Print Loop*)
-* La herencia del Lisp llega a lenguajes derivados de él (Scheme, Golden Common Lisp) y a nuevos lenguajes de paradigmas no estrictamente funcionales, como C#, Python, Ruby, Objective-C o Scala.
+* Lisp es un lenguaje revolucionario e introduce nuevos conceptos de
+  programación no existentes en la época en la que nace: funciones
+  como objetos primitivos, funciones de orden superior, polimorfismo,
+  listas, recursión, símbolos, homogeneidad de datos y programas,
+  bucle REPL (*Read-Eval-Print Loop*)
+* La herencia del Lisp llega a lenguajes derivados de él (Scheme,
+  Golden Common Lisp) y a nuevos lenguajes de paradigmas no
+  estrictamente funcionales, como C#, Python, Ruby, Objective-C o
+  Scala.
 
-Lisp fue el primer lenguaje de programación interpretado, con muchas características dinámicas que se ejecutan en tiempo de ejecución (*run-time*). Entre estas características podemos destacar la gestión de la memoria (creación y destrucción automática de memoria reservada para datos), la detección de excepciones y errores en tiempo de ejecución o la creación en tiempo de ejecución de funciones anónimas (expresiones *lambda*). Todas estas características se ejecutan mediante un *sistema de tiempo de ejecución* (*rutime system*) presente en el tiempo de ejecución de los programas. A partir del Lisp muchos otros lenguajes han usado estas características de interpretación o de sistemas de tiempo de ejecución. Por ejemplo, lenguajes como BASIC, Python, Ruby o JavaScript son lenguajes interpretados. Y lenguajes como Java o C# tienen una avanzada plataforma de tiempo de ejecución con soporte para la gestión de la memoria dinámica (*recolección de basura*, [*garbage collection*](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science))) o la [compilación *just in time*](https://en.wikipedia.org/wiki/Just-in-time_compilation).
+Lisp fue el primer lenguaje de programación interpretado, con muchas
+características dinámicas que se ejecutan en tiempo de ejecución
+(*run-time*). Entre estas características podemos destacar la gestión
+de la memoria (creación y destrucción automática de memoria reservada
+para datos), la detección de excepciones y errores en tiempo de
+ejecución o la creación en tiempo de ejecución de funciones anónimas
+(expresiones *lambda*). Todas estas características se ejecutan
+mediante un *sistema de tiempo de ejecución* (*rutime system*)
+presente en el tiempo de ejecución de los programas. A partir del Lisp
+muchos otros lenguajes han usado estas características de
+interpretación o de sistemas de tiempo de ejecución. Por ejemplo,
+lenguajes como BASIC, Python, Ruby o JavaScript son lenguajes
+interpretados. Y lenguajes como Java o C# tienen una avanzada
+plataforma de tiempo de ejecución con soporte para la gestión de la
+memoria dinámica (*recolección de basura*,
+[*garbage collection*](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)))
+o la
+[compilación *just in time*](https://en.wikipedia.org/wiki/Just-in-time_compilation).
 
-Lisp es mucho más que un lenguaje funcional. Lisp se diseñó con el objetivo de ser un lenguaje de alto nivel capaz de resolver problemas prácticos de Inteligencia Artificial, no con la idea de ser un lenguaje formal basado un único modelo de computación. Por ello en Lisp (y en Scheme) existen primitivas que se salen del paradigma funcional puro y permiten programar de formar imperativa (no declarativa), usando mutación de estado y pasos de ejecución. Veremos estas primitivas más adelante, en el tema en el que estudiemos el paradigma de programación imperativa. Estudiaremos allí qué efecto tienen estas primitivas en los programas y funciones que escribamos. Durante la primera parte de la asignatura no utilizaremos las instrucciones imperativas de Scheme, sino que escribiremos siempre código funcional.
+Lisp es mucho más que un lenguaje funcional. Lisp se diseñó con el
+objetivo de ser un lenguaje de alto nivel capaz de resolver problemas
+prácticos de Inteligencia Artificial, no con la idea de ser un
+lenguaje formal basado un único modelo de computación. Por ello en
+Lisp (y en Scheme) existen primitivas que se salen del paradigma
+funcional puro y permiten programar de formar imperativa (no
+declarativa), usando mutación de estado y pasos de ejecución. Veremos
+estas primitivas más adelante, en el tema en el que estudiemos el
+paradigma de programación imperativa. Estudiaremos allí qué efecto
+tienen estas primitivas en los programas y funciones que
+escribamos. Durante la primera parte de la asignatura no utilizaremos
+las instrucciones imperativas de Scheme, sino que escribiremos siempre
+código funcional.
 
-Con el paso de los años y el avance en los diseños de compiladores e intérpretes ha sido posible diseñar lenguajes de programación que siguen más estrictamente las características declarativas del paradigma funcional y que también son útiles y prácticos para desarrollar programas en el mundo real, como Haskell o Clojure.
+Con el paso de los años y el avance en los diseños de compiladores e
+intérpretes ha sido posible diseñar lenguajes de programación que
+siguen más estrictamente las características declarativas del
+paradigma funcional y que también son útiles y prácticos para
+desarrollar programas en el mundo real, como Haskell o Clojure.
 
 ##### 1.1.3. Aplicaciones prácticas de la programación funcional
 
-En los años 60 la programación funcional (Lisp) fue dominante en departamentos de investigación en Inteligencia Artificial (MIT por ejemplo). En los años 70, 80 y 90 se fue relegando cada vez más a los nichos académicos y de investigación; en la empresa se impusieron los lenguajes imperativos y orientados a objetos.
+En los años 60 la programación funcional (Lisp) fue dominante en
+departamentos de investigación en Inteligencia Artificial (MIT por
+ejemplo). En los años 70, 80 y 90 se fue relegando cada vez más a los
+nichos académicos y de investigación; en la empresa se impusieron los
+lenguajes imperativos y orientados a objetos.
 
-En la primera década del 2000 han aparecido lenguajes *multi-paradigma* (muchos de ellos interpretados) como Ruby, Python, Groovy, Objective-C, Lua, Scala o Swift que incluyen el paradigma funcional. También han aparecido y se han hecho populares lenguajes exclusivamente funcionales como Haskell, Clojure o Erlang.
+En la primera década del 2000 han aparecido lenguajes
+*multi-paradigma* (muchos de ellos interpretados) como Ruby, Python,
+Groovy, Objective-C, Lua, Scala o Swift que incluyen el paradigma
+funcional. También han aparecido y se han hecho populares lenguajes
+exclusivamente funcionales como Haskell, Clojure o Erlang.
 
-El auge reciente de estos lenguajes y del paradigma funcional se debe a varios factores, entre ellos que es un paradigma que facilita:
+El auge reciente de estos lenguajes y del paradigma funcional se debe
+a varios factores, entre ellos que es un paradigma que facilita:
 
-- la programación de sistemas concurrentes, con múltiples hilos de ejecución o con múltiples computadores ejecutando procesos conectados concurrentes.
-- la definición y composición de múltiples operaciones sobre *streams* de forma muy concisa y compacta, aplicable a la programación de sistemas distribuidos en Internet.
+- la programación de sistemas concurrentes, con múltiples hilos de
+  ejecución o con múltiples computadores ejecutando procesos
+  conectados concurrentes.
+- la definición y composición de múltiples operaciones sobre *streams*
+  de forma muy concisa y compacta, aplicable a la programación de
+  sistemas distribuidos en Internet.
 - la programación interactiva y evolutiva.
 
 ###### Programación de sistemas concurrentes
 
-Veremos más adelante que una de las características principales de la programación funcional es que no se usa la *mutación* (no se modifican los valores asignados a variables ni parámetros). Esta propiedad lo hace un paradigma excelente para implementar programas concurrentes, en los que existen múltiples hilos de ejecución. La programación de sistemas concurrentes es muy complicada con el paradigma imperativo tradicional, en el que la modificación del estado de una variable compartida por más de un hilo puede provocar *condiciones de carrera* y errores difícilmente localizables y reproducibles. 
+Veremos más adelante que una de las características principales de la
+programación funcional es que no se usa la *mutación* (no se modifican
+los valores asignados a variables ni parámetros). Esta propiedad lo
+hace un paradigma excelente para implementar programas concurrentes,
+en los que existen múltiples hilos de ejecución. La programación de
+sistemas concurrentes es muy complicada con el paradigma imperativo
+tradicional, en el que la modificación del estado de una variable
+compartida por más de un hilo puede provocar *condiciones de carrera*
+y errores difícilmente localizables y reproducibles.
 
-Como dice [Bartosz Milewski](https://twitter.com/BartoszMilewski), investigador y teórico de ciencia de computación, en su [respuesta en Quora](https://www.quora.com/Why-do-software-engineers-like-functional-programming/answer/Bartosz-Milewski) a la pregunta *¿por qué a los ingenieros de software les gusta la programación funcional?*:
+Como dice [Bartosz Milewski](https://twitter.com/BartoszMilewski),
+investigador y teórico de ciencia de computación, en su
+[respuesta en Quora](https://www.quora.com/Why-do-software-engineers-like-functional-programming/answer/Bartosz-Milewski)
+a la pregunta *¿por qué a los ingenieros de software les gusta la
+programación funcional?*:
 
-> Porque es la única forma práctica de escribir programas concurrentes. Intentar escribir programas concurrentes en lenguajes imperativos, no sólo es difícil, sino que lleva a *bugs* que son muy difíciles de descubrir, reproducir y arreglar. En los lenguajes imperativos y, en particular, en los lenguajes orientados a objetos se ocultan las mutaciones y se comparten datos sin darse cuenta, por lo que son extremadamente propensos a los errores de concurrencia producidos por las condiciones de carrera.
+> Porque es la única forma práctica de escribir programas
+> concurrentes. Intentar escribir programas concurrentes en lenguajes
+> imperativos, no sólo es difícil, sino que lleva a *bugs* que son muy
+> difíciles de descubrir, reproducir y arreglar. En los lenguajes
+> imperativos y, en particular, en los lenguajes orientados a objetos
+> se ocultan las mutaciones y se comparten datos sin darse cuenta, por
+> lo que son extremadamente propensos a los errores de concurrencia
+> producidos por las condiciones de carrera.
 
 ###### Definición y composición de operaciones sobre streams
 
-El paradigma funcional ha originado un estilo de programación sobre *streams* de datos, en el que se concatenan operaciones como `filter` o `map` para definir de forma sencilla procesos y transformaciones asíncronas aplicables a los elementos del *stream*. Este estilo de programación ha hecho posible nuevas ideas de programación, como la programación *reactiva*, basada en eventos, o los *futuros* o *promesas* muy utilizados en lenguajes muy populares como JavaScript para realizar peticiones asíncronas a servicios web.
+El paradigma funcional ha originado un estilo de programación sobre
+*streams* de datos, en el que se concatenan operaciones como `filter`
+o `map` para definir de forma sencilla procesos y transformaciones
+asíncronas aplicables a los elementos del *stream*. Este estilo de
+programación ha hecho posible nuevas ideas de programación, como la
+programación *reactiva*, basada en eventos, o los *futuros* o
+*promesas* muy utilizados en lenguajes muy populares como JavaScript
+para realizar peticiones asíncronas a servicios web.
 
-Por ejemplo, en el artículo [Exploring the virtues of microservices with Play and Akka](http://zeroturnaround.com/rebellabs/exploring-the-virtues-of-microservices-with-play-and-akka/) se explica con detalle las ventajas del uso de lenguajes y primitivas para trabajar con sistemas asíncronos basados en eventos en servicios como Tumblr o Netflix.
+Por ejemplo, en el artículo
+[Exploring the virtues of microservices with Play and Akka](http://zeroturnaround.com/rebellabs/exploring-the-virtues-of-microservices-with-play-and-akka/)
+se explica con detalle las ventajas del uso de lenguajes y primitivas
+para trabajar con sistemas asíncronos basados en eventos en servicios
+como Tumblr o Netflix.
 
-Otro ejemplo es el [uso de Scala en Tumblr](http://highscalability.com/blog/2012/2/13/tumblr-architecture-15-billion-page-views-a-month-and-harder.html) con el que se consigue crear código que no tiene estado compartido y que es fácilmente paralelizable entre los más de 800 servidores necesarios para atender picos de más de 40.000 peticiones por segundo:
+Otro ejemplo es el
+[uso de Scala en Tumblr](http://highscalability.com/blog/2012/2/13/tumblr-architecture-15-billion-page-views-a-month-and-harder.html)
+con el que se consigue crear código que no tiene estado compartido y
+que es fácilmente paralelizable entre los más de 800 servidores
+necesarios para atender picos de más de 40.000 peticiones por segundo:
 
-> "Scala promueve que no haya estado compartido. El estado mutable se evita usando sentencias en Scala. No se usan máquinas de estado de larga duración. El estado se saca de la base de datos, se usa, y se escribe de nuevo en la base de datos. La ventaja principal es que los desarrolladores no tienen que preocuparse sobre hilos o bloqueos.
+> "Scala promueve que no haya estado compartido. El estado mutable se
+> evita usando sentencias en Scala. No se usan máquinas de estado de
+> larga duración. El estado se saca de la base de datos, se usa, y se
+> escribe de nuevo en la base de datos. La ventaja principal es que
+> los desarrolladores no tienen que preocuparse sobre hilos o
+> bloqueos.
 
 ###### Programación evolutiva
 
-En la metodología de programación denominada *programación evolutiva* o *iterativa* los programas complejos se construyen a base de ir definiendo y probando elementos computacionales cada vez más complicados. Los lenguajes de programación funcional encajan perfectamente en esta forma de construir programas.
+En la metodología de programación denominada *programación evolutiva*
+o *iterativa* los programas complejos se construyen a base de ir
+definiendo y probando elementos computacionales cada vez más
+complicados. Los lenguajes de programación funcional encajan
+perfectamente en esta forma de construir programas.
 
 Como Abelson y Sussman comentan en el SICP:
 
-> En general, los objetos computacionales pueden tener estructuras muy complejas, y sería extremadamente inconveniente tener que recordar y repetir sus detalles cada vez que queremos usarlas. En lugar de ello, se construyen programas complejos componiendo, paso a paso, objetos computacionales de creciente complejidad.
+> En general, los objetos computacionales pueden tener estructuras muy
+> complejas, y sería extremadamente inconveniente tener que recordar y
+> repetir sus detalles cada vez que queremos usarlas. En lugar de
+> ello, se construyen programas complejos componiendo, paso a paso,
+> objetos computacionales de creciente complejidad.
 
-> El intérprete hace esta construcción paso-a-paso de los programas particularmente conveniente porque las asociaciones nombre-objeto se pueden crear de forma incremental en interacciones sucesivas. Esta característica favorece el desarrollo y prueba incremental de programas, y es en gran medida responsable del hecho de que un programa Lisp consiste normalmente de un gran número de procedimientos relativamente simples.
+> El intérprete hace esta construcción paso-a-paso de los programas
+> particularmente conveniente porque las asociaciones nombre-objeto se
+> pueden crear de forma incremental en interacciones sucesivas. Esta
+> característica favorece el desarrollo y prueba incremental de
+> programas, y es en gran medida responsable del hecho de que un
+> programa Lisp consiste normalmente de un gran número de
+> procedimientos relativamente simples.
 
-No hay que confundir una metodología de programación con un paradigma de programación. Una metodología de programación proporciona sugerencias sobre cómo debemos diseñar, desarrollar y mantener una aplicación que va a ser usada por usuarios finales. 
+No hay que confundir una metodología de programación con un paradigma
+de programación. Una metodología de programación proporciona
+sugerencias sobre cómo debemos diseñar, desarrollar y mantener una
+aplicación que va a ser usada por usuarios finales.
 
 #### <a name="1-2"></a> 1.2. Programación declarativa
 
-Hablamos de *programación declarativa* para referirnos a lenguajes de programación (o sentencias de código) en los que se *declaran* los valores, objetivos o características finales de los elementos del programa, pero no se especifican detalles de implementación, ni de control de flujo. Estos elementos se resuelven por la componente de run-time del lenguaje. Por ejemplo, un conjunto de reglas de Prolog son sentencias declarativas. O una definición de una interfaz en Java. 
+Hablamos de *programación declarativa* para referirnos a lenguajes de
+programación (o sentencias de código) en los que se *declaran* los
+valores, objetivos o características finales de los elementos del
+programa, pero no se especifican detalles de implementación, ni de
+control de flujo. Estos elementos se resuelven por la componente de
+run-time del lenguaje. Por ejemplo, un conjunto de reglas de Prolog
+son sentencias declarativas. O una definición de una interfaz en Java.
 
-Una característica fundamental del código declarativo es que no utiliza pasos de ejecución, ni asignación destructiva (en la que se modifica o muta el valor de la variable). Define un conjunto de reglas y definiciones *de estilo matemático*. En la programación funcional se cumplen estas características, porque se definen funciones que devuelven un valor a partir de unos parámetros de entrada, sin modificar ningún estado del programa ni utilizar pasos de ejecución definidos como tales. 
+Una característica fundamental del código declarativo es que no
+utiliza pasos de ejecución, ni asignación destructiva (en la que se
+modifica o muta el valor de la variable). Define un conjunto de reglas
+y definiciones *de estilo matemático*. En la programación funcional se
+cumplen estas características, porque se definen funciones que
+devuelven un valor a partir de unos parámetros de entrada, sin
+modificar ningún estado del programa ni utilizar pasos de ejecución
+definidos como tales.
 
-El siguiente ejemplo es una **declaración** en Scheme de una función que toma como entrada un número y devuelve su cuadrado:
+El siguiente ejemplo es una **declaración** en Scheme de una función
+que toma como entrada un número y devuelve su cuadrado:
 
 ```scheme
 (define (cuadrado x)
    (* x x))
 ```
 
-La programación declarativa no es exclusiva de los lenguajes funcionales. Existen muchos lenguajes no funcionales con características declarativas. Por ejemplo Prolog, en el que un programa se define como un conjunto de reglas lógicas y su ejecución realiza una deducción lógica matemática que devuelve un resultado. En dicha ejecución no son relevantes los pasos internos que realiza el sistema sino las relaciones lógicas entre los datos y los resultados finales.
+La programación declarativa no es exclusiva de los lenguajes
+funcionales. Existen muchos lenguajes no funcionales con
+características declarativas. Por ejemplo Prolog, en el que un
+programa se define como un conjunto de reglas lógicas y su ejecución
+realiza una deducción lógica matemática que devuelve un resultado. En
+dicha ejecución no son relevantes los pasos internos que realiza el
+sistema sino las relaciones lógicas entre los datos y los resultados
+finales.
 
 
 ##### 1.2.1. Programación imperativa
 
-Repasemos un par de características propias de la programación imperativa:
+Repasemos un par de características propias de la programación
+imperativa:
 
 - Pasos de ejecución con asignación
 - Estado local mutable en las funciones
 
 ###### Asignación y pasos de ejecución
 
-El estilo de programación imperativa se basa en pasos de ejecución que modifican el estado de variables:
+El estilo de programación imperativa se basa en pasos de ejecución que
+modifican el estado de variables:
 
 ```java
 int x = 10;
 int x = x + 1;
 ```
 
-La expresión `x = x + 1` es una expresión de [asignación](https://en.wikipedia.org/w/index.php?title=Assignment_(computer_science)&redirect=no) que modifica el valore anterior de una variable por un nuevo valor. El *estado* de las variables (su valor) cambia con la ejecución de los pasos del programa.
+La expresión `x = x + 1` es una expresión de
+[asignación](https://en.wikipedia.org/w/index.php?title=Assignment_(computer_science)&redirect=no)
+que modifica el valore anterior de una variable por un nuevo valor. El
+*estado* de las variables (su valor) cambia con la ejecución de los
+pasos del programa.
 
-En programación imperativa una variable guarda una referencia a una posición de memoria (o estructura de datos) que puede ser modificada posteriormente mediante una nueva asignación o una modificación (mutación) de sus atributos.
+En programación imperativa una variable guarda una referencia a una
+posición de memoria (o estructura de datos) que puede ser modificada
+posteriormente mediante una nueva asignación o una modificación
+(mutación) de sus atributos.
 
-Por ejemplo, en C podemos asignar y modificar un carácter de una cadena
+Por ejemplo, en C podemos asignar y modificar un carácter de una
+cadena
 
 ```c
 char *miNombre = "Alejandro Perez"
@@ -177,7 +351,11 @@ p1.setCoordX(10.0);
 p1.getCoordX(); // la coord x de p1 es 10.0
 ```
 
-Si el objeto está asignado a más de una variable tendremos un **efecto lateral** (*[side effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science))* en el que el dato guardado en una variable cambia después de una sentencia en la que no se ha usado esa variable:
+Si el objeto está asignado a más de una variable tendremos un **efecto
+lateral**
+(*[side effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science))*
+en el que el dato guardado en una variable cambia después de una
+sentencia en la que no se ha usado esa variable:
 
 ```java
 Point2D p1 = new Point2D(3.0, 2.0); // la coord x de p1 es 3.0
@@ -186,9 +364,16 @@ p1.setCoordX(10.0);
 p2.getCoordX(); // la coord x de p2 es 10.0, sin que ninguna sentencia haya modificado p2
 ```
 
-En programación funcional, por contra, las definiciones son inmutables, una vez asignado un valor a un identificador no se puede modificar éste. En programación funcional se entienden las variables como variables matemáticas, no como referencias a una posiciones de memoria que puede ser modificada. Los valores son inmutables y no existen efectos laterales.
+En programación funcional, por contra, las definiciones son
+inmutables, una vez asignado un valor a un identificador no se puede
+modificar éste. En programación funcional se entienden las variables
+como variables matemáticas, no como referencias a una posiciones de
+memoria que puede ser modificada. Los valores son inmutables y no
+existen efectos laterales.
 
-Por ejemplo, la forma especial `define` en Scheme crea un nuevo identificador y le da el valor definido de forma permanente. Si escribimos el siguiente código en un programa en Scheme R6RS:
+Por ejemplo, la forma especial `define` en Scheme crea un nuevo
+identificador y le da el valor definido de forma permanente. Si
+escribimos el siguiente código en un programa en Scheme R6RS:
 
 ```scheme
 #lang r6rs
@@ -204,10 +389,16 @@ tendremos el siguiente error:
 module: duplicate definition for identifier in: a
 ```
 
-*Nota*: en el intérprete REPL del DrRacket sí que podemos definir más de una vez la misma función o identificador. Se ha diseñado así para facilitar el uso del intérprete para la prueba de expresiones en Scheme.
+*Nota*: en el intérprete REPL del DrRacket sí que podemos definir más
+ de una vez la misma función o identificador. Se ha diseñado así para
+ facilitar el uso del intérprete para la prueba de expresiones en
+ Scheme.
 
 
-En los lenguajes de programación es habitual mezclar sentencias imperativas y sentencias declarativas. Por ejemplo, en el siguiente código Java las líneas 1 y 3 las podríamos considerar declarativas y las 2 y 4 imperativas:
+En los lenguajes de programación es habitual mezclar sentencias
+imperativas y sentencias declarativas. Por ejemplo, en el siguiente
+código Java las líneas 1 y 3 las podríamos considerar declarativas y
+las 2 y 4 imperativas:
 
 ```
 1. int x = 1;
@@ -218,9 +409,16 @@ En los lenguajes de programación es habitual mezclar sentencias imperativas y s
 
 ###### Estado local
 
-Otra característica de la programación imperativa es lo que se denomina **estado local mutable** en funciones, procedimientos o métodos. Se trata la posibilidad de que una invocación a un método o una función modifique un cierto estado y de forma que la siguiente invocación devuelva un valor distinto. Es una característica básica de la programación a objetos, donde los objetos guardan valores que se modifican con la invocaciones a sus métodos.
+Otra característica de la programación imperativa es lo que se
+denomina **estado local mutable** en funciones, procedimientos o
+métodos. Se trata la posibilidad de que una invocación a un método o
+una función modifique un cierto estado y de forma que la siguiente
+invocación devuelva un valor distinto. Es una característica básica de
+la programación a objetos, donde los objetos guardan valores que se
+modifican con la invocaciones a sus métodos.
 
-Por ejemplo, en Java, podemos definir un contador que incrementa su valor. Cada llamada al método `valor()` devolverá un valor distinto:
+Por ejemplo, en Java, podemos definir un contador que incrementa su
+valor. Cada llamada al método `valor()` devolverá un valor distinto:
 
 ```java
 public class Contador {
@@ -257,17 +455,27 @@ contador() ;; 2
 contador() ;; 3
 ```	
 
-Por el contrario, los lenguajes funcionales puros tienen la propiedad de *transparencia referencial*: si se sustituye una expresión por su valor el resultado final no debe cambiar. Como consecuencia, en programación funcional, una función siempre devuelve el mismo valor cuando se le llama con los mismos parámetros. Las funciones no modifican ningún estado, no acceden a ninguna variable ni objeto global y modifican su valor.
+Por el contrario, los lenguajes funcionales puros tienen la propiedad
+de *transparencia referencial*: si se sustituye una expresión por su
+valor el resultado final no debe cambiar. Como consecuencia, en
+programación funcional, una función siempre devuelve el mismo valor
+cuando se le llama con los mismos parámetros. Las funciones no
+modifican ningún estado, no acceden a ninguna variable ni objeto
+global y modifican su valor.
 
 ###### Resumen
 
-Un resumen de las características fundamentales de la programación declarativa frente a la programación imperativa. En los siguientes apartados explicaremos más estas características.
+Un resumen de las características fundamentales de la programación
+declarativa frente a la programación imperativa. En los siguientes
+apartados explicaremos más estas características.
 
 **Características de la programación declarativa**
 
 * Variable = nombre dado a un valor (declaración)
 * No existe asignación ni cambio de estado
-* No existe mutación, se cumple la *transferencia referencial*: dentro de un mismo ámbito todas las ocurrencias de una variable y las llamadas a funciones devuelven el mismo valor
+* No existe mutación, se cumple la *transferencia referencial*: dentro
+  de un mismo ámbito todas las ocurrencias de una variable y las
+  llamadas a funciones devuelven el mismo valor
 
 **Características de la programación imperativa**
 
@@ -278,11 +486,21 @@ Un resumen de las características fundamentales de la programación declarativa
 
 #### <a name="1-3"></a> 1.3. Modelo de computación de sustitución
 
-Un modelo computacional es un formalismo (conjunto de reglas) que definen el funcionamiento de un programa. En el caso de los lenguajes funcionales basados en la evaluación de expresiones, el modelo computacional define cuál va a ser el resultado de evaluar una determinada expresión.
+Un modelo computacional es un formalismo (conjunto de reglas) que
+definen el funcionamiento de un programa. En el caso de los lenguajes
+funcionales basados en la evaluación de expresiones, el modelo
+computacional define cuál va a ser el resultado de evaluar una
+determinada expresión.
 
-El **modelo de sustitución** es un modelo muy sencillo que permite definir la semántica de la evaluación de expresiones en lenguajes funcionales como Scheme. Se basa en una versión simplificada de la regla de reducción del cálculo lambda.
+El **modelo de sustitución** es un modelo muy sencillo que permite
+definir la semántica de la evaluación de expresiones en lenguajes
+funcionales como Scheme. Se basa en una versión simplificada de la
+regla de reducción del cálculo lambda.
 
-Es un modelo basado en la reescritura de unos términos por otros. Aunque se trata de un modelo abstracto, es posible escribir un programa que simule el comportamiento del modelo, con el que sea posible implementar un intérprete de estas expresiones.
+Es un modelo basado en la reescritura de unos términos por
+otros. Aunque se trata de un modelo abstracto, es posible escribir un
+programa que simule el comportamiento del modelo, con el que sea
+posible implementar un intérprete de estas expresiones.
 
 Supongamos un conjunto de definiciones en Scheme:
 
@@ -295,26 +513,50 @@ Supongamos un conjunto de definiciones en Scheme:
     (+ (cuadrado (doble z)) 1))
 ```
 
-Supongamos que, una vez realizadas esas definiciones, se evalúa la siguiente expresión:
+Supongamos que, una vez realizadas esas definiciones, se evalúa la
+siguiente expresión:
 
 ```
 (f (+ 2 1))
 ```
 
-¿Cuál será su resultado? Si lo hacemos de forma intuitiva podemos pensar que `37`. Si lo comprobamos en el intérprete de Scheme veremos que devuelve 37. ¿Hemos seguido algunas reglas específicas? ¿Qué reglas son las que sigue el intérprete? ¿Podríamos implementar nosotros un intérprete similar? Sí, usando las reglas del modelo de sustitución.
+¿Cuál será su resultado? Si lo hacemos de forma intuitiva podemos
+pensar que `37`. Si lo comprobamos en el intérprete de Scheme veremos
+que devuelve 37. ¿Hemos seguido algunas reglas específicas? ¿Qué
+reglas son las que sigue el intérprete? ¿Podríamos implementar
+nosotros un intérprete similar? Sí, usando las reglas del modelo de
+sustitución.
 
-El modelo de sustitución define cuatro reglas sencillas para evaluar una expresión. Llamemos a la expresión *e*:
+El modelo de sustitución define cuatro reglas sencillas para evaluar
+una expresión. Llamemos a la expresión *e*:
 
-1. Si *e* es un valor primitivo (por ejemplo, un número), devolver ese mismo valor.
-2. Si *e* es un identificador, devolver su valor asociado con un `define` (se lanzará un error si no existe ese valor).
-3. Si *e* es una expresión del tipo *(f arg1 ... argn)*, donde *f* es el nombre de una función primitiva (`+`, `-`, ...), evaluar uno a uno los argumentos *arg1 ... *argn* y llamar a la función con el resultado.
-4. Si *e* es una expresión del tipo *(f arg1 ... argn)*, donde *f* es el nombre de una función definida con un `define`, sustituir *f* por su cuerpo, reemplazando cada parámetro formal del procedimiento por el correspondiente argumento de la llamada. Tenemos en este punto dos versiones del modelo (ambas son equivalentes): podemos evaluar el argumento y después hacer la sustitución o podemos hacer la sustitución con la expresión sin evaluar. En el primer caso estaremos siguiendo un orden normal y en el segundo un orden aplicativo. En cualquier caso, evaluar la expresión resultante.
+1. Si *e* es un valor primitivo (por ejemplo, un número), devolver ese
+   mismo valor.
+2. Si *e* es un identificador, devolver su valor asociado con un
+   `define` (se lanzará un error si no existe ese valor).
+3. Si *e* es una expresión del tipo *(f arg1 ... argn)*, donde *f* es
+   el nombre de una función primitiva (`+`, `-`, ...), evaluar uno a
+   uno los argumentos *arg1 ... *argn* y llamar a la función con el
+   resultado.
+4. Si *e* es una expresión del tipo *(f arg1 ... argn)*, donde *f* es
+   el nombre de una función definida con un `define`, sustituir *f*
+   por su cuerpo, reemplazando cada parámetro formal del procedimiento
+   por el correspondiente argumento de la llamada. Tenemos en este
+   punto dos versiones del modelo (ambas son equivalentes): podemos
+   evaluar el argumento y después hacer la sustitución o podemos hacer
+   la sustitución con la expresión sin evaluar. En el primer caso
+   estaremos siguiendo un orden normal y en el segundo un orden
+   aplicativo. En cualquier caso, evaluar la expresión resultante.
 
 Scheme utiliza el orden aplicativo.
 
 ##### 1.3.1 Orden normal vs. orden aplicativo
 
-En el orden aplicativo se realizan las evaluaciones de *dentro a fuera* de los paréntesis. Cuando se llega a una expresión primitiva se evalúa. En el orden normal se realizan todas las sustituciones hasta que se tiene una larga expresión formada por expresiones primitivas; se evalúa entonces.
+En el orden aplicativo se realizan las evaluaciones de *dentro a
+fuera* de los paréntesis. Cuando se llega a una expresión primitiva se
+evalúa. En el orden normal se realizan todas las sustituciones hasta
+que se tiene una larga expresión formada por expresiones primitivas;
+se evalúa entonces.
 
 Veamos un ejemplo de cada caso.
 
@@ -329,7 +571,9 @@ Supongamos las siguientes definiciones de funciones:
     (+ (cuadrado (doble z)) 1))
 ```
 
-¿Cuál sería el resultado de evaluar `(f (+ 2 1))` con orden aplicativo?. Vamos a verlo paso a paso, poniendo entre paréntesis la regla de las anteriores que se aplica en cada caso:
+¿Cuál sería el resultado de evaluar `(f (+ 2 1))` con orden
+aplicativo?. Vamos a verlo paso a paso, poniendo entre paréntesis la
+regla de las anteriores que se aplica en cada caso:
 
 ```
 (f (+ 2 1)) ->                ; evaluamos (+ 2 1) por ser + una función primitiva (Regla 3)
@@ -361,11 +605,18 @@ Supongamos las siguientes definiciones de funciones:
 37
 ```
 
-En programación funcional el resultado de evaluar una expresión es el mismo independientemente del tipo de orden. Pero si estamos fuera del paradigma funcional y las funciones tienen estado y cambian de valor entre distintas invocaciones sí que importan si escogemos un orden.
+En programación funcional el resultado de evaluar una expresión es el
+mismo independientemente del tipo de orden. Pero si estamos fuera del
+paradigma funcional y las funciones tienen estado y cambian de valor
+entre distintas invocaciones sí que importan si escogemos un orden.
 
-Por ejemplo, supongamos una función `(random x)` que devuelve un entero aleatorio entre 0 y *x*. Esta función no cumpliría el paradigma funcional, porque devuelve un valor distinto con el mismo parámetro de entrada.
+Por ejemplo, supongamos una función `(random x)` que devuelve un
+entero aleatorio entre 0 y *x*. Esta función no cumpliría el paradigma
+funcional, porque devuelve un valor distinto con el mismo parámetro de
+entrada.
 
-Evaluamos las siguientes expresiones con orden aplicativo y normal, para comprobar que el resultado es distinto
+Evaluamos las siguientes expresiones con orden aplicativo y normal,
+para comprobar que el resultado es distinto
 
 ```scheme
 (define (zero x) (- x x))
@@ -374,28 +625,41 @@ Evaluamos las siguientes expresiones con orden aplicativo y normal, para comprob
 
 ### <a name="2"></a> 2. Scheme como lenguaje de programación funcional
 
-Vamos ver ejemplos concretos de características de un lenguaje de programación funcional estudiando las características funcionales de Scheme.
+Vamos ver ejemplos concretos de características de un lenguaje de
+programación funcional estudiando las características funcionales de
+Scheme.
 
 En concreto, veremos:
 
-- Definición de funciones y otras primitivas de programación funcional en Scheme
+- Definición de funciones y otras primitivas de programación funcional
+  en Scheme
 - Símbolos y primitiva `quote`
 - Definición de funciones recursivas en Scheme
 
 #### <a name=2-1></a>2.1 Funciones y formas especiales
 
-En el seminario de Scheme hemos visto un conjunto de primitivas que podemos utilizar en Scheme.
+En el seminario de Scheme hemos visto un conjunto de primitivas que
+podemos utilizar en Scheme.
 
-Podemos clasificar las primitivas en **funciones** y **formas especiales**. Las funciones se evalúan usando el modelo de sustitución aplicativo ya visto:
+Podemos clasificar las primitivas en **funciones** y **formas
+especiales**. Las funciones se evalúan usando el modelo de sustitución
+aplicativo ya visto:
 
-- Primero se evalúan los argumentos y después se sustituye la llamada a la función por su cuerpo y se vuelve a evaluar la expresión resultante.
-- Las expresiones siempre se evalúan desde los paréntesis interiores a los exteriores.
+- Primero se evalúan los argumentos y después se sustituye la llamada
+  a la función por su cuerpo y se vuelve a evaluar la expresión
+  resultante.
+- Las expresiones siempre se evalúan desde los paréntesis interiores a
+  los exteriores.
 
-Las *formas especiales* son expresiones primitivas de Scheme que tienen una forma de evaluarse propia, distinta de las funciones.
+Las *formas especiales* son expresiones primitivas de Scheme que
+tienen una forma de evaluarse propia, distinta de las funciones.
 
 #### <a name="2-2"></a>2.2. Formas especiales en Scheme: define, if, cond
 
-Veamos la forma de evaluar las distintas formas especiales en Scheme. En estas formas especiales no se aplica el modelo de sustitución, al no ser invocaciones de funciones, sino que cada una se evalúa de una forma diferente.
+Veamos la forma de evaluar las distintas formas especiales en
+Scheme. En estas formas especiales no se aplica el modelo de
+sustitución, al no ser invocaciones de funciones, sino que cada una se
+evalúa de una forma diferente.
 
 ##### 2.2.1 Forma especial `define`
 
@@ -429,7 +693,10 @@ Veamos la forma de evaluar las distintas formas especiales en Scheme. En estas f
 
 **Evaluación**
 
-La semana que viene veremos con más detalle la semántica, y explicaremos la forma especial `lambda` que es la que realmente crea la función. Hoy nos quedamos en la siguiente descripción de alto nivel de la semántica:
+La semana que viene veremos con más detalle la semántica, y
+explicaremos la forma especial `lambda` que es la que realmente crea
+la función. Hoy nos quedamos en la siguiente descripción de alto nivel
+de la semántica:
 
 1. Crear la función con el *cuerpo*
 2. Dar a la función el nombre *nombre-función*
@@ -454,7 +721,8 @@ La semana que viene veremos con más detalle la semántica, y explicaremos la fo
 **Evaluación**
 
 1. Evaluar *<condición>*
-2. Si el resultado es `#t` evaluar la *<expresión-true>*, en otro caso, evaluar la *<expresión-false>*
+2. Si el resultado es `#t` evaluar la *<expresión-true>*, en otro
+   caso, evaluar la *<expresión-false>*
 
 **Ejemplo**
 
@@ -476,9 +744,12 @@ La semana que viene veremos con más detalle la semántica, y explicaremos la fo
 
 **Evaluación**
 
-1. Se evalúan de forma ordenada todas las expresiones hasta que una de ellas devuelva `#t`
-2. Si alguna expresión devuelve `#t`, se devuelve el valor del consecuente de esa expresión
-3. Si ninguna expresión es cierta, se devuelve el valor resultante de evaluar el consecuente del `else`
+1. Se evalúan de forma ordenada todas las expresiones hasta que una de
+   ellas devuelva `#t`
+2. Si alguna expresión devuelve `#t`, se devuelve el valor del
+   consecuente de esa expresión
+3. Si ninguna expresión es cierta, se devuelve el valor resultante de
+   evaluar el consecuente del `else`
 
 
 **Ejemplo**
@@ -503,7 +774,9 @@ La semana que viene veremos con más detalle la semántica, y explicaremos la fo
 
 **Evaluación**
 
-- Se devuelve el identificador o la expresión **sin evaluar**. La expresión puede ser cualquier expresión correcta de Scheme, datos atómicos, parejas o listas. Se abrevia en con el carácter `'`
+- Se devuelve el identificador o la expresión **sin evaluar**. La
+  expresión puede ser cualquier expresión correcta de Scheme, datos
+  atómicos, parejas o listas. Se abrevia en con el carácter `'`
 
 **Ejemplo**
 
@@ -515,9 +788,14 @@ La semana que viene veremos con más detalle la semántica, y explicaremos la fo
 '(* (+ 1 (+ 2 3)) 5)
 ```
 
-A diferencia de los lenguajes imperativos, Scheme trata a los *identificadores* (nombres que se les da a las variables) como datos del lenguaje de tipo **symbol**. En el paradigma funcional a los identificadores se les denomina *símbolos*.
+A diferencia de los lenguajes imperativos, Scheme trata a los
+*identificadores* (nombres que se les da a las variables) como datos
+del lenguaje de tipo **symbol**. En el paradigma funcional a los
+identificadores se les denomina *símbolos*.
 
-Los símbolos son distintos de las cadenas. Una cadena es un tipo de dato compuesto, mientras que los símbolos se almacenan con un valor único denominado *valor hash*.
+Los símbolos son distintos de las cadenas. Una cadena es un tipo de
+dato compuesto, mientras que los símbolos se almacenan con un valor
+único denominado *valor hash*.
 
 Ejemplos de funciones Scheme con símbolos:
 
@@ -537,9 +815,11 @@ Ejemplos de funciones Scheme con símbolos:
 (equal? 'hola "hola")
 ```
 
-Un símbolo es un identificador que puede asociarse o ligarse (*bind*) a un valor (cualquier dato *de primera clase*).
+Un símbolo es un identificador que puede asociarse o ligarse (*bind*)
+a un valor (cualquier dato *de primera clase*).
 
-Cuando escribimos un símbolo en el prompt de Scheme el intérprete lo evalúa y devuelve su valor:
+Cuando escribimos un símbolo en el prompt de Scheme el intérprete lo
+evalúa y devuelve su valor:
 
 ```scheme
 (define pi 3.14159)
@@ -547,7 +827,10 @@ pi
 ⇒3.14159
 ```
 
-Los nombres de las funciones (`equal?, `sin, `+, ...) son también símbolos (los de las macros no) y Scheme también los evalúa (en un par de semanas hablaremos de las funciones como objetos primitivos en Scheme):
+Los nombres de las funciones (`equal?, `sin, `+, ...) son también
+símbolos (los de las macros no) y Scheme también los evalúa (en un par
+de semanas hablaremos de las funciones como objetos primitivos en
+Scheme):
 
 ```scheme
 sin
@@ -560,7 +843,8 @@ sin
 
 ##### 2.2.4. Símbolos como tipos primitivos
 
-Los símbolos son tipos primitivos del lenguaje: pueden pasarse como parámetros o ligarse a variables.
+Los símbolos son tipos primitivos del lenguaje: pueden pasarse como
+parámetros o ligarse a variables.
 
 ```scheme
 (define x 'hola)
@@ -570,7 +854,9 @@ x
 
 #### <a name="2-4"></a>2.4. Listas
 
-Otra de las características fundamentales del paradigma funcional es la utilización de listas. Repasamos las características y funciones más importantes de Scheme para trabajar con listas.
+Otra de las características fundamentales del paradigma funcional es
+la utilización de listas. Repasamos las características y funciones
+más importantes de Scheme para trabajar con listas.
 
 * Creación de listas: función `list` y forma especial `quote`
 
@@ -606,7 +892,10 @@ Otra de las características fundamentales del paradigma funcional es la utiliza
 
 * Creación de nuevas listas:
 
-	* Función `cons` para crear una lista nueva resultado de añadir un elemento al comienzo de la lista. Esta función es la forma habitual de construir nuevas listas a partir de una lista ya existente y un nuevo elemento.
+	* Función `cons` para crear una lista nueva resultado de añadir un
+      elemento al comienzo de la lista. Esta función es la forma
+      habitual de construir nuevas listas a partir de una lista ya
+      existente y un nuevo elemento.
    
 	   ```scheme
 	   (cons 1 '(1 2 3 4)) ;⇒ {1 1 2 3 4}
@@ -614,21 +903,29 @@ Otra de las características fundamentales del paradigma funcional es la utiliza
 	   (cons '(1 2) '(1 2 3 4)) ; ⇒ {{1 2} 1 2 3 4}
 	   ```
 
-	* Función `append` para crear una lista nueva resultado de concatenar dos o más listas
+	* Función `append` para crear una lista nueva resultado de
+      concatenar dos o más listas
    
 	   ```scheme
 	   (append list2 list2 list3)
 	   ```
 
-* Diferencia entre creación de listas con la función `list` y con la forma especial `quote`:
+* Diferencia entre creación de listas con la función `list` y con la
+  forma especial `quote`:
 
-    * La evaluación de la función `list` funciona como cualquier función, primero se evalúan los argumentos y después se invoca a la función con los argumentos evaluados. Por ejemplo, en la siguiente invocación se obtiene una lista con cuatro elementos resultantes de las invocaciones de las funciones dentro del paréntesis:
+    * La evaluación de la función `list` funciona como cualquier
+      función, primero se evalúan los argumentos y después se invoca a
+      la función con los argumentos evaluados. Por ejemplo, en la
+      siguiente invocación se obtiene una lista con cuatro elementos
+      resultantes de las invocaciones de las funciones dentro del
+      paréntesis:
 
     ```scheme
     (list 1 (/ 2 3) (+ 2 3) (cons 3 4)) ; ⇒ {1 2/3 5 {3 . 4}}
     ```
 
-    * Sin embargo, usamos `quote` obtenemos una lista con sublistas con símbolos en sus primeras posiciones:
+    * Sin embargo, usamos `quote` obtenemos una lista con sublistas
+      con símbolos en sus primeras posiciones:
 
     ```scheme
     '(1 (/ 2 3) (+ 2 3) (cons 3 4)) ; ⇒ {1 {/ 2 3} {+ 2 3} {cons 3 4}}
@@ -636,29 +933,50 @@ Otra de las características fundamentales del paradigma funcional es la utiliza
 
 #### <a name="2-5"></a> 2.5. Recursión
 
-Otra característica fundamental de la programación funcional es la no existencia de bucles. Un bucle implica la utilización de pasos de ejecución en el programa y esto es característico de la programación imperativa. Las iteraciones se realizan con recursión.
+Otra característica fundamental de la programación funcional es la no
+existencia de bucles. Un bucle implica la utilización de pasos de
+ejecución en el programa y esto es característico de la programación
+imperativa. Las iteraciones se realizan con recursión.
 
-Para entender correctamente la recursión hay que mirarla *de forma declarativa*, como una definición matemática, entendiendo lo que hace la llamada recursiva y *confiando en que devuelve lo que tiene que devolver*. No es conveniente *entrar en la recursión* e intentar comprobar su funcionamiento haciendo una traza de las sucesivas llamadas, sino suponer que la llamada recursiva se ejecuta, devuelve el valor que debería (*confiamos en la recursión*) y calcular el valor devuelto como el resultado de la operación una vez devuelta la llamada recursiva.
+Para entender correctamente la recursión hay que mirarla *de forma
+declarativa*, como una definición matemática, entendiendo lo que hace
+la llamada recursiva y *confiando en que devuelve lo que tiene que
+devolver*. No es conveniente *entrar en la recursión* e intentar
+comprobar su funcionamiento haciendo una traza de las sucesivas
+llamadas, sino suponer que la llamada recursiva se ejecuta, devuelve
+el valor que debería (*confiamos en la recursión*) y calcular el valor
+devuelto como el resultado de la operación una vez devuelta la llamada
+recursiva.
 
 ##### 2.5.2. Función `(suma-hasta x)`
 
-Vamos a empezar con un ejemplo sencillo, la función `(suma-hasta x)` que devuelve la suma de los números hasta `x`.
+Vamos a empezar con un ejemplo sencillo, la función `(suma-hasta x)`
+que devuelve la suma de los números hasta `x`.
 
 Por ejemplo, `(suma-hasta 5)` devolverá `0+1+2+3+4+5 = 15`. 
 
-Vamos a empezar por diseñar el caso general de la recursión. ¿Cómo podemos hacer este cálculo **de forma recursiva**? ¿Podemos expresar `(suma-hasta 5)` como **lo que devuelve una llamada recursiva a un problema más pequeño** y algo más? Fijaros que sí:
+Vamos a empezar por diseñar el caso general de la recursión. ¿Cómo
+podemos hacer este cálculo **de forma recursiva**? ¿Podemos expresar
+`(suma-hasta 5)` como **lo que devuelve una llamada recursiva a un
+problema más pequeño** y algo más? Fijaros que sí:
 
-Para calcular la suma hasta 5, llamamos a la recursión para que calcule la suma hasta 4 y al resultado que devuelve la llamada le sumo el propio número 5. Lo podemos expresar con el siguiente dibujo:
+Para calcular la suma hasta 5, llamamos a la recursión para que
+calcule la suma hasta 4 y al resultado que devuelve la llamada le sumo
+el propio número 5. Lo podemos expresar con el siguiente dibujo:
 
-<img src="imagenes/suma-hasta.png" style="width:600px;"/>
+<img src="imagenes/suma-hasta.png" width="600px"/>
 
-Generalizamos este ejemplo y lo expresamos en Scheme de la siguiente forma:
+Generalizamos este ejemplo y lo expresamos en Scheme de la siguiente
+forma:
 
 ```
 (suma-hasta x) => (+ (suma-hasta (- x 1)) x)
 ```
 
-Nos falta el caso base de la recursión. Debemos preguntarnos **¿cuál es el caso más sencillo del problema, que podemos calcular sin hacer ninguna llamada recursiva?**. En este caso podría ser el caso en el que `x` es 0, en el que devolveríamos 0.
+Nos falta el caso base de la recursión. Debemos preguntarnos **¿cuál
+es el caso más sencillo del problema, que podemos calcular sin hacer
+ninguna llamada recursiva?**. En este caso podría ser el caso en el
+que `x` es 0, en el que devolveríamos 0.
 
 Podemos ya escribirlo todo en Scheme:
 
@@ -671,7 +989,9 @@ Podemos ya escribirlo todo en Scheme:
 
 ##### 2.5.4. Función `(suma-lista lista-nums)`
 
-Veamos ahora un ejemplo con listas. Supongamos que queremos definir una función `suma-lista` que reciba como parámetro una lista de números y devuelva la suma de todos ellos.
+Veamos ahora un ejemplo con listas. Supongamos que queremos definir
+una función `suma-lista` que reciba como parámetro una lista de
+números y devuelva la suma de todos ellos.
 
 Siempre tenemos que empezar escribiendo un ejemplo de la función:
 
@@ -679,11 +999,20 @@ Siempre tenemos que empezar escribiendo un ejemplo de la función:
 (suma-lista '(12 3 5 1 8)) = 29
 ```
 
-Para diseñar una implementación recursiva de la función tenemos que pensar en cómo descomponer el ejemplo en una llamada recursiva a un problema más pequeño y en cómo tratar el valor devuelto por la recursión para obtener el valor esperado.
+Para diseñar una implementación recursiva de la función tenemos que
+pensar en cómo descomponer el ejemplo en una llamada recursiva a un
+problema más pequeño y en cómo tratar el valor devuelto por la
+recursión para obtener el valor esperado.
 
-Por ejemplo, en este caso podemos pensar que para sumar la lista de números `(12 3 5 1 8)` podemos obtener un problema más sencillo (una lista más pequeña) haciendo el `cdr` de la lista de números y llamando a la recursión con el resultado. La llamada recursiva devolverá la suma de esos números (confiamos en la recursión) y a ese valor basta con sumarle el primer número de la lista. Lo podemos representar en el siguiente dibujo:
+Por ejemplo, en este caso podemos pensar que para sumar la lista de
+números `(12 3 5 1 8)` podemos obtener un problema más sencillo (una
+lista más pequeña) haciendo el `cdr` de la lista de números y llamando
+a la recursión con el resultado. La llamada recursiva devolverá la
+suma de esos números (confiamos en la recursión) y a ese valor basta
+con sumarle el primer número de la lista. Lo podemos representar en el
+siguiente dibujo:
 
-<img src="imagenes/suma-lista.png" style="width:600px;"/>
+<img src="imagenes/suma-lista.png" width="600px"/>
 
 Podemos generalizar este ejemplo y expresarlo en Scheme de la siguiente forma:
 
@@ -691,7 +1020,10 @@ Podemos generalizar este ejemplo y expresarlo en Scheme de la siguiente forma:
 (suma-lista lista) => (+ (car lista) (suma-lista (cdr lista)))
 ```
 
-Falta el caso base, que es el caso más sencillo en que podemos devolver un valor sin llamar a la recursión. En este caso, podría ser cuando le pesamos a la función una lista sin elementos, en donde hay que devolver 0. 
+Falta el caso base, que es el caso más sencillo en que podemos
+devolver un valor sin llamar a la recursión. En este caso, podría ser
+cuando le pesamos a la función una lista sin elementos, en donde hay
+que devolver 0.
 
 Con todo junto, quedaría la recursión como sigue
 
@@ -704,9 +1036,14 @@ Con todo junto, quedaría la recursión como sigue
    
 ##### 2.5.5. Función recursiva `veces`
 
-Como último ejemplo vamos a definir la función `(veces lista id)` que cuenta el número de veces que aparece un identificador en una lista. 
+Como último ejemplo vamos a definir la función `(veces lista id)` que
+cuenta el número de veces que aparece un identificador en una lista.
 
-¿Cómo planteamos el caso general? Llamaremos a la recursión con el resto de la lista. Esta llamada nos devolverá el número de veces que aparece el identificador en este resto de la lista. Y después sumamos al valor devuelto 1 si el primer elemento de la lista coincide con el identificador.
+¿Cómo planteamos el caso general? Llamaremos a la recursión con el
+resto de la lista. Esta llamada nos devolverá el número de veces que
+aparece el identificador en este resto de la lista. Y después sumamos
+al valor devuelto 1 si el primer elemento de la lista coincide con el
+identificador.
 
 En Scheme:
 
@@ -738,24 +1075,31 @@ La versión completa:
 
 ##### 3.1.1. Función de construcción de parejas `cons`
 
-Ya hemos visto en el seminario de Scheme que el tipo de dato compuesto más simple es la pareja: una entidad formada por dos elementos. Se utiliza la función `cons` para construirla:
+Ya hemos visto en el seminario de Scheme que el tipo de dato compuesto
+más simple es la pareja: una entidad formada por dos elementos. Se
+utiliza la función `cons` para construirla:
 
 ```scheme
 (cons 1 2) ; ⇒ {1 . 2}
 (define c (cons 1 2))
 ```
 
-Dibujamos la pareja anterior y la variable `c` que la referencia de la siguiente forma:
+Dibujamos la pareja anterior y la variable `c` que la referencia de la
+siguiente forma:
 
-<img src="imagenes/pareja.png" style="width:200px;"/>
+<img src="imagenes/pareja.png" width="200px"/>
 
 *Tipo compuesto pareja*
 
-La instrucción `cons` construye un dato compuesto a partir de otros dos datos (que llamaremos izquierdo y derecho). La expresión `{1 . 2}` es la forma que el intérprete tiene de imprimir las parejas.
+La instrucción `cons` construye un dato compuesto a partir de otros
+dos datos (que llamaremos izquierdo y derecho). La expresión `{1 . 2}`
+es la forma que el intérprete tiene de imprimir las parejas.
 
 ##### 3.1.2. Funciones de acceso `car` y `cdr`
 
-Una vez construida una pareja, podemos obtener el elemento correspondiente a su parte izquierda con la función `car` y su parte derecha con la función `cdr`:
+Una vez construida una pareja, podemos obtener el elemento
+correspondiente a su parte izquierda con la función `car` y su parte
+derecha con la función `cdr`:
 
 ```scheme
 (define c (cons 1 2))
@@ -765,7 +1109,8 @@ Una vez construida una pareja, podemos obtener el elemento correspondiente a su 
 
 ###### Definición declarativa
 
-Las funciones `cons`, `car` y `cdr` quedan perfectamente definidas con las siguientes ecuaciones algebraicas:
+Las funciones `cons`, `car` y `cdr` quedan perfectamente definidas con
+las siguientes ecuaciones algebraicas:
 
 ```scheme
 (car (cons x y)) = x
@@ -774,9 +1119,13 @@ Las funciones `cons`, `car` y `cdr` quedan perfectamente definidas con las sigui
 
 ###### ¿De dónde vienen los nombres `car` y `cdr`?
 
-Inicialmente los nombres eran CAR y CDR (en mayúsculas). La historia se remonta al año 1959, en los orígenes del Lisp y tiene que ver con el nombre que se les daba a ciertos registros de la memoria del IBM 709.
+Inicialmente los nombres eran CAR y CDR (en mayúsculas). La historia
+se remonta al año 1959, en los orígenes del Lisp y tiene que ver con
+el nombre que se les daba a ciertos registros de la memoria del IBM
+709.
 
-Podemos leer la explicación completa en [The origin of CAR and CDR in LISP](http://www.iwriteiam.nl/HaCAR_CDR.html).
+Podemos leer la explicación completa en
+[The origin of CAR and CDR in LISP](http://www.iwriteiam.nl/HaCAR_CDR.html).
 
 ##### 3.1.3. Función pair?
 
@@ -789,9 +1138,12 @@ La función `pair?` nos dice si un objeto es atómico o es una pareja:
 
 ##### 3.1.4. Las parejas pueden contener cualquier tipo de dato
 
-Ya hemos comprobado que Scheme es un lenguaje *débilmente tipeado*. Las funciones pueden devolver y recibir distintos tipos de datos.
+Ya hemos comprobado que Scheme es un lenguaje *débilmente
+tipeado*. Las funciones pueden devolver y recibir distintos tipos de
+datos.
 
-Por ejemplo, podríamos definir la siguiente función `suma` que sume tanto números como cadenas:
+Por ejemplo, podríamos definir la siguiente función `suma` que sume
+tanto números como cadenas:
 
 ```scheme
 (define (suma x y)
@@ -801,9 +1153,13 @@ Por ejemplo, podríamos definir la siguiente función `suma` que sume tanto núm
     (else 'error)))
 ```
 
-En la función anterior los parámetros `x` e `y` pueden ser números o cadenas (o incluso de cualquier otro tipo). Y el valor devuelto por la función será un número, una cadena o el símbolo `'error`.
+En la función anterior los parámetros `x` e `y` pueden ser números o
+cadenas (o incluso de cualquier otro tipo). Y el valor devuelto por la
+función será un número, una cadena o el símbolo `'error`.
 
-Sucede lo mismo con el contenido de las parejas. Es posible guardar en las parejas cualquier tipo de dato y combinar distintos tipos. Por ejemplo:
+Sucede lo mismo con el contenido de las parejas. Es posible guardar en
+las parejas cualquier tipo de dato y combinar distintos tipos. Por
+ejemplo:
 
 ```scheme
 (define c (cons 'hola #f))
@@ -813,11 +1169,18 @@ Sucede lo mismo con el contenido de las parejas. Es posible guardar en las parej
 
 ##### 3.1.5. Las parejas son objetos inmutables
 
-Recordemos que en los paradigmas de programación declarativa y funcional no existe el *estado mutable*. Una vez declarado un valor, no se puede modificar. Esto debe suceder también con las parejas: una vez creada una pareja no se puede modificar su contenido.
+Recordemos que en los paradigmas de programación declarativa y
+funcional no existe el *estado mutable*. Una vez declarado un valor,
+no se puede modificar. Esto debe suceder también con las parejas: una
+vez creada una pareja no se puede modificar su contenido.
 
-En Lisp y Scheme estándar (R6RS) las parejas sí que pueden ser mutadas. Pero durante toda esta primera parte de la asignatura no lo contemplaremos, para no salirnos del paradigma funcional.
+En Lisp y Scheme estándar (R6RS) las parejas sí que pueden ser
+mutadas. Pero durante toda esta primera parte de la asignatura no lo
+contemplaremos, para no salirnos del paradigma funcional.
 
-En Swift y otros lenguajes de programación es posible definir **estructuras de datos inmutables** que no pueden ser modificadas una vez creadas. Lo veremos también más adelante.
+En Swift y otros lenguajes de programación es posible definir
+**estructuras de datos inmutables** que no pueden ser modificadas una
+vez creadas. Lo veremos también más adelante.
 
 #### <a name="3-2"></a> 3.2. Las parejas son objetos de primera clase
 
@@ -848,7 +1211,8 @@ Una pareja puede pasarse como argumento y devolverse en una función:
 ⇒ {5 . 17}
 ```
 
-Y, por último, las parejas *pueden formar parte de otras parejas*. Es lo que se denomina la propiedad de clausura de la función `cons`:
+Y, por último, las parejas *pueden formar parte de otras parejas*. Es
+lo que se denomina la propiedad de clausura de la función `cons`:
 
 > El resultado de un `cons` puede usarse como parámetro de nuevas llamadas a `cons`.
 
@@ -869,19 +1233,22 @@ Expresión equivalente:
  
  Podríamos representar esta estructura así:
 
-<img src="imagenes/pareja-pareja.png" style="width:300px;"/>
+<img src="imagenes/pareja-pareja.png" width="300px"/>
 
 *Propiedad de clausura: las parejas pueden contener parejas*
 
-Pero se haría muy complicado representar muchos niveles de anidamiento. Por eso utilizamos la siguiente representación:
+Pero se haría muy complicado representar muchos niveles de
+anidamiento. Por eso utilizamos la siguiente representación:
 
-<img src="imagenes/pareja-pareja2.png" style="width:250px;"/>
+<img src="imagenes/pareja-pareja2.png" width="250px"/>
 
-Llamamos a estos diagramas *diagramas caja-y-puntero* (*box-and-pointer* en inglés).
+Llamamos a estos diagramas *diagramas caja-y-puntero*
+(*box-and-pointer* en inglés).
 
 #### <a name="3-3"></a> 3.3. Diagramas *caja-y-puntero*
 
-Al escribir expresiones complicadas con `cons` anidados es conveniente para mejorar su legibilidad utilizar el siguiente formato:
+Al escribir expresiones complicadas con `cons` anidados es conveniente
+para mejorar su legibilidad utilizar el siguiente formato:
 
 ```scheme
 (define p (cons (cons 1
@@ -889,17 +1256,24 @@ Al escribir expresiones complicadas con `cons` anidados es conveniente para mejo
                 2))
 ```
 
-Para entender la construcción de estas estructuras es importante recordar que las expresiones se evalúan *de dentro a afuera*.
+Para entender la construcción de estas estructuras es importante
+recordar que las expresiones se evalúan *de dentro a afuera*.
 
 ¿Qué figura representaría la estructura anterior?
 
 Solución:
 
-<img src="imagenes/pareja-pareja3.png" style="width:200px;"/>
+<img src="imagenes/pareja-pareja3.png" width="200px"/>
 
-Es importante tener en cuenta que cada caja del diagrama representa una pareja creada en la memoria del intérprete con la instrucción `cons` y que el resultado de evaluar una variable en la que se ha guardado una pareja devuelve la pareja recién creada. Por ejemplo, si el intérprete evalúa `p` después de haber hecho la sentencia anterior devuelve la pareja contenida en `p`, no se crea una pareja nueva. 
+Es importante tener en cuenta que cada caja del diagrama representa
+una pareja creada en la memoria del intérprete con la instrucción
+`cons` y que el resultado de evaluar una variable en la que se ha
+guardado una pareja devuelve la pareja recién creada. Por ejemplo, si
+el intérprete evalúa `p` después de haber hecho la sentencia anterior
+devuelve la pareja contenida en `p`, no se crea una pareja nueva.
 
-Por ejemplo, si después de haber evaluado la sentencia anterior evaluamos la siguiente:
+Por ejemplo, si después de haber evaluado la sentencia anterior
+evaluamos la siguiente:
 
 ```scheme
 (define p2 (cons 5 (cons p 6)))
@@ -907,15 +1281,28 @@ Por ejemplo, si después de haber evaluado la sentencia anterior evaluamos la si
 
 El diagrama caja y puntero resultante sería el siguiente:
 
-<img src="imagenes/box-and-pointer2.png" style="width:250px;"/>
+<img src="imagenes/box-and-pointer2.png" width="250px"/>
 
-Vemos que en la pareja que se crea con `(cons p 6)` se guarda en la parte izquierda **la misma pareja que hay en `p`**. Lo representamos con una flecha que apunta a la misma pareja que `p`. 
+Vemos que en la pareja que se crea con `(cons p 6)` se guarda en la
+parte izquierda **la misma pareja que hay en `p`**. Lo representamos
+con una flecha que apunta a la misma pareja que `p`.
 
-**IMPORTANTE**: El funcionamiento de la evaluación de las parejas es similar al de los objetos en lenguajes orientados a objetos como Java. Cuando se evalúa una variable que contiene una pareja se devuelve la propia pareja, no una copia. En programación funcional, como el contenido de las parejas es inmutable, no hay problemas de *efectos laterales* por el hecho de que una pareja esté compartida. Veremos que cuando introduzcamos la mutación en Scheme aparecerán estos efectos laterales.
+**IMPORTANTE**: El funcionamiento de la evaluación de las parejas es
+  similar al de los objetos en lenguajes orientados a objetos como
+  Java. Cuando se evalúa una variable que contiene una pareja se
+  devuelve la propia pareja, no una copia. En programación funcional,
+  como el contenido de las parejas es inmutable, no hay problemas de
+  *efectos laterales* por el hecho de que una pareja esté
+  compartida. Veremos que cuando introduzcamos la mutación en Scheme
+  aparecerán estos efectos laterales.
 
-Es conveniente que pruebes a crear distintas estructuras de parejas con parejas y a dibujar su diagrama caja y puntero. Y también a recuperar un determinado dato (pareja o dato atómico) una vez creada la estructura.
+Es conveniente que pruebes a crear distintas estructuras de parejas
+con parejas y a dibujar su diagrama caja y puntero. Y también a
+recuperar un determinado dato (pareja o dato atómico) una vez creada
+la estructura.
 
-La siguiente función `print-pareja` puede ser útil a la hora de mostrar por pantalla los elementos de una pareja
+La siguiente función `print-pareja` puede ser útil a la hora de
+mostrar por pantalla los elementos de una pareja
 
 ```scheme
 (define (print-pareja pareja)
@@ -933,11 +1320,15 @@ La siguiente función `print-pareja` puede ser útil a la hora de mostrar por pa
         (display dato)))
 ```
 
-**!Cuidado¡**: la función anterior contiene sentencias como `begin` o llamadas a `display` dentro del código de la función, que son propias de la programación imperativa. **No hacerlo en programación funcional**.
+**!Cuidado¡**: la función anterior contiene sentencias como `begin` o
+   llamadas a `display` dentro del código de la función, que son
+   propias de la programación imperativa. **No hacerlo en programación
+   funcional**.
 
 ##### 3.3.1. Funciones c????r
 
-Al trabajar con estructuras de parejas anidades es muy habitual realizar llamadas del tipo:
+Al trabajar con estructuras de parejas anidades es muy habitual
+realizar llamadas del tipo:
 
 ```scheme
 (cdr (cdr (car p)))
@@ -951,23 +1342,31 @@ Es equivalente a la función `cadar` de Scheme:
 ⇒ 4
 ```
 
-El nombre de la función se obtiene concatenando a la letra "c", las letras "a" o "d" según hagamos un car o un cdr y terminando con la letra "r".
+El nombre de la función se obtiene concatenando a la letra "c", las
+letras "a" o "d" según hagamos un car o un cdr y terminando con la
+letra "r".
 
-Hay definidas 2^4 funciones de este tipo: `caaaar`, `caaadr`, …, `cddddr`.
+Hay definidas 2^4 funciones de este tipo: `caaaar`, `caaadr`, …,
+`cddddr`.
 
 ### <a name="4"></a> 4. Listas en Scheme 
 
 #### <a name="4-1"></a> 4.1. Implementación de listas en Scheme
 
-Recordemos que Scheme permite manejar listas como un tipo de datos básico. Hemos visto funciones para crear, añadir y recorrer listas.
+Recordemos que Scheme permite manejar listas como un tipo de datos
+básico. Hemos visto funciones para crear, añadir y recorrer listas.
 
-Como repaso, podemos ver las siguientes expresiones. Fijaros que las funciones `car`, `cdr` y `cons` son exactamente las mismas funciones que las vistas anteriormente. 
+Como repaso, podemos ver las siguientes expresiones. Fijaros que las
+funciones `car`, `cdr` y `cons` son exactamente las mismas funciones
+que las vistas anteriormente.
 
 ¿Por qué? ¿Qué relación hay entre las parejas y las listas?
 
-Hagamos algunas pruebas, probando si los resultados son listas o parejas usando las funciones `list?` y `pair?`.
+Hagamos algunas pruebas, probando si los resultados son listas o
+parejas usando las funciones `list?` y `pair?`.
 
-Por ejemplo, una pareja formada por dos números es una pareja, pero no es una lista:
+Por ejemplo, una pareja formada por dos números es una pareja, pero no
+es una lista:
 
 ```scheme
 (define p1 (cons 1 2))
@@ -990,7 +1389,8 @@ Y una lista vacía es una lista, pero no es una pareja:
 (pair? lista) ; ⇒ #t
 ```
 
-Por último, una pareja con una lista vacía como segundo elemento es una pareja y una lista:
+Por último, una pareja con una lista vacía como segundo elemento es
+una pareja y una lista:
 
 ```scheme
 (define p1 (cons 1 '()))
@@ -998,16 +1398,19 @@ Por último, una pareja con una lista vacía como segundo elemento es una pareja
 (list? p1) ; ⇒ #t
 ```
 
-Con estos ejemplos ya tenemos pistas para deducir la relación entre listas y parejas en Scheme (y Lisp). Vamos a explicarlo.
+Con estos ejemplos ya tenemos pistas para deducir la relación entre
+listas y parejas en Scheme (y Lisp). Vamos a explicarlo.
 
 ##### 4.1.1. Definición de listas con parejas
 
 Una lista es (definición recursiva):
 
-* Una pareja que contiene en su parte izquierda el primer elemento de la lista y en su parte derecha el resto de la lista
+* Una pareja que contiene en su parte izquierda el primer elemento de
+  la lista y en su parte derecha el resto de la lista
 * Un símbolo especial `'()` que denota la lista vacía
 
-Por ejemplo, una lista muy sencilla con un solo elemento, `{1}`, se define con la siguiente pareja:
+Por ejemplo, una lista muy sencilla con un solo elemento, `{1}`, se
+define con la siguiente pareja:
 
 ```scheme
 (cons 1 '())
@@ -1015,14 +1418,16 @@ Por ejemplo, una lista muy sencilla con un solo elemento, `{1}`, se define con l
 	
 La pareja cumple las condiciones anteriores: 
 
-* La parte izquierda de la pareja es el primer elemento de la lista (el número 1)
+* La parte izquierda de la pareja es el primer elemento de la lista
+  (el número 1)
 * La parte derecha es el resto de la lista (la lista vacía)
 
-<img src="imagenes/pareja-lista.png" style="width:150px;"/>
+<img src="imagenes/pareja-lista.png" width="150px"/>
 
 *La lista {1}*
 
-El objeto es al mismo tiempo una pareja y una lista. La función `list?` permite comprobar si un objeto es una lista:
+El objeto es al mismo tiempo una pareja y una lista. La función
+`list?` permite comprobar si un objeto es una lista:
 
 ```scheme
 (define l (cons 1 '()))
@@ -1030,7 +1435,8 @@ El objeto es al mismo tiempo una pareja y una lista. La función `list?` permite
 (list? l)
 ```
 
-Por ejemplo, la lista '(1 2 3 4) se construye con la siguiente secuencia de parejas:
+Por ejemplo, la lista '(1 2 3 4) se construye con la siguiente
+secuencia de parejas:
 
 ```scheme
 (cons 1
@@ -1045,11 +1451,13 @@ La primera pareja cumple las condiciones de ser una lista:
 * Su primer elemento es el 1
 * Su parte derecha es la lista '(2 3 4)
 
-<img src="imagenes/lista.png" style="width:400px;"/>
+<img src="imagenes/lista.png" width="400px"/>
 
 *Parejas formando una lista*
 
-Al comprobar la implementación de las listas en Scheme, entendemos por qué las funciones `car` y `cdr` nos devuelven el primer elemento y el resto de la lista.
+Al comprobar la implementación de las listas en Scheme, entendemos por
+qué las funciones `car` y `cdr` nos devuelven el primer elemento y el
+resto de la lista.
 
 ##### 4.1.2. Lista vacía
 
@@ -1069,7 +1477,8 @@ Y no es un símbolo ni una pareja:
 ⇒ #f
 ```
 
-Para saber si un objeto es la lista vacía, podemos utilizar la función `null?`:
+Para saber si un objeto es la lista vacía, podemos utilizar la función
+`null?`:
 
 ```scheme
 (null? '())
@@ -1078,9 +1487,11 @@ Para saber si un objeto es la lista vacía, podemos utilizar la función `null?`
 
 #### <a name="4-2"></a> 4.2. Listas con elementos compuestos
 
-Las listas pueden contener cualquier tipo de elementos, incluyendo otras parejas.
+Las listas pueden contener cualquier tipo de elementos, incluyendo
+otras parejas.
 
-La siguiente estructura se denomina *lista de asociación*. Son listas cuyos elementos son parejas (*clave*, *valor*):
+La siguiente estructura se denomina *lista de asociación*. Son listas
+cuyos elementos son parejas (*clave*, *valor*):
 
 ```scheme
 (list (cons 'a 1)
@@ -1092,7 +1503,7 @@ La siguiente estructura se denomina *lista de asociación*. Son listas cuyos ele
 
 ¿Cuál sería el diagrama *box and pointer* de la estructura anterior?
 
-<img src="imagenes/lista-parejas.png" style="width:400px;"/>
+<img src="imagenes/lista-parejas.png" width="400px"/>
 
 La expresión equivalente utilizando conses es:
 
@@ -1105,7 +1516,8 @@ La expresión equivalente utilizando conses es:
 
 ##### 4.2.1. Listas de listas
 
-Si la pareja que guardamos como elemento de la lista es la cabeza de otra lista tenemos una lista que contiene a otra lista:
+Si la pareja que guardamos como elemento de la lista es la cabeza de
+otra lista tenemos una lista que contiene a otra lista:
 
 ```scheme
 (define lista (list 1 (list 1 2 3) 3))
@@ -1119,31 +1531,41 @@ La lista anterior también se puede definir con quote:
 
 El diagrama *box and pointer* de la lista es:
 
-<img src="imagenes/lista-lista.png" style="width:500px;"/>
+<img src="imagenes/lista-lista.png" width="500px"/>
 
 *Lista que contiene otra lista como segundo elemento*
 
 ##### 4.2.2. Distintos niveles de abstracción
 
-Es muy importante utilizar el nivel de abstracción correcto a la hora de trabajar con listas que contienen otros elementos compuestos, como otras parejas u otras listas.
+Es muy importante utilizar el nivel de abstracción correcto a la hora
+de trabajar con listas que contienen otros elementos compuestos, como
+otras parejas u otras listas.
 
-Sólo hace falta *bajar* al nivel de caja y puntero cuando estemos definiendo funciones de bajo nivel que tratan la estructura de datos para obtener elementos concretos de las parejas.
+Sólo hace falta *bajar* al nivel de caja y puntero cuando estemos
+definiendo funciones de bajo nivel que tratan la estructura de datos
+para obtener elementos concretos de las parejas.
 
-Si, por el contrario, estamos recorriendo la lista principal y queremos tratar sus elementos, debemos *verla* como una lista normal y recorrerla con las funciones `car` para obtener su primer elemento y `cdr` para obtener el resto. O `list-ref` para obtener un elemento determinado (que puede ser atómico o compuesto).
+Si, por el contrario, estamos recorriendo la lista principal y
+queremos tratar sus elementos, debemos *verla* como una lista normal y
+recorrerla con las funciones `car` para obtener su primer elemento y
+`cdr` para obtener el resto. O `list-ref` para obtener un elemento
+determinado (que puede ser atómico o compuesto).
 
-Por ejemplo, la lista anterior `{1 {1 2 3} 3}` es una lista de 3 elementos. Si queremos obtener su segundo elemento (la lista `{1 2 3}`) bastaría con:
+Por ejemplo, la lista anterior `{1 {1 2 3} 3}` es una lista de 3
+elementos. Si queremos obtener su segundo elemento (la lista `{1 2
+3}`) bastaría con:
 
-```scheme
-(define lista '(1 (1 2 3) 3))
-(car (cdr lista))
-(list-ref lista 1)
-```
+```scheme (define lista '(1 (1 2 3) 3)) (car (cdr lista)) (list-ref
+lista 1) ```
 
 #### <a name="4-3"></a> 4.3. Funciones recursivas y listas
 
 ##### 4.3.1. Implementación recursiva de funciones sobre listas
 
-Vamos a ver cómo se implementan de forma recursiva alguna de funciones que trabajan con listas, incluyendo algunas de las funciones de Scheme. Para no solapar con las definiciones de Scheme pondremos el prefijo `mi-` en todas ellas:
+Vamos a ver cómo se implementan de forma recursiva alguna de funciones
+que trabajan con listas, incluyendo algunas de las funciones de
+Scheme. Para no solapar con las definiciones de Scheme pondremos el
+prefijo `mi-` en todas ellas:
 
 - `mi-list-ref`: implementación de la función `list-ref`
 - `mi-append`: implementación de la funión `append` 
@@ -1151,7 +1573,8 @@ Vamos a ver cómo se implementan de forma recursiva alguna de funciones que trab
 
 ###### Función `mi-list-ref`
 
-La función `(mi-list-ref n lista)` devuelve el elemento `n` de una lista (empezando a contar por 0):
+La función `(mi-list-ref n lista)` devuelve el elemento `n` de una
+lista (empezando a contar por 0):
 
 ```scheme
 (define lista '(a b c d e f g))
@@ -1161,21 +1584,38 @@ La función `(mi-list-ref n lista)` devuelve el elemento `n` de una lista (empez
 
 Veamos con el ejemplo anterior cómo hacer la formulación recursiva.
 
-Hemos visto que, en general, cuando queremos resolver un problema de forma recursiva tenemos que hacer una llamada recursiva a un problema más sencillo, **confiar en que la llamada nos devuelva el resultado correcto** y usar ese resultado para resolver el problema original.
+Hemos visto que, en general, cuando queremos resolver un problema de
+forma recursiva tenemos que hacer una llamada recursiva a un problema
+más sencillo, **confiar en que la llamada nos devuelva el resultado
+correcto** y usar ese resultado para resolver el problema original.
 
-En este caso nuestro problema es obtener el número que está en la posición  2 de la lista `{a b c d e f g}`. Suponemos que la función que nos devuelve una posición de la lista ya la tenemos implementada y que la llamada recursiva nos va a devolver el resultado correcto. ¿Cómo podemos simplificar el problema original? Veamos la solución para este caso concreto:
+En este caso nuestro problema es obtener el número que está en la
+posición 2 de la lista `{a b c d e f g}`. Suponemos que la función que
+nos devuelve una posición de la lista ya la tenemos implementada y que
+la llamada recursiva nos va a devolver el resultado correcto. ¿Cómo
+podemos simplificar el problema original? Veamos la solución para este
+caso concreto:
 
-> Para devolver el elemento 2 (empezando a contar por 0)  de la lista `{a b c d e f g}` podemos hacer el `cdr` de la lista (obtendríamos `{b c d e f g}`) y devolver su elemento 1. Sería el valor `c`.
+> Para devolver el elemento 2 (empezando a contar por 0) de la lista
+> `{a b c d e f g}` podemos hacer el `cdr` de la lista (obtendríamos
+> `{b c d e f g}`) y devolver su elemento 1. Sería el valor `c`.
 
 Generalizamos el ejemplo anterior, para cualquier `n` y cualquier lista:
 
-> Para devolver el elemento que está en la posición `n` de una lista, hago el cdr de la lista y devuelvo su elemento n-1.
+> Para devolver el elemento que está en la posición `n` de una lista,
+> hago el cdr de la lista y devuelvo su elemento n-1.
 
-Y, por último, formulamos el caso base de la recursión, el problema más sencillo que se puede resolver directamente, sin hacer una llamada recursiva:
+Y, por último, formulamos el caso base de la recursión, el problema
+más sencillo que se puede resolver directamente, sin hacer una llamada
+recursiva:
 
-> Para devolver el elemento que está en la posición 0 de una lista, devuelvo el `car` de la lista
+> Para devolver el elemento que está en la posición 0 de una lista,
+> devuelvo el `car` de la lista
 
-La implementación de todo esto en Scheme sería la siguiente (incluimos un segundo caso base en el que se intenta obtener la posición de una lista vacía; se llegaría a este caso si la posición que pedimos es mayor que el número de elementos de la lista):
+La implementación de todo esto en Scheme sería la siguiente (incluimos
+un segundo caso base en el que se intenta obtener la posición de una
+lista vacía; se llegaría a este caso si la posición que pedimos es
+mayor que el número de elementos de la lista):
 
 ```scheme
 (define (mi-list-ref lista n)
@@ -1187,14 +1627,17 @@ La implementación de todo esto en Scheme sería la siguiente (incluimos un segu
 
 ###### Función `list-tail`
 
-La función `(mi-list-tail lista n)` devuelve la lista resultante de quitar n elementos de la lista original:
+La función `(mi-list-tail lista n)` devuelve la lista resultante de
+quitar n elementos de la lista original:
 
 ```scheme
 (mi-list-tail '(1 2 3 4 5 6 7) 2)
 ⇒ {3 4 5 6 7}
 ```
 
-Piensa en cómo se implementaría de forma recursiva. Esta vez vamos a mostrar directamente la implementación, sin dar explicaciones de cómo se ha llegado a ella:
+Piensa en cómo se implementaría de forma recursiva. Esta vez vamos a
+mostrar directamente la implementación, sin dar explicaciones de cómo
+se ha llegado a ella:
 
 ```scheme
 (define (mi-list-tail lista n)
@@ -1206,7 +1649,9 @@ Piensa en cómo se implementaría de forma recursiva. Esta vez vamos a mostrar d
 
 ###### Función `mi-append` 
 
-Veamos ahora cómo podríamos implementar de forma recursiva la función `append` que une dos listas. La llamaremos `(mi-append lista1 lista2)`.
+Veamos ahora cómo podríamos implementar de forma recursiva la función
+`append` que une dos listas. La llamaremos `(mi-append lista1
+lista2)`.
 
 Por ejemplo:
 
@@ -1214,12 +1659,15 @@ Por ejemplo:
 (mi-append '(a b c) '(d e f)) ;⇒ {a b c d e f}
 ```
 
-Para resolver el problema de forma recursiva, haremos el `cdr` de la primera lista, llamaremos a la recursión para que una el resultado con la segunda lista`:
+Para resolver el problema de forma recursiva, haremos el `cdr` de la
+primera lista, llamaremos a la recursión para que una el resultado con
+la segunda lista`:
 
 ```
 (mi-append (cdr '(a b c)) '(d e f)) ;⇒
 (mi-append '(b c) '(d e f) ;⇒ {b c d e f}
 ```
+
 Y añadiremos el primer elemento a la lista resultante usando un `cons`:
 
 ```
@@ -1233,7 +1681,9 @@ En general:
 (mi-append lista1 lista2) ⇒ (cons (car lista1) (mi-append (cdr lista1) lista2))
 ```
 
-El caso base, el caso en el que la función puede devolver un valor directamente sin llamar a la recursión, es aquel en el que `lista1` es `null?`. En ese caso devolvemos `lista2`:
+El caso base, el caso en el que la función puede devolver un valor
+directamente sin llamar a la recursión, es aquel en el que `lista1` es
+`null?`. En ese caso devolvemos `lista2`:
 
 ```
 (mi-append '() '(a b c)) ;⇒ '{a b c}
@@ -1251,18 +1701,23 @@ La formulación recursiva completa queda como sigue:
 
 ###### Función `mi-reverse`
 
-Veamos cómo implementar de forma recursiva la función `mi-reverse` que invierte una lista
+Veamos cómo implementar de forma recursiva la función `mi-reverse` que
+invierte una lista
 
 ```scheme
 (mi-reverse '(1 2 3 4 5 6))
 ⇒ {6 5 4 3 2 1}
 ```
 
-La idea es sencilla: llamamos a la recursión para hacer la inversa del `cdr` de la lista y añadimos el primer elemento a la lista resultante que devuelve ya invertida la llamada recursiva. 
+La idea es sencilla: llamamos a la recursión para hacer la inversa del
+`cdr` de la lista y añadimos el primer elemento a la lista resultante
+que devuelve ya invertida la llamada recursiva.
 
-Podemos definir una función auxiliar `(añade-al-final dato lista)` que añade un dato al final de una lista usando `append`:
+Podemos definir una función auxiliar `(añade-al-final dato lista)` que
+añade un dato al final de una lista usando `append`:
 
-Veamos directamente su implementación, usando `mi-append` para añadir un elemento al final de la lista:
+Veamos directamente su implementación, usando `mi-append` para añadir
+un elemento al final de la lista:
 
 ```scheme
 (define (añade-al-final dato lista)
@@ -1281,11 +1736,14 @@ La función `mi-reverse` quedaría entonces como sigue:
 
 ###### Función `cuadrados-hasta`
 
-La función `(cuadrados-hasta x)` devuelve una lista con los cuadrados de los números hasta x:
+La función `(cuadrados-hasta x)` devuelve una lista con los cuadrados
+de los números hasta x:
 
-> Para construir una lista de los cuadrados hasta x, añado el cuadrado de x a la lista de los cuadrados hasta x-1
+> Para construir una lista de los cuadrados hasta x, añado el cuadrado
+> de x a la lista de los cuadrados hasta x-1
 
-El caso base de la recursión es el caso en el que x es 1, entonces devolvemos una lista formada por el 1.
+El caso base de la recursión es el caso en el que x es 1, entonces
+devolvemos una lista formada por el 1.
 
 En Scheme:
 
@@ -1306,9 +1764,12 @@ Ejemplo:
 
 ###### Función `filtra-pares`
 
-Es muy habitual recorrer una lista y comprobar condiciones de sus elementos, construyendo una lista con los que cumplan una determinada condición.
+Es muy habitual recorrer una lista y comprobar condiciones de sus
+elementos, construyendo una lista con los que cumplan una determinada
+condición.
 
-Por ejemplo, la siguiente función `filtra-pares` construye una lista con los números pares de la lista que le pasamos como parámetro:
+Por ejemplo, la siguiente función `filtra-pares` construye una lista
+con los números pares de la lista que le pasamos como parámetro:
 
 ```scheme
 (define (filtra-pares lista)
@@ -1328,9 +1789,13 @@ Ejemplo:
 
 ###### Función `primo?`
 
-El uso de listas es uno de los elementos fundamentales de la programación funcional.
+El uso de listas es uno de los elementos fundamentales de la
+programación funcional.
 
-Como ejemplo, vamos a ver cómo trabajar con listas para construir una función que calcula si un número es primo. La forma de hacerlo será calcular la lista de divisores del número y comprobar si su longitud es dos. En ese caso será primo.
+Como ejemplo, vamos a ver cómo trabajar con listas para construir una
+función que calcula si un número es primo. La forma de hacerlo será
+calcular la lista de divisores del número y comprobar si su longitud
+es dos. En ese caso será primo.
 
 Por ejemplo:
 
@@ -1348,7 +1813,9 @@ Podemos definir entonces la función `(primo? x)` de la siguiente forma:
       (length (divisores x))))
 ```
 
-¿Cómo implementamos la función `(divisores x)` que nos devuelve la lista de los divisores de un número `x`. Vamos a construirla de la siguiente forma:
+¿Cómo implementamos la función `(divisores x)` que nos devuelve la
+lista de los divisores de un número `x`. Vamos a construirla de la
+siguiente forma:
 
 1. Creamos una lista de todos los números del 1 a x
 2. Filtramos la lista para dejar los divisores de x
@@ -1369,7 +1836,8 @@ Ejemplos:
 (lista-hasta 10) ;⇒ {1 2 3 4 5 6 7 8 9 10}
 ```
 
-Definimos la función `(divisor? x y)` que nos diga si x es divisor de y:
+Definimos la función `(divisor? x y)` que nos diga si x es divisor de
+y:
 
 ```scheme
 (define (divisor? x y)
@@ -1383,7 +1851,10 @@ Ejemplos:
 (divisor 3 10) ;⇒ #f
 ```
 
-Una vez que hemos definido La función `divisor?` podemos utilizarla para definir la función recursiva `(filtra-divisores lista x)` que devuelve una lista con los números de `lista` que son divisores de `x`:
+Una vez que hemos definido La función `divisor?` podemos utilizarla
+para definir la función recursiva `(filtra-divisores lista x)` que
+devuelve una lista con los números de `lista` que son divisores de
+`x`:
 
 ```scheme
 (define (filtra-divisores lista x)
@@ -1394,7 +1865,9 @@ Una vez que hemos definido La función `divisor?` podemos utilizarla para defini
       (else (filtra-divisores (cdr lista) x))))
 ```
 
-Ya podemos implementar la función que devuelve los divisores de un número `x` generando los números hasta `x` y filtrando los divisores de ese número. Por ejemplo, para calcular los divisores de 10:
+Ya podemos implementar la función que devuelve los divisores de un
+número `x` generando los números hasta `x` y filtrando los divisores
+de ese número. Por ejemplo, para calcular los divisores de 10:
 
 ```
 (filtra-divisores {1 2 3 4 5 6 7 8 9 10} 10) ;⇒ {1 2 5 10}
@@ -1407,14 +1880,22 @@ Se puede implementar de una forma muy sencilla:
    (filtra-divisores (lista-hasta x) x))
 ```
 
-Y una vez definida esta función, ya puede funcionar correctamente la función `primo?`.
+Y una vez definida esta función, ya puede funcionar correctamente la
+función `primo?`.
 
 
 #### <a name="4-4"></a> 4.4. Funciones con número variable de argumentos
 
-Hemos visto algunas funciones primitivas de Scheme, como `+` o `max` que admiten un número variable de argumentos. ¿Podemos hacerlo también en funciones definidas por nosotros?
+Hemos visto algunas funciones primitivas de Scheme, como `+` o `max`
+que admiten un número variable de argumentos. ¿Podemos hacerlo también
+en funciones definidas por nosotros?
 
-La respuesta es sí, utilizando lo que se denomina notación *dotted-tail* (punto-cola) para definir los parámetros de la función. En esta notación se coloca un punto antes del último parámetro. Los parámetros antes del punto (si existen) tendrán como valores los argumentos usados en la llamada y el resto de argumentos se pasarán en forma de lista en el último parámetro.
+La respuesta es sí, utilizando lo que se denomina notación
+*dotted-tail* (punto-cola) para definir los parámetros de la
+función. En esta notación se coloca un punto antes del último
+parámetro. Los parámetros antes del punto (si existen) tendrán como
+valores los argumentos usados en la llamada y el resto de argumentos
+se pasarán en forma de lista en el último parámetro.
 
 Por ejemplo, si tenemos la definición
 
@@ -1429,9 +1910,12 @@ podemos llamar a la función anterior con dos o más argumentos:
 (funcion-dos-o-mas-args 1 2 3 4 5 6)
 ```
 	
-En la llamada, los parámetros `x` e `y` tomarán los valores 1 y 2. El parámetro `lista-args` tomará como valor una lista con los argumentos restantes `(3 4 5 6)`.
+En la llamada, los parámetros `x` e `y` tomarán los valores 1 y 2. El
+parámetro `lista-args` tomará como valor una lista con los argumentos
+restantes `(3 4 5 6)`.
 
-También es posible permitir que todos los argumentos sean opcionales no poniendo ningún argumento antes del punto::
+También es posible permitir que todos los argumentos sean opcionales
+no poniendo ningún argumento antes del punto::
 
 ```scheme
 (define (funcion-cualquier-numero-args . lista-args) 
@@ -1448,7 +1932,11 @@ el parámetro `lista-args` tomará como valor la lista `(1 2 3 4 5 6)`.
 
 Veamos un sencillo ejemplo.
 
-Podemos implementar una función `mi-suma` que tome al menos dos argumentos y después un número variable de argumentos y devuelva la suma de todos ellos. Es muy sencillo: recogemos todos los argumentos en la lista de argumentos variables y llamamos a la función `suma-lista` que suma una lista de números:
+Podemos implementar una función `mi-suma` que tome al menos dos
+argumentos y después un número variable de argumentos y devuelva la
+suma de todos ellos. Es muy sencillo: recogemos todos los argumentos
+en la lista de argumentos variables y llamamos a la función
+`suma-lista` que suma una lista de números:
 
 ```scheme
 (define (mi-suma x y . lista-nums)
@@ -1457,36 +1945,64 @@ Podemos implementar una función `mi-suma` que tome al menos dos argumentos y de
         (+ x (+ y (suma-lista lista-nums)))))
 ```
 
-
 ### <a name="5"></a>5. Funciones como tipos de datos de primera clase
 
+Hemos visto que la característica fundamental de la programación
+fundamental es la definición de funciones. Hemos visto también que no
+producen efectos laterales y no tienen estado. Una función toma unos
+datos como entrada y produce un resultado como salida.
 
-Hemos visto que la característica fundamental de la programación fundamental es la definición de funciones. Hemos visto también que no producen efectos laterales y no tienen estado. Una función toma unos datos como entrada y produce un resultado como salida.
+Para simbolizar el hecho de que las funciones toman parámetros de
+entrada y devuelven una única salida, vamos a representar las
+funciones como un símbolo especial, una pequeña casa invertida con
+unas flechas en la parte superior que representan las entradas y una
+única flecha que representa la salida. Por ejemplo, podemos
+representar de la siguiente forma la función que eleva al cuadrado un
+número:
 
-Para simbolizar el hecho de que las funciones toman parámetros de entrada y devuelven una única salida, vamos a representar las funciones como un símbolo especial, una pequeña casa invertida con unas flechas en la parte superior que representan las entradas y una única flecha que representa la salida. Por ejemplo, podemos representar de la siguiente forma la función que eleva al cuadrado un número:
-
-<img src="imagenes/funcion-cuadrado.png" style="width:80px;"/>
+<img src="imagenes/funcion-cuadrado.png" width="80px"/>
 
 También podemos representar la función que suma dos parejas:
 
-<img src="imagenes/esquema-suma-parejas.png" style="width:200px;"/>
+<img src="imagenes/esquema-suma-parejas.png" width="200px"/>
 
-Una de las características fundamentales de la programación funcional es considerar a las funciones como *objetos de primera clase*. Recordemos que un tipo de primera clase es aquel que:
+Una de las características fundamentales de la programación funcional
+es considerar a las funciones como *objetos de primera
+clase*. Recordemos que un tipo de primera clase es aquel que:
 
 1. Puede ser asignado a una variable
 2. Puede ser pasado como argumento a una función
 3. Puede ser devuelto como resultado de una invocación a una función
 4. Puede ser parte de un tipo mayor
 
-Vamos a ver que las funciones son ejemplos de todos los casos anteriores: vamos a poder crear funciones sin nombre y asignarlas a variables, pasarlas como parámetro de otras funciones y guardarlas en tipos de datos compuestos como listas. En este primer apartado veremos los puntos 1, 2 y 4. Veremos las funciones devueltas por funciones en el siguiente apartado, cuando hablemos de *clausuras*.
+Vamos a ver que las funciones son ejemplos de todos los casos
+anteriores: vamos a poder crear funciones sin nombre y asignarlas a
+variables, pasarlas como parámetro de otras funciones y guardarlas en
+tipos de datos compuestos como listas. En este primer apartado veremos
+los puntos 1, 2 y 4. Veremos las funciones devueltas por funciones en
+el siguiente apartado, cuando hablemos de *clausuras*.
 
-La posibilidad de usar funciones como objetos de primera clase es una característica fundamental de los lenguajes funcionales. Es una característica de muchos lenguajes multi-paradigma con características funcionales como [JavaScript](http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/), [Python](https://thenewcircle.com/static/bookshelf/python_fundamentals_tutorial/functional_programming.html), [Swift](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html) o incluso en la última versión de Java, [Java 8](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html), (donde se denominan *expresiones lambda*).
+La posibilidad de usar funciones como objetos de primera clase es una
+característica fundamental de los lenguajes funcionales. Es una
+característica de muchos lenguajes multi-paradigma con características
+funcionales como
+[JavaScript](http://helephant.com/2008/08/19/functions-are-first-class-objects-in-javascript/),
+[Python](https://thenewcircle.com/static/bookshelf/python_fundamentals_tutorial/functional_programming.html),
+[Swift](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html)
+o incluso en la última versión de Java,
+[Java 8](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html),
+(donde se denominan *expresiones lambda*).
 
 #### <a name="5-1"></a>5.1. Un primer ejemplo
 
-Vamos a empezar con un ejemplo introductorio: la función `(map func lista)` de Scheme que toma como parámetro **una función** y una lista. La función de vuelve la lista resultante de  *mapear* (aplicar) la función `func` a todos y cada unos de los elementos de la lista original.
+Vamos a empezar con un ejemplo introductorio: la función `(map func
+lista)` de Scheme que toma como parámetro **una función** y una
+lista. La función de vuelve la lista resultante de *mapear* (aplicar)
+la función `func` a todos y cada unos de los elementos de la lista
+original.
 
-Veamos cómo funciona. La función que pasamos como parámetro debe tener un único argumento. Por ejemplo la función `cuadrado`:
+Veamos cómo funciona. La función que pasamos como parámetro debe tener
+un único argumento. Por ejemplo la función `cuadrado`:
 
 ```scheme
 (define (cuadrado x)
@@ -1499,9 +2015,14 @@ Probamos la función `map` pasando la función anterior como parámetro:
 (map cuadrado '(1 2 3 4 5)) ⇒ (1 4 9 16 25)
 ```
 
-Vemos que la función `map` aplica la función `cuadrado` a todos los elementos de la lista y devuelve la lista resultante. Podemos comprobar que se pasa como parámetro *una función*, o sea, código, que es ejecutado dentro de la función map, procesando cada elemento de la lista y añadiendo el resultado a la lista resultante.
+Vemos que la función `map` aplica la función `cuadrado` a todos los
+elementos de la lista y devuelve la lista resultante. Podemos
+comprobar que se pasa como parámetro *una función*, o sea, código, que
+es ejecutado dentro de la función map, procesando cada elemento de la
+lista y añadiendo el resultado a la lista resultante.
 
-Podemos pasar cualquier función a `map`, siempre que sea una función de un parámetro que se pueda aplicar a los elementos de la lista:
+Podemos pasar cualquier función a `map`, siempre que sea una función
+de un parámetro que se pueda aplicar a los elementos de la lista:
 
 ```scheme
 (define (doble x)
@@ -1518,17 +2039,27 @@ Ejemplo de invocación a `map` con las funciones anteriores:
 (map suma-1 '(1 2 3 4 5)) ⇒ (2 3 4 5 6)
 ```
 
-La posibilidad de pasar funciones como argumentos proporciona una gran potencia y flexibilidad en el lenguaje. En este ejemplo podemos cambiar el comportamiento de `map` dependiendo de la función que pasamos como parámetro. En un caso eleva al cuadrado los números, en otro los multiplica por dos y en el último les suma 1.
+La posibilidad de pasar funciones como argumentos proporciona una gran
+potencia y flexibilidad en el lenguaje. En este ejemplo podemos
+cambiar el comportamiento de `map` dependiendo de la función que
+pasamos como parámetro. En un caso eleva al cuadrado los números, en
+otro los multiplica por dos y en el último les suma 1.
 
-Vemos que para pasar por parámetro la función basta con poner su nombre. Para pasar la función que eleva al cuadrado un número ponemos como parámetro el nombre de la función: `cuadrado`. Es posible incluso pasar una función a la que no le hemos dado nombre, usando lo que se denomina una *expresión lambda*. 
+Vemos que para pasar por parámetro la función basta con poner su
+nombre. Para pasar la función que eleva al cuadrado un número ponemos
+como parámetro el nombre de la función: `cuadrado`. Es posible incluso
+pasar una función a la que no le hemos dado nombre, usando lo que se
+denomina una *expresión lambda*.
 
-Por ejemplo, la siguiente expresión lambda construye una función que suma 3 a un número:
+Por ejemplo, la siguiente expresión lambda construye una función que
+suma 3 a un número:
 
 ```
 (lambda (x) (+ x 3))
 ```
 
-Si escribimos la expresión lambda como parámetro de `map` tendremos una función que suma 3 a todos los elementos de una lista:
+Si escribimos la expresión lambda como parámetro de `map` tendremos
+una función que suma 3 a todos los elementos de una lista:
 
 ```
 (map (lambda (x) (+ x 3)) '(1 2 3 4 5)) ⇒ (4 5 6 7 8)
@@ -1538,7 +2069,9 @@ Si escribimos la expresión lambda como parámetro de `map` tendremos una funci�
 
 Veamos más despacio cómo funciona la forma especial `lambda`. 
 
-De la misma forma que podemos usar cadenas o enteros sin darles un nombre, en Scheme es posible usar una función (código) sin darle un nombre mediante la forma especial `lambda`. 
+De la misma forma que podemos usar cadenas o enteros sin darles un
+nombre, en Scheme es posible usar una función (código) sin darle un
+nombre mediante la forma especial `lambda`.
 
 ##### Sintaxis de la forma especial `lambda`
 
@@ -1549,7 +2082,9 @@ La sintaxis de la forma especial `lambda` es:
     <cuerpo>)
 ```
 
-El cuerpo del lambda define un *bloque de código* y sus argumentos son los parámetros necesarios para ejecutar ese bloque de código. Llamamos a la función resultante una *función anónima*.
+El cuerpo del lambda define un *bloque de código* y sus argumentos son
+los parámetros necesarios para ejecutar ese bloque de código. Llamamos
+a la función resultante una *función anónima*.
 
 Otros ejemplos:
 
@@ -1572,34 +2107,41 @@ Una función anónima que devuelve el mayor de dos números:
 
 ##### Semántica de la forma especial `lambda`
 
-La invocación a la forma especial `lambda` construye una función anónima en tiempo de ejecución.
+La invocación a la forma especial `lambda` construye una función
+anónima en tiempo de ejecución.
 
-Por ejemplo, si ejecutamos una expresión lambda en el intérprete veremos que devuelve un procedimiento:
+Por ejemplo, si ejecutamos una expresión lambda en el intérprete
+veremos que devuelve un procedimiento:
 
 ```scheme
 (lambda (x) (* x x))
 ⇒ #<procedure>
 ```
 
-El procedimiento construido es un bloque de código que devuelve el cuadrado de un número. 
+El procedimiento construido es un bloque de código que devuelve el
+cuadrado de un número.
 
 
 ¿Qué podemos hacer con este procedimiento? 
 
-Podemos asignarlo a un identificador. Por ejemplo, en la siguiente expresión, primero se evalúa la *expresión lambda* y el procedimiento resultante se asocia al identificador `cuadrado`. 
+Podemos asignarlo a un identificador. Por ejemplo, en la siguiente
+expresión, primero se evalúa la *expresión lambda* y el procedimiento
+resultante se asocia al identificador `cuadrado`.
 
 ```
 > (define cuadrado (lambda (x) (* x x)))
 ```
 
-Si escribimos el identificador `cuadrado` Scheme devuelve el procedimiento asociado a esta variable:
+Si escribimos el identificador `cuadrado` Scheme devuelve el
+procedimiento asociado a esta variable:
 
 ```
 > cuadrado
 #<procedure:cuadrado>
 ```
 
-Ahora podemos usar la función cuadrado como si la hubiéramos creado de la forma habitual:
+Ahora podemos usar la función cuadrado como si la hubiéramos creado de
+la forma habitual:
 
 ```
 (cuadrado 3) ⇒ 9
@@ -1611,20 +2153,26 @@ También podemos invocar a una función anónima sin darle un nombre:
 ((lambda (x) (* x x)) 3) ⇒ 9
 ```
 
-La llamada a `lambda` crea un procedimiento y el paréntesis a su izquierda lo invoca con el parámetro 3:
+La llamada a `lambda` crea un procedimiento y el paréntesis a su
+izquierda lo invoca con el parámetro 3:
 
 ```
 ((lambda (x) (* x x)) 3) => (#<procedure> 3) ⇒ 9
 ```
 
-Y también podemos pasar el procedimiento como parámetro de otra función, como en el siguiente ejemplo. El procedimiento se asigna al parámetro `f` y se invoca en el cuerpo. En el ejemplo la función `aplica-dos-veces` recibe un procedimiento que se aplica al parámetro `x` y se vuelve aplicar al número resultante.
+Y también podemos pasar el procedimiento como parámetro de otra
+función, como en el siguiente ejemplo. El procedimiento se asigna al
+parámetro `f` y se invoca en el cuerpo. En el ejemplo la función
+`aplica-dos-veces` recibe un procedimiento que se aplica al parámetro
+`x` y se vuelve aplicar al número resultante.
 
 ```
 (define (aplica-dos-veces f x)
    (f (f x)))
 ```
 
-Lo podemos invocar pasándole cualquier función de un argumento y cualquier dato:
+Lo podemos invocar pasándole cualquier función de un argumento y
+cualquier dato:
 
 ```
 (aplica-dos-veces (lambda (x)
@@ -1633,9 +2181,14 @@ Lo podemos invocar pasándole cualquier función de un argumento y cualquier dat
                      (string-append s "-jeje")) "Hola") ⇒ "Hola-jeje-jeje"
 ```
 
-Es importante remarcar que con `lambda` estamos creando una función en *tiempo de ejecución*. Es código que creamos para su posterior invocación.
+Es importante remarcar que con `lambda` estamos creando una función en
+*tiempo de ejecución*. Es código que creamos para su posterior
+invocación.
 
-No hay que dejar que la sintaxis o la palabra `lambda` confunda. Lo único que estamos haciendo es crear *un bloque de código* y definir sus argumentos. Quizás ayuda ver cómo define la función anónima que devuelve el cuadrado de un número en distintos lenguajes.
+No hay que dejar que la sintaxis o la palabra `lambda` confunda. Lo
+único que estamos haciendo es crear *un bloque de código* y definir
+sus argumentos. Quizás ayuda ver cómo define la función anónima que
+devuelve el cuadrado de un número en distintos lenguajes.
 
 **Java 8**
 
@@ -1666,16 +2219,21 @@ Integer x -> {x*x}
 
 ##### Identificadores y funciones
 
-Tras conocer `lambda` ya podemos explicarnos por qué cuando escribimos en el intérprete de Scheme el nombre de una función, se evalúa a un *procedure*:
+Tras conocer `lambda` ya podemos explicarnos por qué cuando escribimos
+en el intérprete de Scheme el nombre de una función, se evalúa a un
+*procedure*:
 
 ```
 > +
 ⇒ <procedure:+>
 ```
 
-El identificador se evalúa y devuelve el *objeto función* al que está ligado. En Scheme los nombres de las funciones son realmente símbolos a los que están ligados *objetos de tipo función*. 
+El identificador se evalúa y devuelve el *objeto función* al que está
+ligado. En Scheme los nombres de las funciones son realmente símbolos
+a los que están ligados *objetos de tipo función*.
 
-Podemos asignar funciones ya existentes a nuevos identificadores usando `define`, como en el ejemplo siguiente:
+Podemos asignar funciones ya existentes a nuevos identificadores
+usando `define`, como en el ejemplo siguiente:
 
 ```
 > +
@@ -1685,12 +2243,17 @@ Podemos asignar funciones ya existentes a nuevos identificadores usando `define`
 ⇒ 10
 ```
 
-Es muy importante darse cuenta que la expresión `(define suma +)` se evalúa de forma idéntica a `(define y x)`. Primero se evalúa el identificador `+`, que devuelve el *objeto función* suma, que se asigna a la variable `suma`. El resultado final es que tanto `+` como `suma` tienen como valor el mismo procedimiento:
+Es muy importante darse cuenta que la expresión `(define suma +)` se
+evalúa de forma idéntica a `(define y x)`. Primero se evalúa el
+identificador `+`, que devuelve el *objeto función* suma, que se
+asigna a la variable `suma`. El resultado final es que tanto `+` como
+`suma` tienen como valor el mismo procedimiento:
 
-<img src="imagenes/suma.png" style="width:100px;"/>
+<img src="imagenes/suma.png" width="100px"/>
 
 
-La forma especial `define` para definir una función no es más que *azucar sintáctico*.
+La forma especial `define` para definir una función no es más que
+*azucar sintáctico*.
 
 ```
 (define (<nombre> <args>)
@@ -1721,7 +2284,8 @@ es equivalente a:
 
 ##### Predicado `procedure?`
 
-Podemos comprobar si algo es una función utilizando el predicado de Scheme `procedure?`.
+Podemos comprobar si algo es una función utilizando el predicado de
+Scheme `procedure?`.
 
 Por ejemplo:
 
@@ -1735,22 +2299,33 @@ Por ejemplo:
 ⇒ #f
 ```
 
-Hemos visto que las funciones pueden asignarse a variables. También cumplen las otras condiciones necesarias para ser consideradas objetos de primera clase.
+Hemos visto que las funciones pueden asignarse a variables. También
+cumplen las otras condiciones necesarias para ser consideradas objetos
+de primera clase.
 
 #### <a name="5-3"></a> 5.3. Funciones argumentos de otras funciones 
 
-Hemos visto ya un ejemplo de cómo pasar una función como parámetro de otra. Veamos algún otro. 
+Hemos visto ya un ejemplo de cómo pasar una función como parámetro de
+otra. Veamos algún otro.
 
-Por ejemplo, podemos definir la función `aplica` que recibe una función en el parámetro `func` y dos valores en los parámetros `x` e `y`  y devuelve el resultado de invocar a la función que pasamos como parámetro con `x` e `y`. La función que se pase como parámetro debe tener dos argumentos
+Por ejemplo, podemos definir la función `aplica` que recibe una
+función en el parámetro `func` y dos valores en los parámetros `x` e
+`y` y devuelve el resultado de invocar a la función que pasamos como
+parámetro con `x` e `y`. La función que se pase como parámetro debe
+tener dos argumentos
 
-Para realizar la invocación a la función que se pasa como parámetro basta con usar `func` como su nombre. La función se ha ligado al nombre `func` en el momento de la invocación a `aplica`, de la misma forma que los argumentos se ligan a los parámetros `x` e `y`:
+Para realizar la invocación a la función que se pasa como parámetro
+basta con usar `func` como su nombre. La función se ha ligado al
+nombre `func` en el momento de la invocación a `aplica`, de la misma
+forma que los argumentos se ligan a los parámetros `x` e `y`:
 
 ```
 (define (aplica f x y)
    (f x y))
 ```
 
-Algunos ejemplos de invocación, usando funciones primitivas, funciones definidas y expresiones lambda:
+Algunos ejemplos de invocación, usando funciones primitivas, funciones
+definidas y expresiones lambda:
 
 ```
 (aplica + 2 3) ; ⇒ 5
@@ -1765,7 +2340,9 @@ Algunos ejemplos de invocación, usando funciones primitivas, funciones definida
 (aplica (lambda (x y) (sqrt (+ (* x x) (* y y)))) 3 4) ⇒ 5
 ```
 
-Otro ejemplo, la función `aplica-2` que toma dos funciones `f` y `g` y un argumento `x` y devuelve el resultado de aplicar `f` a lo que devuelve la invocación de `g` con `x`:
+Otro ejemplo, la función `aplica-2` que toma dos funciones `f` y `g` y
+un argumento `x` y devuelve el resultado de aplicar `f` a lo que
+devuelve la invocación de `g` con `x`:
 
 ```
 (define (aplica-2 f g x)
@@ -1779,12 +2356,13 @@ Otro ejemplo, la función `aplica-2` que toma dos funciones `f` y `g` y un argum
 ⇒ 11
 ```
 
-
 #### <a name="5-4"></a> 5.4. Funciones en estructuras de datos
 
-La última característica de los tipos de primera clase es que pueden formar parte de tipos de datos compuestos, como listas.
+La última característica de los tipos de primera clase es que pueden
+formar parte de tipos de datos compuestos, como listas.
 
-Para construir una lista de funciones debemos llamar a `list` con las funciones:
+Para construir una lista de funciones debemos llamar a `list` con las
+funciones:
 
 ```
 (define lista (list cuadrado suma-1 doble))
@@ -1792,7 +2370,9 @@ lista
 ⇒ {#<procedure:cuadrado>  #<procedure:suma-1>  #<procedure:doble>}
 ```
 
-También podemos evaluar una expresión lambda y añadir el procedimiento resultante. Por ejemplo, para añadir otra función a la lista anterior podemos llamar a `cons`:
+También podemos evaluar una expresión lambda y añadir el procedimiento
+resultante. Por ejemplo, para añadir otra función a la lista anterior
+podemos llamar a `cons`:
 
 ```
 (define lista2 (cons (lambda (x) (+ x 5)) lista))
@@ -1800,7 +2380,11 @@ lista2
 ⇒ {#<procedure> #<procedure:cuadrado> #<procedure:suma-1> #<procedure:doble>}
 ```
 
-Una vez creada una lista con funciones, ¿cómo podemos invocar a alguna de ellas?. Debemos tratarlas de la misma forma que tratamos cualquier otro dato guardado en la lista, las recuperamos con las funciones `car` o `list-ref` y las invocamos. Por ejemplo, para invocar a la primera función de `lista2`:
+Una vez creada una lista con funciones, ¿cómo podemos invocar a alguna
+de ellas?. Debemos tratarlas de la misma forma que tratamos cualquier
+otro dato guardado en la lista, las recuperamos con las funciones
+`car` o `list-ref` y las invocamos. Por ejemplo, para invocar a la
+primera función de `lista2`:
 
 ```
 ((car lista2) 10) ; ⇒ 15
@@ -1808,35 +2392,44 @@ Una vez creada una lista con funciones, ¿cómo podemos invocar a alguna de ella
 
 ##### Funciones que trabajan con listas de funciones
 
-Veamos un ejemplo de una función `(aplica-funcs lista-funcs x)` que recibe una lista de funciones en el parámetro `lista-funcs` y las aplica todas al número que pasamos en el parámetro `x`. 
+Veamos un ejemplo de una función `(aplica-funcs lista-funcs x)` que
+recibe una lista de funciones en el parámetro `lista-funcs` y las
+aplica todas al número que pasamos en el parámetro `x`.
 
-Por ejemplo, si construimos una lista con las funciones `cuadrado`, `cubo` y `suma-1`:
+Por ejemplo, si construimos una lista con las funciones `cuadrado`,
+`cubo` y `suma-1`:
 
 ```
 (define lista (list cuadrado cubo suma-1))
 ```
 
-la llamada a `(aplica-funcs lista 5)` debería devolver el resultado de aplicar primero `suma-1` a 5, después `cubo` al resultado y después `cuadrado`:
+la llamada a `(aplica-funcs lista 5)` debería devolver el resultado de
+aplicar primero `suma-1` a 5, después `cubo` al resultado y después
+`cuadrado`:
 
 ```
 (cuadrado (cubo (suma-1 5))
 ⇒ 46656
 ```
 
-Para implementar `aplica-funcs` tenemos que usar una recursión. Si vemos el ejemplo, podemos comprobar que es sencillo definir el caso general:
+Para implementar `aplica-funcs` tenemos que usar una recursión. Si
+vemos el ejemplo, podemos comprobar que es sencillo definir el caso
+general:
 
 ```
 (aplica-funcs (cuadrado cubo suma-1) 5) => (cuadrado (aplica-funcs (cubo suma-1) 5))
 => (cuadrado 216) => 46656
 ```
 
-El caso general de la recursión de la función `aplica-funcs` se define entonces como:
+El caso general de la recursión de la función `aplica-funcs` se define
+entonces como:
 
 ```
 (aplica-funcs lista-funcs x) => ((car lista-funcs) (aplica-funcs (cdr lista-funcs)))
 ```
 
-El caso base sería en el que la lista de funciones tiene sólo una función:
+El caso base sería en el que la lista de funciones tiene sólo una
+función:
 
 ```
 (if (null? (cdr lista-funcs)) ; la lista de funciones solo tiene una función
@@ -1866,7 +2459,9 @@ Un ejemplo de uso:
 
 #### <a name="5-5"></a> 5.5 Generalización
 
-La posibilidad de pasar funciones como parámetros de otras es una poderosa herramienta de abstracción. Por ejemplo, supongamos que queremos calcular el sumatorio de `a` hasta `b`:
+La posibilidad de pasar funciones como parámetros de otras es una
+poderosa herramienta de abstracción. Por ejemplo, supongamos que
+queremos calcular el sumatorio de `a` hasta `b`:
 
 ```
 (define (sum-x a b)
@@ -1878,7 +2473,8 @@ La posibilidad de pasar funciones como parámetros de otras es una poderosa herr
 ⇒ 55
 ```
 
-Supongamos ahora que queremos calcular el sumatorio de `a` hasta `b` sumando los números al cuadrado:
+Supongamos ahora que queremos calcular el sumatorio de `a` hasta `b`
+sumando los números al cuadrado:
 
 ```
 (define (sum-cuadrado-x a b)
@@ -1902,11 +2498,24 @@ Y el sumatorio de `a` hasta `b` sumando los cubos:
 ⇒ 3025
 ```
 
-Vemos que el código de las tres funciones anteriores es muy similar, cada función la podemos obtener haciendo un *copy-paste* de otra previa. Lo único que cambia es la función a aplicar a cada número de la serie.
+Vemos que el código de las tres funciones anteriores es muy similar,
+cada función la podemos obtener haciendo un *copy-paste* de otra
+previa. Lo único que cambia es la función a aplicar a cada número de
+la serie.
 
-Siempre que hagamos *copy-paste* al programar tenemos que empezar a sospechar que no estamos generalizando suficientemente el código. Un *copy-paste* arrastra también *bugs* y obliga a realizar múltiples modificaciones del código cuando en el futuro tengamos que cambiar cosas.
+Siempre que hagamos *copy-paste* al programar tenemos que empezar a
+sospechar que no estamos generalizando suficientemente el código. Un
+*copy-paste* arrastra también *bugs* y obliga a realizar múltiples
+modificaciones del código cuando en el futuro tengamos que cambiar
+cosas.
 
-La posibilidad de pasar una función como parámetro es una herramienta poderosa a la hora de generalizar código. En este caso, lo único que cambia en las tres funciones anteriores es la función a aplicar a los números de la serie. Podemos tomar esa función como un parámetro adicional y definir una función genérica `sum-f-x` que generaliza las tres funciones anteriores. Tendríamos el sumatorio desde `a` hasta `b` de `f(x)`:
+La posibilidad de pasar una función como parámetro es una herramienta
+poderosa a la hora de generalizar código. En este caso, lo único que
+cambia en las tres funciones anteriores es la función a aplicar a los
+números de la serie. Podemos tomar esa función como un parámetro
+adicional y definir una función genérica `sum-f-x` que generaliza las
+tres funciones anteriores. Tendríamos el sumatorio desde `a` hasta `b`
+de `f(x)`:
 
 ```
 (define (sum-f-x f a b)
@@ -1915,7 +2524,9 @@ La posibilidad de pasar una función como parámetro es una herramienta poderosa
         (+ (f a) (sum-f-x f (+ a 1) b))))
 ```
 
-Las funciones anteriores son casos particulares de esta función que las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta 10 de `x` al cubo:
+Las funciones anteriores son casos particulares de esta función que
+las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta
+10 de `x` al cubo:
 
 ```
 (define (cubo x)
@@ -1927,31 +2538,49 @@ Las funciones anteriores son casos particulares de esta función que las general
 
 #### <a name="5-6"></a> 5.6. Funciones de orden superior
 
-Llamamos funciones de orden superior (*higher order functions* en inglés) a las funciones que toman otras como parámetro o devuelven otra función. Permiten generalizar soluciones con un alto grado de abstracción.
+Llamamos funciones de orden superior (*higher order functions* en
+inglés) a las funciones que toman otras como parámetro o devuelven
+otra función. Permiten generalizar soluciones con un alto grado de
+abstracción.
 
-Los lenguajes de programación funcional como Scheme, Scala o Java 8 tienen ya predefinidas algunas funciones de orden superior que permiten tratar listas o *streams* de una forma muy concisa y compacta.
+Los lenguajes de programación funcional como Scheme, Scala o Java 8
+tienen ya predefinidas algunas funciones de orden superior que
+permiten tratar listas o *streams* de una forma muy concisa y
+compacta.
 
-Para trabajar con las funciones de orden superior definidas en Scheme R6RS (`map`, `filter`, `fold-right`) hay que importar todas las bibliotecas con la instrucción `(import (rnrs))`:
+Para trabajar con las funciones de orden superior definidas en Scheme
+R6RS (`map`, `filter`, `fold-right`) hay que importar todas las
+bibliotecas con la instrucción `(import (rnrs))`:
 
 ```scheme
 #lang r6rs
 (import (rnrs))
 ```
 
-Vamos a comenzar viendo la función `map` de Scheme, como ejemplo típico de función de orden superior. Después veremos las funciones `filter` y `fold-right` y las definiremos también nosotros para comprobar su implementación recursiva. Y terminaremos viendo cómo la utilización de funciones de orden superior es una excelente herramienta de la programación funcional que permite hacer código muy conciso y expresivo.
+Vamos a comenzar viendo la función `map` de Scheme, como ejemplo
+típico de función de orden superior. Después veremos las funciones
+`filter` y `fold-right` y las definiremos también nosotros para
+comprobar su implementación recursiva. Y terminaremos viendo cómo la
+utilización de funciones de orden superior es una excelente
+herramienta de la programación funcional que permite hacer código muy
+conciso y expresivo.
 
-La combinación de funciones de nivel superior con listas es una de las características más potentes de la programación funcional.
+La combinación de funciones de nivel superior con listas es una de las
+características más potentes de la programación funcional.
 
 ##### 5.6.1. Función `map`
 
-Veamos de nuevo la función `map`. Recordemos que `map` aplica una función a cada uno de los elementos de la lista que pasamos como parámetro:
+Veamos de nuevo la función `map`. Recordemos que `map` aplica una
+función a cada uno de los elementos de la lista que pasamos como
+parámetro:
 
 ```scheme
 (map cuadrado '(1 2 3 4 5))
 ⇒ {1 4 9 25}
 ```
 
-Otro ejemplo, en el que obtenemos una lista de números resultantes de sumar cada pareja de números de una lista:
+Otro ejemplo, en el que obtenemos una lista de números resultantes de
+sumar cada pareja de números de una lista:
 
 ```scheme
 (define (suma-pareja pareja)
@@ -1970,11 +2599,13 @@ También podríamos hacerlo con una expresión lambda:
 ```
 
 > CONSEJO DE USO  
-> La función `map` recibe una lista de *n* elementos y devuelve otra de *n* elementos transformados.
+> La función `map` recibe una lista de *n* elementos y devuelve otra
+> de *n* elementos transformados.
 
 ###### Implementación de `map`
 
-¿Cómo se podría implementar `map` de forma recursiva? Llamamos a la función `mi-map`. La implementación es la siguiente:
+¿Cómo se podría implementar `map` de forma recursiva? Llamamos a la
+función `mi-map`. La implementación es la siguiente:
 
 ```
 (define (mi-map f lista)
@@ -1988,7 +2619,9 @@ También podríamos hacerlo con una expresión lambda:
 
 Veamos otra función de orden superior que trabaja sobre listas.
 
-La función `(filter predicado lista)` toma como parámetro un predicado y una lista y devuelve como resultado los elementos de la lista que cumplen el predicado. 
+La función `(filter predicado lista)` toma como parámetro un predicado
+y una lista y devuelve como resultado los elementos de la lista que
+cumplen el predicado.
 
 Un ejemplo de uso:
 
@@ -1997,7 +2630,10 @@ Un ejemplo de uso:
 ⇒ {2 4 6 8}
 ```
 
-Otro ejemplo: supongamos que queremos filtrar una lista de parejas de números, devolviendo aquellas que parejas que cumplen que su parte izquierda es mayor o igual que la derecha. Lo podríamos hacer con la siguiente expresión:
+Otro ejemplo: supongamos que queremos filtrar una lista de parejas de
+números, devolviendo aquellas que parejas que cumplen que su parte
+izquierda es mayor o igual que la derecha. Lo podríamos hacer con la
+siguiente expresión:
 
 ```
 (filter (lambda (pareja)
@@ -2006,7 +2642,9 @@ Otro ejemplo: supongamos que queremos filtrar una lista de parejas de números, 
 ```
 
 > CONSEJO DE USO  
-> La función `filter` recibe una lista de *n* elementos y devuelve otra de con *n* o menos elementos originales filtrados por una condición.
+> La función `filter` recibe una lista de *n* elementos y devuelve
+> otra de con *n* o menos elementos originales filtrados por una
+> condición.
 
 
 ###### Implementación de `filter`
@@ -2024,11 +2662,20 @@ Podemos implementar la función `filter` de forma recursiva:
 
 ##### 5.6.3. Función `fold-right`
 
-Por último vamos a ver la función `(fold-right func base lista)` que permite recorrer una lista aplicando una función binaria de forma acumulativa a sus elementos. El nombre `fold` significa *plegado*. Utilizaremos la función cuando necesitemos obtener un dato a partir de los elementos de una lista.
+Por último vamos a ver la función `(fold-right func base lista)` que
+permite recorrer una lista aplicando una función binaria de forma
+acumulativa a sus elementos. El nombre `fold` significa
+*plegado*. Utilizaremos la función cuando necesitemos obtener un dato
+a partir de los elementos de una lista.
 
 La explicación de su funcionamiento es la siguiente:
 
-> El resultado de hacer `(fold-rigt f base lista)` de una función `f` **de dos argumentos**, un dato base y una lista, es el resultado de aplicar de derecha a izquierda la función `f` en cascada a cada dato de la lista y al resultado de la invocación `f` anterior. La primera invocación a `f` se hace con el último dato de la lista y el caso base.
+> El resultado de hacer `(fold-rigt f base lista)` de una función `f`
+> **de dos argumentos**, un dato base y una lista, es el resultado de
+> aplicar de derecha a izquierda la función `f` en cascada a cada dato
+> de la lista y al resultado de la invocación `f` anterior. La primera
+> invocación a `f` se hace con el último dato de la lista y el caso
+> base.
 
 Por ejemplo, supongamos la función de dos argumentos que suma dos valores. 
 
@@ -2037,7 +2684,10 @@ Por ejemplo, supongamos la función de dos argumentos que suma dos valores.
     (+ dato resultado))
 ```
 
-Llamamos a los parámetros `dato` y `resultado` para remarcar que el primer parámetro se va a coger de la lista y el segundo del resultado calculado. La llamada a `fold-right` funcionaría de la siguiente forma:
+Llamamos a los parámetros `dato` y `resultado` para remarcar que el
+primer parámetro se va a coger de la lista y el segundo del resultado
+calculado. La llamada a `fold-right` funcionaría de la siguiente
+forma:
 
 ```
 (fold-right suma 0 '(1 2 3))
@@ -2047,10 +2697,12 @@ Llamamos a los parámetros `dato` y `resultado` para remarcar que el primer par�
 ⇒ 6
 ```
 
-Vemos que se llama en cascada de derecha a izquierda a la función `suma` comenzando con el último número de la lista (el `3`) y el caso base que se pasa en la invocación a `fold-right` (el `0`).
+Vemos que se llama en cascada de derecha a izquierda a la función
+`suma` comenzando con el último número de la lista (el `3`) y el caso
+base que se pasa en la invocación a `fold-right` (el `0`).
 
-
-Podemos comprobar la potencia de la función `fold-right` con los siguientes ejemplos
+Podemos comprobar la potencia de la función `fold-right` con los
+siguientes ejemplos
 
 ```
 (fold-right string-append "" '("hola" "que" "tal"))
@@ -2061,13 +2713,16 @@ Podemos comprobar la potencia de la función `fold-right` con los siguientes eje
 ⇒ {1 2 3 4}
 ```
 
-Veamos un último ejemplo. Supongamos que queremos definir una función que sume todos los números de una lista de parejas:
+Veamos un último ejemplo. Supongamos que queremos definir una función
+que sume todos los números de una lista de parejas:
 
 ```
 (suma-parejas (list (cons 3 6) (cons 2 9) (cons -1 8) (cons 9 3))) ; ⇒ 39
 ```
 
-Podemos hacerlo usando `fold-right` con una función de plegado que realice la suma de los números de la pareja de la lista y del resultado ya sumado.
+Podemos hacerlo usando `fold-right` con una función de plegado que
+realice la suma de los números de la pareja de la lista y del
+resultado ya sumado.
 
 La función de plegado sería:
 
@@ -2107,11 +2762,18 @@ Podríamos implementar de forma recursiva la función `fold-right`:
 
 ##### 5.6.4. Uso de funciones de orden superior
 
-El uso de funciones de orden superior y las expresiones lambda proporciona muchísima expresividad en un lenguaje de programación. Es posible escribir código muy conciso, que hace cosas complicadas en pocas líneas.
+El uso de funciones de orden superior y las expresiones lambda
+proporciona muchísima expresividad en un lenguaje de programación. Es
+posible escribir código muy conciso, que hace cosas complicadas en
+pocas líneas.
 
-No lo hemos hecho hasta ahora, pero es posible utilizar en el cuerpo de las expresiones lambda los parámetros de la función principal en la que se usa esta expresión. Veamos un ejemplo.
+No lo hemos hecho hasta ahora, pero es posible utilizar en el cuerpo
+de las expresiones lambda los parámetros de la función principal en la
+que se usa esta expresión. Veamos un ejemplo.
 
-Supongamos que queremos definir una función `(suma-n lista n)` que devuelve la lista resultante el resultado de sumar un número `n` a todos los elementos de una lista.
+Supongamos que queremos definir una función `(suma-n lista n)` que
+devuelve la lista resultante el resultado de sumar un número `n` a
+todos los elementos de una lista.
 
 Podemos hacerlo de forma recursiva:
 
@@ -2130,20 +2792,28 @@ Funciona de la siguiente manera:
 ⇒ (11 12 13 14)
 ```
 
-Pero podemos implementar la función de otra forma, utilizando la función de orden superior `map` y una expresión lambda que sume el número `n` a los elementos de la lista:
+Pero podemos implementar la función de otra forma, utilizando la
+función de orden superior `map` y una expresión lambda que sume el
+número `n` a los elementos de la lista:
 
 ```
 (define (suma-n lista n)
     (map (lambda (x) (+ x n)) lista))
 ```
 
-Vemos que utilizamos el parámetro `n` en el cuerpo de la expresión lambda. De esta forma la función que se aplica a los elementos de la lista es una función que suma este número a cada elemento. La variable `x` en el parámetro de la expresión lambda es la que va tomando el valor de los elementos de la lista.
+Vemos que utilizamos el parámetro `n` en el cuerpo de la expresión
+lambda. De esta forma la función que se aplica a los elementos de la
+lista es una función que suma este número a cada elemento. La variable
+`x` en el parámetro de la expresión lambda es la que va tomando el
+valor de los elementos de la lista.
 
 ```
 (suma-n '(1 2 3 4) 10) => (map (lambda (x) (+ x 10)) (11 12 13 14)) =>  (11 12 13 14)
 ```
 
-Veamos otro ejemplo. Supongamos que queremos definir la función `(contienen-letra caracter lista-pal)` que devuelve las palabras de una lista que contienen un determinado carácter.
+Veamos otro ejemplo. Supongamos que queremos definir la función
+`(contienen-letra caracter lista-pal)` que devuelve las palabras de
+una lista que contienen un determinado carácter.
 
 Por ejemplo:
 
@@ -2151,7 +2821,9 @@ Por ejemplo:
 (contienen-letra #\a '("En" "un" "lugar" "de" "la" "Mancha")) ⇒ ("lugar" "la" "Mancha")
 ```
 
-Podemos implementar `contienen-letra` usando la función de orden superior `filter`, escribiendo en la expresión lambda un predicado que compruebe si la palabra contiene el carácter:
+Podemos implementar `contienen-letra` usando la función de orden
+superior `filter`, escribiendo en la expresión lambda un predicado que
+compruebe si la palabra contiene el carácter:
 
 ```scheme
 (define (contienen-letra caracter lista-pal)
@@ -2159,7 +2831,8 @@ Podemos implementar `contienen-letra` usando la función de orden superior `filt
               (letra-en-str? caracter pal)) lista-pal))
 ```
 
-La función `(letra-en-str? caracter pal)` es un predicado auxiliar que necesitamos, que comprueba si una cadena contiene un carácter.
+La función `(letra-en-str? caracter pal)` es un predicado auxiliar que
+necesitamos, que comprueba si una cadena contiene un carácter.
 
 Por ejemplo:
 
@@ -2168,7 +2841,9 @@ Por ejemplo:
 (letra-en-str? #\a "Pepe") ⇒ #f
 ```
 
-Sólo nos falta implementar esta función `letra-en-str`. Lo podemos implementar obteniendo una lista de caracteres a partir de la cadena y volviendo a usar la función `filter`:
+Sólo nos falta implementar esta función `letra-en-str`. Lo podemos
+implementar obteniendo una lista de caracteres a partir de la cadena y
+volviendo a usar la función `filter`:
 
 ```
 (define (letra-en-pal? caracter palabra)
@@ -2179,19 +2854,34 @@ Sólo nos falta implementar esta función `letra-en-str`. Lo podemos implementar
 
 ### <a name="6"></a>6. Ámbitos de variables, let y closures
 
-Ahora que hemos introducido la forma especial `lambda` y la idea de que una función es un objeto de primera clase, podemos revisar el concepto de ámbito de variables en Scheme e introducir un importante concepto: clausura (*[closure](https://en.wikipedia.org/wiki/Closure_(computer_programming))* en inglés).
+Ahora que hemos introducido la forma especial `lambda` y la idea de
+que una función es un objeto de primera clase, podemos revisar el
+concepto de ámbito de variables en Scheme e introducir un importante
+concepto: clausura
+(*[closure](https://en.wikipedia.org/wiki/Closure_(computer_programming))*
+en inglés).
 
 #### <a name="6-1"></a> 6.1. Ámbitos de variables
 
-El concepto del **ámbito** de vida de las variables es un concepto fundamental en los lenguajes de programación. En inglés se utiliza el término *[scope](https://en.wikipedia.org/wiki/Scope_(computer_science))*. 
+El concepto del **ámbito** de vida de las variables es un concepto
+fundamental en los lenguajes de programación. En inglés se utiliza el
+término
+*[scope](https://en.wikipedia.org/wiki/Scope_(computer_science))*.
 
-Cuando se define una variable, asociándole un valor, esta asociación tiene una extensión determinada, ya sea en términos de tiempo de compilación (**ámbito léxico**) como en términos de tiempo de ejecución (**ámbito dinámico**). El ámbito de una variable determina cuándo podemos referirnos a ella para recuperar el valor asociado.
+Cuando se define una variable, asociándole un valor, esta asociación
+tiene una extensión determinada, ya sea en términos de tiempo de
+compilación (**ámbito léxico**) como en términos de tiempo de
+ejecución (**ámbito dinámico**). El ámbito de una variable determina
+cuándo podemos referirnos a ella para recuperar el valor asociado.
 
-Al conjunto de variables disponibles en una parte del programa o en una parte de su ejecución se denomina **contexto** o **entorno** (*context* o *environment*).
+Al conjunto de variables disponibles en una parte del programa o en
+una parte de su ejecución se denomina **contexto** o **entorno**
+(*context* o *environment*).
 
 ##### Variables de ámbito global
 
-Una variable definida en el programa con la instrucción `define` tiene un ámbito global. 
+Una variable definida en el programa con la instrucción `define` tiene
+un ámbito global.
 
 ```
 (define a "hola")
@@ -2199,13 +2889,20 @@ Una variable definida en el programa con la instrucción `define` tiene un ámbi
 (define cuadrado (lambda (x) (* x x)))
 ```
 
-Todas las variables definidas fuera de funciones forman parte del **entorno global** del programa.
+Todas las variables definidas fuera de funciones forman parte del
+**entorno global** del programa.
 
 ##### Variables de ámbito local
 
-Como en la mayoría de lenguajes de programación, en Scheme se crea un **entorno local** cada vez que se invoca a una función. En este entorno local los argumentos de la función toman los valores de los parámetros usados en la llamada a la función. Consideramos, por tanto, estos parámetros como variables de ámbito local de la función.
+Como en la mayoría de lenguajes de programación, en Scheme se crea un
+**entorno local** cada vez que se invoca a una función. En este
+entorno local los argumentos de la función toman los valores de los
+parámetros usados en la llamada a la función. Consideramos, por tanto,
+estos parámetros como variables de ámbito local de la función.
 
-Podemos usar en un entorno local una variable con el mismo nombre que en el entorno global. Cuando se ejecute el código de la función se evaluará la variable de ámbito local.
+Podemos usar en un entorno local una variable con el mismo nombre que
+en el entorno global. Cuando se ejecute el código de la función se
+evaluará la variable de ámbito local.
 
 Por ejemplo, supongamos las expresiones:
 
@@ -2218,9 +2915,15 @@ Por ejemplo, supongamos las expresiones:
 ⇒ 15
 ```
 
-Cuando se ejecuta la expresión `(+ x 3)` en la invocación a `(suma-3 12)` el valor de `x` es 12, no es 5, devolviéndose 15.
+Cuando se ejecuta la expresión `(+ x 3)` en la invocación a `(suma-3
+12)` el valor de `x` es 12, no es 5, devolviéndose 15.
 
-Una vez realizada la invocación, desparece el entorno local y las variables locales definidas en él, recuperándose el contexto global. Por ejemplo, en la siguiente expresión, una vez realizada la invocación a `(suma-3 12)` se devuelve el número 15 y se evalúa en el entorno global la expresión `(+ 15 x)`. En este contexto la variable `x` vale 5 por lo que la expresión devuelve 20.
+Una vez realizada la invocación, desparece el entorno local y las
+variables locales definidas en él, recuperándose el contexto
+global. Por ejemplo, en la siguiente expresión, una vez realizada la
+invocación a `(suma-3 12)` se devuelve el número 15 y se evalúa en el
+entorno global la expresión `(+ 15 x)`. En este contexto la variable
+`x` vale 5 por lo que la expresión devuelve 20.
 
 ```scheme
 (define x 5)
@@ -2231,7 +2934,8 @@ Una vez realizada la invocación, desparece el entorno local y las variables loc
 ⇒ 20
 ```
 
-En el entorno local también se pueden utilizar variables definidas en el entorno global. Por ejemplo:
+En el entorno local también se pueden utilizar variables definidas en
+el entorno global. Por ejemplo:
 
 ```
 (define y 12)
@@ -2242,13 +2946,16 @@ En el entorno local también se pueden utilizar variables definidas en el entorn
 ⇒ 20
 ```
 
-La expresión `(+ x 3 y)` se evalúa en el entorno local en el que `x` vale 5. Al no estar definida la variable `y` en este entorno local, se usa su definición de ámbito global.
+La expresión `(+ x 3 y)` se evalúa en el entorno local en el que `x`
+vale 5. Al no estar definida la variable `y` en este entorno local, se
+usa su definición de ámbito global.
 
 #### <a name="6-2"></a> 6.2 Forma especial let
 
 ##### Forma especial let
 
-En Scheme se define la forma especial let que permite crear un entorno local en el que se da valor a variables y se evalúa una expresión.
+En Scheme se define la forma especial let que permite crear un entorno
+local en el que se da valor a variables y se evalúa una expresión.
 
 Sintaxis:
 
@@ -2259,7 +2966,8 @@ Sintaxis:
     <cuerpo>)
 ```
 
-Las variables `var1`, … `varn` toman los valores devueltos por las expresiones `exp1`, … `expn` y el cuerpo se evalúa con esos valores.
+Las variables `var1`, … `varn` toman los valores devueltos por las
+expresiones `exp1`, … `expn` y el cuerpo se evalúa con esos valores.
 
 Por ejemplo:
 
@@ -2275,7 +2983,8 @@ Por ejemplo:
 
 ##### El ámbito de las variables definidas en el let es local
 
-Las variables definidas en el `let` sólo tienen valores en el entorno creado por la forma especial.
+Las variables definidas en el `let` sólo tienen valores en el entorno
+creado por la forma especial.
 
 ```scheme
 (define x 10)
@@ -2287,7 +2996,8 @@ Las variables definidas en el `let` sólo tienen valores en el entorno creado po
 ⇒ 6
 ```
 
-Cuando ha terminado la evaluación del `let` el ámbito local desaparece y quedan los valores definidos en el ámbito global.
+Cuando ha terminado la evaluación del `let` el ámbito local desaparece
+y quedan los valores definidos en el ámbito global.
 
 ```scheme
 x ⇒ 5
@@ -2296,7 +3006,10 @@ y ⇒ error, no definida
 
 ##### `Let` permite usar variables definidas en un ámbito en el que se ejecuta el `let`
 
-Al igual que en la invocación a funciones, desde el ámbito definido por el `let` se puede usar las variables del entorno en el que se está ejecutando el `let`. Por ejemplo, en el siguiente código se usa la variable z definida en el ámbito global.
+Al igual que en la invocación a funciones, desde el ámbito definido
+por el `let` se puede usar las variables del entorno en el que se está
+ejecutando el `let`. Por ejemplo, en el siguiente código se usa la
+variable z definida en el ámbito global.
 
 ```scheme
 (define z 8)
@@ -2308,7 +3021,9 @@ Al igual que en la invocación a funciones, desde el ámbito definido por el `le
 
 ##### Variables en las definiciones del `let`
 
-Las expresiones que dan valor a las variables del `let` se evalúan todas en el entorno en el que se ejecuta el `let`, antes de crear las variables locales.  No se realiza una asignación secuencial:
+Las expresiones que dan valor a las variables del `let` se evalúan
+todas en el entorno en el que se ejecuta el `let`, antes de crear las
+variables locales.  No se realiza una asignación secuencial:
 
 ```scheme
 (define x 1)
@@ -2321,13 +3036,16 @@ Las expresiones que dan valor a las variables del `let` se evalúan todas en el 
 
 Para evaluar una expresión `let` debemos seguir las siguientes reglas:
 
-1. Evaluar todas las expresiones de la derecha de las variables y guardar sus valores en variables auxiliares locales.
-2. Definir un ámbito local en el que se ligan las variables del let con los valores de las variables auxiliares.
+1. Evaluar todas las expresiones de la derecha de las variables y
+   guardar sus valores en variables auxiliares locales.
+2. Definir un ámbito local en el que se ligan las variables del let
+   con los valores de las variables auxiliares.
 3. Evaluar el cuerpo del let en el ámbito local
 
 ##### Let se define utilizando lambda
 
-La semántica anterior queda clara cuando comprobamos que let se puede definir en función de lambda. En general, la expresión:
+La semántica anterior queda clara cuando comprobamos que let se puede
+definir en función de lambda. En general, la expresión:
 
 ```scheme
 (let ((<var1> <exp1>) ... (<varn> <expn>)) <cuerpo>)
@@ -2339,7 +3057,15 @@ se puede implementar con la siguiente llamada a lambda:
 ((lambda (<var1> ... <varn>) <cuerpo>) <exp1> ... <expn>)
 ```
 
-Para ejecutar un `let` con un `lambda` se debe crear un procedimiento en tiempo de ejecución con tantas variables como las variables del `let`, con el cuerpo del `let`, y se debe invocar a dicho procedimiento con las expresiones de las variables del `let`. Esas expresiones se evalúan antes de invocar al procedimiento y la invocación se realiza con los resultados. La invocación crea un entorno local con los parámetros del procedimiento (las variables del `let`) asociados a los valores, y en este ámbito local se ejecuta el cuerpo del procedimiento (el cuerpo del `let`).
+Para ejecutar un `let` con un `lambda` se debe crear un procedimiento
+en tiempo de ejecución con tantas variables como las variables del
+`let`, con el cuerpo del `let`, y se debe invocar a dicho
+procedimiento con las expresiones de las variables del `let`. Esas
+expresiones se evalúan antes de invocar al procedimiento y la
+invocación se realiza con los resultados. La invocación crea un
+entorno local con los parámetros del procedimiento (las variables del
+`let`) asociados a los valores, y en este ámbito local se ejecuta el
+cuerpo del procedimiento (el cuerpo del `let`).
 
 Por ejemplo:
 
@@ -2358,7 +3084,8 @@ Equivale a:
 
 ##### Let dentro de funciones
 
-Podemos usar `let` en el cuerpo de funciones para crear nuevas variables locales, además de los parámetros de la función
+Podemos usar `let` en el cuerpo de funciones para crear nuevas
+variables locales, además de los parámetros de la función
 
 ```scheme
 (define (suma-cuadrados x y)
@@ -2369,9 +3096,16 @@ Podemos usar `let` en el cuerpo de funciones para crear nuevas variables locales
 ⇒ 116
 ```
 
-Cuando se invoca `(suma-cuadrados 4 10)` se crea un entorno local en el que las variables `x` e `y` toman el valor `4` y `10` y en el que se ejecuta la forma especial `let`. Esta forma especial crea a su vez un entorno local en el que se definen las variables `cuadrado-x` y `cuadrado-y` que toman los valores devueltos por las expresiones `(cuadrado x)` y `(cuadrado y)`: `16` y `100`. En este entorno local se evalúa la expresión `(+ cuadrado-x cuadrado-y)`.
+Cuando se invoca `(suma-cuadrados 4 10)` se crea un entorno local en
+el que las variables `x` e `y` toman el valor `4` y `10` y en el que
+se ejecuta la forma especial `let`. Esta forma especial crea a su vez
+un entorno local en el que se definen las variables `cuadrado-x` y
+`cuadrado-y` que toman los valores devueltos por las expresiones
+`(cuadrado x)` y `(cuadrado y)`: `16` y `100`. En este entorno local
+se evalúa la expresión `(+ cuadrado-x cuadrado-y)`.
 
-El uso de `let` permite aumentar la legibilidad de los programas, dando nombre a expresiones:
+El uso de `let` permite aumentar la legibilidad de los programas,
+dando nombre a expresiones:
 
 Por ejemplo:
 
@@ -2397,11 +3131,16 @@ Otro ejemplo:
 
 #### <a name="6-3"></a> 6.3. Clausuras
 
-Vamos a terminar explicando el concepto de *clausura*. Hemos visto que las funciones son objetos de primera clase de Scheme y que es posible crear funciones en tiempo de ejecución con la forma especial `lambda`. 
+Vamos a terminar explicando el concepto de *clausura*. Hemos visto que
+las funciones son objetos de primera clase de Scheme y que es posible
+crear funciones en tiempo de ejecución con la forma especial `lambda`.
 
-Una clausura es una función devuelta por otra función. La clausura **captura las variables locales** de la función principal y puede usarlas en su propio código cuando este se invoque posteriormente.
+Una clausura es una función devuelta por otra función. La clausura
+**captura las variables locales** de la función principal y puede
+usarlas en su propio código cuando este se invoque posteriormente.
 
-Veamos un ejemplo. Supongamos que definimos la siguiente función `(make-sumador k)` que devuelve otra función.
+Veamos un ejemplo. Supongamos que definimos la siguiente función
+`(make-sumador k)` que devuelve otra función.
 
 ```
 (define (make-sumador k)
@@ -2412,9 +3151,16 @@ Veamos un ejemplo. Supongamos que definimos la siguiente función `(make-sumador
 ⇒ 12
 ```
 
-En la función `(make-sumador k)` se llama a la forma especial lambda para crear un procedimiento. El procedimiento devuelto es lo que se denomina **clausura**. En este caso la clausura captura la variable local `k` (el parámetro de `make-sumador`) y usa su valor cuando posteriormente se invoca. Cuando se invoca a `(f 2)` se ejecuta la clausura y se crea un nuevo entorno local en el que `x` (el parámetro de la clausura) vale `2` y en el que se usa la variable `k` capturada.
+En la función `(make-sumador k)` se llama a la forma especial lambda
+para crear un procedimiento. El procedimiento devuelto es lo que se
+denomina **clausura**. En este caso la clausura captura la variable
+local `k` (el parámetro de `make-sumador`) y usa su valor cuando
+posteriormente se invoca. Cuando se invoca a `(f 2)` se ejecuta la
+clausura y se crea un nuevo entorno local en el que `x` (el parámetro
+de la clausura) vale `2` y en el que se usa la variable `k` capturada.
 
-En la invocación anterior `(f 2)`, cuando se ejecuta la expresión `(+ x k)` las variables tienen los siguientes valores:
+En la invocación anterior `(f 2)`, cuando se ejecuta la expresión `(+
+x k)` las variables tienen los siguientes valores:
 
 ```
 x: 2 (variable local de la clausura)
@@ -2423,7 +3169,8 @@ k: 10 (valor capturado del entorno local en el que se creó la clausura
 
 ##### Las variables locales creadas en un `let` también se capturan en las clausuras
 
-Veamos el siguiente ejemplo, en el que creamos una función en un entorno local creado por un `let`:
+Veamos el siguiente ejemplo, en el que creamos una función en un
+entorno local creado por un `let`:
 
 ```scheme
 (define x 10)
@@ -2439,10 +3186,18 @@ Veamos el siguiente ejemplo, en el que creamos una función en un entorno local 
 
 Sucede lo siguiente:
 
-1. Se invoca la expresión `(prueba 5)`. Esto crea un entorno local en el que se le da a la variable `x` (el parámetro de `prueba`) el valor `5`. En este contexto se ejecuta el `let`, que crea otro entorno local en el que `y` vale 3. En el contexto del `let` se crea una clausura con la invocación de la expresión lambda `(lambda (z) (+ x y z))`.
-2. La clausura captura las variables locales `x` e `y` con sus valores 5 y 3 y la función `prueba` la devuelve como resultado de la invocación.
+1. Se invoca la expresión `(prueba 5)`. Esto crea un entorno local en
+   el que se le da a la variable `x` (el parámetro de `prueba`) el
+   valor `5`. En este contexto se ejecuta el `let`, que crea otro
+   entorno local en el que `y` vale 3. En el contexto del `let` se
+   crea una clausura con la invocación de la expresión lambda `(lambda
+   (z) (+ x y z))`.
+2. La clausura captura las variables locales `x` e `y` con sus valores
+   5 y 3 y la función `prueba` la devuelve como resultado de la
+   invocación.
 3. La clausura se guarda en la variable `h`.
-4. Con la invocación `(h 2)` se invoca a la clausura, lo que crea un entorno local en el que se encuentran las siguientes variables:
+4. Con la invocación `(h 2)` se invoca a la clausura, lo que crea un
+   entorno local en el que se encuentran las siguientes variables:
 
     ```
     z: 2 (parámetro de la clausura)

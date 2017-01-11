@@ -33,21 +33,29 @@ Repaso de conceptos básicos de programación funcional.
 
 Programación Funcional:
 
-> La Programación Funcional es un paradigma de programación que trata la computación como la evaluación de funciones matemáticas y que evita cambios de estado y datos mutables.
+> La Programación Funcional es un paradigma de programación que trata
+> la computación como la evaluación de funciones matemáticas y que
+> evita cambios de estado y datos mutables.
 
 Funciones matemáticas:
 
-> Las funciones matemáticas tienen la característica de que cuando les das el mismo argumento te devolverán el mismo resultado.
+> Las funciones matemáticas tienen la característica de que cuando les
+> das el mismo argumento te devolverán el mismo resultado.
 
 Funciones como tipos de primera clase:
 
-> Las funciones son objetos de primera clase del lenguaje, similares a enteros o _strings_. Podemos pasar funciones como argumentos o devolver funciones como resultados.
+> Las funciones son objetos de primera clase del lenguaje, similares a
+> enteros o _strings_. Podemos pasar funciones como argumentos o
+> devolver funciones como resultados.
 
 ### <a name="2"></a> 2. Funciones
 
 #### Definición de una función en Swift
 
-Para definir una función en Swift se debe usar la palabra `func`, definir el nombre de la función, sus parámetros y el tipo de vuelto. El valor devuelto por la función se debe devolver usando la palabra `return`.
+Para definir una función en Swift se debe usar la palabra `func`,
+definir el nombre de la función, sus parámetros y el tipo de
+vuelto. El valor devuelto por la función se debe devolver usando la
+palabra `return`.
 
 Código de la función `diHola(_:)`:
 
@@ -69,7 +77,9 @@ print(diHola("Pedro"))
 
 #### Nombres de parámetros externos e internos
 
-Al llamar a una función con más de un parámetro hay que etiquetar los argumentos después del primero con el correspondiente nombre del parámetro.
+Al llamar a una función con más de un parámetro hay que etiquetar los
+argumentos después del primero con el correspondiente nombre del
+parámetro.
 
 Funciones `diHolaOtraVez(_:)` y `diHola(_:yaSaludado:)`:
 
@@ -93,7 +103,8 @@ print(diHola("Tim", yaSaludado: true))
 
 Los parámetros tienen un nombre externo y otro interno.
 
-Cuando se llama a la función es obligatorio etiquetar a los argumentos con el nombre externo.
+Cuando se llama a la función es obligatorio etiquetar a los argumentos
+con el nombre externo.
 
 
 Por ejemplo, la siguiente función `concatena(palabra:con:)`: 
@@ -106,9 +117,12 @@ func concatena(palabra str1: String, con str2: String) -> String {
 print(concatena(palabra:"Hola", con:"adios"))
 ```
 
-Es posible definir un nombre externo "vacío" usando el símbolo `_` en la definición del nombre externo.
+Es posible definir un nombre externo "vacío" usando el símbolo `_` en
+la definición del nombre externo.
 
-Por defecto, si no se especifica ningún nombre externo, el nombre externo del primer argumento es vacío y el del resto de argumentos el mismo que el interno.
+Por defecto, si no se especifica ningún nombre externo, el nombre
+externo del primer argumento es vacío y el del resto de argumentos el
+mismo que el interno.
 
 ```swift
 func max(x:Int, _ y: Int) -> Int {
@@ -128,7 +142,11 @@ func divide(x:Double, entre y: Double) -> Double {
 print(divide(30, entre:4))
 ```
 
-El perfil de la función está formado por el nombre de la función, los nombres externos de los parámetros y el tipo devuelto por la función. En la documentación de las funciones usaremos el nombre y los parámetros externos separados por dos puntos. Por ejemplo, las funciones anteriores son `max(_:_:)` y `divide(_:entre:)`.
+El perfil de la función está formado por el nombre de la función, los
+nombres externos de los parámetros y el tipo devuelto por la
+función. En la documentación de las funciones usaremos el nombre y los
+parámetros externos separados por dos puntos. Por ejemplo, las
+funciones anteriores son `max(_:_:)` y `divide(_:entre:)`.
 
 #### Parámetros y valores devueltos
 
@@ -142,7 +160,9 @@ print(diHolaMundo())
 // Imprime "hola, mundo"
 ```
 
-Podemos definir funciones sin valor devuelto. Por ejemplo, la siguiente función `sayGoodbye(_:)`. No hay que escribir flecha con el tipo devuelto. Cuidado, no sería propiamente programación funcional.
+Podemos definir funciones sin valor devuelto. Por ejemplo, la
+siguiente función `sayGoodbye(_:)`. No hay que escribir flecha con el
+tipo devuelto. Cuidado, no sería propiamente programación funcional.
 
 ```swift
 func sayGoodbye(personName: String) {
@@ -152,7 +172,9 @@ sayGoodbye("Dave")
 // Prints "Goodbye, Dave!"
 ```
 
-Es posible devolver múltiples valores, construyendo una tupla. Por ejemplo, la siguiente función `minMax(_:)` busca el número más pequeño y más grande de un array de enteros.
+Es posible devolver múltiples valores, construyendo una tupla. Por
+ejemplo, la siguiente función `minMax(_:)` busca el número más pequeño
+y más grande de un array de enteros.
 
 ```swift
 func minMax(array: [Int]) -> (min: Int, max: Int) {
@@ -169,7 +191,8 @@ func minMax(array: [Int]) -> (min: Int, max: Int) {
 }
 ```
 
-Los valores de la tupla devuelta se etiquetan y se puede acceder por esos nombres cuando se consulta el valor devuelto por la función:
+Los valores de la tupla devuelta se etiquetan y se puede acceder por
+esos nombres cuando se consulta el valor devuelto por la función:
 
 ```swift
 let limites = minMax([8, -6, 2, 109, 3, 71])
@@ -177,9 +200,14 @@ print("min es \(limites.min) y max es \(limites.max)")
 // Imprime "min es -6 y max es 109"
 ```
 
-Si hay algún caso en el que la función pueda devolver "no hay valor" para los elementos de la tupla podemos usar un tipo _opcional_ para indicar que el valor devuelto puede ser `nil`. Para ello se escribe un símbolo de interrogación tras el paréntesis. Por ejemplo, `(Int, Int)?` o `(String, Int, Bool)?`.
+Si hay algún caso en el que la función pueda devolver "no hay valor"
+para los elementos de la tupla podemos usar un tipo _opcional_ para
+indicar que el valor devuelto puede ser `nil`. Para ello se escribe un
+símbolo de interrogación tras el paréntesis. Por ejemplo, `(Int,
+Int)?` o `(String, Int, Bool)?`.
 
-Podemos modificar la función anterior para considerar el caso en que pasemos un array sin elementos:
+Podemos modificar la función anterior para considerar el caso en que
+pasemos un array sin elementos:
 
 ```swift
 func minMax(array: [Int]) -> (min: Int, max: Int)? {
@@ -197,7 +225,8 @@ func minMax(array: [Int]) -> (min: Int, max: Int)? {
 }
 ```
 
-Tendremos entonces que llamar a la función comprobando si el valor devuelto es distinto de `nil`:
+Tendremos entonces que llamar a la función comprobando si el valor
+devuelto es distinto de `nil`:
 
 ```swift
 if let limites = minMax([8, -6, 2, 109, 3, 71]) {
@@ -208,9 +237,13 @@ if let limites = minMax([8, -6, 2, 109, 3, 71]) {
 
 ### <a name="3"></a> 3. Tipos función 
 
-En Swift las funciones son objetos de primera clase y podemos asignarlas a variables, pasarlas como parámetro o devolverlas como resultado de otra función. Al ser un lenguaje fuertemente tipado, las variables, parámetros o resultados deben ser objetos de tipo función.
+En Swift las funciones son objetos de primera clase y podemos
+asignarlas a variables, pasarlas como parámetro o devolverlas como
+resultado de otra función. Al ser un lenguaje fuertemente tipado, las
+variables, parámetros o resultados deben ser objetos de tipo función.
 
-Cada función tiene un tipo específico, definido por el tipo de sus parámetros y el tipo del valor devuelto.
+Cada función tiene un tipo específico, definido por el tipo de sus
+parámetros y el tipo del valor devuelto.
 
 ```swift
 func sumaDosInts(a: Int, _ b: Int) -> Int {
@@ -221,11 +254,14 @@ func multiplicaDosInts(a: Int, _ b: Int) -> Int {
 }
 ```
 
-El tipo de estas funciones es `(Int, Int) -> Int`, que se puede leer como:
+El tipo de estas funciones es `(Int, Int) -> Int`, que se puede leer
+como:
 
-"Un tipo función que tiene dos parámetros, ambos de tipo `Int` y que devuelve un valor de tipo `Int`".
+"Un tipo función que tiene dos parámetros, ambos de tipo `Int` y que
+devuelve un valor de tipo `Int`".
 
-En Swift se puede usar un tipo función de la misma forma que cualquier otro tipo:
+En Swift se puede usar un tipo función de la misma forma que cualquier
+otro tipo:
 
 ```swift
 var funcionMatematica: (Int, Int) -> Int = sumaDosInts
@@ -246,9 +282,13 @@ printResultado(sumaDosInts, 3, 5)
 // Prints "Resultado: 8"
 ```
 
-La función `printResultado(_:_:_:)` toma como primer parámetro otra función que recibe dos `Int` y devuelve un `Int`, y como segundo y tercer parámetro dos `Int`.
+La función `printResultado(_:_:_:)` toma como primer parámetro otra
+función que recibe dos `Int` y devuelve un `Int`, y como segundo y
+tercer parámetro dos `Int`.
 
-Veamos otro ejemplo, que ya vimos en Scheme. Supongamos que queremos calcular el sumatorio desde `a` hasta `b` en el que aplicamos una función `f` a cada número que sumamos:
+Veamos otro ejemplo, que ya vimos en Scheme. Supongamos que queremos
+calcular el sumatorio desde `a` hasta `b` en el que aplicamos una
+función `f` a cada número que sumamos:
 
 ```text
 sumatorio(a, b, f) = f(a) + f(a+1) + f(a+2) + ... + f(b)
@@ -293,7 +333,8 @@ print(sumatorio(desde: 0, hasta: 10, func: cuadrado)) // Imprime 385
 
 #### Funciones que devuelven otras funciones
 
-Por último, veamos un ejemplo de funciones que devuelven otras funciones y que se declaran de forma anidada:
+Por último, veamos un ejemplo de funciones que devuelven otras
+funciones y que se declaran de forma anidada:
 
 
 ```swift
@@ -337,7 +378,9 @@ func sumaHasta(x: Int) -> Int {
 print(sumaHasta(5))
 ```
 
-Los arrays en Swift no funcionan exactamente como las listas de Scheme (no son listas de parejas), pero podríamos obtener el primer elemento y el resto de la siguiente forma.
+Los arrays en Swift no funcionan exactamente como las listas de Scheme
+(no son listas de parejas), pero podríamos obtener el primer elemento
+y el resto de la siguiente forma.
 
 
 ```swift
@@ -346,7 +389,10 @@ let primero = a[0]
 let resto = a[1..<a.endIndex]]
 ```
 
-En `resto` se guardará un `ArraySlice`. Es una vista de un rango de elementos del array, en este caso el que va de 1 hasta el último. Un `ArraySlice` puede situarse sobre cualquier zona de un array. Por ejemplo:
+En `resto` se guardará un `ArraySlice`. Es una vista de un rango de
+elementos del array, en este caso el que va de 1 hasta el último. Un
+`ArraySlice` puede situarse sobre cualquier zona de un array. Por
+ejemplo:
 
 ```swift
 let b = a[2...3]
@@ -356,14 +402,18 @@ let b = a[2...3]
 //}
 ```
 
-Este rango va a ir cambiando conforme vayamos moviéndonos por el `ArraySlice`. Iremos avanzando el índice de comienzo y dejando fijo el índice final. De forma que, en general, usaremos las siguientes expresiones para obtener el primero y el resto:
+Este rango va a ir cambiando conforme vayamos moviéndonos por el
+`ArraySlice`. Iremos avanzando el índice de comienzo y dejando fijo el
+índice final. De forma que, en general, usaremos las siguientes
+expresiones para obtener el primero y el resto:
 
 ```
 let primero = valores[valores.startIndex]
 let resto = valores[valores.startIndex+1..<valores.endIndex]
 ```
 
-Con estas expresiones podemos definir una función recursiva que recorre un `ArraySlice`:
+Con estas expresiones podemos definir una función recursiva que
+recorre un `ArraySlice`:
 
 ```swift
 func sumaValores(valores: ArraySlice<Int>) -> Int {
@@ -379,16 +429,25 @@ print(sumaValores([1,2,3,4,5,6,7,8]))
 // 36
 ```
 
-Veremos que las colecciones en Swift implementan funciones de orden superior como `map`, `filter`, etc.
+Veremos que las colecciones en Swift implementan funciones de orden
+superior como `map`, `filter`, etc.
 
-Veremos también más adelante otras funciones recursivas cuando definamos árboles en Swift.
+Veremos también más adelante otras funciones recursivas cuando
+definamos árboles en Swift.
 
 
 ### <a name="5"></a> 5. Tipos
 
-Swift es un lenguaje fuertemente tipado, a diferencia de Scheme. Muchos otros lenguajes de programación funcional, como Haskell o Clojure también lo son. 
+Swift es un lenguaje fuertemente tipado, a diferencia de
+Scheme. Muchos otros lenguajes de programación funcional, como Haskell
+o Clojure también lo son.
 
-Entre las ventajas del uso de tipos está la detección de errores en los programas en tiempo de compilación o las ayudas del entorno de desarrollo para autocompletar código. Entre los inconvenientes se encuentra la necesidad de ser más estrictos a la hora de definir los parámetros y los valores devueltos por las funciones, lo que impide la flexibilidad de Scheme.
+Entre las ventajas del uso de tipos está la detección de errores en
+los programas en tiempo de compilación o las ayudas del entorno de
+desarrollo para autocompletar código. Entre los inconvenientes se
+encuentra la necesidad de ser más estrictos a la hora de definir los
+parámetros y los valores devueltos por las funciones, lo que impide la
+flexibilidad de Scheme.
 
 Se utilizan tipos para definir los posibles valores de:
 
@@ -396,7 +455,9 @@ Se utilizan tipos para definir los posibles valores de:
 - parámetros de funciones
 - valores devueltos por funciones
 
-Las definiciones de tipos van precedidas de dos puntos en las variables y parámetros, o de una flecha (`->`) en la definición de los tipos de los valores devueltos por una función:
+Las definiciones de tipos van precedidas de dos puntos en las
+variables y parámetros, o de una flecha (`->`) en la definición de los
+tipos de los valores devueltos por una función:
 
 ```swift
 let valorDouble : Double = 3.0
@@ -407,11 +468,13 @@ func calculaEstadisticas(valores: Array<Int>) -> (min: Int, max: Int, media: Int
 }
 ```
 
-En Swift existen dos clases de tipos: tipos con nombre y tipos compuestos. 
+En Swift existen dos clases de tipos: tipos con nombre y tipos
+compuestos.
 
 #### Tipos con nombre
 
-Un tipo con nombre es un tipo al que se le puede dar un nombre determinado cuando se define. 
+Un tipo con nombre es un tipo al que se le puede dar un nombre
+determinado cuando se define.
 
 Definimos un tipo al definir:
 
@@ -420,11 +483,23 @@ Definimos un tipo al definir:
 - nombres de enumeraciones
 - nombres de protocolos 
 
-Por ejemplo, instancias de una clase definida por el usuario llamada `MyClass` tienen el tipo `MyClass`. Además de los tipos definidos por el usuario, la biblioteca estándar de Swift tiene un gran número de tipos predefinidos. A diferencia de otros lenguajes, estos tipos no son parte del propio lenguaje sino que se definen en su mayoría como estructuras implementadas en esta biblioteca estándar. Por ejemplo, arrays, diccionarios o incluso los tipos más básicos como `String` o `Int` están construidos en esa biblioteca.
+Por ejemplo, instancias de una clase definida por el usuario llamada
+`MyClass` tienen el tipo `MyClass`. Además de los tipos definidos por
+el usuario, la biblioteca estándar de Swift tiene un gran número de
+tipos predefinidos. A diferencia de otros lenguajes, estos tipos no
+son parte del propio lenguaje sino que se definen en su mayoría como
+estructuras implementadas en esta biblioteca estándar. Por ejemplo,
+arrays, diccionarios o incluso los tipos más básicos como `String` o
+`Int` están construidos en esa biblioteca.
 
 #### Tipos compuestos
 
-Los tipos compuestos son tipos sin nombre. En Swift se definen dos: tuplas y tipos función. Un tipo compuesto puede tener tipos con nombre y otros tipos compuestos. Por ejemplo la tupla `(Int, (Int, Int))` contiene dos elementos: el primero es el tipo con nombre `Int` y el segundo el tipo compuesto que define la tupla `(Int, Int)`. Los tipos función los hemos visto previamente.
+Los tipos compuestos son tipos sin nombre. En Swift se definen dos:
+tuplas y tipos función. Un tipo compuesto puede tener tipos con nombre
+y otros tipos compuestos. Por ejemplo la tupla `(Int, (Int, Int))`
+contiene dos elementos: el primero es el tipo con nombre `Int` y el
+segundo el tipo compuesto que define la tupla `(Int, Int)`. Los tipos
+función los hemos visto previamente.
 
 ```swift
 
@@ -443,7 +518,8 @@ print(sumaTupla((tupla.0, tupla.1),
 
 #### Enumeraciones
 
-Las enumeraciones definen un tipo con un valor restringido de posibles valores. Utilizan un caso base, que hay que dec
+Las enumeraciones definen un tipo con un valor restringido de posibles
+valores. Utilizan un caso base, que hay que dec
 
 ```swift
 enum Direccion {
@@ -454,7 +530,10 @@ enum Direccion {
 }
 ```
 
-Cualquier variable del tipo `Direccion` solo puede tener uno de los cuatro valores definidos. Se obtiene el valor escribiendo el nombre de la enumeración, un punto y el valor definido. Si el tipo de enumeración se puede inferir no es necesario escribirlo.
+Cualquier variable del tipo `Direccion` solo puede tener uno de los
+cuatro valores definidos. Se obtiene el valor escribiendo el nombre de
+la enumeración, un punto y el valor definido. Si el tipo de
+enumeración se puede inferir no es necesario escribirlo.
 
 ```swift
 var direccionActual = Direccion.Norte
@@ -490,7 +569,8 @@ enum Planeta {
 
 #### Valores brutos de enumeraciones
 
-Es posible asignar a las constantes del enumerado un valor concreto de un tipo subyacente:
+Es posible asignar a las constantes del enumerado un valor concreto de
+un tipo subyacente:
 
 ```swift
 enum CaracterControlASCII: Character {
@@ -506,7 +586,8 @@ Se puede devolver el valor bruto de la siguiente forma:
 let nuevaLinea = CaracterControlASCII.LineFeed.rawValue
 ```
 
-También se puede hacer de forma implícita cuando el tipo subyacente es `Int`, dando un valor a la primera constante:
+También se puede hacer de forma implícita cuando el tipo subyacente es
+`Int`, dando un valor a la primera constante:
 
 ```swift
 enum Planeta: Int {
@@ -516,7 +597,9 @@ let posicionTierra = Planeta.Tierra.rawValue
 // posicionTierra es 3
 ```
 
-Por último, se puede definir como tipo subyacente `String` y los valores brutos de las constantes serán sus nombres convertidos a cadenas:
+Por último, se puede definir como tipo subyacente `String` y los
+valores brutos de las constantes serán sus nombres convertidos a
+cadenas:
 
 ```swift
 enum Direccion: String {
@@ -526,7 +609,10 @@ let direccionAtardecer = Direccion.Oeste.rawValue
 // direccionAtardecer es "Oeste"
 ```
 
-Cuando se definen valores brutos es posible inicializar el enumerado de una forma similar a una estructura o una clase pasando el valor bruto. Devuelve el valor enumerado correspondiente o `nil` (un opcional):
+Cuando se definen valores brutos es posible inicializar el enumerado
+de una forma similar a una estructura o una clase pasando el valor
+bruto. Devuelve el valor enumerado correspondiente o `nil` (un
+opcional):
 
 ```swift
 let posiblePlaneta = Planeta(rawValue: 7)
@@ -535,13 +621,26 @@ let posiblePlaneta = Planeta(rawValue: 7)
 
 #### Valores asociados a instancias de enumeraciones
 
-En otros lenguajes de programación se llaman _uniones etiquetadas_ o _variantes_. Permiten asociar valores de otro tipo a las opciones del enumerado.
+En otros lenguajes de programación se llaman _uniones etiquetadas_ o
+_variantes_. Permiten asociar valores de otro tipo a las opciones del
+enumerado.
 
 Repasemos un primer ejemplo, recogido del seminario de Scheme.
 
-Una instancia de un caso de enumeración puede tener valores asociados con la instancia. Instancias del mismo caso de enumeración pueden tener asociados valores diferentes. Se proporciona el valor asociado cuando se crea la instancia. Los valores asociados y los valores brutos son distintos: el valor bruto de un caso de enumeración es el mismo para todas las instancias, mientras que el valor asociado se proporciona cuando se define el valor concreto de la enumeración.
+Una instancia de un caso de enumeración puede tener valores asociados
+con la instancia. Instancias del mismo caso de enumeración pueden
+tener asociados valores diferentes. Se proporciona el valor asociado
+cuando se crea la instancia. Los valores asociados y los valores
+brutos son distintos: el valor bruto de un caso de enumeración es el
+mismo para todas las instancias, mientras que el valor asociado se
+proporciona cuando se define el valor concreto de la enumeración.
 
-Por ejemplo, podemos definir un enumerado con el que formalizar una respuesta de un servidor. Puede ser de dos tipos o `Resultado`, en cuyo caso va acompañado de dos `String` o `Error`, en el que el valor asociado es un único `String`. Por ejemplo, podríamos usarlo para devolver la petición sobre la hora de salir y ponerse el sol. También podríamos dar un mensaje de error:
+Por ejemplo, podemos definir un enumerado con el que formalizar una
+respuesta de un servidor. Puede ser de dos tipos o `Resultado`, en
+cuyo caso va acompañado de dos `String` o `Error`, en el que el valor
+asociado es un único `String`. Por ejemplo, podríamos usarlo para
+devolver la petición sobre la hora de salir y ponerse el sol. También
+podríamos dar un mensaje de error:
 
 ```swift
 enum RespuestaServidor {
@@ -560,7 +659,10 @@ switch exito {
 }
 ```
 
-Otro ejemplo, en el que usamos un enum para definir posibles valores de un código de barras, en el que incluimos dos posibles tipos de código de barras: el código de barras lineal (denominado UPCA) y el código QR:
+Otro ejemplo, en el que usamos un enum para definir posibles valores
+de un código de barras, en el que incluimos dos posibles tipos de
+código de barras: el código de barras lineal (denominado UPCA) y el
+código QR:
 
 ```swift
 enum CodigoBarras {
@@ -569,7 +671,14 @@ enum CodigoBarras {
 }
 ```
 
-Se lee de la siguiente forma: “Definimos un tipo enumerado llamado `CodigoBarras`, que puede tomar como valor un `UPCA` (código de barras lineal) con un valor asociado de tipo `(Int, Int, Int, Int)` (los 4 números que hay en los códigos de barras lineales) o un valor `QR` con valor asociado de tipo `String`". Esta definición no proporciona valores concretos de `Int` o `String`, sino que define el _tipo_ de valores asociados que las constantes y variables pueden almacenar cuando son de tipo `CodigoBarras.UPCA` o `CodigoBarras.QR`.
+Se lee de la siguiente forma: “Definimos un tipo enumerado llamado
+`CodigoBarras`, que puede tomar como valor un `UPCA` (código de barras
+lineal) con un valor asociado de tipo `(Int, Int, Int, Int)` (los 4
+números que hay en los códigos de barras lineales) o un valor `QR` con
+valor asociado de tipo `String`". Esta definición no proporciona
+valores concretos de `Int` o `String`, sino que define el _tipo_ de
+valores asociados que las constantes y variables pueden almacenar
+cuando son de tipo `CodigoBarras.UPCA` o `CodigoBarras.QR`.
 
 ```swift
 var codigoBarrasProducto = Barcode.UPCA(8, 85909, 51226, 3)
@@ -586,7 +695,9 @@ case let .QRCode(codigoProducto):
 
 #### Enumeraciones recursivas
 
-Es posible combinar las características de las enumeraciones con valor con la recursión para crear enumeraciones recursivas. Hay que preceder la palabra clave `enum` con `indirect`:
+Es posible combinar las características de las enumeraciones con valor
+con la recursión para crear enumeraciones recursivas. Hay que preceder
+la palabra clave `enum` con `indirect`:
 
 ```swift
 indirect enum ExpresionAritmetica {
@@ -618,7 +729,9 @@ func evalua(expresion: ExpresionAritmetica) -> Int {
 
 #### Typealias
 
-En Swift se define la palabra clave `typealias` para darle un nombre asignado a cualquier otro tipo. Ambos tipos son iguales a todos los efectos (es únicamente azúcar sintáctico).
+En Swift se define la palabra clave `typealias` para darle un nombre
+asignado a cualquier otro tipo. Ambos tipos son iguales a todos los
+efectos (es únicamente azúcar sintáctico).
 
 ```swift
 typealias Resultado = (Int, Int)
@@ -646,14 +759,17 @@ resultado((2,2))
 
 ### <a name="6"></a> 6. Opcionales
 
-En Swift el valor nulo se representa con `nil` (equivalente a `null` en Java). No podemos asignar `nil` a una variable de un tipo dado:
+En Swift el valor nulo se representa con `nil` (equivalente a `null`
+en Java). No podemos asignar `nil` a una variable de un tipo dado:
 
 ```swift
 // La siguiente línea daría un error en tiempo de compilación
 // let cadena: String = nil
 ```
 
-Los tipos opcionales de Swift permiten asignar a variables o bien un valor propio del tipo o bien `nil`, de forma que podemos expresar situaciones en las que:
+Los tipos opcionales de Swift permiten asignar a variables o bien un
+valor propio del tipo o bien `nil`, de forma que podemos expresar
+situaciones en las que:
 
 - Hay un valor y es igual que _x_
 
@@ -661,9 +777,14 @@ o
 
 - No hay ningún valor
 
-Podemos definir como opcional variables, parámetros o valores devueltos por funciones.
+Podemos definir como opcional variables, parámetros o valores
+devueltos por funciones.
 
-Por ejemplo, el tipo `Int` de Swift tiene un inicializador que intenta convertir un valor `String` a un valor `Int`. Sin embargo, no toda cadena puede convertirse a un número. Por ejemplo, la cadena `"123"` se debería convertir al número 123, pero la cadena `"Hola, mundo"` no tiene un valor numérico al que convertirse.
+Por ejemplo, el tipo `Int` de Swift tiene un inicializador que intenta
+convertir un valor `String` a un valor `Int`. Sin embargo, no toda
+cadena puede convertirse a un número. Por ejemplo, la cadena `"123"`
+se debería convertir al número 123, pero la cadena `"Hola, mundo"` no
+tiene un valor numérico al que convertirse.
 
 El siguiente ejemplo muestra la forma correcta de usar el inicializador:
 
@@ -673,9 +794,12 @@ let numeroConvertido = Int(posibleNumero)
 // numeroConvertido es de tipo "Int?", o "Int opcional"
 ```
 
-Debido a que el inicializador puede fallar, devuelve un `Int` _opcional_, en lugar de un `Int`. Un `Int` opcional se escribe como `Int?`.
+Debido a que el inicializador puede fallar, devuelve un `Int`
+_opcional_, en lugar de un `Int`. Un `Int` opcional se escribe como
+`Int?`.
 
-Para definir una variable como sin valor debemos asignarle el valor especial `nil`:
+Para definir una variable como sin valor debemos asignarle el valor
+especial `nil`:
 
 ```swift
 var codigoRespuestaServidor: Int? = 404
@@ -684,7 +808,8 @@ codigoRespuestaServidor = nil
 // codigoRespuestaServidor ahora no contiene ningún valor
 ```
 
-Una variable opcional sin asignar ningún valor se inicializa automáticamente a `nil`:
+Una variable opcional sin asignar ningún valor se inicializa
+automáticamente a `nil`:
 
 ```swift
 var respuestaEncuesta: String?
@@ -693,7 +818,8 @@ var respuestaEncuesta: String?
 
 #### Sentencias `if` y _desenvoltura forzosa_
 
-Se puede usar un `if` para comprobar si un valor opcional es distinto de `nil`:
+Se puede usar un `if` para comprobar si un valor opcional es distinto
+de `nil`:
 
 ```swift
 if numeroConvertido != nil {
@@ -702,7 +828,11 @@ if numeroConvertido != nil {
 // Imprime "numeroConvertido contiene algún valor entero."
 ```
 
-Una vez que estamos seguros de que el opcional contiene un valor, debemos acceder a él usando un signo de exclamación (`!`). Quiere decir "Sé que hay este opcional tiene un valor concreto; por favor úsalo". Esto se conoce como _desenvoltura forzosa_ (_forced unwrapping_) del valor opcional:
+Una vez que estamos seguros de que el opcional contiene un valor,
+debemos acceder a él usando un signo de exclamación (`!`). Quiere
+decir "Sé que hay este opcional tiene un valor concreto; por favor
+úsalo". Esto se conoce como _desenvoltura forzosa_ (_forced
+unwrapping_) del valor opcional:
 
 ```swift
 if numeroConvertido != nil {
@@ -713,7 +843,9 @@ if numeroConvertido != nil {
 
 #### Ligado opcional
 
-Es posible comprobar si un opcional tiene valor y asignar su valor a otra variable al mismo tiempo con una construcción llamada _ligado opcional_ (_optional binding_):
+Es posible comprobar si un opcional tiene valor y asignar su valor a
+otra variable al mismo tiempo con una construcción llamada _ligado
+opcional_ (_optional binding_):
 
 ```swift
 if let numeroVerdadero = Int(posibleNumero) {
@@ -724,9 +856,12 @@ if let numeroVerdadero = Int(posibleNumero) {
 // Imprime ""123" tiene un valor entero de 123"
 ```
 
-Podemos leer el código anterior de la siguiente forma: "Si el `Int` opcional devuelto por `Int(posibleNumero)` contiene un valor, define la constante `numeroVerdadero` con el valor contenido en el opcional".
+Podemos leer el código anterior de la siguiente forma: "Si el `Int`
+opcional devuelto por `Int(posibleNumero)` contiene un valor, define
+la constante `numeroVerdadero` con el valor contenido en el opcional".
 
-Es posible incluir varios ligados opcionales y añadir una cláusula `where` que comprueba una condición en el caso que existan valores:
+Es posible incluir varios ligados opcionales y añadir una cláusula
+`where` que comprueba una condición en el caso que existan valores:
 
 ```swift
 if let primerNumero = Int("4"), segundoNumero = Int("42") where primerNumero < segundoNumero {
@@ -737,9 +872,17 @@ if let primerNumero = Int("4"), segundoNumero = Int("42") where primerNumero < s
 
 #### Opcionales implícitamente desenvueltos
 
-Algunas veces está claro a partir de la estructura del programa que un opcional siempre va a tener valor. En estos casos es útil eliminar la necesidad de comprobar y desenvolver el valor cada vez que se necesita. Estos valores se declaran como _opcionales implícitamente desenvueltos_ (_implicitly unwrapped optionals_). Se definen escribiendo un signo de admiración después del tipo (`String!`) en lugar del signo de interrogación (`String?`).
+Algunas veces está claro a partir de la estructura del programa que un
+opcional siempre va a tener valor. En estos casos es útil eliminar la
+necesidad de comprobar y desenvolver el valor cada vez que se
+necesita. Estos valores se declaran como _opcionales implícitamente
+desenvueltos_ (_implicitly unwrapped optionals_). Se definen
+escribiendo un signo de admiración después del tipo (`String!`) en
+lugar del signo de interrogación (`String?`).
 
-El valor de un opcional declarado de esta forma se desenvuelve automáticamente cada vez que se usa, sin necesidad del signo de admiración.
+El valor de un opcional declarado de esta forma se desenvuelve
+automáticamente cada vez que se usa, sin necesidad del signo de
+admiración.
 
 ```swift
 let posibleCadena: String? = "Una cadena opcional."
@@ -749,7 +892,8 @@ let supuestaCadena: String! = "Una cadena opcional implícitamente desenvuelta" 
 let cadenaImplicita: String = supuestaCadena // no se necesita el signo de admiración
 ```
 
-Es posible usar un opcional implícitamente desenvuelto como un opcional normal, para comprobar si tiene valor:
+Es posible usar un opcional implícitamente desenvuelto como un
+opcional normal, para comprobar si tiene valor:
 
 ```swift
 if supuestaCadena != nil {
