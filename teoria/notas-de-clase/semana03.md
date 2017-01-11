@@ -79,7 +79,8 @@ Notas de clase Semana 3
 ### Ejemplo de función que recibe distintos tipos de datos
 
 - Scheme es débilmente tipeado
-- Podemos pasar cualquier tipo de dato en los parámetros de las funciones, por ejemplo a la siguiente función `suma`
+- Podemos pasar cualquier tipo de dato en los parámetros de las
+  funciones, por ejemplo a la siguiente función `suma`
 
 ```scheme
 (define (suma x y)
@@ -108,14 +109,17 @@ Lo probamos ...
 
 ### Las parejas son objetos inmutables
 
-- En programación funcional una vez creada una parea no está permitido modificar (mutar) su contenido.
-- En Scheme hay funciones para mutar parejas, pero no las veremos hasta ver el paradigma de programación imperativa
+- En programación funcional una vez creada una parea no está permitido
+  modificar (mutar) su contenido.
+- En Scheme hay funciones para mutar parejas, pero no las veremos
+  hasta ver el paradigma de programación imperativa
 
 ----
 
 ### Las parejas son objetos de primera clase
 
-En un lenguaje de programación un elemento es de primera clase cuando puede:
+En un lenguaje de programación un elemento es de primera clase cuando
+puede:
 
 * Asignarse a variables
 * Pasarse como argumento
@@ -153,7 +157,8 @@ Lo probamos ...
 
 ### Formar parte de otras parejas (4)
 
-> El resultado de un `cons` puede usarse como parámetro de nuevas llamadas a `cons`.
+> El resultado de un `cons` puede usarse como parámetro de nuevas
+> llamadas a `cons`.
 
 
 ```scheme
@@ -186,8 +191,10 @@ Diagramas *caja-y-puntero* (*box-and-pointer* en inglés):
                 2))
 ```
 
-- Es importante recordar que las expresiones se evalúan *de dentro a afuera*.
-- ¿Qué estructura se construye con la sentencia anterior? Dibuja el diagrama *box-and-pointer*.
+- Es importante recordar que las expresiones se evalúan *de dentro a
+  afuera*.
+- ¿Qué estructura se construye con la sentencia anterior? Dibuja el
+  diagrama *box-and-pointer*.
 
 <p style="margin-bottom:3cm;"/>
 
@@ -200,7 +207,8 @@ Diagramas *caja-y-puntero* (*box-and-pointer* en inglés):
 
 <p style="margin-bottom:4cm;"/>
 
-- ¿Cómo sería la expresión formada por `car` y `cdr`s que devolviera 3 a partir de la variable `p2`?
+- ¿Cómo sería la expresión formada por `car` y `cdr`s que devolviera 3
+  a partir de la variable `p2`?
 
 <p style="margin-bottom:4cm;"/>
 
@@ -208,7 +216,8 @@ Diagramas *caja-y-puntero* (*box-and-pointer* en inglés):
 
 ### Funciones c????r
 
-- Al trabajar con estructuras de parejas anidades es muy habitual realizar llamadas del tipo:
+- Al trabajar con estructuras de parejas anidades es muy habitual
+  realizar llamadas del tipo:
 
 ```scheme
 (cdr (cdr (car p)))
@@ -220,9 +229,12 @@ Diagramas *caja-y-puntero* (*box-and-pointer* en inglés):
 (cddar p)
 ```
 
-- El nombre de la función se obtiene concatenando a la letra "c", las letras "a" o "d" según hagamos un car o un cdr y terminando con la letra "r".
+- El nombre de la función se obtiene concatenando a la letra "c", las
+  letras "a" o "d" según hagamos un car o un cdr y terminando con la
+  letra "r".
 
-- Hay definidas 2^4 funciones de este tipo: `caaaar`, `caaadr`, …, `cddddr`.
+- Hay definidas 2^4 funciones de este tipo: `caaaar`, `caaadr`, …,
+  `cddddr`.
 
 ----
 
@@ -232,7 +244,9 @@ Diagramas *caja-y-puntero* (*box-and-pointer* en inglés):
 
 ### Relación entre listas y parejas en Lisp y Scheme
 
-- Hemos comprobado que las listas y las parejas tienen las mismas funciones: `car`, `cdr` y `cons``. ¿Por qué? ¿Qué relación hay entre las parejas y las listas?
+- Hemos comprobado que las listas y las parejas tienen las mismas
+  funciones: `car`, `cdr` y `cons``. ¿Por qué? ¿Qué relación hay entre
+  las parejas y las listas?
 - Hagamos algunas pruebas.
 
 ¿Una pareja es una lista?
@@ -267,7 +281,7 @@ Lo probamos ...
 
 <p style="margin-bottom:2cm;"/>
 
-¿Una pareja con una lista vacía como parte izquierda es una lista?
+¿Una pareja con una lista vacía como parte izquierda es una lista? 
 Lo probamos ...
 
 ```scheme
@@ -277,7 +291,8 @@ Lo probamos ...
 ```
 <p style="margin-bottom:2cm;"/>
 
-Con estos ejemplos ya tenemos pistas para deducir la relación entre listas y parejas en Scheme (y Lisp). Vamos a explicarlo.
+Con estos ejemplos ya tenemos pistas para deducir la relación entre
+listas y parejas en Scheme (y Lisp). Vamos a explicarlo.
 
 ----
 
@@ -287,7 +302,8 @@ Una lista es (definición recursiva):
 
 * Una **pareja** que contiene:
     * *En su parte izquierda*: el primer elemento de la lista
-    * *En su parte derecha*: el resto de la lista (volvemos a aplicar la definición)
+    * *En su parte derecha*: el resto de la lista (volvemos a aplicar
+      la definición)
 * Un **símbolo especial** `'()` que denota la lista vacía.
 
 ----
@@ -300,11 +316,11 @@ Una lista es (definición recursiva):
 	
 La pareja cumple las condiciones anteriores: 
 
-* La parte izquierda de la pareja es el primer elemento de la lista (el número 1)
+* La parte izquierda de la pareja es el primer elemento de la lista
+  (el número 1)
 * La parte derecha es el resto de la lista (la lista vacía)
 
 <img src="../tema02-programacion-funcional/imagenes/pareja-lista.png" width="150px"/>
-
 
 - Es al mismo tiempo una pareja y una lista:
 
@@ -360,7 +376,8 @@ Función `null?`:
 
 ### Listas con elementos compuestos
 
-- *Lista de asociación*, listas cuyos elementos son parejas (*clave*, *valor*):
+- *Lista de asociación*, listas cuyos elementos son parejas (*clave*,
+  *valor*):
 
 ```scheme
 (list (cons 'a 1)
@@ -403,8 +420,10 @@ Definición con `quote`:
 
 ### Distintos niveles de abstracción
 
-- Una vez que conocemos la implementación de listas con parejas, no va a a ser necesario casi nunca *bajar* a este nivel de implementación
-- Podemos volver a la *abstracción* inicial en la que las funciones `car` y `cdr` trabajan sobre listas:
+- Una vez que conocemos la implementación de listas con parejas, no va
+  a a ser necesario casi nunca *bajar* a este nivel de implementación
+- Podemos volver a la *abstracción* inicial en la que las funciones
+  `car` y `cdr` trabajan sobre listas:
     - `(car lista)`: devuelve el primer elemento de la lista
     - `(cdr lista)`: devuelve el resto de la lista
     - `(list-ref lista n)`: devuelve la posición `n` de la lista
@@ -418,7 +437,9 @@ Definición con `quote`:
 
 Vamos a ver cómo se implementan de forma recursiva:
 
-- Funciones recursivas que trabajan **sobre listas** (para no solapar con las definiciones de Scheme pondremos el prefijo `mi-` en todas ellas):
+- Funciones recursivas que trabajan **sobre listas** (para no solapar
+  con las definiciones de Scheme pondremos el prefijo `mi-` en todas
+  ellas):
     - Función `mi-list-ref`
     - Función `mi-list-tail`
     - Función `mi-append`
@@ -436,32 +457,50 @@ Vamos a ver cómo se implementan de forma recursiva:
 ¿Cómo diseñamos una *definición recursiva* de una función? 
 
 - Es recomendable comenzar por el **caso general**.
-- Debemos buscar una forma de resolver el problema principal haciendo una llamada a la recursión con una versión más pequeña del problema, **confiar en que la recursión funciona correctamente** devolviendo lo que tiene que devolver y obtener con este valor devuelto la solución al problema principal. Es recomendable probar con un ejemplo concreto.
-- Una vez formulado el caso general, buscamos el **caso base de la recursión**: el caso más sencillo posible en el que no es necesario hacer una llamada recursiva para devolver la solución.
+- Debemos buscar una forma de resolver el problema principal haciendo
+  una llamada a la recursión con una versión más pequeña del problema,
+  **confiar en que la recursión funciona correctamente** devolviendo
+  lo que tiene que devolver y obtener con este valor devuelto la
+  solución al problema principal. Es recomendable probar con un
+  ejemplo concreto.
+- Una vez formulado el caso general, buscamos el **caso base de la
+  recursión**: el caso más sencillo posible en el que no es necesario
+  hacer una llamada recursiva para devolver la solución.
 
 ---
 
 ### Función `mi-list-ref`
 
-- La función `(mi-list-ref n lista)` devuelve el elemento `n` de una lista (empezando a contar por 0). Un ejemplo concreto:
+- La función `(mi-list-ref n lista)` devuelve el elemento `n` de una
+  lista (empezando a contar por 0). Un ejemplo concreto:
 
     ```
     (mi-list-ref '(a b c d e f g) 4) ⇒ c
     ```
 
-- ¿Podemos formular `(mi-list-ref '(a b c d e f g) 4)` de forma recursiva?:
+- ¿Podemos formular `(mi-list-ref '(a b c d e f g) 4)` de forma
+  recursiva?:
 
-> Para devolver el elemento 4 de lista `{a b c d e f g}`, podemos quitar el primer elemento de la lista (obtendremos `{b c d e f g}`) y devolver su elemento 3.
+> Para devolver el elemento 4 de lista `{a b c d e f g}`, podemos
+> quitar el primer elemento de la lista (obtendremos `{b c d e f g}`)
+> y devolver su elemento 3.
 
 - En general, para cualquier `n` y cualquier lista:
 
-> Para devolver el elemento `n` de una lista, hacemos el cdr de la lista y devolvemos su elemento n-1.
+> Para devolver el elemento `n` de una lista, hacemos el cdr de la
+> lista y devolvemos su elemento n-1.
 
-- Por último, formulamos el caso base de la recursión, el problema más sencillo que se puede resolver directamente, sin hacer una llamada recursiva:
+- Por último, formulamos el caso base de la recursión, el problema más
+  sencillo que se puede resolver directamente, sin hacer una llamada
+  recursiva:
 
-> Para devolver el elemento que está en la posición 0 de una lista, devuelvo el `car` de la lista
+> Para devolver el elemento que está en la posición 0 de una lista,
+> devuelvo el `car` de la lista
 
-- Implementación en Scheme (incluimos un segundo caso base en el que se intenta obtener la posición de una lista vacía; se llegaría a este caso si la posición que pedimos es mayor que el número de elementos de la lista):
+- Implementación en Scheme (incluimos un segundo caso base en el que
+  se intenta obtener la posición de una lista vacía; se llegaría a
+  este caso si la posición que pedimos es mayor que el número de
+  elementos de la lista):
 
     ```scheme
     (define (mi-list-ref lista n)
@@ -475,7 +514,8 @@ Vamos a ver cómo se implementan de forma recursiva:
 
 ### Función `mi-list-tail`
 
-- La función `(mi-list-tail lista n)` devuelve la lista resultante de quitar n elementos de la lista original:
+- La función `(mi-list-tail lista n)` devuelve la lista resultante de
+  quitar n elementos de la lista original:
 
     ```scheme
     (mi-list-tail '(1 2 3 4 5 6 7) 2) ⇒ {3 4 5 6 7}
@@ -544,9 +584,12 @@ Vamos a ver cómo se implementan de forma recursiva:
     (mi-reverse '(1 2 3 4 5 6)) ; ⇒ {6 5 4 3 2 1}
     ```
 
-- La idea es sencilla: llamamos a la recursión para hacer la inversa del `cdr` de la lista y añadimos el primer elemento a la lista resultante.
+- La idea es sencilla: llamamos a la recursión para hacer la inversa
+  del `cdr` de la lista y añadimos el primer elemento a la lista
+  resultante.
 
-- Podemos definir una función auxiliar `(añade-al-final dato lista)` que añade un dato al final de una lista usando `append`:
+- Podemos definir una función auxiliar `(añade-al-final dato lista)`
+  que añade un dato al final de una lista usando `append`:
 
     ```scheme
     (define (añade-al-final dato lista)
@@ -569,7 +612,8 @@ Vamos a ver cómo se implementan de forma recursiva:
 
 ### Función `cuadrados-hasta`
 
-- La función `(cuadrados-hasta x)` devuelve una lista con los cuadrados de los números hasta x:
+- La función `(cuadrados-hasta x)` devuelve una lista con los
+  cuadrados de los números hasta x:
 
     ```
     (cuadrados-hasta 5) ; ⇒ {25 16 9 4 1}
@@ -586,9 +630,11 @@ Vamos a ver cómo se implementan de forma recursiva:
 
 - En general:
 
-> Para construir una lista de los cuadrados hasta x, añado el cuadrado de x a la lista de los cuadrados hasta x-1
+> Para construir una lista de los cuadrados hasta x, añado el cuadrado
+> de x a la lista de los cuadrados hasta x-1
 
-- El caso base de la recursión es el caso en el que x es 1, entonces devolvemos `{1}
+- El caso base de la recursión es el caso en el que x es 1, entonces
+  devolvemos `{1}
 
 - Ya podemos realizar la definición Scheme:
 
@@ -604,9 +650,12 @@ Vamos a ver cómo se implementan de forma recursiva:
 
 ### Función `filtra-pares`
 
-- Es muy habitual recorrer una lista y comprobar condiciones de sus elementos, construyendo una lista con los que cumplan una determinada condición.
+- Es muy habitual recorrer una lista y comprobar condiciones de sus
+  elementos, construyendo una lista con los que cumplan una
+  determinada condición.
 
-- La función `filtra-pares` construye una lista con los números pares de la lista que le pasamos como parámetro:
+- La función `filtra-pares` construye una lista con los números pares
+  de la lista que le pasamos como parámetro:
 
     ```scheme
     (filtra-pares '(1 2 3 4 5 6)) ;⇒ {2 4 6}
@@ -632,9 +681,13 @@ Vamos a ver cómo se implementan de forma recursiva:
 
 ### Ejemplo final: Función `primo?`
 
-- El uso de listas es uno de los elementos fundamentales de la programación funcional.
+- El uso de listas es uno de los elementos fundamentales de la
+  programación funcional.
 
-- Veamos un algoritmo sencillo que permite calcular si un número es primo, usando alguna de las funciones anteriores sobre listas. Calcularemos la lista de divisores del número y comprobaremos si su longitud es dos:
+- Veamos un algoritmo sencillo que permite calcular si un número es
+  primo, usando alguna de las funciones anteriores sobre
+  listas. Calcularemos la lista de divisores del número y
+  comprobaremos si su longitud es dos:
 
     ```
     (divisores 8) ;⇒ {1 2 4 8} longitud = 4, no primo
@@ -685,7 +738,8 @@ Vamos a ver cómo se implementan de forma recursiva:
 
 ### Función recursiva `(filtra-divisores lista x)`
 
-- Función que filtra aquellos números `lista` que son divisores del número `x`
+- Función que filtra aquellos números `lista` que son divisores del
+  número `x`
 
 ```scheme
 (define (filtra-divisores lista x)
@@ -714,6 +768,7 @@ Vamos a ver cómo se implementan de forma recursiva:
     (filtra-divisores {1 2 3 4 5 6 7 8 9 10} 10) ;⇒ {1 2 5 10}
     ```
 
-- Una vez definida esta función, ya puede funcionar correctamente la función `primo?`
+- Una vez definida esta función, ya puede funcionar correctamente la
+  función `primo?`
 
 ----

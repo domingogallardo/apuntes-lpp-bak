@@ -25,18 +25,27 @@ Notas de clase Semana 5
 
 ### 6.1. Ámbitos de variables
 
-- El concepto del **ámbito** de vida de las variables es un concepto fundamental en los lenguajes de programación. 
-- En inglés se utiliza el término *[scope](https://en.wikipedia.org/wiki/Scope_(computer_science))*. 
+- El concepto del **ámbito** de vida de las variables es un concepto
+  fundamental en los lenguajes de programación.
+- En inglés se utiliza el término
+  *[scope](https://en.wikipedia.org/wiki/Scope_(computer_science))*.
 
-> Cuando se define una variable, asociándole un valor, esta asociación tiene una extensión determinada, ya sea en términos de tiempo de compilación (**ámbito léxico**) como en términos de tiempo de ejecución (**ámbito dinámico**). El ámbito de una variable determina cuándo podemos referirnos a ella para recuperar el valor asociado.
+> Cuando se define una variable, asociándole un valor, esta asociación
+> tiene una extensión determinada, ya sea en términos de tiempo de
+> compilación (**ámbito léxico**) como en términos de tiempo de
+> ejecución (**ámbito dinámico**). El ámbito de una variable determina
+> cuándo podemos referirnos a ella para recuperar el valor asociado.
 
->Al conjunto de variables disponibles en una parte del programa o en una parte de su ejecución se denomina **contexto** o **entorno** (*context* o *environment*).
+>Al conjunto de variables disponibles en una parte del programa o en
+>una parte de su ejecución se denomina **contexto** o **entorno**
+>(*context* o *environment*).
 
 ----
 
 ### Variables de ámbito global
 
-- Una variable definida en el programa con la instrucción `define` tiene un ámbito global. 
+- Una variable definida en el programa con la instrucción `define`
+  tiene un ámbito global.
 
 ```
 (define a "hola")
@@ -44,7 +53,8 @@ Notas de clase Semana 5
 (define cuadrado (lambda (x) (* x x)))
 ```
 
-- Todas las variables definidas fuera de funciones forman parte del **entorno global** del programa.
+- Todas las variables definidas fuera de funciones forman parte del
+  **entorno global** del programa.
 
 
 ----
@@ -52,8 +62,11 @@ Notas de clase Semana 5
 ### Variables de ámbito local
 
 - Se crea un **entorno local** cuando se invoca una función.
-- Consideramos los parámetros de la invocación como variables de ámbito local que toman el valor de la invocación.
-- Podemos usar en un entorno local una variable con el mismo nombre que en el entorno global. Cuando se ejecute el código de la función se evaluará la variable de ámbito local.
+- Consideramos los parámetros de la invocación como variables de
+  ámbito local que toman el valor de la invocación.
+- Podemos usar en un entorno local una variable con el mismo nombre
+  que en el entorno global. Cuando se ejecute el código de la función
+  se evaluará la variable de ámbito local.
 
 Ejemplo:
 
@@ -69,7 +82,8 @@ Ejemplo:
 <p style="margin-bottom:2cm;"/>
 
 
-- Una vez realizada la invocación, desparece el entorno local y las variables locales definidas en él, recuperándose el contexto global. 
+- Una vez realizada la invocación, desparece el entorno local y las
+  variables locales definidas en él, recuperándose el contexto global.
 
 ```scheme
 (define x 5)
@@ -86,7 +100,8 @@ Ejemplo:
 
 ### Uso de variables de ámbito global en un entorno local
 
-- En el entorno local también se pueden utilizar variables definidas en el entorno global. 
+- En el entorno local también se pueden utilizar variables definidas
+en el entorno global.
 
 ```
 (define y 12)
@@ -103,7 +118,8 @@ Ejemplo:
 
 ### 6.2 Forma especial `let`
 
-- Permite crear un entorno local en el que se da valor a variables y se evalúa una expresión.
+- Permite crear un entorno local en el que se da valor a variables y
+  se evalúa una expresión.
 
 Sintaxis:
 
@@ -114,7 +130,8 @@ Sintaxis:
     <cuerpo>)
 ```
 
-Las variables `var1`, … `varn` toman los valores devueltos por las expresiones `exp1`, … `expn` y el cuerpo se evalúa con esos valores.
+Las variables `var1`, … `varn` toman los valores devueltos por las
+expresiones `exp1`, … `expn` y el cuerpo se evalúa con esos valores.
 
 
 ```scheme
@@ -133,7 +150,8 @@ Las variables `var1`, … `varn` toman los valores devueltos por las expresiones
 
 ### El ámbito de las variables definidas en el `let` es local
 
-- Las variables definidas en el `let` sólo tienen valores en el entorno creado por la forma especial.
+- Las variables definidas en el `let` sólo tienen valores en el
+  entorno creado por la forma especial.
 
 ```scheme
 (define x 10)
@@ -148,7 +166,10 @@ Las variables `var1`, … `varn` toman los valores devueltos por las expresiones
 <p style="margin-bottom:2cm;"/>
 
 
-- Cuando ha terminado la evaluación del `let` el ámbito local desaparece y quedan los valores definidos en el ámbito global. Por ejemplo, si preguntamos por los valores de las siguientes variables obtendríamos los siguientes resultados:
+- Cuando ha terminado la evaluación del `let` el ámbito local
+  desaparece y quedan los valores definidos en el ámbito global. Por
+  ejemplo, si preguntamos por los valores de las siguientes variables
+  obtendríamos los siguientes resultados:
 
 ```scheme
 x ⇒ 5
@@ -175,7 +196,9 @@ z ⇒ error, no definida
 
 ##### Variables en las definiciones del `let`
 
-- Las expresiones que dan valor a las variables del `let` se evalúan todas en el entorno en el que se ejecuta el `let`, antes de crear las variables locales.
+- Las expresiones que dan valor a las variables del `let` se evalúan
+  todas en el entorno en el que se ejecuta el `let`, antes de crear
+  las variables locales.
 
 ```scheme
 (define x 1)
@@ -190,15 +213,18 @@ z ⇒ error, no definida
 
 Para evaluar una expresión `let` debemos seguir las siguientes reglas:
 
-1. Evaluar todas las expresiones de la derecha de las variables y guardar sus valores en variables auxiliares locales.
-2. Definir un ámbito local en el que se ligan las variables del let con los valores de las variables auxiliares.
+1. Evaluar todas las expresiones de la derecha de las variables y
+   guardar sus valores en variables auxiliares locales.
+2. Definir un ámbito local en el que se ligan las variables del let
+   con los valores de las variables auxiliares.
 3. Evaluar el cuerpo del let en el ámbito local
 
 ----
 
 ##### Let se define utilizando lambda
 
-La semántica anterior queda clara cuando comprobamos que let se puede definir en función de lambda. En general, la expresión:
+La semántica anterior queda clara cuando comprobamos que let se puede
+definir en función de lambda. En general, la expresión:
 
 ```scheme
 (let ((<var1> <exp1>) ... (<varn> <expn>)) <cuerpo>)
@@ -228,7 +254,8 @@ Equivale a:
 
 ### Let dentro de funciones
 
-- Podemos usar `let` en el cuerpo de funciones para crear nuevas variables locales, además de los parámetros de la función:
+- Podemos usar `let` en el cuerpo de funciones para crear nuevas
+  variables locales, además de los parámetros de la función:
 
 ```scheme
 (define (suma-cuadrados x y)
@@ -239,7 +266,8 @@ Equivale a:
 ⇒ 116
 ```
 
-- El uso de `let` permite aumentar la legibilidad de los programas, dando nombre a expresiones:
+- El uso de `let` permite aumentar la legibilidad de los programas,
+  dando nombre a expresiones:
 
 ```scheme
 (define (distancia x1 y1 x2 y2)
@@ -264,8 +292,10 @@ Otro ejemplo:
 
 ### 6.3. Clausuras
 
-- Una clausura es una función devuelta por otra función. 
-- La clausura **captura las variables locales** de la función principal y puede usarlas en su propio código cuando este se invoque posteriormente.
+- Una clausura es una función devuelta por otra función.
+- La clausura **captura las variables locales** de la función
+  principal y puede usarlas en su propio código cuando este se invoque
+  posteriormente.
 
 - Ejemplo:
 
@@ -292,7 +322,8 @@ k: 10 (valor capturado del entorno local en el que se creó la clausura)
 
 ### Las variables locales creadas en un `let` también se capturan en las clausuras
 
-Veamos el siguiente ejemplo, en el que creamos una función en un entorno local creado por un `let`:
+Veamos el siguiente ejemplo, en el que creamos una función en un
+entorno local creado por un `let`:
 
 ```scheme
 (define x 10)
@@ -308,7 +339,8 @@ Veamos el siguiente ejemplo, en el que creamos una función en un entorno local 
 
 <p style="margin-bottom:2cm;"/>
 
-- Con la invocación `(h 2)` se invoca a la clausura, lo que crea un entorno local en el que se encuentran las siguientes variables:
+- Con la invocación `(h 2)` se invoca a la clausura, lo que crea un
+  entorno local en el que se encuentran las siguientes variables:
 
     ```
     z: 2 (parámetro de la clausura)
@@ -345,10 +377,12 @@ Veamos el siguiente ejemplo, en el que creamos una función en un entorno local 
 
 ### 1. Procedimientos recursivos
 
-- La formulación recursiva pura de una función es natural y muy fácil de entender (una vez aprendida)
+- La formulación recursiva pura de una función es natural y muy fácil
+  de entender (una vez aprendida)
 - A veces la función resultante no es eficiente
 - Veremos dos posibles soluciones: procesos iterativos y *memoization*
-- La semana que viene veremos algoritmos recursivos para dibujar curvas fractales
+- La semana que viene veremos algoritmos recursivos para dibujar
+  curvas fractales
 
 ----
 
@@ -356,15 +390,23 @@ Veamos el siguiente ejemplo, en el que creamos una función en un entorno local 
 
 - Hemos diseñado muchas funciones recursivas sobre listas.
 - Ya hemos usado estos consejos:
-    - Para diseñar procedimientos recursivos no vale intentarlo resolver por prueba y error. Hay que diseñar la solución recursiva desde el principio. 
-    - Debemos fijarnos en *lo que devuelve la función*. Supondremos que la llamada recursiva funciona correctamente y devuelve el resultado correcto. Y después debemos transformar este resultado correcto en el resultado de la solución completa.
-    - Debemos **confiar en que la llamada recursiva va a hacer su trabajo y devolver el resultado correcto**, sin preocuparte de cómo lo va a hacer. 
+    - Para diseñar procedimientos recursivos no vale intentarlo
+      resolver por prueba y error. Hay que diseñar la solución
+      recursiva desde el principio.
+    - Debemos fijarnos en *lo que devuelve la función*. Supondremos
+      que la llamada recursiva funciona correctamente y devuelve el
+      resultado correcto. Y después debemos transformar este resultado
+      correcto en el resultado de la solución completa.
+    - Debemos **confiar en que la llamada recursiva va a hacer su
+      trabajo y devolver el resultado correcto**, sin preocuparte de
+      cómo lo va a hacer.
 
 ----
 
 ### Otro ejemplo: `(palindroma? lista)`
 
-- ¿cómo definimos una lista palíndroma de forma recursiva?. Por ejemplo, las siguientes listas son palíndromas:
+- ¿cómo definimos una lista palíndroma de forma recursiva?. Por
+  ejemplo, las siguientes listas son palíndromas:
 
 ```
 {1 2 3 3 2 1}
@@ -375,13 +417,15 @@ Veamos el siguiente ejemplo, en el que creamos una función en un entorno local 
 
 - Comenzamos con una definición **no recursiva**:
 
-> Una lista es palíndroma cuando es igual a su inversa. 
+> Una lista es palíndroma cuando es igual a su inversa.
 
 - Esta definición no es recursiva porque no llamamos a la recursión con un caso más sencillo.
 
 - La definición **recursiva** del caso general es la siguiente:
 
-> Una lista es palíndroma cuando su primer elemento es igual que el último y la lista resultante de quitar el primer y el último elemento también es palíndroma
+> Una lista es palíndroma cuando su primer elemento es igual que el
+> último y la lista resultante de quitar el primer y el último
+> elemento también es palíndroma
 
 En Scheme:
 
@@ -410,15 +454,19 @@ La función auxiliar `quitar-primero-ultimo` la podemos definir así:
 
 ### 1.2. El coste de la recursión
 
-- Vamos a analizar el coste de la recursión de una forma empírica, sin realizar una análisis matemático riguroso.
-- Veremos que el coste se dispara cuando tenemos dos llamadas recursivas.
+- Vamos a analizar el coste de la recursión de una forma empírica, sin
+  realizar una análisis matemático riguroso.
+- Veremos que el coste se dispara cuando tenemos dos llamadas
+  recursivas.
 - Veremos formas de resolver este coste.
 
 ----
 
 ### 1.2.1. La pila de la recursión
 
-- Para analizar una función vamos por primera vez a *entrar en la recursión* y hacer una traza de las llamadas recursivas del siguiente:
+- Para analizar una función vamos por primera vez a *entrar en la
+  recursión* y hacer una traza de las llamadas recursivas del
+  siguiente:
 
 ```scheme
 (define (mi-length items)
@@ -444,23 +492,36 @@ La función auxiliar `quitar-primero-ultimo` la podemos definir así:
 4
 ```
 
-- Cada llamada a la recursión **deja una función en espera de ser evaluada cuando la recursión devuelva un valor** (en el caso anterior el +). Esta función, junto con sus argumentos, se almacenan en la **pila de la recursión**.
-- Cuando la recursión devuelve un valor, los valores se recuperan de la pila, se realiza la llamada y se devuelve el valor a la anterior llamada en espera. 
-- Si la recursión está mal hecha y nunca termina se genera un *stack overflow* porque la memoria que se almacena en la pila sobrepasa la memoria reservada para el intérprete DrRacket.
+- Cada llamada a la recursión **deja una función en espera de ser
+  evaluada cuando la recursión devuelva un valor** (en el caso
+  anterior el +). Esta función, junto con sus argumentos, se almacenan
+  en la **pila de la recursión**.
+- Cuando la recursión devuelve un valor, los valores se recuperan de
+  la pila, se realiza la llamada y se devuelve el valor a la anterior
+  llamada en espera.
+- Si la recursión está mal hecha y nunca termina se genera un *stack
+  overflow* porque la memoria que se almacena en la pila sobrepasa la
+  memoria reservada para el intérprete DrRacket.
 
 ----
 
 #### Coste espacial de la recursión
 
-- El coste espacial de un programa es una función que relaciona la memoria consumida por una llamada para resolver un problema con alguna variable que determina el tamaño del problema a resolver.
+- El coste espacial de un programa es una función que relaciona la
+  memoria consumida por una llamada para resolver un problema con
+  alguna variable que determina el tamaño del problema a resolver.
 
-- En el caso de la función `mi-length` el tamaño del problema viene dado por la longitud de la lista. El coste espacial de `mi-lenght` es *O(n)*, siendo *n* la longitud de la lista.
+- En el caso de la función `mi-length` el tamaño del problema viene
+  dado por la longitud de la lista. El coste espacial de `mi-lenght`
+  es *O(n)*, siendo *n* la longitud de la lista.
 
 ----
 
 ##### 1.2.3. El coste depende del número de llamadas a la recursión
 
-- Veamos con un ejemplo que el coste de las llamadas recursivas puede dispararse. Supongamos la famosa [secuencia de Fibonacci]: 0,1,1,2,3,5,8,13,...
+- Veamos con un ejemplo que el coste de las llamadas recursivas puede
+  dispararse. Supongamos la famosa [secuencia de Fibonacci]:
+  0,1,1,2,3,5,8,13,...
 
 [secuencia de Fibonacci]:http://en.wikipedia.org/wiki/Fibonacci_number
 
@@ -498,19 +559,29 @@ La función auxiliar `quitar-primero-ultimo` la podemos definir así:
 
 #### <a name="1-3"></a> 1.3. Soluciones al coste de la recursión: procesos iterativos
 
-- Diferenciamos entre procedimientos y procesos: un procedimiento es un algoritmo y un proceso es la ejecución de ese algoritmo.
-- Es posible definir procedimientos recursivos que generen procesos iterativos en los que no se dejen llamadas recursivas en espera ni se incremente la pila de la recursión. 
-- **Solución**: Construimos la recursión de forma que en cada llamada se haga un cálculo parcial y en el caso base se pueda devolver directamente el resultado obtenido.
+- Diferenciamos entre procedimientos y procesos: un procedimiento es
+  un algoritmo y un proceso es la ejecución de ese algoritmo.
+- Es posible definir procedimientos recursivos que generen procesos
+  iterativos en los que no se dejen llamadas recursivas en espera ni
+  se incremente la pila de la recursión.
+- **Solución**: Construimos la recursión de forma que en cada llamada
+  se haga un cálculo parcial y en el caso base se pueda devolver
+  directamente el resultado obtenido.
 
-- Este estilo de recursión se denomina *recursión por la cola* ([tail recursion](http://en.wikipedia.org/wiki/Tail_call), en inglés).
+- Este estilo de recursión se denomina *recursión por la cola*
+  ([tail recursion](http://en.wikipedia.org/wiki/Tail_call), en
+  inglés).
 
 ----
 
 ##### 1.3.1. Factorial iterativo
 
-- Definimos la función `(fact-iter-aux product n)` que es la que define el proceso iterativo
-- Tiene un parámetro adicional (`product`) que es el parámetro en el que se irán guardando los cálculos intermedios
-- Al final de la recursión el factorial debe estar calculado en `product` y se devuelve
+- Definimos la función `(fact-iter-aux product n)` que es la que
+  define el proceso iterativo
+- Tiene un parámetro adicional (`product`) que es el parámetro en el
+  que se irán guardando los cálculos intermedios
+- Al final de la recursión el factorial debe estar calculado en
+  `product` y se devuelve
 
 ```
 (define (factorial-iter n)
@@ -558,16 +629,20 @@ Solución:
 ### Procesos iterativos
 
 - La recursión resultante es menos elegante
-- Se necesita una parámetro adicional en el que se van acumulando los resultados parciales
+- Se necesita una parámetro adicional en el que se van acumulando los
+  resultados parciales
 - La última llamada a la recursión devuelve el valor acumulado
-- El proceso resultante de la recursión es iterativo en el sentido de que no deja llamadas en espera ni incurre en coste espacial
+- El proceso resultante de la recursión es iterativo en el sentido de
+  que no deja llamadas en espera ni incurre en coste espacial
 
 ---
 
 ### Fibonacci iterativo
 
-- Cualquier programa recursivo se puede transformar en otro que genera un proceso iterativo.
-- En general, las versiones iterativas son menos intuitivas y más difíciles de entender y depurar.
+- Cualquier programa recursivo se puede transformar en otro que genera
+  un proceso iterativo.
+- En general, las versiones iterativas son menos intuitivas y más
+  difíciles de entender y depurar.
 - Ejemplo: Fibonacci iterativo
 
 ```scheme
@@ -623,7 +698,8 @@ La versión recursiva pura:
 
 ### Triángulo de Pascal versión iterativa
 
-- Utilizamos enfoque iterativo: cada fila se genera a partir de la anterior y 
+- Utilizamos enfoque iterativo: cada fila se genera a partir de la
+  anterior y
 
 ```scheme
 (define (pascal-iter fila col)
@@ -650,17 +726,27 @@ La versión recursiva pura:
 
 #### 1.4. Soluciones al coste de la recursión: memoization
 
-- Una alternativa que mantiene la elegancia de los procesos recursivos y la eficiencia de los iterativos es la  [memoization](http://en.wikipedia.org/wiki/Memoization). Si miramos la traza de `(fibonacci 4)` podemos ver que el coste está producido por la repetición de llamadas; por ejemplo `(fibonacci 3)` se evalúa 2 veces.
+- Una alternativa que mantiene la elegancia de los procesos recursivos
+  y la eficiencia de los iterativos es la
+  [memoization](http://en.wikipedia.org/wiki/Memoization). Si miramos
+  la traza de `(fibonacci 4)` podemos ver que el coste está producido
+  por la repetición de llamadas; por ejemplo `(fibonacci 3)` se evalúa
+  2 veces.
 
-- En programación funcional la llamada a `(fibonacci 3)` siempre va a devolver el mismo valor.
+- En programación funcional la llamada a `(fibonacci 3)` siempre va a
+  devolver el mismo valor.
 
-- Podemos guardar el valor devuelto por la primera llamada en alguna estructura (una lista de asociación, por ejemplo) y no volver a realizar la llamada a la recursión las siguientes veces.
+- Podemos guardar el valor devuelto por la primera llamada en alguna
+  estructura (una lista de asociación, por ejemplo) y no volver a
+  realizar la llamada a la recursión las siguientes veces.
 
 ----
 
 ### 1.4.1. Fibonacci con memoization
 
-- Usamos los métodos procedurales `put` y `get` que implementan un diccionario *clave-valor* (para probarlos hay que importar la librería de Scheme que permite mutar las parejas):
+- Usamos los métodos procedurales `put` y `get` que implementan un
+  diccionario *clave-valor* (para probarlos hay que importar la
+  librería de Scheme que permite mutar las parejas):
 
 ```scheme
 (import (rnrs)
@@ -684,7 +770,8 @@ La versión recursiva pura:
 	'ok)
 ```
 
-- La función `(put key value lista)` asocia un valor a una clave y la guarda en la lista (con mutación).
+- La función `(put key value lista)` asocia un valor a una clave y la
+  guarda en la lista (con mutación).
 
 - La función `(get key lista)` devuelve el valor de la lista asociado a una clave.
 
@@ -697,7 +784,10 @@ Ejemplos:
 (get 2 mi-lista) ; ⇒ '()
 ```
 
-- La función `fib-memo` realiza el cálculo de la serie de Fibonacci utilizando el proceso recursivo visto anteriormente y la técnica de memoización, en la que se consulta el valor de Fibonacci de la lista antes de realizar la llamada recursiva:
+- La función `fib-memo` realiza el cálculo de la serie de Fibonacci
+  utilizando el proceso recursivo visto anteriormente y la técnica de
+  memoización, en la que se consulta el valor de Fibonacci de la lista
+  antes de realizar la llamada recursiva:
 
 ```scheme
 (define (fib-memo n lista)
@@ -713,7 +803,10 @@ Ejemplos:
                     result)))))
 ```
 
-- Podemos comprobar la diferencia de tiempos de ejecución entre esta versión y la anterior. El coste de la función *memoizada* es O(n). Frente al coste O(2^n) de la versión inicial que la hacía imposible de utilizar.
+- Podemos comprobar la diferencia de tiempos de ejecución entre esta
+  versión y la anterior. El coste de la función *memoizada* es
+  O(n). Frente al coste O(2^n) de la versión inicial que la hacía
+  imposible de utilizar.
 
 ```scheme
 (define lista (list '*table*))
