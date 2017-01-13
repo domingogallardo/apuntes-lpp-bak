@@ -262,7 +262,7 @@ Plantearse uno mismo problemas:
 
 ### Bibliografía
 
-En Moodle publican los apuntes de la asignatura, con ejercicios,
+En Moodle se publican los apuntes de la asignatura, con ejercicios,
 explicaciones y ejemplos de todos los conceptos estudiados, tanto en
 teoría como en práctica.
 
