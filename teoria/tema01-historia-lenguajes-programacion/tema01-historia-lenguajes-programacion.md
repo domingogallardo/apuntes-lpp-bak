@@ -1,7 +1,7 @@
 
-## Tema 1: Historia y conceptos de los lenguajes de programación
+# Tema 1: Historia y conceptos de los lenguajes de programación
 
-### Contenidos 
+## Contenidos 
 
 - [1. Historia de los lenguajes de programación](#1)
     - [1.1. Calcular y computar](#1-1)
@@ -39,7 +39,7 @@
     - [5.3. Enfoques mixtos](#5-3)
 
 
-### <a name="1"/> 1. Historia de los lenguajes de programación
+## <a name="1"/> 1. Historia de los lenguajes de programación
 
 Un lenguaje de programación permite especificar programas que se
 ejecutan en computadores, programas que definen el comportamiento del
@@ -48,7 +48,7 @@ programación es fundamental conocer cuáles son los elementos
 fundamentales, determinantes, de los computadores. Y para ello es
 necesario conocer su historia.
 
-#### <a name="1-1"/> 1.1. Calcular y computar
+### <a name="1-1"/> 1.1. Calcular y computar
 
 Los avances tecnológicos en distintos campos (astronomía, armamento,
 comercio, etc.) en los siglos XVI y XVII provocan la necesidad de
@@ -75,13 +75,13 @@ En los siglos XVII al XIX científicos, relojeros y aficionados
 construyeron un gran número de máquinas de calcular. Todas ellas
 mecánicas. A continuación mostramos algunos ejemplos.
 
-##### Máquina de sumar del alemán Wilhelm Schickard (1623)
+#### Máquina de sumar del alemán Wilhelm Schickard (1623)
 
 <img src="imagenes/SchickardMachine.jpg" width="300px"/>
 
 *Máquina de Schickard*
 
-##### Calculadora de Pascal (1650) (*Pascalina*),
+#### Calculadora de Pascal (1650) (*Pascalina*),
 
 La primera máquina de calcular que podía hacer sumas, restas,
 multiplicaciones y divisiones:
@@ -96,7 +96,7 @@ multiplicaciones y divisiones:
 
 Se construyeron alrededor de 50 unidades.
 
-##### Motor de diferencias de Babbage
+#### Motor de diferencias de Babbage
 
 En 1820 el ingeniero inglés Charles Babbage diseñó el motor de
 diferencias (*Babbage difference engine*) para poder calcular e
@@ -123,7 +123,7 @@ manuales, un operador debía introducir las operaciones una a una. El
 motor de diferencias es automático (funciona haciendo girar una
 palanca) pero estaba diseñada para realizar un único cálculo.
 
-##### Motor analítico de Babbage
+#### Motor analítico de Babbage
 
 <img src="imagenes/analytical-engine.png" width="500px"/>
 
@@ -157,7 +157,7 @@ máquina. Tenían una enorme complejidad para la época y necesitaba
 muchísima financiación. En 1871 murió habiendo podido construir sólo
 una parte.
 
-#### <a name="1-2"/> 1.2. Avances previos a los primeros computadores
+### <a name="1-2"/> 1.2. Avances previos a los primeros computadores
 
 Todas estas máquinas calculadoras representan avances en el proceso
 del desarrollo de los primeros computadores, pero a finales del siglo
@@ -168,7 +168,7 @@ inventores adelantados a su tiempo.
 Se necesitan algunos avances adicionales antes de llegar a la década
 clave en la historia de los computadores, la década 1940-50.
 
-#####  Codificación de la información: tarjetas perforadas
+####  Codificación de la información: tarjetas perforadas
 
 La forma de introducir los programas y los datos en muchos de los
 primeros computadores era mediante tarjetas perforadas.
@@ -194,7 +194,7 @@ representa una línea de texto.
 Podemos probar un [simulador de tarjetas perforadas](http://www.kloth.net/services/cardpunch.php).
 
 
-##### Relés electromecánicos
+#### Relés electromecánicos
 
 <img src="imagenes/relay-telegrafo.png" width="450px"/>
 
@@ -205,7 +205,7 @@ Podemos probar un [simulador de tarjetas perforadas](http://www.kloth.net/servic
 <img src="imagenes/and-reles.png" width="200px"/>
 
 
-##### Máquina universal de Turing
+#### Máquina universal de Turing
 
 La máquina de Turing no es un computador real, no existe
 físicamente. Es un *modelo computacional* que formula Alan Turing para
@@ -239,7 +239,7 @@ comportamiento en otra parte de la cinta. Esta idea tuvo un profundo
 impacto en el desarrollo de los computadores, dando origen, una década
 después, al concepto de programa almacenado en memoria.
 
-##### Resumen de avances importantes finales del siglo XIX y principios del XX
+#### Resumen de avances importantes finales del siglo XIX y principios del XX
 
 **Matemáticos y teóricos**
 
@@ -255,7 +255,7 @@ después, al concepto de programa almacenado en memoria.
 - (1937) Claude Shannon - Circuitos de relés para definir puertas
   lógicas, circuito de relés sumador en base 2
 
-#### <a name="1-3"/> 1.3 La década 1940-50
+### <a name="1-3"/> 1.3 La década 1940-50
 
 En la década 1940-50 se cristalizan todas las ideas previas y se
 produce un avance exponencial en el desarrollo de máquinas de
@@ -264,7 +264,7 @@ con los primeros computadores comerciales de propósito general y con
 los primeros programas de inteligencia artificial (juegos de damas y
 ajedrez).
 
-##### 1941: la máquina de calcular Z3 de Zuse
+#### 1941: la máquina de calcular Z3 de Zuse
 
 <img src="imagenes/Zuse_Z3.jpg" width="300px"/>
 
@@ -325,7 +325,7 @@ quedó olvidado y no tuvo repercusión fuera de sus fronteras.
 ***Memoria***: 64 palabras de 22 bits en almacenadas en relés  
 ***Velocidad***: 1 instrucción por segundo  
 
-##### **ABC** (1942, USA)
+#### **ABC** (1942, USA)
 
 <img src="imagenes/ABCreplica.jpg" width="300px"/>
 
@@ -353,7 +353,7 @@ irrecuperables.
 de 50 bits almacenadas en condensadores  
 ***Velocidad***: 30 sumas/restas por segundo  
 
-##### **Colossus** (1944, UK)
+#### **Colossus** (1944, UK)
 
 <img src="imagenes/Colossus.jpg" width="300px"/>
 
@@ -398,7 +398,7 @@ de forma decisiva al triunfo aliado en la Segunda Guerra Mundial.
  se realiza con una cinta de datos perforada e interruptores  
 ***Memoria***: no tiene elementos de memoria  
 
-##### **Mark-1** (1944, USA)
+#### **Mark-1** (1944, USA)
 
 <img src="imagenes/mark-1.jpg" width="400px"/>
 
@@ -419,7 +419,7 @@ sin operador de comparación, entrada de datos con 60 conjuntos de
 ***Velocidad***: 3 sumas/restas por segundo, una división tardaba 15 segundos 
 y un logaritmo o función trigonométrica alrededor de 1 minuto  
 
-##### **ENIAC** (1945, USA)
+#### **ENIAC** (1945, USA)
 
 <img src="imagenes/eniac.jpg" width="400px"/>
 
@@ -466,7 +466,7 @@ La entrada y salida de datos se realizaba con tarjetas perforadas
 ***Memoria***: 20 registros decimales  
 ***Velocidad***: 5.000 sumas/restas por segundo  
 
-##### La arquitectura von Neumann
+#### La arquitectura von Neumann
 
 En 1945, mientras que el ENIAC estaba todavía en construcción, von
 Neumann, trabajando en la Universidad de Princeton (EEUU) escribió su
@@ -504,7 +504,7 @@ se puede almacenar en memoria, se puede tratar de la misma forma que
 se tratan otros datos. Aparecen los preprocesadores, lincadores,
 compiladores e intérpretes. Programas que procesan otros programas.
 
-##### **EDSAC** (1949, UK)
+#### **EDSAC** (1949, UK)
 
 El EDSAC fue uno de los primeros computadores en funcionamiento que
 utilizó la arquitectura von Neumann con el programa almacenado en
@@ -522,7 +522,7 @@ perforadas.
 de línea de retardo de mercurio  
 ***Velocidad***: 714 operaciones por segundo
 
-##### **Máquina de Manchester** (1948, UK)
+#### **Máquina de Manchester** (1948, UK)
 
 Una vez terminada la guerra, después de trabajar en el diseño de
 Colossus, Max Newmann crea el *Computing Machine Laboratory* en la
@@ -589,19 +589,19 @@ el manual de programación del Ferranti que Turing acababa de
 escribir. Turing participó también en el desarrollo de otros programas
 de IA, como un jugador de ajedrez basado en heurísticas.
 
-##### Otros hitos de la historia de los computadores
+#### Otros hitos de la historia de los computadores
 
 Puedes encontrar otros hitos de la historia del computador en la
 [línea de tiempo de la historia del computador](http://www.computerhistory.org/timeline/?category=cmptr)
 del *Computer History Museum*.
 
-#### <a name="1-4"/> 1.4. Características esenciales de un computador
+### <a name="1-4"/> 1.4. Características esenciales de un computador
 
 A pesar de haberse desarrollado múltiples variantes de máquinas,
 arquitecturas y modelos de computador, existen ciertos elementos
 esenciales comunes a todos ellos.
 
-##### Computador universal
+#### Computador universal
 
 Un computador se dice que es universal cuando su conjunto de
 instrucciones permite realizar cualquier programa computable. De forma
@@ -623,7 +623,7 @@ combinatorios de búsqueda eficiente en un espacio de soluciones
 (criptografía o problemas matemáticos) o primeras aplicaciones de
 inteligencia artificial (juegos como las damas).
 
-##### El direccionamiento indirecto
+#### El direccionamiento indirecto
 
 Un concepto fundamental de los conjuntos de instrucciones de los
 procesadores es el de direccionamiento indirecto:
@@ -655,7 +655,7 @@ Sin el direccionamiento indirecto es imposible acceder al contenido de
 tablas con un número variable de elementos. Es necesario para acceder
 a los contenidos de un array en memoria.
 
-#### <a name="1-5"/> 1.5. Los primeros lenguajes de programación
+### <a name="1-5"/> 1.5. Los primeros lenguajes de programación
 
 Los primeros computadores electrónicos se programan directamente
 usando el conjunto de instrucciones del procesador, en código máquina,
@@ -691,7 +691,7 @@ ACM Computing Surveys (CSUR) Surveys, Volume 2 Issue 4, Dec. 1970,
 Pages 247-260)
 
 
-#### <a name="1-6"/> 1.6 El nacimiento de los computadores comerciales
+### <a name="1-6"/> 1.6 El nacimiento de los computadores comerciales
 
 El [UNIVAC](http://en.wikipedia.org/wiki/UNIVAC_I) fue el primer
 computador comercial (1951). Con este computadora aparece por primera
@@ -706,7 +706,7 @@ de empleo, etc.
 
 *Instalaciones comerciales del UNIVAC*
 
-##### Manual de programación del UNIVAC (1959)
+#### Manual de programación del UNIVAC (1959)
 
 Los computadores son lentos y muy complicados de instalar y mantener.
 
@@ -741,7 +741,7 @@ computadores ([YouTube](https://www.youtube.com/watch?v=Pd63MHGQygQ))
 
 *Anuncio UNIVAC*
 
-##### IBM 704
+#### IBM 704
 
 El [IBM 704](http://en.wikipedia.org/wiki/IBM_704) fue el otro gran
 ordenador comercial de la década de los 50.
@@ -757,7 +757,7 @@ para este computador.
 *Foto IBM 704*
 
 
-##### Programando los primeros computadores
+#### Programando los primeros computadores
 
 > The UNIVAC I was an interesting machine to program, with its mercury
 > delay line storage and its short mean time to failure. Programs were
@@ -779,7 +779,7 @@ para este computador.
 > George Sadowsky,
 > [My Second Computer was a UNIVAC I](http://www.georgesadowsky.com/papers/Univac-I.pdf)
 
-#### <a name="1-7"/> 1.7. Los primeros lenguajes de alto nivel
+### <a name="1-7"/> 1.7. Los primeros lenguajes de alto nivel
 
 Los primeros lenguajes de alto nivel se desarrollaron a finales de la
 década de los 50:
@@ -802,7 +802,7 @@ principio:
 	* Lenguaje funcional: funciones, recursión, listas, símbolos
 	* Lenguaje interpretado
 
-##### FORTRAN
+#### FORTRAN
 
 Desarrollado por IBM para programar el IBM 704. Algunos datos:
 
@@ -828,7 +828,7 @@ Cita de John Backus ([Wikipedia sobre FORTRAN](http://en.wikipedia.org/wiki/Fort
 Tomado del
 [manual de FORTRAN del IBM 704](http://archive.computerhistory.org/resources/text/Fortran/102665486.05.01.acc.pdf)
 
-##### Lisp
+#### Lisp
 
 El otro lenguaje de alto nivel desarrollado en esa época es el
 Lisp. Desarrollado a finales de los 50 en el MIT por John McCarthy.
@@ -899,7 +899,7 @@ Tomado de
 MIT Press, 1964
 
 
-#### <a name="1-8"/> 1.8. La explosión de los lenguajes de programación
+### <a name="1-8"/> 1.8. La explosión de los lenguajes de programación
 
 Desde 1954 hasta la actualidad se han documentado más de 2.500
 (consultar en [The Language List]).  Entre 1952 y 1972 alrededor de
@@ -908,7 +908,7 @@ influencia en el desarrollo de lenguajes posteriores.
 
 [The Language List]: http://people.ku.edu/~nkinners/LangList/Extras/langlist.htm
 
-##### Genealogía de los lenguajes de programación
+#### Genealogía de los lenguajes de programación
 
 <img src="imagenes/genealogia-de-los-lp.png" width="600px"/>
 
@@ -939,7 +939,7 @@ Algunas notas sobre la genealogía:
   Objective-C en la que se enfatiza más aspectos dinámicos como el
   paso de mensajes o la modificación de clases en tiempo de ejecución.
 
-##### Algunos lenguajes importantes y su fecha de creación
+#### Algunos lenguajes importantes y su fecha de creación
 
 | 1950-1960  | 1970  | 1980 | 1990 | 2000 |
 | :--------- | :---: | :---: | :---: | ---: |
@@ -952,7 +952,7 @@ Algunas notas sobre la genealogía:
 | 1967 SIMULA |      |    |    |   |  
 
 
-##### Aspectos que provocan la evolución de los LP
+#### Aspectos que provocan la evolución de los LP
 
 ¿Por qué hay tanta variedad en los lenguajes de programación? Hay
 muchos aspectos que fomentan esta variedad y que provocan la necesidad
@@ -973,7 +973,7 @@ fueron importante a finales del siglo 20.
 
 *Evolución de los lenguajes*
 
-##### Los creadores de los LPs
+#### Los creadores de los LPs
 
 Si comprobamos la historia de los lenguajes de programación, podemos
 clasificar a sus creadores en tres grandes categorías:
@@ -991,7 +991,7 @@ clasificar a sus creadores en tres grandes categorías:
   [Matsumoto](http://en.wikipedia.org/wiki/Yukihiro_Matsumoto), Ruby)
 
 
-#### <a name="1-9"/> 1.9. Lenguajes de programación en la actualidad
+### <a name="1-9"/> 1.9. Lenguajes de programación en la actualidad
 
 El índice
 [TIOBE](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html)
@@ -1016,7 +1016,7 @@ más populares en los últimos 10 años.
 
 *Evolución TIOBE*
 
-##### La evolución no se detiene
+#### La evolución no se detiene
 
 Es interesante comprobar que cada vez es más fácil desarrollar nuevos
 lenguajes de programación. Las técnicas y herramientas de
@@ -1090,9 +1090,9 @@ multiparadigma.
 * Lenguaje moderno, multiparadigma (programación orientada a objetos y
   funcional) fuertemente tipeado y compilado.
 
-### <a name="2"/> 2. Elementos de los lenguajes de programación
+## <a name="2"/> 2. Elementos de los lenguajes de programación
 
-#### <a name="2-1"/> 2.1. Definición de la Encyclopedia of Computer Science
+### <a name="2-1"/> 2.1. Definición de la Encyclopedia of Computer Science
 
 A programming language is a set of characters, rules for combining
 them, and rules specifying their effects when executed by a computer,
@@ -1104,7 +1104,7 @@ which have the following four characteristics:
 4. Employs a notation that is closer to that of the specific problem
       being solved than is machine code
 
-#### <a name="2-2"/> 2.2. Definición de Abelson y Sussman
+### <a name="2-2"/> 2.2. Definición de Abelson y Sussman
 
 > We are about to study the idea of a **computational
 > process**. Computational processes are abstract beings that inhabit
@@ -1125,7 +1125,7 @@ Y otra idea fundamental
 > particular attention to the means that the language provides for
 > combining simple ideas to form more complex ideas.
 
-#### <a name="2-3"/> 2.3. Características de un LP
+### <a name="2-3"/> 2.3. Características de un LP
 
 1. Define un proceso que se ejecuta en un computador
 2. Es de alto nivel, cercano a los problemas que se quieren resolver
@@ -1133,7 +1133,7 @@ Y otra idea fundamental
 3. Permite construir nuevas abstracciones que se adapten al dominio
    que se programa
 
-####  <a name="2-4"/> 2.4. Elementos de un LP
+###  <a name="2-4"/> 2.4. Elementos de un LP
 
 Para Abelson y Sussman, todos los lenguajes de progamación permiten
 combinar ideas simples en ideas más complejas mediante los siguientes
@@ -1146,7 +1146,7 @@ tres mecanismos
 * **Mecanismos de abstracción** con los que dar nombre a los elementos
   compuestos y manipularlos como unidades
 
-#### <a name="2-5"/> 2.5. Sintaxis y semántica
+### <a name="2-5"/> 2.5. Sintaxis y semántica
 
 *Sintaxis*: un conjunto de reglas que definen qué expresiones de texto
  son correctas. Por ejemplo, en C todas las sentencias deben terminar
@@ -1157,7 +1157,7 @@ una determinada semántica que define cuál será el resultado de la
 ejecución de un programa.
 
 
-#### <a name="2-6"/> 2.6. Los lenguajes son para las personas
+### <a name="2-6"/> 2.6. Los lenguajes son para las personas
 
 Los lenguajes de programación deben ser precisos, deben poder
 traducirse sin ambigüedad en lenguaje máquina para que sean ejecutados
@@ -1168,7 +1168,7 @@ La programación es una actividad colaborativa y debe basarse en la
 comunicación.
 
 
-#### <a name="2-7"/> 2.7. Importancia del aprendizaje de técnicas de LPs
+### <a name="2-7"/> 2.7. Importancia del aprendizaje de técnicas de LPs
 
 Es importante conocer cómo funciona "por dentro" un lenguaje de
 programación y sus características comparadas.
@@ -1180,7 +1180,7 @@ programación y sus características comparadas.
 * Facilita el aprendizaje de un nuevo lenguaje de programación
 * Facilita el diseño de nuevos lenguajes de programación
 
-### <a name="3"/> 3. Abstracción
+## <a name="3"/> 3. Abstracción
 
 Una misión fundamental de los lenguajes de programación es
 proporcionar herramientas que sirvan para construir estas
@@ -1193,7 +1193,7 @@ nuestro programas es fundamental para conseguir un código legible y
 reutilizable.
 
 
-#### <a name="3-1"/> 3.1. Modelar como una actividad fundamental
+### <a name="3-1"/> 3.1. Modelar como una actividad fundamental
 
 * Para escribir un programa que preste unos servicios es fundamental
   modelar el dominio sobre el que va a trabajar
@@ -1213,7 +1213,7 @@ reutilizable.
 *Casos de uso biblioteca*
 
 
-#### <a name="3-2"/> 3.2. Abstracciones computacionales
+### <a name="3-2"/> 3.2. Abstracciones computacionales
 
 Existen abstracciones propias de la informática (*computer science*),
 que se utilizan en múltiples dominios. Por ejemplo, abstracciones de
@@ -1231,7 +1231,7 @@ y ordenadores externos:
 * Raster gráfico
 * Protocolo TCP/IP
 
-#### <a name="3-3"/> 3.3. Construcción de abstracciones
+### <a name="3-3"/> 3.3. Construcción de abstracciones
 
 Uno de los trabajos principales de un informático es la construcción
 de abstracciones que permitan ahorrar tiempo y esfuerzo a la hora de
@@ -1252,7 +1252,7 @@ Cita de Joel Spolsky en su blog
 > files that in turn consist of one or more strings of bytes.
 
 
-#### <a name="3-4"/> 3.4. Distintos aspectos de los lenguajes de programación
+### <a name="3-4"/> 3.4. Distintos aspectos de los lenguajes de programación
 
 La programación es una disciplina compleja, que tiene que tener en
 cuenta múltiples aspectos de los lenguajes de programación y las API:
@@ -1280,9 +1280,9 @@ cuenta múltiples aspectos de los lenguajes de programación y las API:
     Github, Bitbucket), de gestión incidencias (Jira) , tests que
     evitan errores de regresión, ...
 
-### <a name="4"/> 4. Paradigmas de programación
+## <a name="4"/> 4. Paradigmas de programación
 
-#### <a name="4-1"/> 4.1. ¿Qué es un paradigma de programación?
+### <a name="4-1"/> 4.1. ¿Qué es un paradigma de programación?
 
 Un paradigma define un conjunto de características, patrones y estilos
 de programación basados en alguna idea fundamental. Por ejemplo el
@@ -1320,7 +1320,7 @@ funcionales, no pueden ser considerados multi-paradigma porque no
 fueron creados con la idea de integrar paradigmas variados en una
 forma coherente de expresión.
 
-#### <a name="4-2"/> 4.2. Paradigmas más importantes
+### <a name="4-2"/> 4.2. Paradigmas más importantes
 
 * Paradigma funcional
 * Paradigma lógico
@@ -1328,7 +1328,7 @@ forma coherente de expresión.
 * Paradigma orientado a objetos
 
 
-#### <a name="4-3"/> 4.3. Paradigma funcional
+### <a name="4-3"/> 4.3. Paradigma funcional
 
 Resumen de las características principales:
 
@@ -1353,7 +1353,7 @@ Ejemplo de código (Lisp):
 	(factorial 30)
 	265252859812191058636308480000000
 
-#### <a name="4-4"/> 4.4. Paradigma lógico
+### <a name="4-4"/> 4.4. Paradigma lógico
 
 Características:
 
@@ -1388,7 +1388,7 @@ Ejemplo de código (Prolog):
 	no
 
 
-#### <a name="4-5"/> 4.5. Paradigma imperativo
+### <a name="4-5"/> 4.5. Paradigma imperativo
 
 Los lenguajes de programación que cumplen el paradigma imperativo se
 caracterizan por tener un estado implícito que es modificado mediante
@@ -1427,7 +1427,7 @@ Ejemplo (Pascal):
 	     end;    
 	end;
 
-#### <a name="4-6"/> 4.6. Paradigma orientado a objetos
+### <a name="4-6"/> 4.6. Paradigma orientado a objetos
 
 Características:
 
@@ -1484,7 +1484,7 @@ Ejemplo (Java):
 	}
 
 
-### <a name="5"/> 5. Compiladores e intérpretes
+## <a name="5"/> 5. Compiladores e intérpretes
 
 En el nivel de abstracción más bajo, la ejecución de un programa en un
 computador consiste en la ejecución de un conjunto de instrucciones
@@ -1507,7 +1507,7 @@ será:
 * el código de un programa (intérprete) que realiza la interpretación
   del programa original (en el caso de un lenguaje interpretado)
 
-#### <a name="5-1"/> 5.1. Compilación
+### <a name="5-1"/> 5.1. Compilación
 
 La siguiente figura (tomada, como las demás de este apartado del
 *Programming Language Pragmatics*) muestra el proceso de generación y
@@ -1530,7 +1530,7 @@ Intel no puede ejecutarse en un procesador ARM, como los
   y tiempo de ejecución
 - Mayor eficiencia
 
-#### <a name="5-2"/> 5.2. Interpretación
+### <a name="5-2"/> 5.2. Interpretación
 
 <img src="imagenes/interpretacion.png" width="500px"/>
 
@@ -1549,7 +1549,7 @@ círculos de programación funcional un *REPL* (*Read*, *Eval*, *Print*,
 Lisp. El uso del *REPL* promueve una programación interactiva en la
 que continuamente evaluamos y comprobamos el código que desarrollamos.
 
-#### <a name="5-3"/> 5.3. Enfoques mixtos
+### <a name="5-3"/> 5.3. Enfoques mixtos
 
 Existen también enfoques mixtos, como el usado por el lenguaje de
 programación Java, en el que se realizan ambos procesos.
@@ -1571,7 +1571,7 @@ por ejemplo VirtualBox).
 
 - Ejemplos: Java, Scala
 
-### 6. Bibliografía
+## 6. Bibliografía
 
 
 * Introducción capítulo 1 SICP, *Building Abstractions with
