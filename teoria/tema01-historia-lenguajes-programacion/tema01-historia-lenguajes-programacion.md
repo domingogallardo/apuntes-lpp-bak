@@ -78,8 +78,8 @@ el resto de dígitos). Publicó el resultado en el año 1873.
      <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
   </tr>
   <tr>
-     <td>Máquina de Schickard (1623)</td>
-     <td>Máquina de Schickard</td>
+     <td align="center">Máquina de Schickard (1623)</td>
+     <td align="center">Máquina de Schickard</td>
   </tr>
 </table>
 
