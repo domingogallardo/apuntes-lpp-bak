@@ -71,26 +71,34 @@ durante 15 años los 707 primeros decimales de pi (aunque sólo eran
 correctos los 527 primeros, cometió un error en el 528 que arrastró en
 el resto de dígitos). Publicó el resultado en el año 1873.
 
+
+<table>
+  <tr>
+     <th>Máquina de Schickard (1623)</th>
+     <th>Máquina de Schickard</th>
+  </tr>
+  <tr>
+     <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
+     <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
+  </tr>
+</table>
+
 En los siglos XVII al XIX científicos, relojeros y aficionados
 construyeron un gran número de máquinas de calcular. Todas ellas
 mecánicas. A continuación mostramos algunos ejemplos.
 
+
 #### Máquina de sumar del alemán Wilhelm Schickard (1623)
 
-<img src="imagenes/SchickardMachine.jpg" width="300px"/>
-
-*Máquina de Schickard*
 
 #### Calculadora de Pascal (1650) (*Pascalina*),
 
 La primera máquina de calcular que podía hacer sumas, restas,
-multiplicaciones y divisiones:
+multiplicaciones y divisiones.
 
-<img src="imagenes/Pascaline_from_1652_year.jpg" width="300px"/>
+<img src="imagenes/Pascaline_from_1652_year.jpg" width="300px" align="right"/>
 
-*Máquina de Pascal*
-
-<img src="imagenes/PascaleneLidOpened.jpg" width="300px"/>
+<img src="imagenes/PascaleneLidOpened.jpg" width="300px" align="right"/>
 
 *Máquina de Pascal abierta*
 
@@ -104,7 +112,7 @@ imprimir tablas numéricas de logaritmos utilizando el
 [método de las diferencias](http://acarol.woz.org/difference_engine.html#HowDoesDifferenceEngine)
 para calcular valores de un polinomio.
 
-<img src="imagenes/Charles_Babbage.jpg" width="300px"/>
+<img src="imagenes/Charles_Babbage.jpg" width="300px" align="right"/>
 
 *Charles Babbage*
 
