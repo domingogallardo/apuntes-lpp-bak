@@ -41,38 +41,104 @@
 
 ## <a name="1"/> 1. Historia de los lenguajes de programación
 
-Un lenguaje de programación permite especificar programas que se
-ejecutan en computadores, programas que definen el comportamiento del
-computador. Para entender en profundidad qué es un lenguaje de
-programación es fundamental conocer cuáles son los elementos
-fundamentales, determinantes, de los computadores. Y para ello es
-necesario conocer su historia.
+Un lenguaje de programación permite especificar procesos que se
+ejecutan en computadores. Un programa escrito en un determinado
+lenguaje nos permite definir las instrucciones que realizará el
+computador (o, más en concreto, el procesador) que lo ejecute. Por
+ello, para entender en profundidad qué es un lenguaje de programación
+es fundamental conocer el computador, el instrumento sobre el que que
+programan.
+
+En otras asignaturas de la carrera has estudiado los computadores en
+profundidad desde el punto de vista de sus componentes o de su
+arquitectura. Nosotros queremos en esta rápida introducción utilizar
+un enfoque distinto, haciendo énfasis en la historia del desarrollo
+del computador moderno y de los lenguajes de programación que han
+acompañado este desarrollo. Esta perspectiva histórica nos ayudará a
+entender los elementos esenciales de los computadores y de los
+lenguajes que se usan para programarlos.
 
 ### <a name="1-1"/> 1.1. Calcular y computar
 
-Los avances tecnológicos en distintos campos (astronomía, armamento,
-comercio, etc.) en los siglos XVI y XVII provocan la necesidad de
-acelerar y mejorar la precisión de los cálculos.
+Empezamos la historia en los siglos XVI y XVII, en los que los avances
+tecnológicos en distintos campos de la sociedad europea (astronomía,
+armamento, comercio, etc.) provocan la necesidad de acelerar y mejorar
+la precisión de los cálculos. Por ejemplo, para la navegación de los
+navíos que comercian entre continentes en esos siglos es necesario
+realizar con precisión multiplicaciones y divisiones de grandes
+números. Un error en el cálculo podía hacer que el barco pasara de
+largo una isla o llegara a varios kilómetros de distancia de un
+destino en la costa.
 
-A principios de 1600 John Napier publica un tratado sobre cómo
-simplificar operaciones complejas como multiplicaciones o divisiones
-convirtiéndolas en sumas y restas usando tablas de logaritmos.
+Los cálculos los realizaban personas especializadas en realizar
+operaciones matemáticas. Estas personas se denominaban
+**computadores** (_**computers**_ en inglés) y de ahí viene el nombre
+original en inglés de los ordenadores: instrumentos que sirven para
+realizar cálculos. Los
+computadores humanos ([Wikipedia - Human Computer](https://en.wikipedia.org/wiki/Human_computer))
+se utilizaron hasta la que no se popularizaron los computadores
+electrónicos, a principios de los años 1950s. Por ejemplo, en el
+Proyecto Manhattan que desarrolló la primera bomba atómica había
+habitaciones llenas de computadores humanos realizando cálculos y
+pasándose resultados unos a otros en complejas cadenas de computación
+que simulaban algoritmos que posteriormente serían realizados por los
+primeros computadores. 
 
-En el siglo XVIII (y, de hecho, hasta los años 1940s) un *computador*
-era una persona que se contrataba para realizar cálculos. Cada vez que
-un editor quería publicar una nueva tabla de logaritmos más precisa
-tenía que contratar un grupo de computadores, ponerlos a trabajar y
-recopilar y transcribir los resultados.
+El trabajo de computador estaba generalmente desempeñado por hombres,
+por motivos de status y de rol. En la segunda guerra mundial, debido a
+la escasez de hombres, se buscó para este puesto a mujeres ingenieras
+y matemáticas. Realizaron ese trabajo y también el de programación de
+los primeros computadores electrónicos, como el ENIAC
+([Six Women Programmed the First Computer—And Didn’t Get the Credit](https://www.dreamhost.com/blog/2016/05/21/six-women-programmed-the-first-computer-and-didnt-get-the-credit/)).
 
-Los errores en cualquier cálculo medianamente complejo eran
-inevitables. También era tedioso y costoso el proceso de cálculo. Por
-ejemplo, el matemático aficionado inglés William Shanks calculó
-durante 15 años los 707 primeros decimales de pi (aunque sólo eran
-correctos los 527 primeros, cometió un error en el 528 que arrastró en
-el resto de dígitos). Publicó el resultado en el año 1873.
+Volviendo al siglo XVII y a los primeros computadores humanos, el
+problema principal al que se enfrentaba era el del cansancio y el
+tedio, que terminaban produciendo inevitablemente errores
+cuando los cálculos eran largos y complejos.
+
+El desarrollo del análisis matemático y de instrumentos matemáticos
+como los logaritmos permite reducir la complejidad de las operaciones
+matemáticas.  Por ejemplo, a principios de 1600 John Napier publica un
+tratado sobre cómo simplificar operaciones complejas (multiplicaciones
+o divisiones) convirtiéndolas en sumas y restas usando **tablas de
+logaritmos**.
+
+Pero el cálculo de las tablas e logaritmos también era a su vez un
+proceso complejo y propenso a errores. Cada vez que un editor quería
+publicar una nueva tabla de logaritmos más precisa tenía que contratar
+un grupo de computadores, ponerlos a trabajar y recopilar y
+transcribir los resultados. Tanto el cálculo como la transcripcción
+generaban errores y muchas publicaciones de tablas de logaritmos
+contenían algún error.
+
+Otro famoso ejemplo de cálculo matemático es el realizado por el
+matemático aficionado inglés William Shanks que calculó durante 15
+años los 707 primeros decimales de pi. Publicó el resultado en el
+año 1873. Desafortunadamente sólo eran correctos los 527 primeros
+digitos, cometió un error en el 528 que arrastró en el resto de
+dígitos.
 
 
-<table align="right">
+#### Primeras calculadoras mecánicas
+
+Para intentar evitar todos los errores producidos por los cálculos
+humanos, en los siglos XVII al XIX científicos, relojeros y
+aficionados construyeron un gran número de máquinas de calcular. Todas
+ellas mecánicas, basadas en engranajes y palancas. A continuación
+mostramos algunos ejemplos.
+
+La máquina de sumar del inventor alemán Wilhelm Schickard (1623) o la
+calculadora del matemático francés Blaise Pascal (1650) son ejemplos
+de estos primeros aparatos mecánicos que realizaban cálculos.
+
+La calculadora de Pascal
+([Wikipedia - Pascal's Calculator](https://en.wikipedia.org/wiki/Pascal's_calculator))
+podía hacer sumas, restas, multiplicaciones y divisiones. Se
+construyeron alrededor de 50 unidades que se vendieron por las cortes
+europeas más importantes.
+
+
+<table>
   <tr>
      <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
      <td><img src="imagenes/Pascaline_from_1652_year.jpg" width="300px"/><br/>
@@ -84,27 +150,20 @@ el resto de dígitos). Publicó el resultado en el año 1873.
   </tr>
 </table>
 
-En los siglos XVII al XIX científicos, relojeros y aficionados
-construyeron un gran número de máquinas de calcular. Todas ellas
-mecánicas. A continuación mostramos algunos ejemplos.
+Además de los aspectos prácticos derivados de la realización de
+operaciones matemáticas, estas máquinas de calcular también
+representaban un avance científico y tecnológico y generaban
+curiosidad y expectación en ferias y exhibiciones. 
+
+También en esta época se hicieron muy populares mecanismos automáticos
+que replicaban el movimiento de animales y personas. Eran los famosos
+**autómatas**, realizados al igual que las máquinas de calcular con
+engranajes, palancas, muelles y otros elementos de relojería.
 
 
-#### Máquina de sumar del alemán Wilhelm Schickard (1623)
+#### Charles Babbage y Ada Lovelace
 
-
-#### Calculadora de Pascal (1650) (*Pascalina*),
-
-La primera máquina de calcular que podía hacer sumas, restas,
-multiplicaciones y divisiones.
-
-
-
-
-*Máquina de Pascal abierta*
-
-Se construyeron alrededor de 50 unidades.
-
-#### Motor de diferencias de Babbage
+##### Motor de diferencias
 
 En 1820 el ingeniero inglés Charles Babbage diseñó el motor de
 diferencias (*Babbage difference engine*) para poder calcular e
@@ -114,8 +173,6 @@ para calcular valores de un polinomio.
 
 <img src="imagenes/Charles_Babbage.jpg" width="300px" align="right"/>
 
-*Charles Babbage*
-
 Utilizaba un sistema de numeración decimal y consistía en más de 8.000
 piezas que se movían con una palanca giratoria. Babbage trabajó
 durante varios años en la máquina sin poder completarla. En 2002 el
@@ -124,18 +181,14 @@ funcional ([ver vídeo](http://www.youtube.com/watch?v=0anIyVGeWOI)).
 
 <img src="imagenes/motor-diferencias.jpg" width="400px"/>
 
-*Motor de diferencias de Babbage*
-
 Todas las máquinas de calcular construidas hasta anteriormente eran
 manuales, un operador debía introducir las operaciones una a una. El
 motor de diferencias es automático (funciona haciendo girar una
 palanca) pero estaba diseñada para realizar un único cálculo.
 
-#### Motor analítico de Babbage
+##### Motor analítico 
 
 <img src="imagenes/analytical-engine.png" width="500px"/>
-
-*Motor analítico de Babbage*
 
 En 1840 Babbage tiene la idea de lo que sería la primera máquina
 calculadora automática programable: el *motor analítico*.
