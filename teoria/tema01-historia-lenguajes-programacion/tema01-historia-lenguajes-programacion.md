@@ -72,7 +72,7 @@ correctos los 527 primeros, cometió un error en el 528 que arrastró en
 el resto de dígitos). Publicó el resultado en el año 1873.
 
 
-<table>
+<table align="center">
   <tr>
      <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
      <td><img src="imagenes/Pascaline_from_1652_year.jpg" width="300px"/><br/>
