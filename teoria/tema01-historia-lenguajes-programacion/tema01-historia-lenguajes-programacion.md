@@ -75,11 +75,12 @@ el resto de dígitos). Publicó el resultado en el año 1873.
 <table>
   <tr>
      <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
-     <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
+     <td><img src="imagenes/Pascaline_from_1652_year.jpg" width="300px"/><br/>
+         <img src="imagenes/PascaleneLidOpened.jpg" width="300px"/></td>
   </tr>
   <tr>
      <td align="center">Máquina de Schickard (1623)</td>
-     <td align="center">Máquina de Schickard</td>
+     <td align="center">Calculadora de Pascal (1650)</td>
   </tr>
 </table>
 
@@ -96,9 +97,8 @@ mecánicas. A continuación mostramos algunos ejemplos.
 La primera máquina de calcular que podía hacer sumas, restas,
 multiplicaciones y divisiones.
 
-<img src="imagenes/Pascaline_from_1652_year.jpg" width="300px" align="right"/>
 
-<img src="imagenes/PascaleneLidOpened.jpg" width="300px" align="right"/>
+
 
 *Máquina de Pascal abierta*
 
