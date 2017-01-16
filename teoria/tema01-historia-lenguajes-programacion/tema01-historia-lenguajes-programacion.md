@@ -163,6 +163,22 @@ engranajes, palancas, muelles y otros elementos de relojería.
 
 #### Charles Babbage y Ada Lovelace
 
+En el siglo XIX la invención del motor de vapor y la automatización de
+los procesos de fabricación con mecanismos cada vez más complejos da
+lugar a la revolución industrial. 
+
+<img src="imagenes/telar-jacquar.jpg" align="right" width="200px"/>
+
+Un ejemplo es la industria textil, con la invención del telar mecánico
+en 1805 por el ingeniero francés Joseph Marie Jacquar. Este telar
+funcionaba de forma completamente automática, sin necesidad de
+operadores humanos. Podía producir cualquier tipo de patrón, según
+la programación proporcionada por cintas perforadas. Se trata de uno
+de los primeros mecanismos programables.
+
+En la fotografía de la derecha se puede ver una imagen de las cintas
+perforadas que programaban los patrones de estos telares de Jacquar.
+
 ##### Motor de diferencias
 
 En 1820 el ingeniero inglés Charles Babbage diseñó el motor de
@@ -171,52 +187,94 @@ imprimir tablas numéricas de logaritmos utilizando el
 [método de las diferencias](http://acarol.woz.org/difference_engine.html#HowDoesDifferenceEngine)
 para calcular valores de un polinomio.
 
-<img src="imagenes/Charles_Babbage.jpg" width="300px" align="right"/>
-
 Utilizaba un sistema de numeración decimal y consistía en más de 8.000
 piezas que se movían con una palanca giratoria. Babbage trabajó
 durante varios años en la máquina sin poder completarla. En 2002 el
 *Science Museum* de Londres presentó una reconstrucción totalmente
 funcional ([ver vídeo](http://www.youtube.com/watch?v=0anIyVGeWOI)).
 
-<img src="imagenes/motor-diferencias.jpg" width="400px"/>
+##### Motor analítico 
 
-Todas las máquinas de calcular construidas hasta anteriormente eran
+Todas las máquinas de calcular construidas hasta este momento eran
 manuales, un operador debía introducir las operaciones una a una. El
 motor de diferencias es automático (funciona haciendo girar una
 palanca) pero estaba diseñada para realizar un único cálculo.
 
-##### Motor analítico 
+En 1840 Babbage tiene la idea de lo que podría haber sido la primera
+máquina calculadora automática programable: el *motor analítico*. Una
+de las fuentes en las que se inspiró fue el telar de Jacquard. Si los
+patrones definidos en una cinta perforada podían dirigir un telar para
+que tejiese un determinado dibujo, ¿no podría diseñarse una máquina
+que en lugar de tejer realizará cálculos? La máquina ya no estaría
+limitada a realizar un único cálculo, sino que se podrían modificar
+las operaciones a realizar mediante la cinta perforada.
 
-<img src="imagenes/analytical-engine.png" width="500px"/>
+De esta forma, la idea del motor de diferencias quedó superada por una
+máquina de propósito general, que sería capaz de realizar cualquier
+cálculo programado en la cinta.
 
-En 1840 Babbage tiene la idea de lo que sería la primera máquina
-calculadora automática programable: el *motor analítico*.
-
-Se trata de una máquina totalmente mecánica, similar al motor de
-diferencias, pero cuyas operaciones pueden ser programadas utilizando
-tarjetas perforadas como las que se usaban en la época para programar
-telares. Babbage diseñó tres tipos de tarjetas: una para las
-operaciones matemáticas, otra para las constantes numéricas y otras
-para las operaciones de carga y almacenamiento de operaciones y
-números en la "memoria" de la máquina. La máquina tenía tres lectores
-separados para cada uno de los tipos de tarjetas.
+Se trataría de una máquina totalmente mecánica, pero muchísimo más
+compleja. Babbage diseñó tres tipos de cintas (o tarjetas) perforadas:
+una para definir las operaciones matemáticas, otra para las constantes
+numéricas y otras para las operaciones de carga y almacenamiento de
+operaciones y números en la "memoria" de la máquina. La máquina tenía
+tres lectores separados para cada una de las cintas perforadas.
 
 La máquina estaba diseñada para trabajar en base 10 y se podía
 conseguir que sus cálculos realizaran saltos condicionales y bucles.
-
-<img src="imagenes/ada-lovelace.jpg" width="200px"/>
-
-*Ada Lovelace*
-
-Ada Lovelace tuvo un papel fundamental en la divulgación de la
-máquina, de sus sistema de programación y fue la primera que entendió
-sus posibilidades más allá del cálculo de fórmulas
 
 Babbage trabajó durante más de 30 años para intentar construir la
 máquina. Tenían una enorme complejidad para la época y necesitaba
 muchísima financiación. En 1871 murió habiendo podido construir sólo
 una parte.
+
+<table>
+  <tr>
+     <td><img src="imagenes/Charles_Babbage.jpg" width="250px"/></td>
+     <td><img src="imagenes/motor-diferencias.jpg" width="300px"/></td>
+     <td><img src="imagenes/analytical-engine.png" width="400px"/></td>
+  </tr>
+  <tr>
+     <td align="center">Charles Babbage</td>
+     <td align="center">Motor de diferencias</td>
+     <td align="center">Motor analítico</td>
+  </tr>
+</table>
+
+<img src="imagenes/ada-lovelace.jpg" width="200px" align="right"/>
+
+**Ada Lovelace** tuvo un papel fundamental en la divulgación de la
+máquina, de sus sistema de programación y fue la primera que entendió
+sus posibilidades más allá del cálculo de fórmulas. 
+
+
+De forma poco habitual para la época, Ada fue educada en el campo de
+las ciencias y de las matemáticas. A principios de 1840, con
+veinticico años, conoció el trabajo de Babbage y colaboró con él,
+dedicándose durante varios años a conocer y estudiar el diseño y el
+funcionamiento del motor analítico. 
+
+En 1843 publicó el trabajo _"Sketch of the analytical engine invented
+by Charles Babbage"_ en el que traduce del italiano un artículo sobre
+el motor analítico escrito por el científico Luigi Federico Menabrea
+y, lo más importante, añade reflexiones propias sobre el alcance del
+invento y construye un ejemplo completo, con tablas y diagramas, de
+cómo hacer que la máquina produzca la secuencia de los números de
+Bernoulli.
+
+Se puede considerar estas tablas y diagramas como el _primer programa
+de un computador_. Pero hay que entender que no se trata de un
+programa escrito en un lenguaje de programación (el motor analítico no
+tenía un conjunto de instrucciones definido, ni las ejecutaba de forma
+secuencial, como los procesadores que veremos más adelante) y que el
+computador se trataba de un computador mecánico que no llegó a
+construirse.
+
+Puedes encontrar más información sobre Ada Lovelace en el siguiente
+enlace
+[Ada Lovelace, la primera programadora de la historia](https://www.genbetadev.com/desarrolladores/ada-lovelace-la-primera-programadora-de-la-historia). Un
+artículo mucho más profundo y detallado es el de Stephen Wolfram: [Untangling the Tale of Ada Lovelace](http://blog.stephenwolfram.com/2015/12/untangling-the-tale-of-ada-lovelace/).
+
 
 ### <a name="1-2"/> 1.2. Avances previos a los primeros computadores
 
