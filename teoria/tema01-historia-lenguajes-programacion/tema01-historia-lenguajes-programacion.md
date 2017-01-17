@@ -978,8 +978,8 @@ para este computador.
 Los primeros lenguajes de alto nivel se desarrollaron a finales de la
 década de los 50:
 
-	* FORTRAN en 1956
-	* Lisp en 1958
+- FORTRAN en 1956
+- Lisp en 1958
 
 Ambos lenguajes planteaban dos enfoques muy distintos desde el
 principio:
