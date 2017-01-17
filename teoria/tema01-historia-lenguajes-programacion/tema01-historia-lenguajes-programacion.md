@@ -399,7 +399,6 @@ físico, pero contiene elementos ideales y poco eficientes que hacen
 imposible tomarlo como un diseño de a partir del que construir un
 computador físico.
 
-
 Una máquina de Turing consiste en un scanner lee y escribe 0s y 1s de
 una cinta infinita (memoria) y se mueve y los escribe en función de
 una tabla definida en la máquina (programa).
@@ -407,9 +406,18 @@ una tabla definida en la máquina (programa).
 En el mismo trabajo Turing define el concepto de *máquina universal*
 que es capaz de leer de la cinta un programa cualquiera y simular su
 comportamiento en otra parte de la cinta. Esta idea tuvo un profundo
-impacto en el desarrollo de los computadores, dando origen, una década
-después, al concepto de programa almacenado en memoria.
+impacto en el desarrollo de los computadores, porque mostraba que es
+posible escribir programas que tomen como datos otros programas. Esto
+abre la puerta a la idea de los programas almacenados en memoria (ya
+que son otros datos más) y a la creación de compiladores e intérpretes.
 
+Se dice que un lenguaje de programación es **Turing-completo** cuando
+es posible escribir en él un programa que simule una máquina de
+Turing. De esta forma se puede afirmar que es capaz de escribirse en
+él cualquier algoritmo computable. En concreto se ha demostrado que
+para que un conjunto de instrucciones de un procesador sea
+Turing-completo debe ser capaz de realizar saltos condicionales y
+direccionamiento indirecto. 
 
 ### <a name="1-3"/> 1.3 La década 1940-50
 
@@ -435,7 +443,9 @@ La máquina Z3 sólo podía ejecutar secuencias fijas de operaciones
 aritméticas en punto flotante (suma, resta, multiplicación, división y
 raíz cuadrada) codificadas en una cinta perforada. El programa se
 codificaba en una cinta externa y se leía paso a paso de forma
-mecánica. En sus instrucciones no existía el salto condicional.
+mecánica. En sus instrucciones no existía el salto condicional, por lo
+que la máquina no puede considerarse un computador de propósito
+general, al no ser Turing-computable.
 
 Debido a que los finales de la cinta perforada podían pegarse, la
 máquina Z3 era capaz de ejecutar de forma repetida un bucle sencillo
@@ -461,7 +471,6 @@ Un ejemplo de programa:
     op
     STORE a
 
-
 El programa de cálculos a realizar se escribía de forma secuencial en
 una cinta perforada. La Z3 iba leyendo la cinta y realizando las
 operaciones indicadas.
@@ -469,12 +478,16 @@ operaciones indicadas.
 Debido al estallido de la Segunda Guerra Mundial el trabajo de Zuse
 quedó olvidado y no tuvo repercusión fuera de sus fronteras.
 
-***Tecnología***: electromecánica, relés  
-***Programación***: cinta con instrucciones codificadas  
-***Memoria***: 64 palabras de 22 bits en almacenadas en relés  
-***Velocidad***: 1 instrucción por segundo  
+##### Resumen de características
 
-#### **ABC** (1942, USA)
+- _**Tecnología**_: Electromecánica, relés.
+- _**Programación**_: Cinta con instrucciones codificadas. El conjunto
+  de instrucciones no tiene saltos condicionales ni direccionamiento
+  indirecto, por lo que no es Turing-computable.
+- _**Memoria**_: 64 palabras de 22 bits en almacenadas en relés.
+- _**Velocidad**_: 1 instrucción por segundo.
+
+#### ABC (1942, USA)
 
 <img src="imagenes/ABCreplica.jpg" width="300px" align="right"/>
 
@@ -493,14 +506,14 @@ llegó nunca a funcionar totalmente. Las partes mecánicas, como el
 lector de tarjetas binarias, introdujeron continuamente errores
 irrecuperables.
 
-***Tecnología***: electrónica, válvulas de vacío  
-***Programación***: no es de propósito general, la entrada
- de datos y ecuaciones se hace con tarjetas perforadas    
-***Memoria***: 60 números en representados en binario en palabras 
-de 50 bits almacenadas en condensadores  
-***Velocidad***: 30 sumas/restas por segundo  
+##### Resumen de características
 
-#### **Colossus** (1944, UK)
+- _**Tecnología**_: Electrónica, válvulas de vacío.
+- _**Programación**_: No es de propósito general, la entrada de datos y ecuaciones se hace con tarjetas perforadas.
+- _**Memoria**_: 60 números en representados en binario en palabras de 50 bits almacenadas en condensadores.
+- _**Velocidad**_: 30 sumas/restas por segundo.
+
+#### Colossus (1944, UK)
 
 <img src="imagenes/Colossus.jpg" width="300px" align="right"/>
 
@@ -538,12 +551,14 @@ del Colossus I. Durante muchos años no se supo que la computación
 electrónica fue clave para descodificar los mensajes alemanes y ayudó
 de forma decisiva al triunfo aliado en la Segunda Guerra Mundial.
 
-***Tecnología***: electrónica, válvulas de vacío  
-***Programación***: no es de propósito general, la entrada/salida
- se realiza con una cinta de datos perforada e interruptores  
-***Memoria***: no tiene elementos de memoria  
+##### Resumen de características
 
-#### **Mark-1** (1944, USA)
+- _**Tecnología**_: Electrónica, válvulas de vacío.
+- _**Programación**_: No es de propósito general, la entrada/salida se
+  realiza con una cinta de datos perforada e interruptores.
+- _**Memoria***_: No tiene elementos de memoria.
+
+#### Mark-1 (1944, USA)
 
 <img src="imagenes/mark-1.jpg" width="400px" align="right"/>
 
@@ -554,15 +569,18 @@ de más de 15 metros. El objetivo del Mark-1 era el cálculo de tablas
 resultantes de funciones matemáticas. Por ejemplo, tablas balísticas
 para el lanzamiento de misiles.
 
-***Tecnología***: electromecánica, relés  
-***Programación***: programa codificado en una cinta, similar al Z3, 
-sin operador de comparación, entrada de datos con 60 conjuntos de 
-24 interruptores  
-***Memoria***: 72 números en codificación decimal de 23 dígitos  
-***Velocidad***: 3 sumas/restas por segundo, una división tardaba 15 segundos 
-y un logaritmo o función trigonométrica alrededor de 1 minuto  
+##### Resumen de características
 
-#### **ENIAC** (1945, USA)
+- _**Tecnología**_: Electromecánica, relés.
+- _**Programación**_: Programa codificado en una cinta, similar al Z3,
+sin operador de comparación, entrada de datos con 60 conjuntos de 24
+interruptores.
+- _**Memoria**_: 72 números en codificación decimal de 23 dígitos.
+- _**Velocidad**_: 3 sumas/restas por segundo, una división tardaba 15
+  segundos y un logaritmo o función trigonométrica alrededor de 1
+  minuto.
+
+#### ENIAC (1945, USA)
 
 <img src="imagenes/eniac.jpg" width="400px" align="right"/>
 
@@ -596,12 +614,14 @@ velocidad a la que los datos se procesaban por los circuitos
 electrónicos era colocar las instrucciones codificadas en los mismos
 dispositivos de alta velocidad que almacenaban las instrucciones.
 
-***Tecnología***: electrónica, 17.000 válvulas de vacío  
-***Programa***: podía realizar bucles, condicionales o subrutinas, pero 
+##### Resumen de características
+
+- _**Tecnología**_: Electrónica, 17.000 válvulas de vacío.
+- _**Programa**_: podía realizar bucles, condicionales o subrutinas, pero 
 el programa se introducía modificando sus interruptores y clavijas. 
 La entrada y salida de datos se realizaba con tarjetas perforadas  
-***Memoria***: 20 registros decimales  
-***Velocidad***: 5.000 sumas/restas por segundo  
+- _**Memoria**_: 20 registros decimales.
+- _**Velocidad**_: 5.000 sumas/restas por segundo.
 
 #### La arquitectura von Neumann
 
@@ -643,25 +663,9 @@ se puede almacenar en memoria, se puede tratar de la misma forma que
 se tratan otros datos. Aparecen los preprocesadores, lincadores,
 compiladores e intérpretes. Programas que procesan otros programas.
 
-#### **EDSAC** (1949, UK)
+#### Máquina de Manchester (1948, UK)
 
-El EDSAC fue uno de los primeros computadores en funcionamiento que
-utilizó la arquitectura von Neumann con el programa almacenado en
-memoria. Fue desarrollado por un equipo dirigido por Maurice
-Wilkes. Wilkes había asistido tres años antes a los seminarios de la
-Moore School en donde conoció los fundamentos de la arquitectura.
-
-Para la programación del EDSAC, Wilkes estableció una biblioteca de
-programas cortos llamados subrutinas almacenados en tarjetas
-perforadas.
-
-***Tecnología***: válvula de vacío  
-***Programa***: almacenado en memoria, leído con tarjetas perforadas  
-***Memoria***: 1000 palabras de 16 bits almacenadas en memorias 
-de línea de retardo de mercurio  
-***Velocidad***: 714 operaciones por segundo
-
-#### **Máquina de Manchester** (1948, UK)
+<img src="imagenes/baby-mark1.jpg" width="300px" align="right"/>
 
 Una vez terminada la guerra, después de trabajar en el diseño de
 Colossus, Max Newmann crea el *Computing Machine Laboratory* en la
@@ -728,6 +732,56 @@ el manual de programación del Ferranti que Turing acababa de
 escribir. Turing participó también en el desarrollo de otros programas
 de IA, como un jugador de ajedrez basado en heurísticas.
 
+
+##### Resumen de características
+
+- _**Tecnología**_: Válvulas de vacío.
+- _**Programa**_: almacenado en memoria, leído con tarjetas
+perforadas. Uno de los primeros ordenador de propósito general
+Turing-computable en funcionamiento con programas almacenados en
+memoria.
+- _**Memoria**_: 32 palabras de 32 bits almacenadas en memorias de
+  línea de retardo de mercurio.
+- _**Velocidad**_: 10.000 operaciones por segundo
+
+
+#### EDSAC (1949, UK)
+
+<img src="imagenes/edsac.jpg" width="300px" align="right"/>
+
+El EDSAC fue otro de los primeros computadores en funcionamiento que
+utilizó la arquitectura von Neumann con el programa almacenado en
+memoria. Fue desarrollado por un equipo dirigido por Maurice
+Wilkes. Wilkes había asistido tres años antes a los seminarios de la
+Moore School en donde conoció los fundamentos de la arquitectura.
+
+Para la programación del EDSAC, Wilkes estableció una biblioteca de
+programas cortos llamados subrutinas almacenados en tarjetas
+perforadas.
+
+El diseño del EDSAC fue mucho más robusto que el de la Máquina de
+Manchester y se convirtió de hecho el primer computador en el que se
+desarrollaron programas largos. Por ejemplo, en 1951 se habían
+desarrollado 87 subrutinas en las siguientes categorías: aritmética de
+punto flotante, operaciones aritméticas sobre número complejos,
+división, exponenciación, ecuaciones diferenciales, series de
+potencias, logaritmos, lectura y escritura, bucles _repeat until_,
+_while_ y _for_, vectores y matrices.
+
+
+##### Resumen de características
+
+- _**Tecnología**_: Válvulas de vacío.
+- _**Programa**_: almacenado en memoria, leído con tarjetas
+perforadas. Uno de los primeros ordenador de propósito general
+Turing-computable en funcionamiento con programas almacenados en
+memoria.
+- _**Memoria**_: 1024 palabras de 18 bits almacenadas en memorias de
+  línea de retardo de mercurio.
+- _**Velocidad**_: 1.5 milisegundos las operaciones ordinarias y 6
+  milisegundos las multiplicaciones
+
+
 #### Otros hitos de la historia de los computadores
 
 Puedes encontrar otros hitos de la historia del computador en la
@@ -793,7 +847,7 @@ De hecho, el matemático Raúl Rojas, experto en la historia de la
 computación, establece en su artículo
 ([On Basic Concepts of Early Computers in Relation to Contemporary Computer Architectures](http://page.mi.fu-berlin.de/rojas/pub/on_basic_1994.pdf)
 que el direccionamiento indirecto es necesario para que un conjunto de
-instrucciones de un procesador sea Turing computable.
+instrucciones de un procesador sea Turing-completo.
 
 ### <a name="1-5"/> 1.5. Los primeros lenguajes de programación
 
