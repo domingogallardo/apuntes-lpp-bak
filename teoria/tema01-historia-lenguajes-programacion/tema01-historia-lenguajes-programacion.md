@@ -1,7 +1,7 @@
 
-## Tema 1: Historia y conceptos de los lenguajes de programación
+# Tema 1: Historia y conceptos de los lenguajes de programación
 
-### Contenidos 
+## Contenidos 
 
 - [1. Historia de los lenguajes de programación](#1)
     - [1.1. Calcular y computar](#1-1)
@@ -39,64 +39,147 @@
     - [5.3. Enfoques mixtos](#5-3)
 
 
-### <a name="1"/> 1. Historia de los lenguajes de programación
+## <a name="1"/> 1. Historia de los lenguajes de programación
 
-Un lenguaje de programación permite especificar programas que se
-ejecutan en computadores, programas que definen el comportamiento del
-computador. Para entender en profundidad qué es un lenguaje de
-programación es fundamental conocer cuáles son los elementos
-fundamentales, determinantes, de los computadores. Y para ello es
-necesario conocer su historia.
+Un lenguaje de programación permite especificar procesos que se
+ejecutan en computadores. Un programa escrito en un determinado
+lenguaje nos permite definir las instrucciones que realizará el
+computador (o, más en concreto, el procesador) que lo ejecute. Por
+ello, para entender en profundidad qué es un lenguaje de programación
+es fundamental conocer el computador, el instrumento sobre el que que
+programan.
 
-#### <a name="1-1"/> 1.1. Calcular y computar
+En otras asignaturas de la carrera has estudiado los computadores en
+profundidad desde el punto de vista de sus componentes o de su
+arquitectura. Nosotros queremos en esta rápida introducción utilizar
+un enfoque distinto, haciendo énfasis en la historia del desarrollo
+del computador moderno y de los lenguajes de programación que han
+acompañado este desarrollo. Esta perspectiva histórica nos ayudará a
+entender los elementos esenciales de los computadores y de los
+lenguajes que se usan para programarlos.
 
-Los avances tecnológicos en distintos campos (astronomía, armamento,
-comercio, etc.) en los siglos XVI y XVII provocan la necesidad de
-acelerar y mejorar la precisión de los cálculos.
+### <a name="1-1"/> 1.1. Calcular y computar
 
-A principios de 1600 John Napier publica un tratado sobre cómo
-simplificar operaciones complejas como multiplicaciones o divisiones
-convirtiéndolas en sumas y restas usando tablas de logaritmos.
+Empezamos la historia en los siglos XVI y XVII, en los que los avances
+tecnológicos en distintos campos de la sociedad europea (astronomía,
+armamento, comercio, etc.) provocan la necesidad de acelerar y mejorar
+la precisión de los cálculos. Por ejemplo, para la navegación de los
+navíos que comercian entre continentes en esos siglos es necesario
+realizar con precisión multiplicaciones y divisiones de grandes
+números. Un error en el cálculo podía hacer que el barco pasara de
+largo una isla o llegara a varios kilómetros de distancia de un
+destino en la costa.
 
-En el siglo XVIII (y, de hecho, hasta los años 1940s) un *computador*
-era una persona que se contrataba para realizar cálculos. Cada vez que
-un editor quería publicar una nueva tabla de logaritmos más precisa
-tenía que contratar un grupo de computadores, ponerlos a trabajar y
-recopilar y transcribir los resultados.
+Los cálculos los realizaban personas especializadas en realizar
+operaciones matemáticas. Estas personas se denominaban
+**computadores** (_**computers**_ en inglés) y de ahí viene el nombre
+original en inglés de los ordenadores: instrumentos que sirven para
+realizar cálculos. Los
+computadores humanos ([Wikipedia - Human Computer](https://en.wikipedia.org/wiki/Human_computer))
+se utilizaron hasta la que no se popularizaron los computadores
+electrónicos, a principios de los años 1950s. Por ejemplo, en el
+Proyecto Manhattan que desarrolló la primera bomba atómica había
+habitaciones llenas de computadores humanos realizando cálculos y
+pasándose resultados unos a otros en complejas cadenas de computación
+que simulaban algoritmos que posteriormente serían realizados por los
+primeros computadores. 
 
-Los errores en cualquier cálculo medianamente complejo eran
-inevitables. También era tedioso y costoso el proceso de cálculo. Por
-ejemplo, el matemático aficionado inglés William Shanks calculó
-durante 15 años los 707 primeros decimales de pi (aunque sólo eran
-correctos los 527 primeros, cometió un error en el 528 que arrastró en
-el resto de dígitos). Publicó el resultado en el año 1873.
+El trabajo de computador estaba generalmente desempeñado por hombres,
+por motivos de status y de rol. En la segunda guerra mundial, debido a
+la escasez de hombres, se buscó para este puesto a mujeres ingenieras
+y matemáticas. Realizaron ese trabajo y también el de programación de
+los primeros computadores electrónicos, como el ENIAC
+([Six Women Programmed the First Computer—And Didn’t Get the Credit](https://www.dreamhost.com/blog/2016/05/21/six-women-programmed-the-first-computer-and-didnt-get-the-credit/)).
 
-En los siglos XVII al XIX científicos, relojeros y aficionados
-construyeron un gran número de máquinas de calcular. Todas ellas
-mecánicas. A continuación mostramos algunos ejemplos.
+Volviendo al siglo XVII y a los primeros computadores humanos, el
+problema principal al que se enfrentaba era el del cansancio y el
+tedio, que terminaban produciendo inevitablemente errores
+cuando los cálculos eran largos y complejos.
 
-##### Máquina de sumar del alemán Wilhelm Schickard (1623)
+El desarrollo del análisis matemático y de instrumentos matemáticos
+como los logaritmos permite reducir la complejidad de las operaciones
+matemáticas.  Por ejemplo, a principios de 1600 John Napier publica un
+tratado sobre cómo simplificar operaciones complejas (multiplicaciones
+o divisiones) convirtiéndolas en sumas y restas usando **tablas de
+logaritmos**.
 
-<img src="imagenes/SchickardMachine.jpg" width="300px"/>
+Pero el cálculo de las tablas e logaritmos también era a su vez un
+proceso complejo y propenso a errores. Cada vez que un editor quería
+publicar una nueva tabla de logaritmos más precisa tenía que contratar
+un grupo de computadores, ponerlos a trabajar y recopilar y
+transcribir los resultados. Tanto el cálculo como la transcripcción
+generaban errores y muchas publicaciones de tablas de logaritmos
+contenían algún error.
 
-*Máquina de Schickard*
+Otro famoso ejemplo de cálculo matemático es el realizado por el
+matemático aficionado inglés William Shanks que calculó durante 15
+años los 707 primeros decimales de pi. Publicó el resultado en el
+año 1873. Desafortunadamente sólo eran correctos los 527 primeros
+digitos, cometió un error en el 528 que arrastró en el resto de
+dígitos.
 
-##### Calculadora de Pascal (1650) (*Pascalina*),
 
-La primera máquina de calcular que podía hacer sumas, restas,
-multiplicaciones y divisiones:
+#### Primeras calculadoras mecánicas
 
-<img src="imagenes/Pascaline_from_1652_year.jpg" width="300px"/>
+Para intentar evitar todos los errores producidos por los cálculos
+humanos, en los siglos XVII al XIX científicos, relojeros y
+aficionados construyeron un gran número de máquinas de calcular. Todas
+ellas mecánicas, basadas en engranajes y palancas. A continuación
+mostramos algunos ejemplos.
 
-*Máquina de Pascal*
+La máquina de sumar del inventor alemán Wilhelm Schickard (1623) o la
+calculadora del matemático francés Blaise Pascal (1650) son ejemplos
+de estos primeros aparatos mecánicos que realizaban cálculos.
 
-<img src="imagenes/PascaleneLidOpened.jpg" width="300px"/>
+La calculadora de Pascal
+([Wikipedia - Pascal's Calculator](https://en.wikipedia.org/wiki/Pascal's_calculator))
+podía hacer sumas, restas, multiplicaciones y divisiones. Se
+construyeron alrededor de 50 unidades que se vendieron por las cortes
+europeas más importantes.
 
-*Máquina de Pascal abierta*
 
-Se construyeron alrededor de 50 unidades.
+<table>
+  <tr>
+     <td><img src="imagenes/SchickardMachine.jpg" width="300px"/></td>
+     <td><img src="imagenes/Pascaline_from_1652_year.jpg" width="300px"/><br/>
+         <img src="imagenes/PascaleneLidOpened.jpg" width="300px"/></td>
+  </tr>
+  <tr>
+     <td align="center">Máquina de Schickard (1623)</td>
+     <td align="center">Calculadora de Pascal (1650)</td>
+  </tr>
+</table>
 
-##### Motor de diferencias de Babbage
+Además de los aspectos prácticos derivados de la realización de
+operaciones matemáticas, estas máquinas de calcular también
+representaban un avance científico y tecnológico y generaban
+curiosidad y expectación en ferias y exhibiciones. 
+
+También en esta época se hicieron muy populares mecanismos automáticos
+que replicaban el movimiento de animales y personas. Eran los famosos
+**autómatas**, realizados al igual que las máquinas de calcular con
+engranajes, palancas, muelles y otros elementos de relojería.
+
+
+#### Charles Babbage y Ada Lovelace
+
+En el siglo XIX la invención del motor de vapor y la automatización de
+los procesos de fabricación con mecanismos cada vez más complejos da
+lugar a la revolución industrial. 
+
+<img src="imagenes/telar-jacquar.jpg" align="right" width="200px"/>
+
+Un ejemplo es la industria textil, con la invención del telar mecánico
+en 1805 por el ingeniero francés Joseph Marie Jacquar. Este telar
+funcionaba de forma completamente automática, sin necesidad de
+operadores humanos. Podía producir cualquier tipo de patrón, según
+la programación proporcionada por cintas perforadas. Se trata de uno
+de los primeros mecanismos programables.
+
+En la fotografía de la derecha se puede ver una imagen de las cintas
+perforadas que programaban los patrones de estos telares de Jacquar.
+
+##### Motor de diferencias
 
 En 1820 el ingeniero inglés Charles Babbage diseñó el motor de
 diferencias (*Babbage difference engine*) para poder calcular e
@@ -104,71 +187,167 @@ imprimir tablas numéricas de logaritmos utilizando el
 [método de las diferencias](http://acarol.woz.org/difference_engine.html#HowDoesDifferenceEngine)
 para calcular valores de un polinomio.
 
-<img src="imagenes/Charles_Babbage.jpg" width="300px"/>
-
-*Charles Babbage*
-
 Utilizaba un sistema de numeración decimal y consistía en más de 8.000
 piezas que se movían con una palanca giratoria. Babbage trabajó
 durante varios años en la máquina sin poder completarla. En 2002 el
 *Science Museum* de Londres presentó una reconstrucción totalmente
 funcional ([ver vídeo](http://www.youtube.com/watch?v=0anIyVGeWOI)).
 
-<img src="imagenes/motor-diferencias.jpg" width="400px"/>
+##### Motor analítico 
 
-*Motor de diferencias de Babbage*
-
-Todas las máquinas de calcular construidas hasta anteriormente eran
+Todas las máquinas de calcular construidas hasta este momento eran
 manuales, un operador debía introducir las operaciones una a una. El
 motor de diferencias es automático (funciona haciendo girar una
 palanca) pero estaba diseñada para realizar un único cálculo.
 
-##### Motor analítico de Babbage
+En 1840 Babbage tiene la idea de lo que podría haber sido la primera
+máquina calculadora automática programable: el *motor analítico*. Una
+de las fuentes en las que se inspiró fue el telar de Jacquard. Si los
+patrones definidos en una cinta perforada podían dirigir un telar para
+que tejiese un determinado dibujo, ¿no podría diseñarse una máquina
+que en lugar de tejer realizará cálculos? La máquina ya no estaría
+limitada a realizar un único cálculo, sino que se podrían modificar
+las operaciones a realizar mediante la cinta perforada.
 
-<img src="imagenes/analytical-engine.png" width="500px"/>
+De esta forma, la idea del motor de diferencias quedó superada por una
+máquina de propósito general, que sería capaz de realizar cualquier
+cálculo programado en la cinta.
 
-*Motor analítico de Babbage*
-
-En 1840 Babbage tiene la idea de lo que sería la primera máquina
-calculadora automática programable: el *motor analítico*.
-
-Se trata de una máquina totalmente mecánica, similar al motor de
-diferencias, pero cuyas operaciones pueden ser programadas utilizando
-tarjetas perforadas como las que se usaban en la época para programar
-telares. Babbage diseñó tres tipos de tarjetas: una para las
-operaciones matemáticas, otra para las constantes numéricas y otras
-para las operaciones de carga y almacenamiento de operaciones y
-números en la "memoria" de la máquina. La máquina tenía tres lectores
-separados para cada uno de los tipos de tarjetas.
+Se trataría de una máquina totalmente mecánica, pero muchísimo más
+compleja. Babbage diseñó tres tipos de cintas (o tarjetas) perforadas:
+una para definir las operaciones matemáticas, otra para las constantes
+numéricas y otras para las operaciones de carga y almacenamiento de
+operaciones y números en la "memoria" de la máquina. La máquina tenía
+tres lectores separados para cada una de las cintas perforadas.
 
 La máquina estaba diseñada para trabajar en base 10 y se podía
 conseguir que sus cálculos realizaran saltos condicionales y bucles.
-
-<img src="imagenes/ada-lovelace.jpg" width="200px"/>
-
-*Ada Lovelace*
-
-Ada Lovelace tuvo un papel fundamental en la divulgación de la
-máquina, de sus sistema de programación y fue la primera que entendió
-sus posibilidades más allá del cálculo de fórmulas
 
 Babbage trabajó durante más de 30 años para intentar construir la
 máquina. Tenían una enorme complejidad para la época y necesitaba
 muchísima financiación. En 1871 murió habiendo podido construir sólo
 una parte.
 
-#### <a name="1-2"/> 1.2. Avances previos a los primeros computadores
+<table>
+  <tr>
+     <td><img src="imagenes/Charles_Babbage.jpg" width="250px"/></td>
+     <td><img src="imagenes/motor-diferencias.jpg" width="300px"/></td>
+     <td><img src="imagenes/analytical-engine.png" width="400px"/></td>
+  </tr>
+  <tr>
+     <td align="center">Charles Babbage</td>
+     <td align="center">Motor de diferencias</td>
+     <td align="center">Motor analítico</td>
+  </tr>
+</table>
 
-Todas estas máquinas calculadoras representan avances en el proceso
+<img src="imagenes/ada-lovelace.jpg" width="200px" align="right"/>
+
+**Ada Lovelace** tuvo un papel fundamental en la divulgación de la
+máquina, de sus sistema de programación y fue la primera que entendió
+sus posibilidades más allá del cálculo de fórmulas. 
+
+
+De forma poco habitual para la época, Ada fue educada en el campo de
+las ciencias y de las matemáticas. A principios de 1840, con
+veinticico años, conoció el trabajo de Babbage y colaboró con él,
+dedicándose durante varios años a conocer y estudiar el diseño y el
+funcionamiento del motor analítico. 
+
+En 1843 publicó el trabajo _"Sketch of the analytical engine invented
+by Charles Babbage"_ en el que traduce del italiano un artículo sobre
+el motor analítico escrito por el científico Luigi Federico Menabrea
+y, lo más importante, añade reflexiones propias sobre el alcance del
+invento y construye un ejemplo completo, con tablas y diagramas, de
+cómo hacer que la máquina produzca la secuencia de los números de
+Bernoulli.
+
+Se puede considerar estas tablas y diagramas como el _primer programa
+de un computador_. Pero hay que entender que no se trata de un
+programa escrito en un lenguaje de programación (el motor analítico no
+tenía un conjunto de instrucciones definido, ni las ejecutaba de forma
+secuencial, como los procesadores que veremos más adelante) y que el
+computador se trataba de un computador mecánico que no llegó a
+construirse.
+
+Puedes encontrar más información sobre Ada Lovelace en el siguiente
+enlace
+[Ada Lovelace, la primera programadora de la historia](https://www.genbetadev.com/desarrolladores/ada-lovelace-la-primera-programadora-de-la-historia). Un
+artículo mucho más profundo y detallado es el de Stephen Wolfram: [Untangling the Tale of Ada Lovelace](http://blog.stephenwolfram.com/2015/12/untangling-the-tale-of-ada-lovelace/).
+
+
+### <a name="1-2"/> 1.2. Avances previos a los primeros computadores
+
+Todas las máquinas vistas hasta ahora representan avances en el proceso
 del desarrollo de los primeros computadores, pero a finales del siglo
 XIX todavía no existía la tecnología ni la teoría matemática necesaria
 para construir un computador de propósito general. Son ideas de genios
 inventores adelantados a su tiempo.
 
 Se necesitan algunos avances adicionales antes de llegar a la década
-clave en la historia de los computadores, la década 1940-50.
+clave en la historia de los computadores, la década 1940-50. Algunos
+de estos avances son teóricos o matemáticos, otros tecnológicos y
+otros integran tecnología y matemática. Vamos a verlos brevemente en
+orden cronológico.
 
-#####  Codificación de la información: tarjetas perforadas
+#### Álgebra de Boole (1850)
+
+El matemático inglés George Boole publicó en 1847 el trabajo _"The
+Mathematical Analysis of Logic"_, donde describe un sistema algebráico
+de lógica basada en los valores Verdad y Falso (fácilmente
+representables en binario como 0 y 1), los operadores AND, OR y
+NOT y las tablas de verdad que describen el funcionamiento de esos
+operadores.
+
+El álgebra de Boole, tal y como se denominó el sistema, se hizo
+popular en matemáticas y lógica y fue utilizado 80 años después por
+Claude Shannon para formalizar el funcionamiento de los primeros
+circuitos digitales diseñados en sus tesis de máster en el MIT.
+
+
+#### Relés electromecánicos (1850)
+
+Los relés electromecánicos son dispositivos que permiten implementar
+interruptores, amplificadores de señal o puertas lógicas. 
+
+<img src="imagenes/relay-telegrafo.png" width="400px" align="right"/>
+
+Son elementos que tienen una entrada de control que puede activar el
+paso de corriente por un electroimán. Cuando el electroimán se activa
+atrae a una pestaña y se cierra el circuito principal del relé, con lo
+que la corriente pasa por él.
+
+El funcionamiento del telégrafo está basado en este
+mecanismo. Inicialmente todos los relés del sistema de transmisión
+están abiertos y no pasa la corriente por ninguno. Cuando el
+transmisor pulsa la palanca del telégrafo para generar un pulso, el
+pulso se transmite por todos los relés cerrándose todos los circuitos
+hasta el receptor. A la derecha podemos ver un esquema sacado de la
+patente del telégrafo realizada por Morse en 1837.
+
+<img src="imagenes/and-reles.png" width="200px" align="right"/>
+
+También podemos ver en la imagen de la derecha un ejemplo de una
+puerta AND implementada con dos relés electromecánicos. Los dos relés
+están dispuestos de forma secuencial. Cuando la corriente pasa por el
+interruptor del primer relé se activa su electroimán y pasa la
+corriente. Si en el interruptor del segundo relé también hay
+corriente, se cierra también su circuito y la corriente pasa hasta la
+bombilla. La bombilla se enciende cuando llega una señal de 1 a ambos
+relés. Si alguno de los relés no tiene corriente en su interruptor (un
+0) la bombilla entonces seguirá apagada. 
+
+Los relés electromecánicos fueron la pieza básica sobre la que se
+construyeron todos los primeros computadores. Después, en los años 40,
+serían sustituidos por las válvulas de vacío (inventadas en 1910), que
+permitían realizar el mismo comportamiento pero de una forma
+totalmente electrónica. Y después, en los años 50, por los
+transistores, mucho más pequeños, fiables y de menos consumo,
+aumentando de forma exponencial su velocidad.
+
+#### Codificación de la información con tarjetas perforadas (1890)
+
+<img src="imagenes/tarjeta-perforada.png" width="400px" align="right"/>
 
 La forma de introducir los programas y los datos en muchos de los
 primeros computadores era mediante tarjetas perforadas.
@@ -187,25 +366,20 @@ utilizan una codificación. Cada columna (o fila) define un carácter
 utilizando alguna combinación de agujeros. Cada tarjeta perforada
 representa una línea de texto.
 
-<img src="imagenes/tarjeta-perforada.png" width="400px"/>
-
-*Tarjeta perforada*
 
 Podemos probar un [simulador de tarjetas perforadas](http://www.kloth.net/services/cardpunch.php).
 
+#### Circuitos lógicos implementados con relés (1930)
 
-##### Relés electromecánicos
+Claude Shannon, George Stibitz y otros ingenieros como el alemán
+Konrad Zuse se dieron cuenta de forma independiente de que los relés
+usados para los telégrafos podían utilizarse como puertas lógicas para
+definir circuitos sumadores, multiplicadores, etc. de números en
+binario. 
 
-<img src="imagenes/relay-telegrafo.png" width="450px"/>
+#### Máquina universal de Turing (1935)
 
-- Inventados alrededor de 1835
-- Morse los utiliza en la patente del telégrafo (1837)
-- Puerta AND implementada con dos relés electromecánicos:
-
-<img src="imagenes/and-reles.png" width="200px"/>
-
-
-##### Máquina universal de Turing
+<img src="imagenes/Alan_Turing.jpg" width="200px" align="right"/>
 
 La máquina de Turing no es un computador real, no existe
 físicamente. Es un *modelo computacional* que formula Alan Turing para
@@ -225,10 +399,6 @@ físico, pero contiene elementos ideales y poco eficientes que hacen
 imposible tomarlo como un diseño de a partir del que construir un
 computador físico.
 
-<img src="imagenes/Alan_Turing.jpg" width="200px"/>
-
-*Alan Turing*
-
 Una máquina de Turing consiste en un scanner lee y escribe 0s y 1s de
 una cinta infinita (memoria) y se mueve y los escribe en función de
 una tabla definida en la máquina (programa).
@@ -236,26 +406,20 @@ una tabla definida en la máquina (programa).
 En el mismo trabajo Turing define el concepto de *máquina universal*
 que es capaz de leer de la cinta un programa cualquiera y simular su
 comportamiento en otra parte de la cinta. Esta idea tuvo un profundo
-impacto en el desarrollo de los computadores, dando origen, una década
-después, al concepto de programa almacenado en memoria.
+impacto en el desarrollo de los computadores, porque mostraba que es
+posible escribir programas que tomen como datos otros programas. Esto
+abre la puerta a la idea de los programas almacenados en memoria (ya
+que son otros datos más) y a la creación de compiladores e intérpretes.
 
-##### Resumen de avances importantes finales del siglo XIX y principios del XX
+Se dice que un lenguaje de programación es **Turing-completo** cuando
+es posible escribir en él un programa que simule una máquina de
+Turing. De esta forma se puede afirmar que es capaz de escribirse en
+él cualquier algoritmo computable. En concreto se ha demostrado que
+para que un conjunto de instrucciones de un procesador sea
+Turing-completo debe ser capaz de realizar saltos condicionales y
+direccionamiento indirecto. 
 
-**Matemáticos y teóricos**
-
-- (1850) Álgebra de Boole (AND, OR, NOT)
-- (1900) Codificación de la información con tarjetas perforadas
-- (1935) Máquina de Turing que define el concepto de computabilidad y
-  Turing-completitud de los lenguajes de programación
-
-**Tecnológicos**
-
-- (1850) Relés electromecánicos (telégrafo)
-- (1910) Válvulas de vacío permiten implementar los relés de forma electrónica
-- (1937) Claude Shannon - Circuitos de relés para definir puertas
-  lógicas, circuito de relés sumador en base 2
-
-#### <a name="1-3"/> 1.3 La década 1940-50
+### <a name="1-3"/> 1.3 La década 1940-50
 
 En la década 1940-50 se cristalizan todas las ideas previas y se
 produce un avance exponencial en el desarrollo de máquinas de
@@ -264,11 +428,9 @@ con los primeros computadores comerciales de propósito general y con
 los primeros programas de inteligencia artificial (juegos de damas y
 ajedrez).
 
-##### 1941: la máquina de calcular Z3 de Zuse
+#### 1941: la máquina de calcular Z3 de Zuse
 
-<img src="imagenes/Zuse_Z3.jpg" width="300px"/>
-
-*Máquina de calcular Z3*
+<img src="imagenes/Zuse_Z3.jpg" width="300px" align="right"/>
 
 De forma independiente a todos los proyectos que veremos a
 continuación, el ingeniero alemán Konrad Zuse diseñó y construyó entre
@@ -281,14 +443,18 @@ La máquina Z3 sólo podía ejecutar secuencias fijas de operaciones
 aritméticas en punto flotante (suma, resta, multiplicación, división y
 raíz cuadrada) codificadas en una cinta perforada. El programa se
 codificaba en una cinta externa y se leía paso a paso de forma
-mecánica. En sus instrucciones no existía el salto condicional.
+mecánica. En sus instrucciones no existía el salto condicional, por lo
+que la máquina no puede considerarse un computador de propósito
+general, al no ser Turing-computable.
 
 Debido a que los finales de la cinta perforada podían pegarse, la
 máquina Z3 era capaz de ejecutar de forma repetida un bucle sencillo
 de operaciones aritméticas que actuaban sobre números almacenados en
 memoria.
 
-El modelo computacional de la Z3 es el siguiente:
+La arquitectura de la Z3 es el siguiente:
+
+<img src="imagenes/arquitectura-z3.png" align="right"/>
 
 - Contiene registros de memoria denotados por letras (no se puede
   acceder de forma indirecta)
@@ -305,31 +471,25 @@ Un ejemplo de programa:
     op
     STORE a
 
-<img src="imagenes/arquitectura-z3.png"/>
-
-*Arquitectura de la Z3*
-
 El programa de cálculos a realizar se escribía de forma secuencial en
 una cinta perforada. La Z3 iba leyendo la cinta y realizando las
 operaciones indicadas.
 
-<img src="imagenes/paper-tape-univac.jpg"/>
-
-*Cinta perforada (no del Z3, sino del UNIVAC)*
-
 Debido al estallido de la Segunda Guerra Mundial el trabajo de Zuse
 quedó olvidado y no tuvo repercusión fuera de sus fronteras.
 
-***Tecnología***: electromecánica, relés  
-***Programación***: cinta con instrucciones codificadas  
-***Memoria***: 64 palabras de 22 bits en almacenadas en relés  
-***Velocidad***: 1 instrucción por segundo  
+##### Resumen de características
 
-##### **ABC** (1942, USA)
+- _**Tecnología**_: Electromecánica, relés.
+- _**Programación**_: Cinta con instrucciones codificadas. El conjunto
+  de instrucciones no tiene saltos condicionales ni direccionamiento
+  indirecto, por lo que no es Turing-computable.
+- _**Memoria**_: 64 palabras de 22 bits en almacenadas en relés.
+- _**Velocidad**_: 1 instrucción por segundo.
 
-<img src="imagenes/ABCreplica.jpg" width="300px"/>
+#### ABC (1942, USA)
 
-*ABC*
+<img src="imagenes/ABCreplica.jpg" width="300px" align="right"/>
 
 En paralelo al desarrollo del Z3, de forma independiente, el profesor
 estadounidense John Vincent Atanasoff en la universidad de Iowa y su
@@ -346,18 +506,16 @@ llegó nunca a funcionar totalmente. Las partes mecánicas, como el
 lector de tarjetas binarias, introdujeron continuamente errores
 irrecuperables.
 
-***Tecnología***: electrónica, válvulas de vacío  
-***Programación***: no es de propósito general, la entrada
- de datos y ecuaciones se hace con tarjetas perforadas    
-***Memoria***: 60 números en representados en binario en palabras 
-de 50 bits almacenadas en condensadores  
-***Velocidad***: 30 sumas/restas por segundo  
+##### Resumen de características
 
-##### **Colossus** (1944, UK)
+- _**Tecnología**_: Electrónica, válvulas de vacío.
+- _**Programación**_: No es de propósito general, la entrada de datos y ecuaciones se hace con tarjetas perforadas.
+- _**Memoria**_: 60 números en representados en binario en palabras de 50 bits almacenadas en condensadores.
+- _**Velocidad**_: 30 sumas/restas por segundo.
 
-<img src="imagenes/Colossus.jpg" width="300px"/>
+#### Colossus (1944, UK)
 
-*Colossus*
+<img src="imagenes/Colossus.jpg" width="300px" align="right"/>
 
 Colossus es el primer computador electrónico digital capaz de
 funcionar de forma continua. Se desarrolló en el centro de
@@ -393,16 +551,16 @@ del Colossus I. Durante muchos años no se supo que la computación
 electrónica fue clave para descodificar los mensajes alemanes y ayudó
 de forma decisiva al triunfo aliado en la Segunda Guerra Mundial.
 
-***Tecnología***: electrónica, válvulas de vacío  
-***Programación***: no es de propósito general, la entrada/salida
- se realiza con una cinta de datos perforada e interruptores  
-***Memoria***: no tiene elementos de memoria  
+##### Resumen de características
 
-##### **Mark-1** (1944, USA)
+- _**Tecnología**_: Electrónica, válvulas de vacío.
+- _**Programación**_: No es de propósito general, la entrada/salida se
+  realiza con una cinta de datos perforada e interruptores.
+- _**Memoria***_: No tiene elementos de memoria.
 
-<img src="imagenes/mark-1.jpg" width="400px"/>
+#### Mark-1 (1944, USA)
 
-*Mark-1*
+<img src="imagenes/mark-1.jpg" width="400px" align="right"/>
 
 Mark-1 fue diseñada por el profesor Howard Aiken de Harvard y
 construida por IBM. Era una máquina enorme, del tamaño de una
@@ -411,19 +569,20 @@ de más de 15 metros. El objetivo del Mark-1 era el cálculo de tablas
 resultantes de funciones matemáticas. Por ejemplo, tablas balísticas
 para el lanzamiento de misiles.
 
-***Tecnología***: electromecánica, relés  
-***Programación***: programa codificado en una cinta, similar al Z3, 
-sin operador de comparación, entrada de datos con 60 conjuntos de 
-24 interruptores  
-***Memoria***: 72 números en codificación decimal de 23 dígitos  
-***Velocidad***: 3 sumas/restas por segundo, una división tardaba 15 segundos 
-y un logaritmo o función trigonométrica alrededor de 1 minuto  
+##### Resumen de características
 
-##### **ENIAC** (1945, USA)
+- _**Tecnología**_: Electromecánica, relés.
+- _**Programación**_: Programa codificado en una cinta, similar al Z3,
+sin operador de comparación, entrada de datos con 60 conjuntos de 24
+interruptores.
+- _**Memoria**_: 72 números en codificación decimal de 23 dígitos.
+- _**Velocidad**_: 3 sumas/restas por segundo, una división tardaba 15
+  segundos y un logaritmo o función trigonométrica alrededor de 1
+  minuto.
 
-<img src="imagenes/eniac.jpg" width="400px"/>
+#### ENIAC (1945, USA)
 
-*ENIAC*
+<img src="imagenes/eniac.jpg" width="400px" align="right"/>
 
 ENIAC es el primer computador electrónico construido en los EEUU, en
 la Moore School de la universidad de Pensilvania, en un proyecto
@@ -446,10 +605,6 @@ En 1944 John von Neumann se unió al grupo de desarrollo del ENIAC y
 aconsejó modificaciones en la arquitectura que llevaron, en 1948, a
 introducir un mecanismo primitivo de programa almacenado en memoria.
 
-<img src="imagenes/John_von_Neumann.gif" width="300px"/>
-
-*John von Neumann*
-
 En los diseños iniciales del ENIAC se utilizaba una cinta de
 instrucciones similar a la del Z3. Eckert parece que también se dio
 cuenta de forma independiente, antes de la llegada de von Neumann, de
@@ -459,14 +614,18 @@ velocidad a la que los datos se procesaban por los circuitos
 electrónicos era colocar las instrucciones codificadas en los mismos
 dispositivos de alta velocidad que almacenaban las instrucciones.
 
-***Tecnología***: electrónica, 17.000 válvulas de vacío  
-***Programa***: podía realizar bucles, condicionales o subrutinas, pero 
+##### Resumen de características
+
+- _**Tecnología**_: Electrónica, 17.000 válvulas de vacío.
+- _**Programa**_: podía realizar bucles, condicionales o subrutinas, pero 
 el programa se introducía modificando sus interruptores y clavijas. 
 La entrada y salida de datos se realizaba con tarjetas perforadas  
-***Memoria***: 20 registros decimales  
-***Velocidad***: 5.000 sumas/restas por segundo  
+- _**Memoria**_: 20 registros decimales.
+- _**Velocidad**_: 5.000 sumas/restas por segundo.
 
-##### La arquitectura von Neumann
+#### La arquitectura von Neumann
+
+<img src="imagenes/John_von_Neumann.gif" width="300px" align="right"/>
 
 En 1945, mientras que el ENIAC estaba todavía en construcción, von
 Neumann, trabajando en la Universidad de Princeton (EEUU) escribió su
@@ -504,25 +663,9 @@ se puede almacenar en memoria, se puede tratar de la misma forma que
 se tratan otros datos. Aparecen los preprocesadores, lincadores,
 compiladores e intérpretes. Programas que procesan otros programas.
 
-##### **EDSAC** (1949, UK)
+#### Máquina de Manchester (1948, UK)
 
-El EDSAC fue uno de los primeros computadores en funcionamiento que
-utilizó la arquitectura von Neumann con el programa almacenado en
-memoria. Fue desarrollado por un equipo dirigido por Maurice
-Wilkes. Wilkes había asistido tres años antes a los seminarios de la
-Moore School en donde conoció los fundamentos de la arquitectura.
-
-Para la programación del EDSAC, Wilkes estableció una biblioteca de
-programas cortos llamados subrutinas almacenados en tarjetas
-perforadas.
-
-***Tecnología***: válvula de vacío  
-***Programa***: almacenado en memoria, leído con tarjetas perforadas  
-***Memoria***: 1000 palabras de 16 bits almacenadas en memorias 
-de línea de retardo de mercurio  
-***Velocidad***: 714 operaciones por segundo
-
-##### **Máquina de Manchester** (1948, UK)
+<img src="imagenes/baby-mark1.jpg" width="300px" align="right"/>
 
 Una vez terminada la guerra, después de trabajar en el diseño de
 Colossus, Max Newmann crea el *Computing Machine Laboratory* en la
@@ -589,19 +732,69 @@ el manual de programación del Ferranti que Turing acababa de
 escribir. Turing participó también en el desarrollo de otros programas
 de IA, como un jugador de ajedrez basado en heurísticas.
 
-##### Otros hitos de la historia de los computadores
+
+##### Resumen de características
+
+- _**Tecnología**_: Válvulas de vacío.
+- _**Programa**_: almacenado en memoria, leído con tarjetas
+perforadas. Uno de los primeros ordenador de propósito general
+Turing-computable en funcionamiento con programas almacenados en
+memoria.
+- _**Memoria**_: 32 palabras de 32 bits almacenadas en memorias de
+  línea de retardo de mercurio.
+- _**Velocidad**_: 10.000 operaciones por segundo
+
+
+#### EDSAC (1949, UK)
+
+<img src="imagenes/edsac.jpg" width="300px" align="right"/>
+
+El EDSAC fue otro de los primeros computadores en funcionamiento que
+utilizó la arquitectura von Neumann con el programa almacenado en
+memoria. Fue desarrollado por un equipo dirigido por Maurice
+Wilkes. Wilkes había asistido tres años antes a los seminarios de la
+Moore School en donde conoció los fundamentos de la arquitectura.
+
+Para la programación del EDSAC, Wilkes estableció una biblioteca de
+programas cortos llamados subrutinas almacenados en tarjetas
+perforadas.
+
+El diseño del EDSAC fue mucho más robusto que el de la Máquina de
+Manchester y se convirtió de hecho el primer computador en el que se
+desarrollaron programas largos. Por ejemplo, en 1951 se habían
+desarrollado 87 subrutinas en las siguientes categorías: aritmética de
+punto flotante, operaciones aritméticas sobre número complejos,
+división, exponenciación, ecuaciones diferenciales, series de
+potencias, logaritmos, lectura y escritura, bucles _repeat until_,
+_while_ y _for_, vectores y matrices.
+
+
+##### Resumen de características
+
+- _**Tecnología**_: Válvulas de vacío.
+- _**Programa**_: almacenado en memoria, leído con tarjetas
+perforadas. Uno de los primeros ordenador de propósito general
+Turing-computable en funcionamiento con programas almacenados en
+memoria.
+- _**Memoria**_: 1024 palabras de 18 bits almacenadas en memorias de
+  línea de retardo de mercurio.
+- _**Velocidad**_: 1.5 milisegundos las operaciones ordinarias y 6
+  milisegundos las multiplicaciones
+
+
+#### Otros hitos de la historia de los computadores
 
 Puedes encontrar otros hitos de la historia del computador en la
 [línea de tiempo de la historia del computador](http://www.computerhistory.org/timeline/?category=cmptr)
 del *Computer History Museum*.
 
-#### <a name="1-4"/> 1.4. Características esenciales de un computador
+### <a name="1-4"/> 1.4. Características esenciales de un computador
 
 A pesar de haberse desarrollado múltiples variantes de máquinas,
 arquitecturas y modelos de computador, existen ciertos elementos
 esenciales comunes a todos ellos.
 
-##### Computador universal
+#### Computador universal
 
 Un computador se dice que es universal cuando su conjunto de
 instrucciones permite realizar cualquier programa computable. De forma
@@ -623,39 +816,40 @@ combinatorios de búsqueda eficiente en un espacio de soluciones
 (criptografía o problemas matemáticos) o primeras aplicaciones de
 inteligencia artificial (juegos como las damas).
 
-##### El direccionamiento indirecto
+#### El direccionamiento indirecto
 
 Un concepto fundamental de los conjuntos de instrucciones de los
-procesadores es el de direccionamiento indirecto:
+procesadores es el de direccionamiento indirecto. 
 
-    LOAD A [B]
+Un ejemplo de su funcionamiento es el siguiente programa escrito en un
+lenguaje ensamblador imaginario.
 
-El contenido del registro B es una dirección de memoria, y la
-sentencia accede a esa dirección y carga en el registro A su
-contenido.
+    LOAD C #28AF
+    LOAD A [C]
+    INC C
+    LOAD B [C]
 
-En los lenguajes de programación de alto nivel, el direccionamiento
-indirecto se representa con punteros o referencias. Por ejemplo, en la
-siguiente sentencia de C, se guarda en la variable `a` una referencia
-a la dirección de memoria en la que comienza la cadena `"Hola,
-mundo"`.
+La primera instrucción carga en el registro B el número hexadecimal
+`#28AF` que representa la dirección de memoria 10.415. La segunda
+instrucción carga en el registro A el contenido de esa dirección de
+memoria. La siguiente instrucción incrementa en 1 la dirección de
+memoria que hemos guardado en C y después se carga en B el contenido
+de esa nueva dirección. El resultado es que hemos guardado en los registros A y B los
+contenidos de las direcciones de memoria 10.415 y 10.416. 
 
-    char *a = "Hola, mundo"
+El direccionamiento indirecto nos permite hacer cálculos sobre
+direcciones de memoria y guardar después los contenidos de las
+direcciones resultantes en registros. Esto es fundamental para que un
+lenguaje de programación pueda tener saltos, llamadas a subrutinas o
+estructuras de datos dinámicas.
 
-El * como una forma de indicar un direccionamiento indirecto ya se
-usaba en
-[el ensamblador del IBM 7090](http://en.wikipedia.org/wiki/IBM_7090).
+De hecho, el matemático Raúl Rojas, experto en la historia de la
+computación, establece en su artículo
+([On Basic Concepts of Early Computers in Relation to Contemporary Computer Architectures](http://page.mi.fu-berlin.de/rojas/pub/on_basic_1994.pdf)
+que el direccionamiento indirecto es necesario para que un conjunto de
+instrucciones de un procesador sea Turing-completo.
 
-El direccionamiento indirecto es necesario para que un conjunto de
-instrucciones de un procesador sea Turing computable
-([On Basic Concepts of Early Computers in Relation to Contemporary Computer Architectures](http://page.mi.fu-berlin.de/rojas/pub/on_basic_1994.pdf),
-Raúl Rojas)
-
-Sin el direccionamiento indirecto es imposible acceder al contenido de
-tablas con un número variable de elementos. Es necesario para acceder
-a los contenidos de un array en memoria.
-
-#### <a name="1-5"/> 1.5. Los primeros lenguajes de programación
+### <a name="1-5"/> 1.5. Los primeros lenguajes de programación
 
 Los primeros computadores electrónicos se programan directamente
 usando el conjunto de instrucciones del procesador, en código máquina,
@@ -691,7 +885,7 @@ ACM Computing Surveys (CSUR) Surveys, Volume 2 Issue 4, Dec. 1970,
 Pages 247-260)
 
 
-#### <a name="1-6"/> 1.6 El nacimiento de los computadores comerciales
+### <a name="1-6"/> 1.6 El nacimiento de los computadores comerciales
 
 El [UNIVAC](http://en.wikipedia.org/wiki/UNIVAC_I) fue el primer
 computador comercial (1951). Con este computadora aparece por primera
@@ -706,7 +900,7 @@ de empleo, etc.
 
 *Instalaciones comerciales del UNIVAC*
 
-##### Manual de programación del UNIVAC (1959)
+#### Manual de programación del UNIVAC (1959)
 
 Los computadores son lentos y muy complicados de instalar y mantener.
 
@@ -741,7 +935,7 @@ computadores ([YouTube](https://www.youtube.com/watch?v=Pd63MHGQygQ))
 
 *Anuncio UNIVAC*
 
-##### IBM 704
+#### IBM 704
 
 El [IBM 704](http://en.wikipedia.org/wiki/IBM_704) fue el otro gran
 ordenador comercial de la década de los 50.
@@ -757,7 +951,7 @@ para este computador.
 *Foto IBM 704*
 
 
-##### Programando los primeros computadores
+#### Programando los primeros computadores
 
 > The UNIVAC I was an interesting machine to program, with its mercury
 > delay line storage and its short mean time to failure. Programs were
@@ -779,13 +973,13 @@ para este computador.
 > George Sadowsky,
 > [My Second Computer was a UNIVAC I](http://www.georgesadowsky.com/papers/Univac-I.pdf)
 
-#### <a name="1-7"/> 1.7. Los primeros lenguajes de alto nivel
+### <a name="1-7"/> 1.7. Los primeros lenguajes de alto nivel
 
 Los primeros lenguajes de alto nivel se desarrollaron a finales de la
 década de los 50:
 
-	* FORTRAN en 1956
-	* Lisp en 1958
+- FORTRAN en 1956
+- Lisp en 1958
 
 Ambos lenguajes planteaban dos enfoques muy distintos desde el
 principio:
@@ -802,7 +996,7 @@ principio:
 	* Lenguaje funcional: funciones, recursión, listas, símbolos
 	* Lenguaje interpretado
 
-##### FORTRAN
+#### FORTRAN
 
 Desarrollado por IBM para programar el IBM 704. Algunos datos:
 
@@ -828,7 +1022,7 @@ Cita de John Backus ([Wikipedia sobre FORTRAN](http://en.wikipedia.org/wiki/Fort
 Tomado del
 [manual de FORTRAN del IBM 704](http://archive.computerhistory.org/resources/text/Fortran/102665486.05.01.acc.pdf)
 
-##### Lisp
+#### Lisp
 
 El otro lenguaje de alto nivel desarrollado en esa época es el
 Lisp. Desarrollado a finales de los 50 en el MIT por John McCarthy.
@@ -899,7 +1093,7 @@ Tomado de
 MIT Press, 1964
 
 
-#### <a name="1-8"/> 1.8. La explosión de los lenguajes de programación
+### <a name="1-8"/> 1.8. La explosión de los lenguajes de programación
 
 Desde 1954 hasta la actualidad se han documentado más de 2.500
 (consultar en [The Language List]).  Entre 1952 y 1972 alrededor de
@@ -908,7 +1102,7 @@ influencia en el desarrollo de lenguajes posteriores.
 
 [The Language List]: http://people.ku.edu/~nkinners/LangList/Extras/langlist.htm
 
-##### Genealogía de los lenguajes de programación
+#### Genealogía de los lenguajes de programación
 
 <img src="imagenes/genealogia-de-los-lp.png" width="600px"/>
 
@@ -939,7 +1133,7 @@ Algunas notas sobre la genealogía:
   Objective-C en la que se enfatiza más aspectos dinámicos como el
   paso de mensajes o la modificación de clases en tiempo de ejecución.
 
-##### Algunos lenguajes importantes y su fecha de creación
+#### Algunos lenguajes importantes y su fecha de creación
 
 | 1950-1960  | 1970  | 1980 | 1990 | 2000 |
 | :--------- | :---: | :---: | :---: | ---: |
@@ -952,7 +1146,7 @@ Algunas notas sobre la genealogía:
 | 1967 SIMULA |      |    |    |   |  
 
 
-##### Aspectos que provocan la evolución de los LP
+#### Aspectos que provocan la evolución de los LP
 
 ¿Por qué hay tanta variedad en los lenguajes de programación? Hay
 muchos aspectos que fomentan esta variedad y que provocan la necesidad
@@ -973,7 +1167,7 @@ fueron importante a finales del siglo 20.
 
 *Evolución de los lenguajes*
 
-##### Los creadores de los LPs
+#### Los creadores de los LPs
 
 Si comprobamos la historia de los lenguajes de programación, podemos
 clasificar a sus creadores en tres grandes categorías:
@@ -991,7 +1185,7 @@ clasificar a sus creadores en tres grandes categorías:
   [Matsumoto](http://en.wikipedia.org/wiki/Yukihiro_Matsumoto), Ruby)
 
 
-#### <a name="1-9"/> 1.9. Lenguajes de programación en la actualidad
+### <a name="1-9"/> 1.9. Lenguajes de programación en la actualidad
 
 El índice
 [TIOBE](http://www.tiobe.com/index.php/content/paperinfo/tpci/index.html)
@@ -1016,7 +1210,7 @@ más populares en los últimos 10 años.
 
 *Evolución TIOBE*
 
-##### La evolución no se detiene
+#### La evolución no se detiene
 
 Es interesante comprobar que cada vez es más fácil desarrollar nuevos
 lenguajes de programación. Las técnicas y herramientas de
@@ -1090,9 +1284,9 @@ multiparadigma.
 * Lenguaje moderno, multiparadigma (programación orientada a objetos y
   funcional) fuertemente tipeado y compilado.
 
-### <a name="2"/> 2. Elementos de los lenguajes de programación
+## <a name="2"/> 2. Elementos de los lenguajes de programación
 
-#### <a name="2-1"/> 2.1. Definición de la Encyclopedia of Computer Science
+### <a name="2-1"/> 2.1. Definición de la Encyclopedia of Computer Science
 
 A programming language is a set of characters, rules for combining
 them, and rules specifying their effects when executed by a computer,
@@ -1104,7 +1298,7 @@ which have the following four characteristics:
 4. Employs a notation that is closer to that of the specific problem
       being solved than is machine code
 
-#### <a name="2-2"/> 2.2. Definición de Abelson y Sussman
+### <a name="2-2"/> 2.2. Definición de Abelson y Sussman
 
 > We are about to study the idea of a **computational
 > process**. Computational processes are abstract beings that inhabit
@@ -1125,7 +1319,7 @@ Y otra idea fundamental
 > particular attention to the means that the language provides for
 > combining simple ideas to form more complex ideas.
 
-#### <a name="2-3"/> 2.3. Características de un LP
+### <a name="2-3"/> 2.3. Características de un LP
 
 1. Define un proceso que se ejecuta en un computador
 2. Es de alto nivel, cercano a los problemas que se quieren resolver
@@ -1133,7 +1327,7 @@ Y otra idea fundamental
 3. Permite construir nuevas abstracciones que se adapten al dominio
    que se programa
 
-####  <a name="2-4"/> 2.4. Elementos de un LP
+###  <a name="2-4"/> 2.4. Elementos de un LP
 
 Para Abelson y Sussman, todos los lenguajes de progamación permiten
 combinar ideas simples en ideas más complejas mediante los siguientes
@@ -1146,7 +1340,7 @@ tres mecanismos
 * **Mecanismos de abstracción** con los que dar nombre a los elementos
   compuestos y manipularlos como unidades
 
-#### <a name="2-5"/> 2.5. Sintaxis y semántica
+### <a name="2-5"/> 2.5. Sintaxis y semántica
 
 *Sintaxis*: un conjunto de reglas que definen qué expresiones de texto
  son correctas. Por ejemplo, en C todas las sentencias deben terminar
@@ -1157,7 +1351,7 @@ una determinada semántica que define cuál será el resultado de la
 ejecución de un programa.
 
 
-#### <a name="2-6"/> 2.6. Los lenguajes son para las personas
+### <a name="2-6"/> 2.6. Los lenguajes son para las personas
 
 Los lenguajes de programación deben ser precisos, deben poder
 traducirse sin ambigüedad en lenguaje máquina para que sean ejecutados
@@ -1168,7 +1362,7 @@ La programación es una actividad colaborativa y debe basarse en la
 comunicación.
 
 
-#### <a name="2-7"/> 2.7. Importancia del aprendizaje de técnicas de LPs
+### <a name="2-7"/> 2.7. Importancia del aprendizaje de técnicas de LPs
 
 Es importante conocer cómo funciona "por dentro" un lenguaje de
 programación y sus características comparadas.
@@ -1180,7 +1374,7 @@ programación y sus características comparadas.
 * Facilita el aprendizaje de un nuevo lenguaje de programación
 * Facilita el diseño de nuevos lenguajes de programación
 
-### <a name="3"/> 3. Abstracción
+## <a name="3"/> 3. Abstracción
 
 Una misión fundamental de los lenguajes de programación es
 proporcionar herramientas que sirvan para construir estas
@@ -1193,7 +1387,7 @@ nuestro programas es fundamental para conseguir un código legible y
 reutilizable.
 
 
-#### <a name="3-1"/> 3.1. Modelar como una actividad fundamental
+### <a name="3-1"/> 3.1. Modelar como una actividad fundamental
 
 * Para escribir un programa que preste unos servicios es fundamental
   modelar el dominio sobre el que va a trabajar
@@ -1213,7 +1407,7 @@ reutilizable.
 *Casos de uso biblioteca*
 
 
-#### <a name="3-2"/> 3.2. Abstracciones computacionales
+### <a name="3-2"/> 3.2. Abstracciones computacionales
 
 Existen abstracciones propias de la informática (*computer science*),
 que se utilizan en múltiples dominios. Por ejemplo, abstracciones de
@@ -1231,7 +1425,7 @@ y ordenadores externos:
 * Raster gráfico
 * Protocolo TCP/IP
 
-#### <a name="3-3"/> 3.3. Construcción de abstracciones
+### <a name="3-3"/> 3.3. Construcción de abstracciones
 
 Uno de los trabajos principales de un informático es la construcción
 de abstracciones que permitan ahorrar tiempo y esfuerzo a la hora de
@@ -1252,7 +1446,7 @@ Cita de Joel Spolsky en su blog
 > files that in turn consist of one or more strings of bytes.
 
 
-#### <a name="3-4"/> 3.4. Distintos aspectos de los lenguajes de programación
+### <a name="3-4"/> 3.4. Distintos aspectos de los lenguajes de programación
 
 La programación es una disciplina compleja, que tiene que tener en
 cuenta múltiples aspectos de los lenguajes de programación y las API:
@@ -1280,9 +1474,9 @@ cuenta múltiples aspectos de los lenguajes de programación y las API:
     Github, Bitbucket), de gestión incidencias (Jira) , tests que
     evitan errores de regresión, ...
 
-### <a name="4"/> 4. Paradigmas de programación
+## <a name="4"/> 4. Paradigmas de programación
 
-#### <a name="4-1"/> 4.1. ¿Qué es un paradigma de programación?
+### <a name="4-1"/> 4.1. ¿Qué es un paradigma de programación?
 
 Un paradigma define un conjunto de características, patrones y estilos
 de programación basados en alguna idea fundamental. Por ejemplo el
@@ -1320,7 +1514,7 @@ funcionales, no pueden ser considerados multi-paradigma porque no
 fueron creados con la idea de integrar paradigmas variados en una
 forma coherente de expresión.
 
-#### <a name="4-2"/> 4.2. Paradigmas más importantes
+### <a name="4-2"/> 4.2. Paradigmas más importantes
 
 * Paradigma funcional
 * Paradigma lógico
@@ -1328,7 +1522,7 @@ forma coherente de expresión.
 * Paradigma orientado a objetos
 
 
-#### <a name="4-3"/> 4.3. Paradigma funcional
+### <a name="4-3"/> 4.3. Paradigma funcional
 
 Resumen de las características principales:
 
@@ -1353,7 +1547,7 @@ Ejemplo de código (Lisp):
 	(factorial 30)
 	265252859812191058636308480000000
 
-#### <a name="4-4"/> 4.4. Paradigma lógico
+### <a name="4-4"/> 4.4. Paradigma lógico
 
 Características:
 
@@ -1388,7 +1582,7 @@ Ejemplo de código (Prolog):
 	no
 
 
-#### <a name="4-5"/> 4.5. Paradigma imperativo
+### <a name="4-5"/> 4.5. Paradigma imperativo
 
 Los lenguajes de programación que cumplen el paradigma imperativo se
 caracterizan por tener un estado implícito que es modificado mediante
@@ -1427,7 +1621,7 @@ Ejemplo (Pascal):
 	     end;    
 	end;
 
-#### <a name="4-6"/> 4.6. Paradigma orientado a objetos
+### <a name="4-6"/> 4.6. Paradigma orientado a objetos
 
 Características:
 
@@ -1484,7 +1678,7 @@ Ejemplo (Java):
 	}
 
 
-### <a name="5"/> 5. Compiladores e intérpretes
+## <a name="5"/> 5. Compiladores e intérpretes
 
 En el nivel de abstracción más bajo, la ejecución de un programa en un
 computador consiste en la ejecución de un conjunto de instrucciones
@@ -1507,7 +1701,7 @@ será:
 * el código de un programa (intérprete) que realiza la interpretación
   del programa original (en el caso de un lenguaje interpretado)
 
-#### <a name="5-1"/> 5.1. Compilación
+### <a name="5-1"/> 5.1. Compilación
 
 La siguiente figura (tomada, como las demás de este apartado del
 *Programming Language Pragmatics*) muestra el proceso de generación y
@@ -1530,7 +1724,7 @@ Intel no puede ejecutarse en un procesador ARM, como los
   y tiempo de ejecución
 - Mayor eficiencia
 
-#### <a name="5-2"/> 5.2. Interpretación
+### <a name="5-2"/> 5.2. Interpretación
 
 <img src="imagenes/interpretacion.png" width="500px"/>
 
@@ -1549,7 +1743,7 @@ círculos de programación funcional un *REPL* (*Read*, *Eval*, *Print*,
 Lisp. El uso del *REPL* promueve una programación interactiva en la
 que continuamente evaluamos y comprobamos el código que desarrollamos.
 
-#### <a name="5-3"/> 5.3. Enfoques mixtos
+### <a name="5-3"/> 5.3. Enfoques mixtos
 
 Existen también enfoques mixtos, como el usado por el lenguaje de
 programación Java, en el que se realizan ambos procesos.
@@ -1571,7 +1765,7 @@ por ejemplo VirtualBox).
 
 - Ejemplos: Java, Scala
 
-### 6. Bibliografía
+## 6. Bibliografía
 
 
 * Introducción capítulo 1 SICP, *Building Abstractions with
