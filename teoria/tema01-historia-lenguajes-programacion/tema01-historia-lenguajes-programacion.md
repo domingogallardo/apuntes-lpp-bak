@@ -278,16 +278,76 @@ artículo mucho más profundo y detallado es el de Stephen Wolfram: [Untangling 
 
 ### <a name="1-2"/> 1.2. Avances previos a los primeros computadores
 
-Todas estas máquinas calculadoras representan avances en el proceso
+Todas las máquinas vistas hasta ahora representan avances en el proceso
 del desarrollo de los primeros computadores, pero a finales del siglo
 XIX todavía no existía la tecnología ni la teoría matemática necesaria
 para construir un computador de propósito general. Son ideas de genios
 inventores adelantados a su tiempo.
 
 Se necesitan algunos avances adicionales antes de llegar a la década
-clave en la historia de los computadores, la década 1940-50.
+clave en la historia de los computadores, la década 1940-50. Algunos
+de estos avances son teóricos o matemáticos, otros tecnológicos y
+otros integran tecnología y matemática. Vamos a verlos brevemente en
+orden cronológico.
 
-####  Codificación de la información: tarjetas perforadas
+#### Álgebra de Boole (1850)
+
+El matemático inglés George Boole publicó en 1847 el trabajo _"The
+Mathematical Analysis of Logic"_, donde describe un sistema algebráico
+de lógica basada en los valores Verdad y Falso (fácilmente
+representables en binario como 0 y 1), los operadores AND, OR y
+NOT y las tablas de verdad que describen el funcionamiento de esos
+operadores.
+
+El álgebra de Boole, tal y como se denominó el sistema, se hizo
+popular en matemáticas y lógica y fue utilizado 80 años después por
+Claude Shannon para formalizar el funcionamiento de los primeros
+circuitos digitales diseñados en sus tesis de máster en el MIT.
+
+
+#### Relés electromecánicos (1850)
+
+Los relés electromecánicos son dispositivos que permiten implementar
+interruptores, amplificadores de señal o puertas lógicas. 
+
+<img src="imagenes/relay-telegrafo.png" width="400px" align="right"/>
+
+Son elementos que tienen una entrada de control que puede activar el
+paso de corriente por un electroimán. Cuando el electroimán se activa
+atrae a una pestaña y se cierra el circuito principal del relé, con lo
+que la corriente pasa por él.
+
+El funcionamiento del telégrafo está basado en este
+mecanismo. Inicialmente todos los relés del sistema de transmisión
+están abiertos y no pasa la corriente por ninguno. Cuando el
+transmisor pulsa la palanca del telégrafo para generar un pulso, el
+pulso se transmite por todos los relés cerrándose todos los circuitos
+hasta el receptor. A la derecha podemos ver un esquema sacado de la
+patente del telégrafo realizada por Morse en 1837.
+
+<img src="imagenes/and-reles.png" width="200px" align="right"/>
+
+También podemos ver en la imagen de la derecha un ejemplo de una
+puerta AND implementada con dos relés electromecánicos. Los dos relés
+están dispuestos de forma secuencial. Cuando la corriente pasa por el
+interruptor del primer relé se activa su electroimán y pasa la
+corriente. Si en el interruptor del segundo relé también hay
+corriente, se cierra también su circuito y la corriente pasa hasta la
+bombilla. La bombilla se enciende cuando llega una señal de 1 a ambos
+relés. Si alguno de los relés no tiene corriente en su interruptor (un
+0) la bombilla entonces seguirá apagada. 
+
+Los relés electromecánicos fueron la pieza básica sobre la que se
+construyeron todos los primeros computadores. Después, en los años 40,
+serían sustituidos por las válvulas de vacío (inventadas en 1910), que
+permitían realizar el mismo comportamiento pero de una forma
+totalmente electrónica. Y después, en los años 50, por los
+transistores, mucho más pequeños, fiables y de menos consumo,
+aumentando de forma exponencial su velocidad.
+
+#### Codificación de la información con tarjetas perforadas (1890)
+
+<img src="imagenes/tarjeta-perforada.png" width="400px" align="right"/>
 
 La forma de introducir los programas y los datos en muchos de los
 primeros computadores era mediante tarjetas perforadas.
@@ -306,25 +366,20 @@ utilizan una codificación. Cada columna (o fila) define un carácter
 utilizando alguna combinación de agujeros. Cada tarjeta perforada
 representa una línea de texto.
 
-<img src="imagenes/tarjeta-perforada.png" width="400px"/>
-
-*Tarjeta perforada*
 
 Podemos probar un [simulador de tarjetas perforadas](http://www.kloth.net/services/cardpunch.php).
 
+#### Circuitos lógicos implementados con relés (1930)
 
-#### Relés electromecánicos
+Claude Shannon, George Stibitz y otros ingenieros como el alemán
+Konrad Zuse se dieron cuenta de forma independiente de que los relés
+usados para los telégrafos podían utilizarse como puertas lógicas para
+definir circuitos sumadores, multiplicadores, etc. de números en
+binario. 
 
-<img src="imagenes/relay-telegrafo.png" width="450px"/>
+#### Máquina universal de Turing (1935)
 
-- Inventados alrededor de 1835
-- Morse los utiliza en la patente del telégrafo (1837)
-- Puerta AND implementada con dos relés electromecánicos:
-
-<img src="imagenes/and-reles.png" width="200px"/>
-
-
-#### Máquina universal de Turing
+<img src="imagenes/Alan_Turing.jpg" width="200px" align="right"/>
 
 La máquina de Turing no es un computador real, no existe
 físicamente. Es un *modelo computacional* que formula Alan Turing para
@@ -344,9 +399,6 @@ físico, pero contiene elementos ideales y poco eficientes que hacen
 imposible tomarlo como un diseño de a partir del que construir un
 computador físico.
 
-<img src="imagenes/Alan_Turing.jpg" width="200px"/>
-
-*Alan Turing*
 
 Una máquina de Turing consiste en un scanner lee y escribe 0s y 1s de
 una cinta infinita (memoria) y se mueve y los escribe en función de
@@ -358,21 +410,6 @@ comportamiento en otra parte de la cinta. Esta idea tuvo un profundo
 impacto en el desarrollo de los computadores, dando origen, una década
 después, al concepto de programa almacenado en memoria.
 
-#### Resumen de avances importantes finales del siglo XIX y principios del XX
-
-**Matemáticos y teóricos**
-
-- (1850) Álgebra de Boole (AND, OR, NOT)
-- (1900) Codificación de la información con tarjetas perforadas
-- (1935) Máquina de Turing que define el concepto de computabilidad y
-  Turing-completitud de los lenguajes de programación
-
-**Tecnológicos**
-
-- (1850) Relés electromecánicos (telégrafo)
-- (1910) Válvulas de vacío permiten implementar los relés de forma electrónica
-- (1937) Claude Shannon - Circuitos de relés para definir puertas
-  lógicas, circuito de relés sumador en base 2
 
 ### <a name="1-3"/> 1.3 La década 1940-50
 
@@ -385,9 +422,7 @@ ajedrez).
 
 #### 1941: la máquina de calcular Z3 de Zuse
 
-<img src="imagenes/Zuse_Z3.jpg" width="300px"/>
-
-*Máquina de calcular Z3*
+<img src="imagenes/Zuse_Z3.jpg" width="300px" align="right"/>
 
 De forma independiente a todos los proyectos que veremos a
 continuación, el ingeniero alemán Konrad Zuse diseñó y construyó entre
@@ -407,7 +442,9 @@ máquina Z3 era capaz de ejecutar de forma repetida un bucle sencillo
 de operaciones aritméticas que actuaban sobre números almacenados en
 memoria.
 
-El modelo computacional de la Z3 es el siguiente:
+La arquitectura de la Z3 es el siguiente:
+
+<img src="imagenes/arquitectura-z3.png" align="right"/>
 
 - Contiene registros de memoria denotados por letras (no se puede
   acceder de forma indirecta)
@@ -424,17 +461,10 @@ Un ejemplo de programa:
     op
     STORE a
 
-<img src="imagenes/arquitectura-z3.png"/>
-
-*Arquitectura de la Z3*
 
 El programa de cálculos a realizar se escribía de forma secuencial en
 una cinta perforada. La Z3 iba leyendo la cinta y realizando las
 operaciones indicadas.
-
-<img src="imagenes/paper-tape-univac.jpg"/>
-
-*Cinta perforada (no del Z3, sino del UNIVAC)*
 
 Debido al estallido de la Segunda Guerra Mundial el trabajo de Zuse
 quedó olvidado y no tuvo repercusión fuera de sus fronteras.
@@ -446,9 +476,7 @@ quedó olvidado y no tuvo repercusión fuera de sus fronteras.
 
 #### **ABC** (1942, USA)
 
-<img src="imagenes/ABCreplica.jpg" width="300px"/>
-
-*ABC*
+<img src="imagenes/ABCreplica.jpg" width="300px" align="right"/>
 
 En paralelo al desarrollo del Z3, de forma independiente, el profesor
 estadounidense John Vincent Atanasoff en la universidad de Iowa y su
@@ -474,9 +502,7 @@ de 50 bits almacenadas en condensadores
 
 #### **Colossus** (1944, UK)
 
-<img src="imagenes/Colossus.jpg" width="300px"/>
-
-*Colossus*
+<img src="imagenes/Colossus.jpg" width="300px" align="right"/>
 
 Colossus es el primer computador electrónico digital capaz de
 funcionar de forma continua. Se desarrolló en el centro de
@@ -519,9 +545,7 @@ de forma decisiva al triunfo aliado en la Segunda Guerra Mundial.
 
 #### **Mark-1** (1944, USA)
 
-<img src="imagenes/mark-1.jpg" width="400px"/>
-
-*Mark-1*
+<img src="imagenes/mark-1.jpg" width="400px" align="right"/>
 
 Mark-1 fue diseñada por el profesor Howard Aiken de Harvard y
 construida por IBM. Era una máquina enorme, del tamaño de una
@@ -540,9 +564,7 @@ y un logaritmo o función trigonométrica alrededor de 1 minuto
 
 #### **ENIAC** (1945, USA)
 
-<img src="imagenes/eniac.jpg" width="400px"/>
-
-*ENIAC*
+<img src="imagenes/eniac.jpg" width="400px" align="right"/>
 
 ENIAC es el primer computador electrónico construido en los EEUU, en
 la Moore School de la universidad de Pensilvania, en un proyecto
@@ -565,10 +587,6 @@ En 1944 John von Neumann se unió al grupo de desarrollo del ENIAC y
 aconsejó modificaciones en la arquitectura que llevaron, en 1948, a
 introducir un mecanismo primitivo de programa almacenado en memoria.
 
-<img src="imagenes/John_von_Neumann.gif" width="300px"/>
-
-*John von Neumann*
-
 En los diseños iniciales del ENIAC se utilizaba una cinta de
 instrucciones similar a la del Z3. Eckert parece que también se dio
 cuenta de forma independiente, antes de la llegada de von Neumann, de
@@ -586,6 +604,8 @@ La entrada y salida de datos se realizaba con tarjetas perforadas
 ***Velocidad***: 5.000 sumas/restas por segundo  
 
 #### La arquitectura von Neumann
+
+<img src="imagenes/John_von_Neumann.gif" width="300px" align="right"/>
 
 En 1945, mientras que el ENIAC estaba todavía en construcción, von
 Neumann, trabajando en la Universidad de Princeton (EEUU) escribió su
@@ -745,34 +765,35 @@ inteligencia artificial (juegos como las damas).
 #### El direccionamiento indirecto
 
 Un concepto fundamental de los conjuntos de instrucciones de los
-procesadores es el de direccionamiento indirecto:
+procesadores es el de direccionamiento indirecto. 
 
-    LOAD A [B]
+Un ejemplo de su funcionamiento es el siguiente programa escrito en un
+lenguaje ensamblador imaginario.
 
-El contenido del registro B es una dirección de memoria, y la
-sentencia accede a esa dirección y carga en el registro A su
-contenido.
+    LOAD C #28AF
+    LOAD A [C]
+    INC C
+    LOAD B [C]
 
-En los lenguajes de programación de alto nivel, el direccionamiento
-indirecto se representa con punteros o referencias. Por ejemplo, en la
-siguiente sentencia de C, se guarda en la variable `a` una referencia
-a la dirección de memoria en la que comienza la cadena `"Hola,
-mundo"`.
+La primera instrucción carga en el registro B el número hexadecimal
+`#28AF` que representa la dirección de memoria 10.415. La segunda
+instrucción carga en el registro A el contenido de esa dirección de
+memoria. La siguiente instrucción incrementa en 1 la dirección de
+memoria que hemos guardado en C y después se carga en B el contenido
+de esa nueva dirección. El resultado es que hemos guardado en los registros A y B los
+contenidos de las direcciones de memoria 10.415 y 10.416. 
 
-    char *a = "Hola, mundo"
+El direccionamiento indirecto nos permite hacer cálculos sobre
+direcciones de memoria y guardar después los contenidos de las
+direcciones resultantes en registros. Esto es fundamental para que un
+lenguaje de programación pueda tener saltos, llamadas a subrutinas o
+estructuras de datos dinámicas.
 
-El * como una forma de indicar un direccionamiento indirecto ya se
-usaba en
-[el ensamblador del IBM 7090](http://en.wikipedia.org/wiki/IBM_7090).
-
-El direccionamiento indirecto es necesario para que un conjunto de
-instrucciones de un procesador sea Turing computable
-([On Basic Concepts of Early Computers in Relation to Contemporary Computer Architectures](http://page.mi.fu-berlin.de/rojas/pub/on_basic_1994.pdf),
-Raúl Rojas)
-
-Sin el direccionamiento indirecto es imposible acceder al contenido de
-tablas con un número variable de elementos. Es necesario para acceder
-a los contenidos de un array en memoria.
+De hecho, el matemático Raúl Rojas, experto en la historia de la
+computación, establece en su artículo
+([On Basic Concepts of Early Computers in Relation to Contemporary Computer Architectures](http://page.mi.fu-berlin.de/rojas/pub/on_basic_1994.pdf)
+que el direccionamiento indirecto es necesario para que un conjunto de
+instrucciones de un procesador sea Turing computable.
 
 ### <a name="1-5"/> 1.5. Los primeros lenguajes de programación
 
