@@ -282,6 +282,6 @@ Para ampliar algunos conceptos se recomiendan los dos siguientes manuales:
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 Domingo Gallardo, Cristina Pomares, Antonio Botía
