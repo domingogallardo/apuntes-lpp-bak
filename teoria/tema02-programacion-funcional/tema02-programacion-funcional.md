@@ -5,8 +5,8 @@
 
 - [1. El paradigma de Programación Funcional](#1)
     - [1.1 Pasado y presente del paradigma funcional](#1-1)
-	- [1.2. Evaluación de expresiones](#1-2)
-    - [1.3. Programación declarativa vs. imperativa](#1-3)
+    - [1.2. Programación declarativa vs. imperativa](#1-2)
+	- [1.3. Evaluación de expresiones](#1-3)
 	- [1.4. Modelo de computación de sustitución](#1-4)
 - [2. Scheme como lenguaje de programación funcional](#2)
 	- [2.1. Funciones y formas especiales](#2-1)
@@ -51,22 +51,33 @@ libro *Structure and Intepretation of Computer Programs*:
 
 ### <a name="1-1"></a> 1.1. Pasado y presente del paradigma funcional
 
+
+#### 1.1.1 Definición y características
+
 En una definición muy breve y concisa la programación funcional define
-un programa como una función matemática que convierte unas entradas en
-unas salidas, sin ningún estado interno y ningún efecto lateral.
+un **programa** como:
 
-La no existencia de estado interno (variables las que se guardan y se
-modifican valores) y la ausencia de efectos laterales es una
-característica también de la **programación declarativa**. En este
-sentido, la programación funcional es un tipo concreto de programación
-declarativa.
+> Un conjunto de funciones matemáticas que convierten
+> unas entradas en unas salidas, sin ningún estado interno y ningún
+> efecto lateral.
 
-Otras características adicionales del paradigma funcional son las
-siguientes:
+Hablaremos más adelante de la no existencia de estado interno
+(variables las que se guardan y se modifican valores) y de la ausencia
+de efectos laterales. Avancemos que estas son también características
+de la **programación declarativa**. En este sentido, la programación
+funcional es un tipo concreto de programación declarativa.
 
-* Uso profuso de la recursión en la definición de las funciones
-* Funciones como tipos de datos primitivos
-* Listas como estructuras de datos fundamentales
+Las características principales del paradigma funcional son:
+
+- Definiciones de funciones matemáticas puras, sin estado interno ni
+  efectos laterales
+- Valores inmutables
+- Uso profuso de la recursión en la definición de las funciones
+- Uso de listas como estructuras de datos fundamentales
+- Funciones como tipos de datos primitivos: expresiones lambda y
+  funciones de orden superior
+
+Explicaremos estas propiedades a continuación.
 
 #### 1.1.1 Orígenes históricos
 
@@ -135,39 +146,54 @@ memoria dinámica (*recolección de basura*,
 o la
 [compilación *just in time*](https://en.wikipedia.org/wiki/Just-in-time_compilation).
 
-Lisp es mucho más que un lenguaje funcional. Lisp se diseñó con el
+Lisp no es un lenguaje exclusivamente funcional. Lisp se diseñó con el
 objetivo de ser un lenguaje de alto nivel capaz de resolver problemas
 prácticos de Inteligencia Artificial, no con la idea de ser un
 lenguaje formal basado un único modelo de computación. Por ello en
 Lisp (y en Scheme) existen primitivas que se salen del paradigma
 funcional puro y permiten programar de formar imperativa (no
-declarativa), usando mutación de estado y pasos de ejecución. Veremos
-estas primitivas más adelante, en el tema en el que estudiemos el
-paradigma de programación imperativa. Estudiaremos allí qué efecto
-tienen estas primitivas en los programas y funciones que
-escribamos. Durante la primera parte de la asignatura no utilizaremos
-las instrucciones imperativas de Scheme, sino que escribiremos siempre
-código funcional.
+declarativa), usando mutación de estado y pasos de ejecución. 
 
-Con el paso de los años y el avance en los diseños de compiladores e
-intérpretes ha sido posible diseñar lenguajes de programación que
-siguen más estrictamente las características declarativas del
-paradigma funcional y que también son útiles y prácticos para
-desarrollar programas en el mundo real, como Haskell o Clojure.
+Sin embargo, durante la primera parte de la asignatura en la que
+estudiaremos la programación funcional, no utilizaremos las
+instrucciones imperativas de Scheme sino que escribiremos código
+exclusivamente funcional.
 
-#### 1.1.3. Aplicaciones prácticas de la programación funcional
+#### 1.1.3 Lenguajes de programación funcional
 
-En los años 60 la programación funcional (Lisp) fue dominante en
-departamentos de investigación en Inteligencia Artificial (MIT por
-ejemplo). En los años 70, 80 y 90 se fue relegando cada vez más a los
-nichos académicos y de investigación; en la empresa se impusieron los
-lenguajes imperativos y orientados a objetos.
+En los años 60 la programación funcional definida por el Lisp fue
+dominante en departamentos de investigación en Inteligencia Artificial
+(MIT por ejemplo). En los años 70, 80 y 90 se fue relegando cada vez
+más a los nichos académicos y de investigación; en la empresa se
+impusieron los lenguajes imperativos y orientados a objetos.
 
-En la primera década del 2000 han aparecido lenguajes
-*multi-paradigma* (muchos de ellos interpretados) como Ruby, Python,
-Groovy, Objective-C, Lua, Scala o Swift que incluyen el paradigma
-funcional. También han aparecido y se han hecho populares lenguajes
-exclusivamente funcionales como Haskell, Clojure o Erlang.
+En la primera década del 2000 han aparecido lenguajes que evolucionan
+de Lisp y que resaltan sus aspectos funcionales, aunque actualizando
+su sintaxis. Destacamos entre ellos:
+
+- [Clojure](https://en.wikipedia.org/wiki/Clojure)
+- [Erlang](https://en.wikipedia.org/wiki/Erlang_(programming_language))
+
+También hay una tendencia desde mediados de la década de 2000 de
+incluir aspectos funcionales como las _expresiones lambda_ o las
+funciones de orden superior en lenguajes imperativos orientados a
+objetos, dando lugar a lenguajes *multi-paradigma*:
+
+- [Ruby](https://en.wikipedia.org/wiki/Ruby_(programming_language))
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+- [Groovy](https://en.wikipedia.org/wiki/Groovy_(programming_language))
+- [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language))
+- [Swift](https://en.wikipedia.org/wiki/Swift_(programming_language))
+
+
+Por último, en la década del 2010 también se ha hecho popular un
+lenguaje **exclusivamente funcional** como
+[Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language)). Este
+lenguaje, a diferencia de Scheme y de otros lenguajes multi-paradigma,
+no tienen ningún elemento imperativo y consigue que todas sus
+expresiones sean puramente funcionales.
+
+#### 1.1.4. Aplicaciones prácticas de la programación funcional
 
 En la actualidad el paradigma funcional es un **paradigma de moda**,
 como se puede comprobar observando la cantidad de artículos, charlas y
@@ -279,214 +305,13 @@ de programación. Una metodología de programación proporciona
 sugerencias sobre cómo debemos diseñar, desarrollar y mantener una
 aplicación que va a ser usada por usuarios finales.
 
-### <a name="1-2"></a> 1.2. Evaluación de expresiones y definición de funciones
+### <a name="1-2"></a> 1.2. Programación declarativa vs. imperativa
 
-En la asignatura usaremos Scheme como primer lenguaje en el que
-exploraremos la programación funcional. Vamos a ver rápidamente
-algunos ejemplos de programas en Scheme con los que introducir los
-conceptos iniciales de programación funcional. En el seminario de
-Scheme que se imparte en prácticas se estudiará en más profundidad los
-conceptos más importantes del lenguaje: tipos de datos, operadores,
-estructuras de control, intérprete, etc.
+Hemos dicho que la programación funcional es un estilo de programación
+declarativa, frente a la programación tradicional de los lenguajes
+denominados imperativos. Vamos a explicar esto un poco más.
 
-#### Evaluación de expresiones
-
-Empezaremos en este apartado viendo cómo se definen y evalúan
-expresiones Scheme. Scheme es un lenguaje que viene del Lisp y
-mantiene sus expresiones prefijas construidas con paréntesis. Después
-veremos cómo construir nuevas funciones en Scheme. 
-
-Ejemplos de expresiones en Scheme, junto con el resultado de su
-ejecución:
-
-
-```scheme
-2 ⇒ 2
-(+ 2 3) ⇒ 5
-(+) ⇒ 0
-(+ 2 4 5 6) ⇒ 17
-(+ (* 2 3) (- 3 1)) ⇒ 8
-```
-
-En programación funcional en lugar de decir "ejecutar una expresión"
-se dice "**evaluar una expresión**", para reforzar la idea de que se
-tratan de expresiones matemáticas que **siempre devuelven uno y sólo un
-resultado**.
-
-Vemos que en la notación prefija las expresiones se construyen entre
-paréntesis, el primer elemento es el operador y el resto son
-operandos.
-
-- Por ejemplo, en la expresión `(+ 2 4 5 6)` el operador es el símbolo
-`+` que representa función _suma_ y los operandos son los números 2,
-4, 5 y 6.
-
-- Puede haber expresiones que no tengan operandos, como el ejemplo
-`(+)`, cuya evaluación devuelve 0.
-
-Una idea fundamental de Lisp y Scheme es que los paréntesis se evalúan
-de dentro a fuera. Por ejemplo, la expresión 
-
-```(+ (* 2 3) (- 3 (/ 12 3)))```
-
-que devuelve 5, se evalúa así:
-
-```scheme
-(+ (* 2 3) (- 3 (/ 12 3))) ⇒
-(+ 6 (- 3 (/ 12 3))) ⇒
-(+ 6 (- 3 4)) ⇒
-(+ 6 -1) ⇒
-5
-```
-
-La evaluación de cada expresión devuelve un valor que se utiliza para
-continuar calculando la expresión exterior. En el caso anterior
-
-- primero se evalúa la expresión `(* 2 3)` que devuelve 6,
-- después se evalúa `(/ 12 3)` que devuelve 4,
-- después se evalúa `(- 3 4)` que devuelve -1
-- y por último se evalúa `(+ 6 -1)` que devuelve 5
-
-Cuando se evalúa una expresión en el intérprete de Scheme el 
-resultado aparece en la siguiente línea. 
-
-#### Definición de funciones
-
-En programación funcional las funciones son similares a las funciones
-matemáticas: reciben parámetros y devuelven siempre un único resultado
-de operar con esos parámetros.
-
-Por ejemplo, podemos definir la función `(cuadrado x)` que devuelve el
-cuadrado de un número que pasamos como parámetro:
-
-```scheme
-(define (cuadrado x)
-   (* x x))
-```
-
-El cuerpo de la función es una expresión que se evaluará con el valor
-que se pase como parámetro. En el caso anterior la expresión es `(* x
-x)` y multiplicará el parámetro por si mismo.
-
-Hay que hacer notar que en Scheme no existe la palabra clave `return`,
-sino que las funciones siempre se definen con una única expresión cuya
-evaluación es el resultado que se devuelve.
-
-Una vez definida la función `cuadrado` podemos usarla de la misma
-forma que las funciones primitivas de Scheme:
-
-```scheme
-(cuadrado 10) ⇒ 100
-(cuadrado (+ 10 (cuadrado (+ 2 4)))) ⇒ 2116
-```
-
-La evaluación de la última expresión se hace de la siguiente forma:
-
-```scheme
-(cuadrado (+ 10 (cuadrado (+ 2 4)))) ⇒
-(cuadrado (+ 10 (cuadrado 6))) ⇒
-(cuadrado (+ 10 36)) ⇒
-(cuadrado 46) ⇒
-2116
-```
-
-Las funciones definidas se pueden utilizar a su vez para construir
-otras funciones
-
-Lo habitual en programación funcional es definir funciones muy
-pequeñas e ir construyendo funciones cada vez de mayor nivel usando
-las anteriores.
-
-#### Ejemplo: tiempo de impacto
-
-Por ejemplo, supongamos que estamos programando un juego de guerra de
-barcos y submarinos, en el que utilizamos las coordenadas del plano
-para situar todos los elementos de nuestra flota.
-
-Supongamos que necesitamos calcular el tiempo que tarda un torpedo en
-llegar desde una posición `(x1, y1)` a otra `(x2, y2)`. Suponemos que
-la velocidad del torpedo es otro parámetro `v`. 
-
-¿Cómo calcularíamos este tiempo de impacto?
-
-La forma menos correcta de hacerlo es definir todo el cálculo en una
-única expresión. Como en programación funcional las funciones deben
-definirse con una única expresión deberíamos poner todo el cálculo en
-forma de expresiones anidadas, unas dentro de otras. Eso crearía una
-función que calcularía bien el resultado, pero que sería muy difícil
-de leer y entender para un compañero (o para nosotros mismos, cuando
-pasen unos meses):
-
-```scheme
-;
-; Definición incorrecta: muy poco legible
-;
-; La función tiempo-impacto1 devuelve el tiempo que tarda
-; en llegar un torpedo a la velocidad v desde la posición
-; (x1, y1) a la posición (x2, y2)
-;
-
-(define (tiempo-impacto x1 y1 x2 y2 v)
-   (/ (sqrt (+ (* (- x2 x1) (- x2 x1))
-               (* (- y2 y1) (- y2 y1))))
-    v))
-```
-
-La función anterior haría bien el cálculo pero sería muy complicada de
-modificar y de entender.
-
-La forma más correcta de definir la función sería usando varias
-funciones auxiliares. Fíjate que es muy importante también poner los
-nombres correctos a cada función, para entender qué hace. Scheme es un
-lenguaje débilmente tipeado y no tenemos la ayuda de los tipos que nos
-dan más contexto de qué es cada parámetro y qué devuelve la función.
-
-```scheme
-;
-; Definición correcta, modular y legible
-;
-; La función tiempo-impacto2 devuelve el tiempo que tarda
-; en llegar un torpedo a la velocidad v desde la posición
-; (x1, y1) a la posición (x2, y2)
-;
-
-(define (tiempo-impacto x1 y1 x2 y2 velocidad)
-    (tiempo-distancia (distancia x1 y1 x2 y2) velocidad))
-;
-;
-; La función tiempo-distancia devuelve el tiempo que 
-; tarde en recorrer un móvil una distancia d a un velocidad v
-;
-
-(define (tiempo-distancia distancia velocidad)
-    (/ distancia velocidad))
-
-;
-; La función distancia devuelve la distancia entre dos
-; coordenadas (x1, y1) y (x2, y2)
-;
-
-(define (distancia x1 y1 x2 y2)
-    (sqrt (+ (cuadrado (- x2 x1))
-             (cuadrado (- y2 y1)))))
-
-;
-; La función cuadrado devuelve el cuadrado de un número
-;
-
-(define (cuadrado x)
-    (* x x))
-```
-
-En esta segunda versión definimos más funciones, pero cada una es
-mucho más legible. Además las funciones como `cuadrado`, `distancia` o
-`tiempo-distancia` las vamos a poder reutilizar para otros cálculos.
-
-### <a name="1-3"></a> 1.3. Programación declarativa vs. imperativa
-
-Otra característica de la programación funcional que es un estilo de
-programación declarativa, frente a la programación tradicional de los
-lenguajes denominados imperativos.
+#### 1.2.1 Programación declarativa
 
 Empecemos con lo que conocemos todos: un **programa imperativo**. Se trata
 de un conjunto de instrucciones que se ejecutan una tras otra (pasos
@@ -542,19 +367,23 @@ dicha ejecución no son relevantes los pasos internos que realiza el
 sistema sino las relaciones lógicas entre los datos y los resultados
 finales.
 
-Vamos a profundizar algo más en estos conceptos, comenzando por una
-definición algo más detallada de la programación tradicional
-imperativa. 
+#### 1.2.2 Programación imperativa
 
-#### 1.2.1. Programación imperativa
+Repasemos un algunas características propias de la programación
+imperativa **que no existen en la programación funcional**. Son
+características a las que estamos muy habituados porque son propias de
+los lenguajes más populares y con los que hemos aprendido a
+programar (C, C++, Java, python, etc.)
 
-Repasemos un par de características propias de la programación
-imperativa:
-
-- Pasos de ejecución con asignación
+- Pasos de ejecución y mutación
+- Efectos laterales
 - Estado local mutable en las funciones
 
-##### Asignación y pasos de ejecución
+Veremos que, aunque parece imposible, es posible programar sin
+utilizar estas características. Lo demuestran lenguajes lenguajes de
+programación funcional como Haskell o Clojure.
+
+##### Pasos de ejecución y mutación 
 
 El estilo de programación imperativa se basa en pasos de ejecución que
 modifican el estado de variables:
@@ -566,24 +395,35 @@ int x = x + 1;
 
 La expresión `x = x + 1` es una expresión de
 [asignación](https://en.wikipedia.org/w/index.php?title=Assignment_(computer_science)&redirect=no)
-que modifica el valore anterior de una variable por un nuevo valor. El
+que modifica el valor anterior de una variable por un nuevo valor. El
 *estado* de las variables (su valor) cambia con la ejecución de los
 pasos del programa.
 
-En programación imperativa una variable guarda una referencia a una
-posición de memoria (o estructura de datos) que puede ser modificada
-posteriormente mediante una nueva asignación o una modificación
-(mutación) de sus atributos.
+A esta asignación que modifica un valor ya existente se le denomina
+_asignación destructiva_ o _mutación_.
 
-Por ejemplo, en C podemos asignar y modificar un carácter de una
-cadena
+En programación imperativa también se puede modificar (mutar) el valor
+de componentes de estructuras de datos, como posiciones de un array,
+de una lista o de un diccionario.
 
-```c
-char *miNombre = "Alejandro Perez"
-miNombre[3] = 'a'
-```
+##### Mutación y efectos laterales
 
-O en Java podemos modificar los atributos de un objeto:
+En programación imperativa es posible trabajar también con referencias
+y hacer que más de un identificador referencie el mismo valor. Esto
+produce la posibilidad de que la modificación (mutación) del valor a
+través de uno de los identificadores produzca el **efecto lateral**
+(_side effect_ en inglés) de que el valor de un identificador ha
+cambiado sin ejecutar ninguna expresión en la que se utilice
+explícitamente el propio identificador.
+
+Por ejemplo, en la mayoría de lenguajes orientados a objetos los
+identificadores guardan referencias a objetos. De forma que si
+asignamos un objeto a más de un identificador, todos los
+identificadores están accediendo al mismo objeto. Si mutamos algún valor
+del objeto a través de un identificador provocamos un efecto lateral
+en los otros identificadores.
+
+Por ejemplo, para modificar los atributos de un objeto en Java:
 
 ```java
 Point2D p1 = new Point2D(3.0, 2.0); // la coord x de p1 es 3.0
@@ -591,7 +431,7 @@ p1.setCoordX(10.0);
 p1.getCoordX(); // la coord x de p1 es 10.0
 ```
 
-Si el objeto está asignado a más de una variable tendremos un **efecto
+Si el objeto está asignado a más de una variable tendremos el **efecto
 lateral**
 (*[side effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science))*
 en el que el dato guardado en una variable cambia después de una
@@ -723,7 +563,235 @@ apartados explicaremos más estas características.
 * Referencias
 * Pasos de ejecución
 
-### <a name="1-3"></a> 1.3. Modelo de computación de sustitución
+### <a name="1-3"></a> 1.3 Evaluación de expresiones y definición de funciones
+
+En la asignatura usaremos Scheme como primer lenguaje en el que
+exploraremos la programación funcional. Vamos a ver rápidamente
+algunos ejemplos de programas en Scheme con los que introducir los
+conceptos iniciales de programación funcional. En el seminario de
+Scheme que se imparte en prácticas se estudiará en más profundidad los
+conceptos más importantes del lenguaje: tipos de datos, operadores,
+estructuras de control, intérprete, etc.
+
+#### 1.3.1 Evaluación de expresiones
+
+Empezaremos en este apartado viendo cómo se definen y evalúan
+expresiones Scheme. Scheme es un lenguaje que viene del Lisp y
+mantiene sus expresiones prefijas construidas con paréntesis. Después
+veremos cómo construir nuevas funciones en Scheme. 
+
+Ejemplos de expresiones en Scheme, junto con el resultado de su
+ejecución:
+
+
+```scheme
+2 ⇒ 2
+(+ 2 3) ⇒ 5
+(+) ⇒ 0
+(+ 2 4 5 6) ⇒ 17
+(+ (* 2 3) (- 3 1)) ⇒ 8
+```
+
+En programación funcional en lugar de decir "ejecutar una expresión"
+se dice "**evaluar una expresión**", para reforzar la idea de que se
+tratan de expresiones matemáticas que **siempre devuelven uno y sólo un
+resultado**.
+
+Vemos que en la notación prefija las expresiones se construyen entre
+paréntesis, el primer elemento es el operador y el resto son
+operandos.
+
+- Por ejemplo, en la expresión `(+ 2 4 5 6)` el operador es el símbolo
+`+` que representa función _suma_ y los operandos son los números 2,
+4, 5 y 6.
+
+- Puede haber expresiones que no tengan operandos, como el ejemplo
+`(+)`, cuya evaluación devuelve 0.
+
+Una idea fundamental de Lisp y Scheme es que los paréntesis se evalúan
+de dentro a fuera. Por ejemplo, la expresión 
+
+```(+ (* 2 3) (- 3 (/ 12 3)))```
+
+que devuelve 5, se evalúa así:
+
+```scheme
+(+ (* 2 3) (- 3 (/ 12 3))) ⇒
+(+ 6 (- 3 (/ 12 3))) ⇒
+(+ 6 (- 3 4)) ⇒
+(+ 6 -1) ⇒
+5
+```
+
+La evaluación de cada expresión devuelve un valor que se utiliza para
+continuar calculando la expresión exterior. En el caso anterior
+
+- primero se evalúa la expresión `(* 2 3)` que devuelve 6,
+- después se evalúa `(/ 12 3)` que devuelve 4,
+- después se evalúa `(- 3 4)` que devuelve -1
+- y por último se evalúa `(+ 6 -1)` que devuelve 5
+
+Cuando se evalúa una expresión en el intérprete de Scheme el 
+resultado aparece en la siguiente línea. 
+
+#### 1.3.2 Definición de funciones
+
+En programación funcional las funciones son similares a las funciones
+matemáticas: reciben parámetros y devuelven siempre un único resultado
+de operar con esos parámetros.
+
+Por ejemplo, podemos definir la función `(cuadrado x)` que devuelve el
+cuadrado de un número que pasamos como parámetro:
+
+```scheme
+(define (cuadrado x)
+   (* x x))
+```
+
+El cuerpo de la función es una expresión que se evaluará con el valor
+que se pase como parámetro. En el caso anterior la expresión es `(* x
+x)` y multiplicará el parámetro por si mismo.
+
+Hay que hacer notar que en Scheme no existe la palabra clave `return`,
+sino que las funciones siempre se definen con una única expresión cuya
+evaluación es el resultado que se devuelve.
+
+Una vez definida la función `cuadrado` podemos usarla de la misma
+forma que las funciones primitivas de Scheme:
+
+```scheme
+(cuadrado 10) ⇒ 100
+(cuadrado (+ 10 (cuadrado (+ 2 4)))) ⇒ 2116
+```
+
+La evaluación de la última expresión se hace de la siguiente forma:
+
+```scheme
+(cuadrado (+ 10 (cuadrado (+ 2 4)))) ⇒
+(cuadrado (+ 10 (cuadrado 6))) ⇒
+(cuadrado (+ 10 36)) ⇒
+(cuadrado 46) ⇒
+2116
+```
+
+Las funciones definidas se pueden utilizar a su vez para construir
+otras funciones
+
+Lo habitual en programación funcional es definir funciones muy
+pequeñas e ir construyendo funciones cada vez de mayor nivel usando
+las anteriores.
+
+##### Ejemplo: tiempo de impacto
+
+Por ejemplo, supongamos que estamos programando un juego de guerra de
+barcos y submarinos, en el que utilizamos las coordenadas del plano
+para situar todos los elementos de nuestra flota.
+
+Supongamos que necesitamos calcular el tiempo que tarda un torpedo en
+llegar desde una posición `(x1, y1)` a otra `(x2, y2)`. Suponemos que
+la velocidad del torpedo es otro parámetro `v`. 
+
+¿Cómo calcularíamos este tiempo de impacto?
+
+La forma menos correcta de hacerlo es definir todo el cálculo en una
+única expresión. Como en programación funcional las funciones deben
+definirse con una única expresión deberíamos poner todo el cálculo en
+forma de expresiones anidadas, unas dentro de otras. Eso crearía una
+función que calcularía bien el resultado, pero que sería muy difícil
+de leer y entender para un compañero (o para nosotros mismos, cuando
+pasen unos meses):
+
+```scheme
+;
+; Definición incorrecta: muy poco legible
+;
+; La función tiempo-impacto1 devuelve el tiempo que tarda
+; en llegar un torpedo a la velocidad v desde la posición
+; (x1, y1) a la posición (x2, y2)
+;
+
+(define (tiempo-impacto x1 y1 x2 y2 v)
+   (/ (sqrt (+ (* (- x2 x1) (- x2 x1))
+               (* (- y2 y1) (- y2 y1))))
+    v))
+```
+
+La función anterior haría bien el cálculo pero sería muy complicada de
+modificar y de entender.
+
+La forma más correcta de definir la función sería usando varias
+funciones auxiliares. Fíjate que es muy importante también poner los
+nombres correctos a cada función, para entender qué hace. Scheme es un
+lenguaje débilmente tipeado y no tenemos la ayuda de los tipos que nos
+dan más contexto de qué es cada parámetro y qué devuelve la función.
+
+```scheme
+;
+; Definición correcta, modular y legible
+;
+; La función tiempo-impacto2 devuelve el tiempo que tarda
+; en llegar un torpedo a la velocidad v desde la posición
+; (x1, y1) a la posición (x2, y2)
+;
+
+(define (tiempo-impacto x1 y1 x2 y2 velocidad)
+    (tiempo-distancia (distancia x1 y1 x2 y2) velocidad))
+;
+;
+; La función tiempo-distancia devuelve el tiempo que 
+; tarde en recorrer un móvil una distancia d a un velocidad v
+;
+
+(define (tiempo-distancia distancia velocidad)
+    (/ distancia velocidad))
+
+;
+; La función distancia devuelve la distancia entre dos
+; coordenadas (x1, y1) y (x2, y2)
+;
+
+(define (distancia x1 y1 x2 y2)
+    (sqrt (+ (cuadrado (- x2 x1))
+             (cuadrado (- y2 y1)))))
+
+;
+; La función cuadrado devuelve el cuadrado de un número
+;
+
+(define (cuadrado x)
+    (* x x))
+```
+
+En esta segunda versión definimos más funciones, pero cada una es
+mucho más legible. Además las funciones como `cuadrado`, `distancia` o
+`tiempo-distancia` las vamos a poder reutilizar para otros cálculos.
+
+
+#### 1.3.3 Funciones puras
+
+A diferencia de lo que hemos visto en programación imperativa, en
+programación funcional no es posible definir funciones con estado
+local. Las funciones que se definen son funciones matemáticas puras,
+que cumplen las siguientes condiciones:
+
+- No modifican los parámetros que se les pasa
+- Devuelven un único resultado
+- No tienen estado local ni el resultado depende de un estado exterior mutable
+
+Esta última propiedad es muy importante y quiere decir que la función
+siempre devuelve el mismo valor cuando se le pasan los mismos
+parámetros.
+
+Las funciones puras son muy fáciles de entender porque no es necesario
+tener en cuenta ningún contexto a la hora de describir su
+funcionamiento. El valor devuelto únicamente depende de los parámetros
+de entrada.
+
+Por ejemplo, funciones matemáticas como suma, resta, cuadrado, sin,
+cos, etc. cumplen esta propiedad.
+
+
+### <a name="1-4"></a> 1.4. Modelo de computación de sustitución
 
 Un modelo computacional es un formalismo (conjunto de reglas) que
 definen el funcionamiento de un programa. En el caso de los lenguajes
@@ -797,7 +865,7 @@ las funciones no tienen estado interno. Scheme utiliza el orden aplicativo.
 En el siguiente apartado veremos un ejemplo de ambos tipos de
 evaluaciones. 
 
-#### 1.3.1 Orden normal vs. orden aplicativo
+#### 1.4.1 Orden normal vs. orden aplicativo
 
 En el orden aplicativo se realizan las evaluaciones antes de realizar
 las sustituciones, lo que define una evaluación de *dentro a fuera* de
