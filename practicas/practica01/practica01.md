@@ -1,9 +1,9 @@
-## Práctica 1: Introducción a Scheme
+# Práctica 1: Introducción a Scheme
 
 **Importante**: Antes de empezar esta práctica debes haber terminado
   *todos* los ejercicios del seminario de Scheme.
 
-### Entrega de la práctica
+## Entrega de la práctica
 
 Para entregar la práctica debes subir a Moodle el fichero
 `practica01.rkt` con una cabecera inicial con tu nombre y apellidos, y
@@ -69,9 +69,9 @@ En los casos de prueba se pueden incluir los ejemplos del enunciado
 del ejercicio y alguno más que compruebe que la implementación
 funciona correctamente.
 
-### Ejercicios
+## Ejercicios
 
-#### Ejercicio 1
+### Ejercicio 1
 
 a) Implementa la función `(binario-a-decimal b3 b2 b1 b0)` que reciba
 4 bits que representan un número en binario y devuelva el número
@@ -112,7 +112,7 @@ sucesivamente hasta el 15 que es el F en hexadecimal.
 
 **Pista**: puedes utilizar las funciones `integer->char` y `char->integer`
 
-#### Ejercicio 2
+### Ejercicio 2
 
 Supongamos que estamos implementando un **juego de guerra de barcos** en
 el que los barcos están situados en coordenadas del plano definidas
@@ -171,7 +171,7 @@ Ejemplos:
 (dentro-alcance? 100 200 500 500 20) ⇒ #t
 ```
 
-#### Ejercicio 3
+### Ejercicio 3
 
 Implementa la función `(tirada-ganadora t1 t2)` que reciba 2 parejas
 como argumento, donde cada pareja representa una tirada con 2 dados
@@ -188,7 +188,7 @@ es la misma.
 (tirada-ganadora (cons 6 2) (cons 3 3)) ⇒ 0
 ```
 
-#### Ejercicio 4
+### Ejercicio 4
 
 Define la función `tipo-triangulo` que recibe como parámetro las
 coordenadas en el plano de los vértices de un triángulo representados
@@ -202,6 +202,19 @@ Ejemplos:
 (tipo-triangulo (cons 1 1) (cons  1 6) (cons 6 1)) ⇒ "isosceles"
 (tipo-triangulo (cons -2 3) (cons  2 6) (cons 5 3)) ⇒ "escaleno"
 (tipo-triangulo (cons -4 3) (cons  0 0) (cons -4.5891 -1.9641)) ⇒ "equilatero"
+```
+
+**Nota**: Para comparar dos números reales debemos comprobar si la
+resta entre ambos es menor que una constante `epsilon` que hemos
+definido. Por ejemplo, `epsilon` puede valer 0.00001.
+
+Puedes usar la siguiente función auxiliar:
+
+```scheme
+(define epsilon 0.00001)
+
+(define (iguales-reales? x y)
+  (< (abs (- x y)) epsilon))
 ```
 
 ### Ejercicio 5

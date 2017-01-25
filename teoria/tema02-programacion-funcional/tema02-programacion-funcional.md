@@ -1352,6 +1352,7 @@ resultante de 4+3+2+1, o sea, 10. Una vez obtenido ese valor hay que
 hacer algo más, sumarle el propio número 5.
 
 ```(+ (suma-hasta (- 5 1)) 5) ⇒
+(+ (suma-hasta 4) 5) ⇒ (confiamos en la recursión: (suma-hasta 4) = 10)
 (+ 10 5) ⇒
 15```
 
@@ -1452,7 +1453,7 @@ que devolver 0.
 
 Con todo junto, quedaría la recursión como sigue
 
-```
+```scheme
 (define (suma-lista lista)
    (if (null? lista)
        0
@@ -1482,7 +1483,7 @@ Como caso base, si la lista es vacía devolvemos 0.
 
 La versión completa:
 
-```
+```scheme
 (define (veces lista id)
   (cond
     ((null? lista) 0)
