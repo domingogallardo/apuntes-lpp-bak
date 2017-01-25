@@ -14,11 +14,8 @@ solución debe incluir:
 - una visualización por pantalla de uno de los ejemplos incluidos en
   el enunciado que **demuestre qué hace la función**, usando la
   función de `display`
-- y un conjunto de **pruebas** que comprueben su funcionamiento.
-
-Debes incluir casos de prueba **sustancialmente distintos** de los
-ejemplos incluidos en el enunciado de cada ejercicio. Recuerda que
-debes utilizar el API SchemeUnit.
+- y un conjunto de **pruebas** que comprueben su funcionamiento,
+  utilizando el API SchemeUnit.
 
 Por ejemplo, supongamos que el primer ejercicio de la práctica 1 sea
 implementar la función `suma-cuadrados` que vimos en la sesión de
@@ -26,8 +23,8 @@ introducción a Scheme y se proponen en el enunciado los siguientes
 ejemplos:
 
 ```scheme
-(suma-cuadrados 10 10) ;; ⇒ 200
-(suma-cuadrados -2 9)  ;; ⇒  85
+(suma-cuadrados 10 10) ⇒ 200
+(suma-cuadrados -2 9) ⇒  85
 ```
 
 La solución se podría entregar de la siguiente forma:
@@ -58,7 +55,6 @@ La solución se podría entregar de la siguiente forma:
 ;; Pruebas
 (check-equal?  (suma-cuadrados 10 10)  200)
 (check-equal?  (suma-cuadrados -2 9)  85)
-(check-equal?  (suma-cuadrados 5 -3)  34)
 (check-equal?  (suma-cuadrados 0.5 9)  81.25)
 
 ;;
@@ -69,187 +65,166 @@ La solución se podría entregar de la siguiente forma:
 
 ```
 
-En los casos de prueba incluimos los ejemplos del enunciado del
-ejercicio, y fíjate que además hemos añadido dos casos de prueba
-**sustancialmente distintos** de los ejemplos propuestos: en un caso
-de prueba hemos utilizado un número negativo como segundo argumento de
-la función y en otro caso de prueba utilizamos un número real como
-argumento.
+En los casos de prueba se pueden incluir los ejemplos del enunciado
+del ejercicio y alguno más que compruebe que la implementación
+funciona correctamente.
 
 ### Ejercicios
 
-
 #### Ejercicio 1
 
-Implementa la función `(mayor-de-tres n1 n2 n3)` que reciba tres
-números como argumento y devuelva el mayor de los tres, intentando que
-el número de condiciones sea mínima.
+a) Implementa la función `(binario-a-decimal b3 b2 b1 b0)` que reciba
+4 bits que representan un número en binario y devuelva el número
+decimal equivalente.
 
 ```scheme
-(mayor-de-tres 2 8 1) ;; ⇒ 8
-(mayor-de-tres 3 0 3) ;; ⇒ 3
+(binario-a-decimal 1 1 1 1) ⇒ 15
+(binario-a-decimal 0 1 1 0) ⇒ 6
+(binario-a-decimal 0 0 1 0) ⇒ 2
 ```
 
+**Nota**: recuerda que para realizar esta conversión, se utiliza la siguiente fórmula:
 
-#### Ejercicio 2
+```
+n = b3 * 2ˆ3 + b2 * 2ˆ2 + b1 * 2ˆ1 + b0 * 2ˆ0
+```
 
-Implementa la función `(distancia-euclidea p1 p2)` que reciba dos
-parejas como argumento que representan las coordenadas de dos puntos
-2D y devuelva la distancia euclídea entre dichos puntos.
+**Pista**: puedes utilizar la función `expt`
+
+
+b) Implementa la función `(binario-a-hexadecimal b3 b2 b1 b0)` que
+reciba 4 bits de un número representado en binario y devuelva su
+representación equivalente en hexadecimal.
 
 ```scheme
-(distancia-euclidea (cons 0 4) (cons 0 10)) ;; ⇒ 6
-(distancia-euclidea (cons -2 5) (cons 9 7)) ;; ⇒ 11.180339887498949
+(binario-a-hexadecimal 1 1 1 1) ⇒ F
+(binario-a-hexadecimal 0 1 1 0) ⇒ 6
+(binario-a-hexadecimal 1 0 1 0) ⇒ A
 ```
 
-**Nota:** Para testear correctamente funciones que devuelven números
-reales necesitamos fijar la precisión con la que queremos comparar
-el resultado esperado con el resultado devuelto por la función, de
-forma que el test no falle si la diferencia entre ambos valores es
-inferior a dicha precisión.
+**Nota**: para realizar esta conversión, como paso intermedio puedes pasar
+primero el número binario a su representación decimal (utilizando la
+función definida en el apartado anterior) y después a su
+correspondiente hexadecimal. Recuerda que la represetación hexadecimal
+de los números decimales del 0 al 9 no cambia, y que el número decimal
+10 se representa con el carácter A, el 11 con el B, y asi
+sucesivamente hasta el 15 que es el F en hexadecimal.
 
-Los casos de prueba correspondientes a los ejemplos anteriores se
-implementarían de la siguiente forma:
+**Pista**: puedes utilizar las funciones `integer->char` y `char->integer`
+
+#### Ejercicio 2
+
+Supongamos que estamos implementando un **juego de guerra de barcos** en
+el que los barcos están situados en coordenadas del plano definidas
+por la posición _x_ y la posición _y_, ambos números reales (metros).
+
+Cada barco puede lanzar un torpedo a otro barco con una velocidad
+determinada (_v_, en km/h). El torpedo tiene combustible, y seguirá
+moviéndose hasta que se termine. La distancia a la que eso sucede la
+denominamos el **alcance** del torpedo (ver la siguiente figura):
+
+<img src="imagenes/barcos.png" width="400px"/>
+
+Cuanto más alta es la velocidad del torpedo, antes termina su
+combustible, con una relación cuadrática. En concreto, la velocidad
+(en km/h) define el tiempo de terminación del combustible (_t_, en
+segundos) con la siguiente expresión:
 
 ```
-;; Fijamos el margen de error (precisión) para comparar números reales
-(define precision 0.000001)
+t= 50000 / v^2
+```
 
-;; función auxiliar que compara números reales teniendo en cuenta una determinada precisión
-(define (iguales-reales? x y)
-  (< (abs (- x y)) precision))
+Recuerda que conociendo la velocidad de un móvil y el tiempo que está
+moviéndose podemos calcular el espacio recorrido con la siguiente
+expresión:
 
-(check-true (iguales-reales? (distancia-euclidea (cons 0 4) (cons 0 10)) 6.0))
-(check-true (iguales-reales? (distancia-euclidea (cons -2 5) (cons 9 7)) 11.180339))
+```
+e = v * t
+```
+
+Esto es, multiplicando la velocidad (en m/segundo) por el tiempo
+(segundos) resulta el espacio en metros recurrido.
+
+Dadas todas estas condiciones, debes programar en Scheme la función 
+
+```scheme
+(dentro-alcance? x1 y1 x2 y2 v)
+```
+
+que tome como parámetros las coordenadas `x1`, `y1` del barco 1 que lanza
+el torpedo, `x2`, `y2` del barco 2 al que se le lanza y `v` la velocidad
+del torpedo. 
+
+La función debe comprobar si el barco 2 está dentro del alcance del
+torpedo, tal y como lo hemos definido previamente y devolver el 
+booleano correspondiente.
+
+Debes modularizar la implementación, creando las funciones auxiliares
+que necesites para que el código sea legible y auto-documentado (los
+nombres de las funciones y los parámetros deben ser lo más
+descriptivos posibles).
+
+Ejemplos:
+
+```
+(dentro-alcance? 0 0 500 500 30) ⇒ #f
+(dentro-alcance? 100 200 500 500 20) ⇒ #t
 ```
 
 #### Ejercicio 3
 
-Implementa la función `(engloba? a1 a2 b1 b2)` que recibe dos
-intervalos de números enteros definidos por los valores de inicio y
-fin de cada uno de ellos: `[a1, a2]` para el primer intervalo y
-`[b1, b2]` para el segundo. La función debe comprobar si uno de los
-intervalos **engloba al otro**.
-
-No hay que comprobar errores, asumimos que siempre se van a realizar
-llamadas correctas a la función en las que siempre se va a cumplir que
-`a1 <= a2` y `b1 <= b2`.
-
-```scheme
-(engloba? 4 10 5 9) ;; ⇒ #t
-(engloba? 4 9 4 15) ;; ⇒ #t
-(engloba? 2 6 4 8) ;; ⇒ #f
-```
-
-Observa la siguiente representación gráfica de los ejemplos anteriores
-para entender el resultado que devuelve la función en cada invocación:
+Implementa la función `(tirada-ganadora t1 t2)` que reciba 2 parejas
+como argumento, donde cada pareja representa una tirada con 2 dados
+(contiene dos números). La función debe determinar qué tirada es la
+ganadora, teniendo en cuenta que será aquella cuya suma de sus 2 dados
+esté más próxima al número 7. La función devolverá 1 si `t1` es la
+ganadora, 2 si `t2` es la ganadora o bien 0 si hay un empate. Este
+último caso se producirá cuando la diferencia con 7 de ambas tiradas
+es la misma.
 
 ```scheme
-(engloba? 4 10 5 9)
-  [------]
-  4      10
-   [----]
-   5    9
-
-(engloba? 4 9 4 15)
-  [-----]
-  4     9
-  [-----------]
-  4           15
-
-(engloba? 2 6 4 8)
-  [----]
-  2    6
-    [----]
-    4    8
+(tirada-ganadora (cons 1 3) (cons 1 6)) ⇒ 2
+(tirada-ganadora (cons 1 5) (cons 2 2)) ⇒ 1
+(tirada-ganadora (cons 6 2) (cons 3 3)) ⇒ 0
 ```
-
 
 #### Ejercicio 4
 
-a) Implementa la función `(intersectan? a1 a2 b1 b2)` que comprueba si
-los intervalos `[a1, a2]` y `[b1, b2]` intersectan o no.
+Define la función `tipo-triangulo` que recibe como parámetro las
+coordenadas en el plano de los vértices de un triángulo representados
+con parejas. La función devuelve un string con el tipo de triángulo
+correspondiente: equilátero, isósceles o escaleno.
+
+
+Ejemplos:
 
 ```scheme
-(intersectan? 4 7 5 12)  ;; ⇒ #t
-(intersectan? 4 9 12 15) ;; ⇒ #f
-(intersectan? 2 5 5 8)   ;; ⇒ #t
+(tipo-triangulo (cons 1 1) (cons  1 6) (cons 6 1)) ⇒ "isosceles"
+(tipo-triangulo (cons -2 3) (cons  2 6) (cons 5 3)) ⇒ "escaleno"
+(tipo-triangulo (cons -4 3) (cons  0 0) (cons -4.5891 -1.9641)) ⇒ "equilatero"
 ```
 
-Observa la siguiente representación gráfica de los ejemplos anteriores
-para entender el resultado que devuelve la función en cada invocación:
+### Ejercicio 5
+
+
+Define la función `calculadora` que recibe una lista como
+parámetro. La lista contiene tres elementos: el primero es un símbolo
+(`+`, `-`, `*` o `/`) que indica un operador y los dos siguientes
+elementos corresponden a los operandos. La función realiza la
+operación y devuelve el resultado.
+
+
+Ejemplos:
 
 ```scheme
-(intersectan? 4 7 5 12)
-  [---]
-  4   7
-   [-------]
-   5       12
-
-(intersectan? 4 9 12 15)
-  [-----]
-  4     9
-          [---]
-          12  15
-
-(intersectan? 2 5 5 8)
-  [---]
-  2   5
-      [---]
-      5   8
+(calculadora '(+ 2 3)) ⇒ 5
+(calculadora '(* 3 4)) ⇒ 12
+(calculadora '(- 7 4)) ⇒ 3
+(calculadora '(/ 6 3)) ⇒ 2
 ```
-
-b) Implementa la función `(interseccion a1 a2 b1 b2)` que recibe dos
-intervalos `[a1, a2]` y `[b1, b2]` y debe devolver una pareja con el
-intervalo resultante de la intersección o la lista vacía en el caso en
-que no intersecten.
-
-Utiliza la función auxiliar definida en el apartado anterior.
-
-
-```scheme
-(interseccion 4 7 5 12)  ;; ⇒ {5 . 7}
-(interseccion 4 9 12 15) ;; ⇒ ()
-(interseccion 2 5 5 8)   ;; ⇒ {5 . 5}
-```
-
-
-#### Ejercicio 5
-
-Existen muchos formatos para representar el color. El más conocido es
-el RGB, que especifica el nivel de rojo (R), verde (G) y azul (B), en
-una escala de 0 a 255. Otro formato conocido es el CMYK, que
-especifica el nivel de cyan (C), magenta (M), amarillo (Y) y negro (K)
-en una escala de 0.0 a 1.0. Implementa la función `(rgb->cmyk r g b)`
-que toma los 3 valores RGB y devuelve una lista con los valores
-convertidos a las cuatro componentes CMYK.
-
-```scheme
-(rgb->cmyk 75 0 130)    ;; ⇒ {11/26 1 0 25/51}
-(rgb->cmyk 150 10 255)  ;; ⇒ {7/17 49/51 0 0}
-(rgb->cmyk 255 255 255) ;; ⇒ {0 0 0 0}
-(rgb->cmyk 0 0 0)       ;; ⇒ {0 0 0 1}
-```
-
-La forma de conversión es la siguiente: si los valores RGB son todos
-0, entonces los CMY son todos 0 y el K (negro) es 1. En caso
-contrario, se calcula de la siguiente forma:
-
-![](imagenes/pract1-1.png)
-
-Define las funciones auxiliares que consideres necesarias y después
-utilízalas para definir la función principal.
-
-**Nota:** En este último ejercicio, incluye sólo las pruebas de los
-  ejemplos propuestos en el enunciado.
-
-
-### Ejemplo de ejecución
-
-![](imagenes/pract1-2.png)
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16  
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Cristina Pomares, Domingo Gallardo
+Antonio Botía, Domingo Gallardo, Cristina Pomares
