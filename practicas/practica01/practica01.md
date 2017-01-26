@@ -143,7 +143,7 @@ e = v * t
 ```
 
 Esto es, multiplicando la velocidad (en m/segundo) por el tiempo
-(segundos) resulta el espacio en metros recurrido.
+(segundos) resulta el espacio en metros recorrido.
 
 Dadas todas estas condiciones, debes programar en Scheme la función 
 
@@ -195,6 +195,9 @@ coordenadas en el plano de los vértices de un triángulo representados
 con parejas. La función devuelve un string con el tipo de triángulo
 correspondiente: equilátero, isósceles o escaleno.
 
+Recuerda que un triángulo equilátero es aquel cuyos tres lados tienen
+la misma longitud, el isósceles el que tiene dos lados iguales y el
+escaleno el que todos sus lados son diferentes.
 
 Ejemplos:
 
