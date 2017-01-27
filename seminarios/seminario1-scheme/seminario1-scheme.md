@@ -872,6 +872,6 @@ i) Dada la siguiente expresión, ¿qué devuelve Scheme?
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16  
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Cristina Pomares, Antonio Botía, Domingo Gallardo
+Antonio Botía, Domingo Gallardo, Cristina Pomares
