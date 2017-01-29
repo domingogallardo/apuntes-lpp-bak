@@ -857,8 +857,8 @@ siguientes:
 En el punto 4 podemos utilizar dos versiones del modelo (ambas son
 equivalentes): podemos evaluar los argumentos y después hacer las
 sustituciones o podemos hacer las sustituciones con las expresiones sin
-evaluar. En el primer caso estaremos siguiendo un **orden normal** y en
-el segundo un **orden aplicativo**. Ambas formas de evaluación darán
+evaluar. En el primer caso estaremos siguiendo un **orden aplicativo** y en
+el segundo un **orden normal**. Ambas formas de evaluación darán
 el mismo resultado si estamos usando un lenguaje declarativo en el que
 las funciones no tienen estado interno. Scheme utiliza el orden aplicativo.
 
