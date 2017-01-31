@@ -12,8 +12,9 @@
 	- [2.1. Funciones y formas especiales](#2-1)
 	- [2.2. Formas especiales en Scheme: `define`, `if`, `cond`](#2-2)
 	- [2.3. Forma especial `quote` y símbolos](#2-3)
-	- [2.4. Listas](#2-4)
-	- [2.5. Recursión](#2-5)
+	- [2.4. Recursión](#2-4)
+	- [2.5. Listas](#2-5)
+    - [2.6. Recursión y listas](#2-6)
 - [3. Tipos de datos compuestos en Scheme](#3)
 	- [3.1. El tipo de dato pareja](#3-1)
 	- [3.2. Las parejas son objetos de primera clase](#3-2)
@@ -1154,8 +1155,6 @@ sin
 ⇒ #<procedure:cuadrado>
 ```
 
-#### 2.2.4. Símbolos como tipos primitivos
-
 Los símbolos son tipos primitivos del lenguaje: pueden pasarse como
 parámetros o ligarse a variables.
 
@@ -1165,134 +1164,7 @@ x
 ⇒ hola
 ```
 
-### <a name="2-4"></a>2.4. Listas
-
-Otra de las características fundamentales del paradigma funcional es
-la utilización de listas. Repasamos las características y funciones
-más importantes de Scheme para trabajar con listas.
-
-Ya hemos visto en el seminario de Scheme que es un lenguaje débilmente
-tipeado. Una variable o parámetro no se declara de un tipo y puede
-contener cualquier valor. Sucede igual con las listas: una lista en
-Scheme puede contener cualquier valor, incluyendo otras listas.
-
-#### Función `list` y forma especial `quote`
-
-En el seminario de Scheme explicamos que podemos crear listas de forma
-dinámica, llamando a la función `list` y pasándole un número variable
-de parámetros que son los elementos que se incluirán en la lista:
-
-```scheme
-(list 1 2 3 4 5) ⇒ {1 2 3 4}
-(list 'a 'b c') ⇒ {a b c}
-(list 1 'a 2 'b 3 'c #t) ⇒ {1 a 2 b 3 c #t}
-(list 1 (+ 1 1) (* 2 (+ 1 2))) ⇒ {1 2 6}
-```
-
-Las expresiones interiores se evalúan y se llama a la función `list`
-con los valores resultantes.
-
-Otro ejemplo:
-
-```scheme
-(define a 1)
-(define b 2)
-(define c 3)
-(list a b c)) ⇒ {1 2 3}
-```
-
-La otra forma de crear una lista es de forma estática, utilizando la
-forma especial `quote`. Esa forma especial detiene la evaluación
-natural de Scheme y devuelve lo siguiente sin evaluar. Si eso es una
-expresión entre paréntesis, Scheme lo interpreta como una lista:
-
-Por ejemplo:
-
-```scheme
-'(1 2 3 4) ⇒ {1 2 3 4}
-(define a 1)
-(define b 2)
-(define c 3)
-'(a b c) ⇒ {a b c}
-'(1 (+ 1 1) (* 2 (+ 1 2))) ⇒ {1 {+ 1 1} {* 2 {+ 1 2}}}
-```
-
-La última lista tiene 3 elementos:
-
-- El número 1
-- La lista {+ 1 1}
-- La lista {* 2 {+ 1 2}}
-
-Es posible definir una lista vacía (sin elementos):
-
-```scheme
-(list) ⇒ {}
-`() ⇒ {}
-```
-
-La diferencia entre creación de listas con la función `list` y con la
-forma especial `quote` se puede comprobar en los ejemplos.
-
-La evaluación de la función `list` funciona como cualquier función,
-primero se evalúan los argumentos y después se invoca a la
-función con los argumentos evaluados. Por ejemplo, en la
-siguiente invocación se obtiene una lista con cuatro elementos
-resultantes de las invocaciones de las funciones dentro del
-paréntesis:
-
-```scheme
-(list 1 (/ 2 3) (+ 2 3) (cons 3 4)) ; ⇒ {1 2/3 5 {3 . 4}}
-```
-
-Sin embargo, usamos `quote` obtenemos una lista con sublistas
-con símbolos en sus primeras posiciones:
-
-```scheme
-'(1 (/ 2 3) (+ 2 3) (cons 3 4)) ; ⇒ {1 {/ 2 3} {+ 2 3} {cons 3 4}}
-```
-
-#### Selección de elementos de una lista: `car` y `cdr`
-
-- Primer elemento: función `car`
-- Resto de elementos: función `cdr`
-
-Ejemplos:
-
-```scheme
-(define lista1 '(1 2 3 4))
-(car lista1) ⇒ 1
-(cdr lista1) ⇒ {2 3 4}
-(define lista2 '((1 2) 3 4))
-(car lista2) ⇒ {1 2}
-(cdr lista2) ⇒ {3 4}
-```
-
-#### Composición de listas: `cons` y `append`
-
-Podemos crear nuevas listas a partir de ya existentes con las
-funciones `cons` y `append`.
-
-La función `cons` crea una lista nueva resultante de añadir un elemento
-al comienzo de la lista. Esta función es la forma habitual de
-construir nuevas listas a partir de una lista ya existente y un
-nuevo elemento.
-
-```scheme
-(cons 1 '(1 2 3 4)) ⇒ {1 1 2 3 4}
-(cons 'hola '(como estás)) ⇒ {hola como estás}
-(cons '(1 2) '(1 2 3 4))  ⇒ {{1 2} 1 2 3 4}
-```
-
-La función `append` se usa para crear una lista nueva resultado de
-concatenar dos o más listas
-   
- ```scheme
-(define list1 '(1 2 3 4))
-(define list2 '(hola como estás))
-(append list1 list2) ⇒ {1 2 3 4 hola como estás}
-```
-
-### <a name="2-5"></a> 2.5. Recursión
+### <a name="2-4"></a> 2.4. Recursión
 
 Otra característica fundamental de la programación funcional es la no
 existencia de bucles. Un bucle implica la utilización de pasos de
@@ -1305,6 +1177,8 @@ base. El caso base define el valor que devuelve la función en el caso
 elemental en el que no hay que hacer ningún cálculo. El caso general
 define una expresión que contiene una llamada a la propia función que
 estamos definiendo.
+
+#### 2.4.1 La función `(suma-hasta x)`
 
 Por ejemplo, podemos definir la función `(suma-hasta x)` que devuelve
 la suma de los números hasta el parámetro `x` cuyo valor pasamos en la
@@ -1366,7 +1240,7 @@ En nuestro caso, la llamada recursiva para calcular la suma hasta 5 se
 hace restando 1 al número a calcular la suma hasta, de forma que la
 recursión calcula la suma hasta 4.
 
-#### 2.5.2. Diseño de la función `(suma-hasta x)`
+#### 2.4.2 Diseño de la función `(suma-hasta x)`
 
 ¿Cómo hemos diseñado esta función? ¿Cómo hemos llegado a la solución?
 
@@ -1413,11 +1287,179 @@ Podemos ya escribirlo todo en Scheme:
       (+ (suma-hasta (- x 1)) x)))
 ```
 
-#### 2.5.4. Función `(suma-lista lista-nums)`
+   
+#### 2.4.3 Función recursiva `veces`
 
-Veamos ahora un ejemplo con listas. Supongamos que queremos definir
-una función `suma-lista` que reciba como parámetro una lista de
-números y devuelva la suma de todos ellos.
+Como último ejemplo vamos a definir la función `(veces lista id)` que
+cuenta el número de veces que aparece un identificador en una lista.
+
+¿Cómo planteamos el caso general? Llamaremos a la recursión con el
+resto de la lista. Esta llamada nos devolverá el número de veces que
+aparece el identificador en este resto de la lista. Y después sumamos
+al valor devuelto 1 si el primer elemento de la lista coincide con el
+identificador.
+
+En Scheme:
+
+```
+(veces lista identificador) => (if (equal? (car lista) identificador)
+                                   (+ 1 (veces (cdr lista) identificador))
+                                   (veces (cdr lista) identificador))
+```
+
+Como caso base, si la lista es vacía devolvemos 0.
+
+La versión completa:
+
+```scheme
+(define (veces lista id)
+  (cond
+    ((null? lista) 0)
+    ((equal? (car lista) id) (+ 1 (veces (cdr lista) id)))
+    (else (veces (cdr lista) id))))
+
+(veces '(a b a a b b) 'a) 
+⇒ 3 
+```
+
+### <a name="2-5"></a>2.5. Listas
+
+Otra de las características fundamentales del paradigma funcional es
+la utilización de listas. Ya hemos visto en el seminario de Scheme las
+funciones más importantes para trabajar con ellas. Vamos a repasarlas
+de nuevo en este apartado, antes de ver algún ejemplo de cómo usar la
+recursión con listas
+
+Ya dicho seminario de Scheme que es un lenguaje débilmente
+tipeado. Una variable o parámetro no se declara de un tipo y puede
+contener cualquier valor. Sucede igual con las listas: una lista en
+Scheme puede contener cualquier valor, incluyendo otras listas.
+
+#### 2.5.1 Función `list` y forma especial `quote`
+
+En el seminario de Scheme explicamos que podemos crear listas de forma
+dinámica, llamando a la función `list` y pasándole un número variable
+de parámetros que son los elementos que se incluirán en la lista:
+
+```scheme
+(list 1 2 3 4 5) ⇒ {1 2 3 4}
+(list 'a 'b c') ⇒ {a b c}
+(list 1 'a 2 'b 3 'c #t) ⇒ {1 a 2 b 3 c #t}
+(list 1 (+ 1 1) (* 2 (+ 1 2))) ⇒ {1 2 6}
+```
+
+Las expresiones interiores se evalúan y se llama a la función `list`
+con los valores resultantes.
+
+Otro ejemplo:
+
+```scheme
+(define a 1)
+(define b 2)
+(define c 3)
+(list a b c) ⇒ {1 2 3}
+```
+
+La otra forma de crear una lista es de forma estática, utilizando la
+forma especial `quote`. Esa forma especial detiene la evaluación
+natural de Scheme y devuelve lo siguiente sin evaluar. Si eso es una
+expresión entre paréntesis, Scheme lo interpreta como una lista:
+
+Por ejemplo:
+
+```scheme
+'(1 2 3 4) ⇒ {1 2 3 4}
+(define a 1)
+(define b 2)
+(define c 3)
+'(a b c) ⇒ {a b c}
+'(1 (+ 1 1) (* 2 (+ 1 2))) ⇒ {1 {+ 1 1} {* 2 {+ 1 2}}}
+```
+
+La última lista tiene 3 elementos:
+
+- El número 1
+- La lista {+ 1 1}
+- La lista {* 2 {+ 1 2}}
+
+Es posible definir una lista vacía (sin elementos):
+
+```scheme
+(list) ⇒ {}
+`() ⇒ {}
+```
+
+La diferencia entre creación de listas con la función `list` y con la
+forma especial `quote` se puede comprobar en los ejemplos.
+
+La evaluación de la función `list` funciona como cualquier función,
+primero se evalúan los argumentos y después se invoca a la
+función con los argumentos evaluados. Por ejemplo, en la
+siguiente invocación se obtiene una lista con cuatro elementos
+resultantes de las invocaciones de las funciones dentro del
+paréntesis:
+
+```scheme
+(list 1 (/ 2 3) (+ 2 3) (cons 3 4)) ; ⇒ {1 2/3 5 {3 . 4}}
+```
+
+Sin embargo, usamos `quote` obtenemos una lista con sublistas
+con símbolos en sus primeras posiciones:
+
+```scheme
+'(1 (/ 2 3) (+ 2 3) (cons 3 4)) ; ⇒ {1 {/ 2 3} {+ 2 3} {cons 3 4}}
+```
+
+#### 2.5.2 Selección de elementos de una lista: `car` y `cdr`
+
+- Primer elemento: función `car`
+- Resto de elementos: función `cdr`
+
+Ejemplos:
+
+```scheme
+(define lista1 '(1 2 3 4))
+(car lista1) ⇒ 1
+(cdr lista1) ⇒ {2 3 4}
+(define lista2 '((1 2) 3 4))
+(car lista2) ⇒ {1 2}
+(cdr lista2) ⇒ {3 4}
+```
+
+#### 2.5.3 Composición de listas: `cons` y `append`
+
+Podemos crear nuevas listas a partir de ya existentes con las
+funciones `cons` y `append`.
+
+La función `cons` crea una lista nueva resultante de añadir un elemento
+al comienzo de la lista. Esta función es la forma habitual de
+construir nuevas listas a partir de una lista ya existente y un
+nuevo elemento.
+
+```scheme
+(cons 1 '(1 2 3 4)) ⇒ {1 1 2 3 4}
+(cons 'hola '(como estás)) ⇒ {hola como estás}
+(cons '(1 2) '(1 2 3 4))  ⇒ {{1 2} 1 2 3 4}
+```
+
+La función `append` se usa para crear una lista nueva resultado de
+concatenar dos o más listas
+   
+ ```scheme
+(define list1 '(1 2 3 4))
+(define list2 '(hola como estás))
+(append list1 list2) ⇒ {1 2 3 4 hola como estás}
+```
+
+### <a name="2-6"></a> 2.6. Recursión y listas
+
+La utilización de la recursión es muy útil para trabajar con
+estructuras secuenciales, como listas. Lo veremos en profundidad más
+adelante. 
+
+Ahora vamos a presentar un primer ejemplo, la función `(suma-lista
+lista-nums)` que recibe como parámetro una lista de números y devuelve
+la suma de todos ellos.
 
 Siempre tenemos que empezar escribiendo un ejemplo de la función:
 
@@ -1458,40 +1500,6 @@ Con todo junto, quedaría la recursión como sigue
    (if (null? lista)
        0
 	   (+ (car lista) (suma-lista (cdr lista)))))
-```
-   
-#### 2.5.5. Función recursiva `veces`
-
-Como último ejemplo vamos a definir la función `(veces lista id)` que
-cuenta el número de veces que aparece un identificador en una lista.
-
-¿Cómo planteamos el caso general? Llamaremos a la recursión con el
-resto de la lista. Esta llamada nos devolverá el número de veces que
-aparece el identificador en este resto de la lista. Y después sumamos
-al valor devuelto 1 si el primer elemento de la lista coincide con el
-identificador.
-
-En Scheme:
-
-```
-(veces lista identificador) => (if (equal? (car lista) identificador)
-                                   (+ 1 (veces (cdr lista) identificador))
-                                   (veces (cdr lista) identificador))
-```
-
-Como caso base, si la lista es vacía devolvemos 0.
-
-La versión completa:
-
-```scheme
-(define (veces lista id)
-  (cond
-    ((null? lista) 0)
-    ((equal? (car lista) id) (+ 1 (veces (cdr lista) id)))
-    (else (veces (cdr lista) id))))
-
-(veces '(a b a a b b) 'a) 
-⇒ 3 
 ```
 
 
