@@ -1288,39 +1288,6 @@ Podemos ya escribirlo todo en Scheme:
 ```
 
    
-#### 2.4.3 Función recursiva `veces`
-
-Como último ejemplo vamos a definir la función `(veces lista id)` que
-cuenta el número de veces que aparece un identificador en una lista.
-
-¿Cómo planteamos el caso general? Llamaremos a la recursión con el
-resto de la lista. Esta llamada nos devolverá el número de veces que
-aparece el identificador en este resto de la lista. Y después sumamos
-al valor devuelto 1 si el primer elemento de la lista coincide con el
-identificador.
-
-En Scheme:
-
-```
-(veces lista identificador) => (if (equal? (car lista) identificador)
-                                   (+ 1 (veces (cdr lista) identificador))
-                                   (veces (cdr lista) identificador))
-```
-
-Como caso base, si la lista es vacía devolvemos 0.
-
-La versión completa:
-
-```scheme
-(define (veces lista id)
-  (cond
-    ((null? lista) 0)
-    ((equal? (car lista) id) (+ 1 (veces (cdr lista) id)))
-    (else (veces (cdr lista) id))))
-
-(veces '(a b a a b b) 'a) 
-⇒ 3 
-```
 
 ### <a name="2-5"></a>2.5. Listas
 
@@ -1457,6 +1424,8 @@ La utilización de la recursión es muy útil para trabajar con
 estructuras secuenciales, como listas. Lo veremos en profundidad más
 adelante. 
 
+#### 2.6.1 Función recursiva `suma-lista`
+
 Ahora vamos a presentar un primer ejemplo, la función `(suma-lista
 lista-nums)` que recibe como parámetro una lista de números y devuelve
 la suma de todos ellos.
@@ -1500,6 +1469,40 @@ Con todo junto, quedaría la recursión como sigue
    (if (null? lista)
        0
 	   (+ (car lista) (suma-lista (cdr lista)))))
+```
+
+#### 2.6.2 Función recursiva `veces`
+
+Como último ejemplo vamos a definir la función `(veces lista id)` que
+cuenta el número de veces que aparece un identificador en una lista.
+
+¿Cómo planteamos el caso general? Llamaremos a la recursión con el
+resto de la lista. Esta llamada nos devolverá el número de veces que
+aparece el identificador en este resto de la lista. Y después sumamos
+al valor devuelto 1 si el primer elemento de la lista coincide con el
+identificador.
+
+En Scheme:
+
+```
+(veces lista identificador) => (if (equal? (car lista) identificador)
+                                   (+ 1 (veces (cdr lista) identificador))
+                                   (veces (cdr lista) identificador))
+```
+
+Como caso base, si la lista es vacía devolvemos 0.
+
+La versión completa:
+
+```scheme
+(define (veces lista id)
+  (cond
+    ((null? lista) 0)
+    ((equal? (car lista) id) (+ 1 (veces (cdr lista) id)))
+    (else (veces (cdr lista) id))))
+
+(veces '(a b a a b b) 'a) 
+⇒ 3 
 ```
 
 
