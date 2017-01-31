@@ -1411,8 +1411,8 @@ nuevo elemento.
 
 La función `append` se usa para crear una lista nueva resultado de
 concatenar dos o más listas
-   
- ```scheme
+
+```scheme
 (define list1 '(1 2 3 4))
 (define list2 '(hola como estás))
 (append list1 list2) ⇒ {1 2 3 4 hola como estás}
