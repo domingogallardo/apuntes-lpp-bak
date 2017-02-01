@@ -204,17 +204,17 @@ Ejemplos:
 ```scheme
 (tipo-triangulo (cons 1 1) (cons  1 6) (cons 6 1)) ; ⇒ "isosceles"
 (tipo-triangulo (cons -2 3) (cons  2 6) (cons 5 3)) ; ⇒ "escaleno"
-(tipo-triangulo (cons -4 3) (cons  0 0) (cons -4.5891 -1.9641)) ; ⇒ "equilatero"
+(tipo-triangulo2 (cons -3 0) (cons  3 0) (cons 0 5.1961) ;  ⇒ "equilatero"
 ```
 
 **Nota**: Para comparar dos números reales debemos comprobar si la
 resta entre ambos es menor que una constante `epsilon` que hemos
-definido. Por ejemplo, `epsilon` puede valer 0.00001.
+definido. Por ejemplo, `epsilon` puede valer 0.0001.
 
 Puedes usar la siguiente función auxiliar:
 
 ```scheme
-(define epsilon 0.00001)
+(define epsilon 0.0001)
 
 (define (iguales-reales? x y)
   (< (abs (- x y)) epsilon))
