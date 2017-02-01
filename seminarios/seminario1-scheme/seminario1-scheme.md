@@ -381,35 +381,39 @@ Podemos crear una lista con la función `list`:
 El intérprete de Scheme R6RS muestra las listas entre llaves:
 
 	(list 1 2 3 4) ;  ⇒ {1 2 3 4}
-
-Otra forma de definir una lista es con la _forma especial_ `quote`
-(que se representa con una tilde `'`) al comienzo de elementos entre
-paréntesis:
-
-	'(1 2 3 4)         ; otra forma de definir la misma lista
-
-Veremos más adelante la diferencia entre la función `list` y la forma
-especial `quote`.
-
+    
 La forma más básica de trabajar con una lista es usando las funciones
 `car` para obtener su primer elemento y `cdr` para obtener el resto de
 la lista. Son las mismas funciones de las parejas, pero ahora se
 aplican a listas. También veremos más adelante por qué estas funciones
 pueden trabajar tanto sobre parejas como sobre listas.
 
-	(car '(1 2 3 4))   ; ⇒ 1
-	(cdr '(1 2 3 4))   ; ⇒ {2 3 4} 
+```scheme
+(define l1 (list 1 2 3 4)) ; se crea la lista {1 2 3 4} y se guarda en l1
+(car l1)  ; ⇒ 1
+(cdr l1)  ; ⇒ {2 3 4} 
+```
 
 El `cdr` de una lista siempre devuelve otra lista. El `cdr` de una
 lista de un elemento es la _lista vacía_, que en Scheme se representa
 con `()`:
 
-	(cdr '(1))  ; ⇒ () lista vacía
+```scheme
+(define l2 (list 1 2 3))
+(cdr l2) ; ⇒ {2 3} 
+(cdr (cdr l2)) ; ⇒ {3} 
+(cdr (cdr (cdr l2))) ; ⇒ () lista vacía
+```
 
-La función `null?` comprueba si una lista es vacía. Es el caso base de
-gran parte de funciones recursivas que recorren listas.
+La función `list` sin argumentos devuelve una lista vacía y la función
+`null?` comprueba si una lista es vacía. Es el caso base de gran parte
+de funciones recursivas que recorren listas.
 
-	(null? (cdr '(1))) ; ⇒ #t
+```scheme
+(list) ; ⇒ () 
+(null? (list)) ; ⇒ #t
+(null? (list 1 2 3) ; ⇒ #f
+```
 
 Podemos construir una nueva lista añadiendo un elemento a la cabeza de
 una lista existente usando la función `cons` (también la misma función
@@ -420,28 +424,36 @@ un elemento y una lista:
 
 Por ejemplo:
 
-	(cons 1 '(2 3 4 5)) ; ⇒ {1 2 3 4 5}
-	(cons 1 '())       ; ⇒ {1} 
-	(cons 1 (cons 2 '())) ; ⇒ {1 2} 
+```scheme
+(cons 1 (list 2 3 4 5))  ⇒ {1 2 3 4 5}
+(cons 1 (list))  ⇒ {1} 
+(cons 1 (cons 2 (list))) ⇒ {1 2} 
+```
 
 También podemos usar la función `append` para concatenar varias listas
 
-	(append '(1) '(2 3 4) '(5 6)) ; ⇒ {1 2 3 4 5 6}
+```scheme
+(define l3 (list 1))
+(define l4 (list 2 3 4))
+(define l5 (list 5 6))
+(append l3 l4 l5) ; ⇒ {1 2 3 4 5 6}
+```
 
 Igual que las parejas, las listas pueden contener distintos tipos de
 datos:
 
 	(list "hola" "que" "tal") ; ⇒ {"hola" "que" "tal"} lista de cadenas
-	(cons "hola" '(1 2 3 4))  ; ⇒ {"hola" 1 2 3 4} lista de distintos tipos de datos
+	(cons "hola" (list 1 2 3 4))  ; ⇒ {"hola" 1 2 3 4} lista de distintos tipos de datos
 
 Una lista puede incluso contener otras listas:
 
 	(list (list 1 2) 3 4 (list 5 6))   ; lista que contiene listas
     ⇒ {{1 2} 3 4 {5 6}} 
-	(cons (list 1 2) '(3 4 5)) ; nueva lista añadiendo una lista
+	(cons (list 1 2) (list 3 4 5)) ; nueva lista añadiendo una lista
     ⇒ {{1 2} 3 4 5}}
 	(list (cons 1 2) (cons 3 4))  ; lista que contiene parejas
     ⇒ {{1 . 2} {3 . 4}}
+
 
 En clase de teoría estudiaremos con más profundidad las listas en
 Scheme, cómo están implementadas y cómo se utilizan para crear otras
@@ -818,12 +830,12 @@ predicción era correcta. Si no lo era, intenta comprender por qué.
 
 Instrucción             | Instrucción                           |
 ------------------------|---------------------------------------|
-\'(1 2 3 4)             | (cons 3 \'(1 2 3))                    |
-(cdr  \'(1 2 3 4))      | (cdr (cons 8 (list 1 2 3 4)))         |
-(car \'(1 2 3 4))       | (car (list (list 1 2) 1 2 3 4))       |
-\'(1 (2 3) (4 (5)))     | (list 1 (list 2 3) (list 4 (list 5))) |
-(car (cdr \'(1 2 3 4))) | (cons \'(1 2 3) \'(4 5 6))            |
-(cdr (cdr \'(1 2 3 4))) | (car (cdr (list 1 2 3 4)))            |
+(list 1 2 3 4)             | (cons 3 (list 1 2 3))                    |
+(cdr  (list 1 2 3 4))      | (cdr (cons 8 (list 1 2 3 4)))         |
+(car (list 1 2 3 4))       | (car (list (list 1 2) 1 2 3 4))       |
+(list 1 (list 2 3) (list 4 (list 5)))     | (list 1 (list 2 3) (list 4 (list 5))) |
+(car (cdr (list 1 2 3 4))) | (cons (list 1 2 3) (list 4 5 6))            |
+(cdr (cdr (list 1 2 3 4))) | (car (cdr (list 1 2 3 4)))            |
 (list 1 2 3 4)          | (cdr (cdr (list 1 2 3 4)))            |
 
 ### Ejercicio 5
@@ -831,47 +843,29 @@ Instrucción             | Instrucción                           |
 Los siguientes apartados intenta hacerlos sin utilizar el intérprete
 de Scheme.
 
-a) Escribe una expresión diferente pero equivalente a la siguiente
-expresión:
-
-	'(1 2 (7 8 (9 (10 (2 (3))))) 3 4)  
-
-b) Dada la siguiente lista, indica la expresión correcta para que
+a) Dada la siguiente lista, indica la expresión correcta para que
 Scheme devuelva 5:
 
-	'(1 2 3 4 5 6 7 8)
+	(list 1 2 3 4 5 6 7 8)
 
-c) Dada la siguiente lista, indica la expresión correcta para que
+b) Dada la siguiente lista, indica la expresión correcta para que
 Scheme devuelva (8).
 
-	'(1 2 3 4 5 6 7 8)
+	(list 1 2 3 4 5 6 7 8)
 
-d) Dada la siguiente lista, indica la expresión correcta para que
+c) Dada la siguiente lista, indica la expresión correcta para que
 Scheme devuelva 8.
 
-	'(1 2 3 4 5 6 7 8)
+	(list 1 2 3 4 5 6 7 8)
 
-e) Dada la siguiente lista, indica la expresión correcta para que
-Scheme devuelva (3 4).
 
-	'(1 2 (7 8 (9 (10 (2 (3))))) 3 4)  
+d) Dada la siguiente expresión, ¿qué devuelve Scheme?
 
-f) Dada la siguiente lista, indica la expresión correcta para que
-Scheme devuelva 10.
+	(car (cdr (cdr (list 1 (list 2 3) (list 4 5) 6))))
 
-	'(1 2 (7 8 (9 (10 (2 (3))))) 3 4)  
+e) Dada la siguiente expresión, ¿qué devuelve Scheme?
 
-g) Dada la siguiente expresión, ¿qué devuelve Scheme?
-
-	(cdr (cdr ‘(1 (2 3) (4 5) 6)))
-
-h) Dada la siguiente expresión, ¿qué devuelve Scheme?
-
-	(car (cdr (cdr ‘(1 (2 3) (4 5) 6))))
-
-i) Dada la siguiente expresión, ¿qué devuelve Scheme?
-
-	(cdr (cdr ‘(1 (2 3) 4 5)))
+	(cdr (cdr (list 1 (list 2 3) 4 5)))
 
 ----
 
