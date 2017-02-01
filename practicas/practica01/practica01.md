@@ -23,8 +23,8 @@ introducción a Scheme y se proponen en el enunciado los siguientes
 ejemplos:
 
 ```scheme
-(suma-cuadrados 10 10) ⇒ 200
-(suma-cuadrados -2 9) ⇒  85
+(suma-cuadrados 10 10) ; ⇒ 200
+(suma-cuadrados -2 9) ; ⇒  85
 ```
 
 La solución se podría entregar de la siguiente forma:
@@ -78,9 +78,9 @@ a) Implementa la función `(binario-a-decimal b3 b2 b1 b0)` que reciba
 decimal equivalente.
 
 ```scheme
-(binario-a-decimal 1 1 1 1) ⇒ 15
-(binario-a-decimal 0 1 1 0) ⇒ 6
-(binario-a-decimal 0 0 1 0) ⇒ 2
+(binario-a-decimal 1 1 1 1) ; ⇒ 15
+(binario-a-decimal 0 1 1 0) ; ⇒ 6
+(binario-a-decimal 0 0 1 0) ; ⇒ 2
 ```
 
 **Nota**: recuerda que para realizar esta conversión, se utiliza la siguiente fórmula:
@@ -97,9 +97,9 @@ reciba 4 bits de un número representado en binario y devuelva su
 representación equivalente en hexadecimal.
 
 ```scheme
-(binario-a-hexadecimal 1 1 1 1) ⇒ F
-(binario-a-hexadecimal 0 1 1 0) ⇒ 6
-(binario-a-hexadecimal 1 0 1 0) ⇒ A
+(binario-a-hexadecimal 1 1 1 1) ; ⇒ F
+(binario-a-hexadecimal 0 1 1 0) ; ⇒ 6
+(binario-a-hexadecimal 1 0 1 0) ; ⇒ A
 ```
 
 **Nota**: para realizar esta conversión, como paso intermedio puedes pasar
@@ -167,8 +167,8 @@ descriptivos posibles).
 Ejemplos:
 
 ```
-(dentro-alcance? 0 0 500 500 30) ⇒ #f
-(dentro-alcance? 100 200 500 500 20) ⇒ #t
+(dentro-alcance? 0 0 500 500 30) ; ⇒ #f
+(dentro-alcance? 100 200 500 500 20) ; ⇒ #t
 ```
 
 ### Ejercicio 3
@@ -183,9 +183,9 @@ ganadora, 2 si `t2` es la ganadora o bien 0 si hay un empate. Este
 es la misma.
 
 ```scheme
-(tirada-ganadora (cons 1 3) (cons 1 6)) ⇒ 2
-(tirada-ganadora (cons 1 5) (cons 2 2)) ⇒ 1
-(tirada-ganadora (cons 6 2) (cons 3 3)) ⇒ 0
+(tirada-ganadora (cons 1 3) (cons 1 6)) ; ⇒ 2
+(tirada-ganadora (cons 1 5) (cons 2 2)) ; ⇒ 1
+(tirada-ganadora (cons 6 2) (cons 3 3)) ; ⇒ 0
 ```
 
 ### Ejercicio 4
@@ -202,9 +202,9 @@ escaleno el que todos sus lados son diferentes.
 Ejemplos:
 
 ```scheme
-(tipo-triangulo (cons 1 1) (cons  1 6) (cons 6 1)) ⇒ "isosceles"
-(tipo-triangulo (cons -2 3) (cons  2 6) (cons 5 3)) ⇒ "escaleno"
-(tipo-triangulo (cons -4 3) (cons  0 0) (cons -4.5891 -1.9641)) ⇒ "equilatero"
+(tipo-triangulo (cons 1 1) (cons  1 6) (cons 6 1)) ; ⇒ "isosceles"
+(tipo-triangulo (cons -2 3) (cons  2 6) (cons 5 3)) ; ⇒ "escaleno"
+(tipo-triangulo (cons -4 3) (cons  0 0) (cons -4.5891 -1.9641)) ; ⇒ "equilatero"
 ```
 
 **Nota**: Para comparar dos números reales debemos comprobar si la
@@ -233,10 +233,10 @@ operación y devuelve el resultado.
 Ejemplos:
 
 ```scheme
-(calculadora (list '+ 2 3)) ⇒ 5
-(calculadora (list '* 3 4)) ⇒ 12
-(calculadora (list '- 7 4)) ⇒ 3
-(calculadora (list '/ 6 3)) ⇒ 2
+(calculadora (list '+ 2 3)) ; ⇒ 5
+(calculadora (list '* 3 4)) ; ⇒ 12
+(calculadora (list '- 7 4)) ; ⇒ 3
+(calculadora (list '/ 6 3)) ; ⇒ 2
 ```
 
 ----

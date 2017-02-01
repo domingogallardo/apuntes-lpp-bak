@@ -354,7 +354,8 @@ utilizar pasos de ejecución definidos como tales.
 El siguiente ejemplo es una **declaración** en Scheme de una función
 que toma como entrada un número y devuelve su cuadrado:
 
-```scheme
+```
+scheme
 (define (cuadrado x)
    (* x x))
 ```
@@ -586,11 +587,11 @@ ejecución:
 
 
 ```scheme
-2 ⇒ 2
-(+ 2 3) ⇒ 5
-(+) ⇒ 0
-(+ 2 4 5 6) ⇒ 17
-(+ (* 2 3) (- 3 1)) ⇒ 8
+2 ; ⇒ 2
+(+ 2 3) ; ⇒ 5
+(+) ; ⇒ 0
+(+ 2 4 5 6) ; ⇒ 17
+(+ (* 2 3) (- 3 1)) ; ⇒ 8
 ```
 
 En programación funcional en lugar de decir "ejecutar una expresión"
@@ -661,8 +662,8 @@ Una vez definida la función `cuadrado` podemos usarla de la misma
 forma que las funciones primitivas de Scheme:
 
 ```scheme
-(cuadrado 10) ⇒ 100
-(cuadrado (+ 10 (cuadrado (+ 2 4)))) ⇒ 2116
+(cuadrado 10) ; ⇒ 100
+(cuadrado (+ 10 (cuadrado (+ 2 4)))) ; ⇒ 2116
 ```
 
 La evaluación de la última expresión se hace de la siguiente forma:
@@ -824,7 +825,7 @@ Supongamos un conjunto de definiciones en Scheme:
 Supongamos que, una vez realizadas esas definiciones, se evalúa la
 siguiente expresión:
 
-```
+```scheme
 (f (+ 2 1))
 ```
 
@@ -1129,8 +1130,8 @@ Ejemplos de funciones Scheme con símbolos:
 (equal? 'hola "hola")
 ```
 
-Un símbolo es un identificador que puede asociarse o ligarse (*bind*)
-a un valor (cualquier dato *de primera clase*).
+Un símbolo puede asociarse o ligarse (*bind*) a un valor (cualquier
+dato *de primera clase*).
 
 Cuando escribimos un símbolo en el prompt de Scheme el intérprete lo
 evalúa y devuelve su valor:
@@ -1141,18 +1142,15 @@ pi
 ⇒3.14159
 ```
 
-Los nombres de las funciones (`equal?, `sin, `+, ...) son también
-símbolos (los de las macros no) y Scheme también los evalúa (en un par
-de semanas hablaremos de las funciones como objetos primitivos en
-Scheme):
+Los nombres de las funciones (`equal?`, `sin`, `+`, ...) son también
+símbolos y Scheme también los evalúa (en un par de semanas hablaremos
+de las funciones como objetos primitivos en Scheme):
 
 ```scheme
-sin
-⇒ #<procedure:sin>
-+
-⇒ #<procedure:+>
-(define (cuadrado x) (* x x))
-⇒ #<procedure:cuadrado>
+sin ; ⇒ #<procedure:sin>
++ ; ⇒ #<procedure:+>
+(define (cuadrado x) (* x x)) 
+cuadrado ; ⇒ #<procedure:cuadrado>
 ```
 
 Los símbolos son tipos primitivos del lenguaje: pueden pasarse como
@@ -1160,8 +1158,7 @@ parámetros o ligarse a variables.
 
 ```scheme
 (define x 'hola)
-x
-⇒ hola
+x ; ⇒ hola
 ```
 
 ### <a name="2-4"></a> 2.4. Recursión
@@ -1217,7 +1214,8 @@ Siempre es aconsejable usar un ejemplo concreto para probar el caso
 general. Por ejemplo, el caso general de la suma hasta 5 se calcularía
 con la expresión:
 
-```(+ (suma-hasta (- 5 1)) 5)```
+```scheme
+(+ (suma-hasta (- 5 1)) 5)```
 
 La evaluación de esta función calculará la llamada recursiva
 `(suma-hasta 4)`. Ahí es donde debemos **confiar en que la recursión
@@ -1225,9 +1223,9 @@ hace bien su trabajo** y que esa llamada devuelve el valor
 resultante de 4+3+2+1, o sea, 10. Una vez obtenido ese valor hay que
 hacer algo más, sumarle el propio número 5.
 
-```(+ (suma-hasta (- 5 1)) 5) ⇒
-(+ (suma-hasta 4) 5) ⇒ (confiamos en la recursión: (suma-hasta 4) = 10)
-(+ 10 5) ⇒
+```(+ (suma-hasta (- 5 1)) 5) =
+(+ (suma-hasta 4) 5) = (confiamos en la recursión: (suma-hasta 4) = 10)
+(+ 10 5) =
 15```
 
 Otra característica necesaria del caso general en una definición
@@ -1269,8 +1267,8 @@ Lo podemos expresar con el siguiente dibujo:
 Generalizamos este ejemplo y lo expresamos en Scheme de la siguiente
 forma:
 
-```
-(suma-hasta x) => (+ (suma-hasta (- x 1)) x)
+```scheme
+(suma-hasta x) = (+ (suma-hasta (- x 1)) x)
 ```
 
 Nos falta el caso base de la recursión. Debemos preguntarnos **¿cuál
@@ -1308,10 +1306,10 @@ dinámica, llamando a la función `list` y pasándole un número variable
 de parámetros que son los elementos que se incluirán en la lista:
 
 ```scheme
-(list 1 2 3 4 5) ⇒ {1 2 3 4}
-(list 'a 'b c') ⇒ {a b c}
-(list 1 'a 2 'b 3 'c #t) ⇒ {1 a 2 b 3 c #t}
-(list 1 (+ 1 1) (* 2 (+ 1 2))) ⇒ {1 2 6}
+(list 1 2 3 4 5) ; ⇒ {1 2 3 4}
+(list 'a 'b c') ; ⇒ {a b c}
+(list 1 'a 2 'b 3 'c #t) ; ⇒ {1 a 2 b 3 c #t}
+(list 1 (+ 1 1) (* 2 (+ 1 2))) ; ⇒ {1 2 6}
 ```
 Las expresiones interiores se evalúan y se llama a la función `list`
 con los valores resultantes.
@@ -1322,7 +1320,7 @@ Otro ejemplo:
 (define a 1)
 (define b 2)
 (define c 3)
-(list a b c) ⇒ {1 2 3}
+(list a b c) ; ⇒ {1 2 3}
 ```
 
 La otra forma de crear una lista es de forma estática, utilizando la
@@ -1333,12 +1331,12 @@ expresión entre paréntesis, Scheme lo interpreta como una lista:
 Por ejemplo:
 
 ```scheme
-'(1 2 3 4) ⇒ {1 2 3 4}
+'(1 2 3 4) ; ⇒ {1 2 3 4}
 (define a 1)
 (define b 2)
 (define c 3)
-'(a b c) ⇒ {a b c}
-'(1 (+ 1 1) (* 2 (+ 1 2))) ⇒ {1 {+ 1 1} {* 2 {+ 1 2}}}
+'(a b c) ; ⇒ {a b c}
+'(1 (+ 1 1) (* 2 (+ 1 2))) ; ⇒ {1 {+ 1 1} {* 2 {+ 1 2}}}
 ```
 
 La última lista tiene 3 elementos:
@@ -1350,8 +1348,8 @@ La última lista tiene 3 elementos:
 Es posible definir una lista vacía (sin elementos):
 
 ```scheme
-(list) ⇒ {}
-`() ⇒ {}
+(list) ; ⇒ {}
+`() ; ⇒ {}
 ```
 
 La diferencia entre creación de listas con la función `list` y con la
@@ -1386,8 +1384,8 @@ Ejemplos:
 
 ```scheme
 (define lista1 '(1 2 3 4))
-(car lista1) ⇒ 1
-(cdr lista1) ⇒ {2 3 4}
+(car lista1) ; ⇒ 1
+(cdr lista1) ; ⇒ {2 3 4}
 (define lista2 '((1 2) 3 4))
 (car lista2) ⇒ {1 2}
 (cdr lista2) ⇒ {3 4}
@@ -1404,9 +1402,9 @@ construir nuevas listas a partir de una lista ya existente y un
 nuevo elemento.
 
 ```scheme
-(cons 1 '(1 2 3 4)) ⇒ {1 1 2 3 4}
-(cons 'hola '(como estás)) ⇒ {hola como estás}
-(cons '(1 2) '(1 2 3 4))  ⇒ {{1 2} 1 2 3 4}
+(cons 1 '(1 2 3 4)) ; ⇒ {1 1 2 3 4}
+(cons 'hola '(como estás)) ; ⇒ {hola como estás}
+(cons '(1 2) '(1 2 3 4))  ; ⇒ {{1 2} 1 2 3 4}
 ```
 
 La función `append` se usa para crear una lista nueva resultado de
@@ -1415,7 +1413,7 @@ concatenar dos o más listas
 ```scheme
 (define list1 '(1 2 3 4))
 (define list2 '(hola como estás))
-(append list1 list2) ⇒ {1 2 3 4 hola como estás}
+(append list1 list2) ; ⇒ {1 2 3 4 hola como estás}
 ```
 
 ### <a name="2-6"></a> 2.6. Recursión y listas
@@ -1454,7 +1452,7 @@ siguiente dibujo:
 Podemos generalizar este ejemplo y expresarlo en Scheme de la siguiente forma:
 
 ```
-(suma-lista lista) => (+ (car lista) (suma-lista (cdr lista)))
+(suma-lista lista) = (+ (car lista) (suma-lista (cdr lista)))
 ```
 
 Falta el caso base, que es el caso más sencillo en que podemos
@@ -1485,7 +1483,7 @@ identificador.
 En Scheme:
 
 ```
-(veces lista identificador) => (if (equal? (car lista) identificador)
+(veces lista identificador) = (if (equal? (car lista) identificador)
                                    (+ 1 (veces (cdr lista) identificador))
                                    (veces (cdr lista) identificador))
 ```
@@ -1501,8 +1499,7 @@ La versión completa:
     ((equal? (car lista) id) (+ 1 (veces (cdr lista) id)))
     (else (veces (cdr lista) id))))
 
-(veces '(a b a a b b) 'a) 
-⇒ 3 
+(veces '(a b a a b b) 'a) ; ⇒ 3 
 ```
 
 
@@ -1644,8 +1641,7 @@ Una pareja puede pasarse como argumento y devolverse en una función:
     (cons (+ (car p1) (car p2))
           (+ (cdr p1) (cdr p2))))
 
-(suma-parejas '(1 . 5) '(4 . 12))
-⇒ {5 . 17}
+(suma-parejas '(1 . 5) '(4 . 12)) ; ⇒ {5 . 17}
 ```
 
 Y, por último, las parejas *pueden formar parte de otras parejas*. Es
@@ -1768,15 +1764,13 @@ Al trabajar con estructuras de parejas anidades es muy habitual
 realizar llamadas del tipo:
 
 ```scheme
-(cdr (cdr (car p)))
-⇒ 4
+(cdr (cdr (car p))) ; ⇒ 4
 ```
 
 Es equivalente a la función `cadar` de Scheme:
 
 ```scheme
-(cddar p)
-⇒ 4
+(cddar p) ; ⇒ 4
 ```
 
 El nombre de la función se obtiene concatenando a la letra "c", las
@@ -1901,25 +1895,21 @@ resto de la lista.
 La lista vacía es una lista:
 
 ```scheme
-(list? '())
-⇒ #t
+(list? '()) ; ⇒ #t
 ```
 
 Y no es un símbolo ni una pareja:
 
 ```scheme
-(symbol? '())
-⇒ #f
-(pair? '())
-⇒ #f
+(symbol? '()) ; ⇒ #f
+(pair? '()) ; ⇒ #f
 ```
 
 Para saber si un objeto es la lista vacía, podemos utilizar la función
 `null?`:
 
 ```scheme
-(null? '())
-⇒ #t
+(null? '()) ; ⇒ #t
 ```	
 
 ### <a name="4-2"></a> 4.2. Listas con elementos compuestos
@@ -1933,8 +1923,7 @@ cuyos elementos son parejas (*clave*, *valor*):
 ```scheme
 (list (cons 'a 1)
       (cons 'b 2)
-      (cons 'c 3))
-⇒ {{a . 1} {b . 2} {c . 2}}
+      (cons 'c 3)) ; ⇒ {{a . 1} {b . 2} {c . 2}}
 ```
 
 
@@ -1992,8 +1981,10 @@ Por ejemplo, la lista anterior `{1 {1 2 3} 3}` es una lista de 3
 elementos. Si queremos obtener su segundo elemento (la lista `{1 2
 3}`) bastaría con:
 
-```scheme (define lista '(1 (1 2 3) 3)) (car (cdr lista)) (list-ref
-lista 1) ```
+```scheme 
+(define lista '(1 (1 2 3) 3))
+(car (cdr lista)) (list-ref lista 1)
+```
 
 ### <a name="4-3"></a> 4.3. Funciones recursivas y listas
 
@@ -2015,8 +2006,7 @@ lista (empezando a contar por 0):
 
 ```scheme
 (define lista '(a b c d e f g))
-(mi-list-ref lista 2)
-⇒ c
+(mi-list-ref lista 2) ; ⇒ c
 ```
 
 Veamos con el ejemplo anterior cómo hacer la formulación recursiva.
@@ -2068,8 +2058,7 @@ La función `(mi-list-tail lista n)` devuelve la lista resultante de
 quitar n elementos de la lista original:
 
 ```scheme
-(mi-list-tail '(1 2 3 4 5 6 7) 2)
-⇒ {3 4 5 6 7}
+(mi-list-tail '(1 2 3 4 5 6 7) 2) ; ⇒ {3 4 5 6 7}
 ```
 
 Piensa en cómo se implementaría de forma recursiva. Esta vez vamos a
@@ -2092,8 +2081,8 @@ lista2)`.
 
 Por ejemplo:
 
-```
-(mi-append '(a b c) '(d e f)) ;⇒ {a b c d e f}
+```scheme
+(mi-append '(a b c) '(d e f)) ; ⇒ {a b c d e f}
 ```
 
 Para resolver el problema de forma recursiva, haremos el `cdr` de la
@@ -2101,29 +2090,29 @@ primera lista, llamaremos a la recursión para que una el resultado con
 la segunda lista`:
 
 ```
-(mi-append (cdr '(a b c)) '(d e f)) ;⇒
-(mi-append '(b c) '(d e f) ;⇒ {b c d e f}
+(mi-append (cdr '(a b c)) '(d e f)) =
+(mi-append '(b c) '(d e f) = {b c d e f}
 ```
 
 Y añadiremos el primer elemento a la lista resultante usando un `cons`:
 
 ```
-(cons (car '(a b c)) (mi-append (cdr '(a b c)) '(d e f))) ;⇒
-(cons 'a '(b c d e f)) ;⇒ {a b c d e f}
+(cons (car '(a b c)) (mi-append (cdr '(a b c)) '(d e f))) =
+(cons 'a '(b c d e f)) = {a b c d e f}
 ```
 
 En general:
 
 ```
-(mi-append lista1 lista2) ⇒ (cons (car lista1) (mi-append (cdr lista1) lista2))
+(mi-append lista1 lista2) = (cons (car lista1) (mi-append (cdr lista1) lista2))
 ```
 
 El caso base, el caso en el que la función puede devolver un valor
 directamente sin llamar a la recursión, es aquel en el que `lista1` es
 `null?`. En ese caso devolvemos `lista2`:
 
-```
-(mi-append '() '(a b c)) ;⇒ '{a b c}
+```scheme
+(mi-append '() '(a b c)) = '{a b c}
 ```
 
 La formulación recursiva completa queda como sigue:
@@ -2142,8 +2131,7 @@ Veamos cómo implementar de forma recursiva la función `mi-reverse` que
 invierte una lista
 
 ```scheme
-(mi-reverse '(1 2 3 4 5 6))
-⇒ {6 5 4 3 2 1}
+(mi-reverse '(1 2 3 4 5 6)) ; ⇒ {6 5 4 3 2 1}
 ```
 
 La idea es sencilla: llamamos a la recursión para hacer la inversa del
@@ -2195,8 +2183,7 @@ En Scheme:
 Ejemplo:
 
 ```scheme
-(cuadrados-hasta 10)
-⇒ {100 81 64 49 36 25 16 9 4 1}
+(cuadrados-hasta 10) ; ⇒ {100 81 64 49 36 25 16 9 4 1}
 ```
 
 ##### Función `filtra-pares`
@@ -2220,8 +2207,7 @@ con los números pares de la lista que le pasamos como parámetro:
 Ejemplo:
 
 ```scheme
-(filtra-pares '(1 2 3 4 5 6))
-⇒ {2 4 6}
+(filtra-pares '(1 2 3 4 5 6)) ; ⇒ {2 4 6}
 ```
 
 ##### Función `primo?`
@@ -2236,10 +2222,10 @@ es dos. En ese caso será primo.
 
 Por ejemplo:
 
-```
-(divisores 8) ;⇒ {1 2 4 8} longitud = 4, no primo
-(divisores 9) ;⇒ {1 3 9} longitud = 3, no primo
-(divisores 11) ;⇒ {1 11} longitud = 2, primo
+```scheme
+(divisores 8) ; ⇒ {1 2 4 8} longitud = 4, no primo
+(divisores 9) ; ⇒ {1 3 9} longitud = 3, no primo
+(divisores 11) ; ⇒ {1 11} longitud = 2, primo
 ```
 
 Podemos definir entonces la función `(primo? x)` de la siguiente forma:
@@ -2268,9 +2254,9 @@ La función `(lista-hasta x)` devuelve una lista de números 1..x:
 
 Ejemplos:
 
-```
-(lista-hasta 2) ;⇒ {1 2}
-(lista-hasta 10) ;⇒ {1 2 3 4 5 6 7 8 9 10}
+```scheme
+(lista-hasta 2) ; ⇒ {1 2}
+(lista-hasta 10) ; ⇒ {1 2 3 4 5 6 7 8 9 10}
 ```
 
 Definimos la función `(divisor? x y)` que nos diga si x es divisor de
@@ -2283,9 +2269,9 @@ y:
 
 Ejemplos:
 
-```
-(divisor 2 10) ;⇒ #t
-(divisor 3 10) ;⇒ #f
+```scheme
+(divisor 2 10) ; ⇒ #t
+(divisor 3 10) ; ⇒ #f
 ```
 
 Una vez que hemos definido La función `divisor?` podemos utilizarla
@@ -2306,8 +2292,8 @@ Ya podemos implementar la función que devuelve los divisores de un
 número `x` generando los números hasta `x` y filtrando los divisores
 de ese número. Por ejemplo, para calcular los divisores de 10:
 
-```
-(filtra-divisores {1 2 3 4 5 6 7 8 9 10} 10) ;⇒ {1 2 5 10}
+```scheme
+(filtra-divisores {1 2 3 4 5 6 7 8 9 10} 10) ; ⇒ {1 2 5 10}
 ```
 
 Se puede implementar de una forma muy sencilla:
@@ -2449,7 +2435,7 @@ un único argumento. Por ejemplo la función `cuadrado`:
 Probamos la función `map` pasando la función anterior como parámetro:
 
 ```scheme
-(map cuadrado '(1 2 3 4 5)) ⇒ (1 4 9 16 25)
+(map cuadrado '(1 2 3 4 5)) ; ⇒ (1 4 9 16 25)
 ```
 
 Vemos que la función `map` aplica la función `cuadrado` a todos los
@@ -2472,8 +2458,8 @@ de un parámetro que se pueda aplicar a los elementos de la lista:
 Ejemplo de invocación a `map` con las funciones anteriores:
 
 ```scheme
-(map doble '(1 2 3 4 5)) ⇒ (2 4 6 8 10)
-(map suma-1 '(1 2 3 4 5)) ⇒ (2 3 4 5 6)
+(map doble '(1 2 3 4 5)) ; ⇒ (2 4 6 8 10)
+(map suma-1 '(1 2 3 4 5)) ; ⇒ (2 3 4 5 6)
 ```
 
 La posibilidad de pasar funciones como argumentos proporciona una gran
@@ -2491,15 +2477,15 @@ denomina una *expresión lambda*.
 Por ejemplo, la siguiente expresión lambda construye una función que
 suma 3 a un número:
 
-```
+```scheme
 (lambda (x) (+ x 3))
 ```
 
 Si escribimos la expresión lambda como parámetro de `map` tendremos
 una función que suma 3 a todos los elementos de una lista:
 
-```
-(map (lambda (x) (+ x 3)) '(1 2 3 4 5)) ⇒ (4 5 6 7 8)
+```scheme
+(map (lambda (x) (+ x 3)) '(1 2 3 4 5)) ; ⇒ (4 5 6 7 8)
 ```
 
 ### <a name="5-2"></a>5.2. Forma especial `lambda`
@@ -2527,7 +2513,7 @@ Otros ejemplos:
 
 Una función anónima que suma dos parejas:
 
-```
+```scheme
 (lambda (p1 p2)
     (cons (+ (car p1) (car p2))
           (+ (cdr p1) (cdr p2))))
@@ -2535,7 +2521,7 @@ Una función anónima que suma dos parejas:
 
 Una función anónima que devuelve el mayor de dos números:
 
-```
+```scheme
 (lambda (a b)
     (if (> a b)
         a
@@ -2551,8 +2537,7 @@ Por ejemplo, si ejecutamos una expresión lambda en el intérprete
 veremos que devuelve un procedimiento:
 
 ```scheme
-(lambda (x) (* x x))
-⇒ #<procedure>
+(lambda (x) (* x x)) ; ⇒ #<procedure>
 ```
 
 El procedimiento construido es un bloque de código que devuelve el
@@ -2565,36 +2550,35 @@ Podemos asignarlo a un identificador. Por ejemplo, en la siguiente
 expresión, primero se evalúa la *expresión lambda* y el procedimiento
 resultante se asocia al identificador `cuadrado`.
 
-```
-> (define cuadrado (lambda (x) (* x x)))
+```scheme
+(define cuadrado (lambda (x) (* x x)))
 ```
 
 Si escribimos el identificador `cuadrado` Scheme devuelve el
 procedimiento asociado a esta variable:
 
-```
-> cuadrado
-#<procedure:cuadrado>
+```scheme
+cuadrado ; ⇒ #<procedure:cuadrado>
 ```
 
 Ahora podemos usar la función cuadrado como si la hubiéramos creado de
 la forma habitual:
 
-```
-(cuadrado 3) ⇒ 9
+```scheme
+(cuadrado 3) ; ⇒ 9
 ```
 
 También podemos invocar a una función anónima sin darle un nombre:
 
-```
-((lambda (x) (* x x)) 3) ⇒ 9
+```scheme
+((lambda (x) (* x x)) 3) ; ⇒ 9
 ```
 
 La llamada a `lambda` crea un procedimiento y el paréntesis a su
 izquierda lo invoca con el parámetro 3:
 
-```
-((lambda (x) (* x x)) 3) => (#<procedure> 3) ⇒ 9
+```scheme
+((lambda (x) (* x x)) 3) = (#<procedure> 3) ⇒ 9
 ```
 
 Y también podemos pasar el procedimiento como parámetro de otra
@@ -2603,7 +2587,7 @@ parámetro `f` y se invoca en el cuerpo. En el ejemplo la función
 `aplica-dos-veces` recibe un procedimiento que se aplica al parámetro
 `x` y se vuelve aplicar al número resultante.
 
-```
+```scheme
 (define (aplica-dos-veces f x)
    (f (f x)))
 ```
@@ -2611,11 +2595,11 @@ parámetro `f` y se invoca en el cuerpo. En el ejemplo la función
 Lo podemos invocar pasándole cualquier función de un argumento y
 cualquier dato:
 
-```
+```scheme
 (aplica-dos-veces (lambda (x)
-                     (+ x 5)) 10) ⇒ 20
+                     (+ x 5)) 10) ; ⇒ 20
 (aplica-dos-veces (lambda (s)
-                     (string-append s "-jeje")) "Hola") ⇒ "Hola-jeje-jeje"
+                     (string-append s "-jeje")) "Hola") ; ⇒ "Hola-jeje-jeje"
 ```
 
 Es importante remarcar que con `lambda` estamos creando una función en
@@ -2629,19 +2613,19 @@ devuelve el cuadrado de un número en distintos lenguajes.
 
 **Java 8**
 
-```
+```java
 Integer x -> {x*x}
 ```
 
 **Scala**
 
-```
+```scala
 (x:Int) => {x*x}
 ```
 
 **Objective C**
 
-```
+```objective-c
 ^int (int x)
 {
    x*x
@@ -2650,7 +2634,7 @@ Integer x -> {x*x}
 
 **Swift**
 
-```
+```swift
 { (x: Int) -> Int in return x*x }
 ```
 
@@ -2660,9 +2644,8 @@ Tras conocer `lambda` ya podemos explicarnos por qué cuando escribimos
 en el intérprete de Scheme el nombre de una función, se evalúa a un
 *procedure*:
 
-```
-> +
-⇒ <procedure:+>
+```scheme
++ ; ⇒ <procedure:+>
 ```
 
 El identificador se evalúa y devuelve el *objeto función* al que está
@@ -2672,12 +2655,10 @@ a los que están ligados *objetos de tipo función*.
 Podemos asignar funciones ya existentes a nuevos identificadores
 usando `define`, como en el ejemplo siguiente:
 
-```
-> +
-⇒ <procedure:+>
-> (define suma +)
-> (suma 1 2 3 4)
-⇒ 10
+```scheme
++ ; ⇒ <procedure:+>
+(define suma +)
+(suma 1 2 3 4) ; ⇒ 10
 ```
 
 Es muy importante darse cuenta que la expresión `(define suma +)` se
@@ -2707,14 +2688,14 @@ siempre se convierte internamente en:
 
 Por ejemplo
 
-```
+```scheme
 (define (cuadrado x)
     (* x x))
 ```
 
 es equivalente a:
 
-```
+```scheme
 (define cuadrado 
     (lambda (x) (* x x)))
 ```
@@ -2726,14 +2707,11 @@ Scheme `procedure?`.
 
 Por ejemplo:
 
-```
-(procedure? (lambda (x) (* x x)))
-⇒ #t
+```scheme
+(procedure? (lambda (x) (* x x))) ; ⇒ #t
 (define suma +)
-(procedure? suma)
-⇒ #t
-(procedure? '+)
-⇒ #f
+(procedure? suma) ; ⇒ #t
+(procedure? '+) ; ⇒ #f
 ```
 
 Hemos visto que las funciones pueden asignarse a variables. También
@@ -2756,7 +2734,7 @@ basta con usar `func` como su nombre. La función se ha ligado al
 nombre `func` en el momento de la invocación a `aplica`, de la misma
 forma que los argumentos se ligan a los parámetros `x` e `y`:
 
-```
+```scheme
 (define (aplica f x y)
    (f x y))
 ```
@@ -2764,7 +2742,7 @@ forma que los argumentos se ligan a los parámetros `x` e `y`:
 Algunos ejemplos de invocación, usando funciones primitivas, funciones
 definidas y expresiones lambda:
 
-```
+```scheme
 (aplica + 2 3) ; ⇒ 5
 (aplica * 4 5) ; ⇒ 10
 (aplica string-append "hola" "adios") ; ⇒ "holaadios"
@@ -2774,14 +2752,14 @@ definidas y expresiones lambda:
 
 (aplica string-append-con-guion "hola" "adios") ; ⇒ "hola-adios"
 
-(aplica (lambda (x y) (sqrt (+ (* x x) (* y y)))) 3 4) ⇒ 5
+(aplica (lambda (x y) (sqrt (+ (* x x) (* y y)))) 3 4) ; ⇒ 5
 ```
 
 Otro ejemplo, la función `aplica-2` que toma dos funciones `f` y `g` y
 un argumento `x` y devuelve el resultado de aplicar `f` a lo que
 devuelve la invocación de `g` con `x`:
 
-```
+```scheme
 (define (aplica-2 f g x)
    (f (g x)))
 
@@ -2789,8 +2767,7 @@ devuelve la invocación de `g` con `x`:
    (+ x 5))
 (define (doble x)
    (+ x x))
-(aplica-2 suma-5 doble 3)
-⇒ 11
+(aplica-2 suma-5 doble 3) ; ⇒ 11
 ```
 
 ### <a name="5-4"></a> 5.4. Funciones en estructuras de datos
@@ -2801,20 +2778,18 @@ formar parte de tipos de datos compuestos, como listas.
 Para construir una lista de funciones debemos llamar a `list` con las
 funciones:
 
-```
+```scheme
 (define lista (list cuadrado suma-1 doble))
-lista
-⇒ {#<procedure:cuadrado>  #<procedure:suma-1>  #<procedure:doble>}
+lista ; ⇒ {#<procedure:cuadrado>  #<procedure:suma-1>  #<procedure:doble>}
 ```
 
 También podemos evaluar una expresión lambda y añadir el procedimiento
 resultante. Por ejemplo, para añadir otra función a la lista anterior
 podemos llamar a `cons`:
 
-```
+```scheme
 (define lista2 (cons (lambda (x) (+ x 5)) lista))
-lista2
-⇒ {#<procedure> #<procedure:cuadrado> #<procedure:suma-1> #<procedure:doble>}
+lista2 ; ⇒ {#<procedure> #<procedure:cuadrado> #<procedure:suma-1> #<procedure:doble>}
 ```
 
 Una vez creada una lista con funciones, ¿cómo podemos invocar a alguna
@@ -2823,7 +2798,7 @@ otro dato guardado en la lista, las recuperamos con las funciones
 `car` o `list-ref` y las invocamos. Por ejemplo, para invocar a la
 primera función de `lista2`:
 
-```
+```scheme
 ((car lista2) 10) ; ⇒ 15
 ```
 
@@ -2836,7 +2811,7 @@ aplica todas al número que pasamos en el parámetro `x`.
 Por ejemplo, si construimos una lista con las funciones `cuadrado`,
 `cubo` y `suma-1`:
 
-```
+```scheme
 (define lista (list cuadrado cubo suma-1))
 ```
 
@@ -2844,9 +2819,8 @@ la llamada a `(aplica-funcs lista 5)` debería devolver el resultado de
 aplicar primero `suma-1` a 5, después `cubo` al resultado y después
 `cuadrado`:
 
-```
-(cuadrado (cubo (suma-1 5))
-⇒ 46656
+```scheme
+(cuadrado (cubo (suma-1 5)) ; ⇒ 46656
 ```
 
 Para implementar `aplica-funcs` tenemos que usar una recursión. Si
@@ -2854,21 +2828,21 @@ vemos el ejemplo, podemos comprobar que es sencillo definir el caso
 general:
 
 ```
-(aplica-funcs (cuadrado cubo suma-1) 5) => (cuadrado (aplica-funcs (cubo suma-1) 5))
-=> (cuadrado 216) => 46656
+(aplica-funcs (cuadrado cubo suma-1) 5) = (cuadrado (aplica-funcs (cubo suma-1) 5))
+= (cuadrado 216) = 46656
 ```
 
 El caso general de la recursión de la función `aplica-funcs` se define
 entonces como:
 
 ```
-(aplica-funcs lista-funcs x) => ((car lista-funcs) (aplica-funcs (cdr lista-funcs)))
+(aplica-funcs lista-funcs x) = ((car lista-funcs) (aplica-funcs (cdr lista-funcs)))
 ```
 
 El caso base sería en el que la lista de funciones tiene sólo una
 función:
 
-```
+```scheme
 (if (null? (cdr lista-funcs)) ; la lista de funciones solo tiene una función
     ((car lista-funcs) x) ; invocamos a la función con el parámetro x
     ...
@@ -2876,7 +2850,7 @@ función:
 
 La implementación completa es:
 
-```
+```scheme
 (define (aplica-funcs lista-funcs x)
     (if (null? (cdr lista-funcs))
         ((car lista-funcs) x)
@@ -2886,12 +2860,11 @@ La implementación completa es:
 
 Un ejemplo de uso:
 
-```
+```scheme
 (define lista-funcs (list (lambda (x) (* x x))
                           (lambda (x) (* x x x))
                           (lambda (x) (+ x 1))))
-(aplica-funcs lista-funcs 5)
-⇒ 46656
+(aplica-funcs lista-funcs 5) ; ⇒ 46656
 ```
 
 ### <a name="5-5"></a> 5.5 Generalización
@@ -2900,39 +2873,36 @@ La posibilidad de pasar funciones como parámetros de otras es una
 poderosa herramienta de abstracción. Por ejemplo, supongamos que
 queremos calcular el sumatorio de `a` hasta `b`:
 
-```
+```scheme
 (define (sum-x a b)
     (if (> a b)
         0
         (+ a (sum-x (+ a 1) b))))
 
-(sum-x 1 10)
-⇒ 55
+(sum-x 1 10) ; ⇒ 55
 ```
 
 Supongamos ahora que queremos calcular el sumatorio de `a` hasta `b`
 sumando los números al cuadrado:
 
-```
+```scheme
 (define (sum-cuadrado-x a b)
     (if (> a b)
         0
         (+ (* a a) (sum-cuadrado-x (+ a 1) b))))
 
-(sum-cuadrado-x 1 10)
-⇒ 385
+(sum-cuadrado-x 1 10) ; ⇒ 385
 ```
 
 Y el sumatorio de `a` hasta `b` sumando los cubos:
 
-```
+```scheme
 (define (sum-cubo-x a b)
     (if (> a b)
         0
         (+ (* a a a) (sum-cubo-x (+ a 1) b))))
 
-(sum-cubo-x 1 10)
-⇒ 3025
+(sum-cubo-x 1 10) ; ⇒ 3025
 ```
 
 Vemos que el código de las tres funciones anteriores es muy similar,
@@ -2954,7 +2924,7 @@ adicional y definir una función genérica `sum-f-x` que generaliza las
 tres funciones anteriores. Tendríamos el sumatorio desde `a` hasta `b`
 de `f(x)`:
 
-```
+```scheme
 (define (sum-f-x f a b)
     (if (> a b)
         0
@@ -2965,12 +2935,11 @@ Las funciones anteriores son casos particulares de esta función que
 las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta
 10 de `x` al cubo:
 
-```
+```scheme
 (define (cubo x)
     (* x x x))
 
-(sum-f-x cubo 1 10)
-⇒ 3025
+(sum-f-x cubo 1 10) ; ⇒ 3025
 ```
 
 ### <a name="5-6"></a> 5.6. Funciones de orden superior
@@ -3012,8 +2981,7 @@ función a cada uno de los elementos de la lista que pasamos como
 parámetro:
 
 ```scheme
-(map cuadrado '(1 2 3 4 5))
-⇒ {1 4 9 25}
+(map cuadrado '(1 2 3 4 5)) ; ⇒ {1 4 9 25}
 ```
 
 Otro ejemplo, en el que obtenemos una lista de números resultantes de
@@ -3023,16 +2991,15 @@ sumar cada pareja de números de una lista:
 (define (suma-pareja pareja)
     (+ (car pareja) (cdr pareja)))
 
-(map suma-pareja (list (cons 2 4) (cons 3 6) (cons 5 3)))
-⇒ {6 9 8}
+(map suma-pareja (list (cons 2 4) (cons 3 6) (cons 5 3))) ; ⇒ {6 9 8}
 ```
 
 También podríamos hacerlo con una expresión lambda:
 
-```
+```scheme
 (map (lambda (pareja)
-         (+ (car pareja) (cdr pareja))) (list (cons 2 4) (cons 3 6) (cons 5 3)))
-⇒ {6 9 8}
+         (+ (car pareja) (cdr pareja))) (list (cons 2 4) (cons 3 6) (cons 5 3))) 
+; ⇒ {6 9 8}
 ```
 
 > CONSEJO DE USO  
@@ -3044,7 +3011,7 @@ También podríamos hacerlo con una expresión lambda:
 ¿Cómo se podría implementar `map` de forma recursiva? Llamamos a la
 función `mi-map`. La implementación es la siguiente:
 
-```
+```scheme
 (define (mi-map f lista)
     (if (null? lista)
         '()
@@ -3062,9 +3029,8 @@ cumplen el predicado.
 
 Un ejemplo de uso:
 
-```
-(filter even? '(1 2 3 4 5 6 7 8))
-⇒ {2 4 6 8}
+```scheme
+(filter even? '(1 2 3 4 5 6 7 8)) ; ⇒ {2 4 6 8}
 ```
 
 Otro ejemplo: supongamos que queremos filtrar una lista de parejas de
@@ -3072,10 +3038,10 @@ números, devolviendo aquellas que parejas que cumplen que su parte
 izquierda es mayor o igual que la derecha. Lo podríamos hacer con la
 siguiente expresión:
 
-```
+```scheme
 (filter (lambda (pareja)
             (>= (car pareja) (cdr pareja))) (list (cons 10 4) (cons 2 4) (cons 8 8) (cons 10 20)))
-⇒ {{10 . 4} {8 . 8}}
+; ⇒ {{10 . 4} {8 . 8}}
 ```
 
 > CONSEJO DE USO  
@@ -3088,7 +3054,7 @@ siguiente expresión:
 
 Podemos implementar la función `filter` de forma recursiva:
 
-```
+```scheme
 (define (mi-filter pred lista)
   (cond
     ((null? lista) '())
@@ -3126,12 +3092,12 @@ primer parámetro se va a coger de la lista y el segundo del resultado
 calculado. La llamada a `fold-right` funcionaría de la siguiente
 forma:
 
-```
-(fold-right suma 0 '(1 2 3))
-⇒ (suma 1 (suma 2 (suma 3 0)))
-⇒ (suma 1 (suma 2 3))
-⇒ (suma
-⇒ 6
+```scheme
+(fold-right suma 0 '(1 2 3)) = 
+(suma 1 (suma 2 (suma 3 0))) = 
+(suma 1 (suma 2 3)) =
+(suma 1 5) =
+6
 ```
 
 Vemos que se llama en cascada de derecha a izquierda a la función
@@ -3141,19 +3107,16 @@ base que se pasa en la invocación a `fold-right` (el `0`).
 Podemos comprobar la potencia de la función `fold-right` con los
 siguientes ejemplos
 
-```
-(fold-right string-append "" '("hola" "que" "tal"))
-⇒ "holaquetal"
-(fold-right (lambda (x y) (* x y)) 1 '(1 2 3 4 5 6 7 8))
-⇒ 40320
-(fold-right cons '() '(1 2 3 4))
-⇒ {1 2 3 4}
+```scheme
+(fold-right string-append "" '("hola" "que" "tal")) ; ⇒ "holaquetal"
+(fold-right (lambda (x y) (* x y)) 1 '(1 2 3 4 5 6 7 8)) ; ⇒ 40320
+(fold-right cons '() '(1 2 3 4)) ; ⇒ {1 2 3 4}
 ```
 
 Veamos un último ejemplo. Supongamos que queremos definir una función
 que sume todos los números de una lista de parejas:
 
-```
+```scheme
 (suma-parejas (list (cons 3 6) (cons 2 9) (cons -1 8) (cons 9 3))) ; ⇒ 39
 ```
 
@@ -3163,21 +3126,21 @@ resultado ya sumado.
 
 La función de plegado sería:
 
-```
+```scheme
 (define (suma-pareja-numero pareja resultado)
     (+ (car pareja) (cdr pareja) resultado))
 ```
 
 Y podríamos definir `suma-parejas` como:
 
-```
+```scheme
 (define (suma-parejas lista)
     (fold-right suma-pareja-numero 0 lista))
 ```
 
 También lo podríamos hacer todo con una expresión lambda:
 
-```
+```scheme
 (define (suma-parejas lista)
     (fold-right (lambda (pareja resultado)
                    (+ (car pareja) (cdr pareja) resultado)) 0 lista))
@@ -3190,7 +3153,7 @@ También lo podríamos hacer todo con una expresión lambda:
 
 Podríamos implementar de forma recursiva la función `fold-right`:
 
-```
+```scheme
 (define (mi-fold-right func base lista)
   (if (null? lista)
       base
@@ -3214,7 +3177,7 @@ todos los elementos de una lista.
 
 Podemos hacerlo de forma recursiva:
 
-```
+```scheme
 (define (suma-n lista n)
     (if (null? lista)
         '()
@@ -3224,16 +3187,15 @@ Podemos hacerlo de forma recursiva:
 
 Funciona de la siguiente manera:
 
-```
-(suma-n '(1 2 3 4) 10)
-⇒ (11 12 13 14)
+```scheme
+(suma-n '(1 2 3 4) 10) ; ⇒ (11 12 13 14)
 ```
 
 Pero podemos implementar la función de otra forma, utilizando la
 función de orden superior `map` y una expresión lambda que sume el
 número `n` a los elementos de la lista:
 
-```
+```scheme
 (define (suma-n lista n)
     (map (lambda (x) (+ x n)) lista))
 ```
@@ -3244,8 +3206,8 @@ lista es una función que suma este número a cada elemento. La variable
 `x` en el parámetro de la expresión lambda es la que va tomando el
 valor de los elementos de la lista.
 
-```
-(suma-n '(1 2 3 4) 10) => (map (lambda (x) (+ x 10)) (11 12 13 14)) =>  (11 12 13 14)
+```scheme
+(suma-n '(1 2 3 4) 10) = (map (lambda (x) (+ x 10)) (11 12 13 14)) =  (11 12 13 14)
 ```
 
 Veamos otro ejemplo. Supongamos que queremos definir la función
@@ -3274,8 +3236,8 @@ necesitamos, que comprueba si una cadena contiene un carácter.
 Por ejemplo:
 
 ```scheme
-(letra-en-str? #\a "Hola") ⇒ #t
-(letra-en-str? #\a "Pepe") ⇒ #f
+(letra-en-str? #\a "Hola") ; ⇒ #t
+(letra-en-str? #\a "Pepe") ; ⇒ #f
 ```
 
 Sólo nos falta implementar esta función `letra-en-str`. Lo podemos
