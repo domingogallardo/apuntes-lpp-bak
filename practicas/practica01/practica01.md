@@ -224,7 +224,7 @@ Puedes usar la siguiente función auxiliar:
 
 
 Define la función `calculadora` que recibe una lista como
-parámetro. La lista contiene tres elementos: el primero es un símbolo
+parámetro. La lista contiene tres elementos: el primero es un carácter
 (`+`, `-`, `*` o `/`) que indica un operador y los dos siguientes
 elementos corresponden a los operandos. La función realiza la
 operación y devuelve el resultado.
@@ -233,10 +233,10 @@ operación y devuelve el resultado.
 Ejemplos:
 
 ```scheme
-(calculadora (list '+ 2 3)) ; ⇒ 5
-(calculadora (list '* 3 4)) ; ⇒ 12
-(calculadora (list '- 7 4)) ; ⇒ 3
-(calculadora (list '/ 6 3)) ; ⇒ 2
+(calculadora (list #\+ 2 3)) ; ⇒ 5
+(calculadora (list #\* 3 4)) ; ⇒ 12
+(calculadora (list #\- 7 4)) ; ⇒ 3
+(calculadora (list #\/ 6 3)) ; ⇒ 2
 ```
 
 ----
