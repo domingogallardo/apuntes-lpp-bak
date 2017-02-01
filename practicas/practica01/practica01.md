@@ -233,10 +233,10 @@ operación y devuelve el resultado.
 Ejemplos:
 
 ```scheme
-(calculadora '(+ 2 3)) ⇒ 5
-(calculadora '(* 3 4)) ⇒ 12
-(calculadora '(- 7 4)) ⇒ 3
-(calculadora '(/ 6 3)) ⇒ 2
+(calculadora (list '+ 2 3)) ⇒ 5
+(calculadora (list '* 3 4)) ⇒ 12
+(calculadora (list '- 7 4)) ⇒ 3
+(calculadora (list '/ 6 3)) ⇒ 2
 ```
 
 ----
