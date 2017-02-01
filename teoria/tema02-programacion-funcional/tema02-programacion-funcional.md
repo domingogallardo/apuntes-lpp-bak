@@ -1287,7 +1287,6 @@ Podemos ya escribirlo todo en Scheme:
       (+ (suma-hasta (- x 1)) x)))
 ```
 
-   
 
 ### <a name="2-5"></a>2.5. Listas
 
@@ -1295,9 +1294,9 @@ Otra de las características fundamentales del paradigma funcional es
 la utilización de listas. Ya hemos visto en el seminario de Scheme las
 funciones más importantes para trabajar con ellas. Vamos a repasarlas
 de nuevo en este apartado, antes de ver algún ejemplo de cómo usar la
-recursión con listas
+recursión con listas.
 
-Ya dicho seminario de Scheme que es un lenguaje débilmente
+Ya hemos visto en dicho seminario que Scheme es un lenguaje débilmente
 tipeado. Una variable o parámetro no se declara de un tipo y puede
 contener cualquier valor. Sucede igual con las listas: una lista en
 Scheme puede contener cualquier valor, incluyendo otras listas.
@@ -1314,7 +1313,6 @@ de parámetros que son los elementos que se incluirán en la lista:
 (list 1 'a 2 'b 3 'c #t) ⇒ {1 a 2 b 3 c #t}
 (list 1 (+ 1 1) (* 2 (+ 1 2))) ⇒ {1 2 6}
 ```
-
 Las expresiones interiores se evalúan y se llama a la función `list`
 con los valores resultantes.
 
@@ -1328,7 +1326,7 @@ Otro ejemplo:
 ```
 
 La otra forma de crear una lista es de forma estática, utilizando la
-forma especial `quote`. Esa forma especial detiene la evaluación
+forma especial `quote` vista anteriormente. Esa forma especial detiene la evaluación
 natural de Scheme y devuelve lo siguiente sin evaluar. Si eso es una
 expresión entre paréntesis, Scheme lo interpreta como una lista:
 
@@ -1379,8 +1377,10 @@ con símbolos en sus primeras posiciones:
 
 #### 2.5.2 Selección de elementos de una lista: `car` y `cdr`
 
+En el seminario vimos también cómo obtener los elementos de una lista.
+
 - Primer elemento: función `car`
-- Resto de elementos: función `cdr`
+- Resto de elementos: función `cdr` (los devuelve en forma de lista)
 
 Ejemplos:
 
@@ -1395,8 +1395,8 @@ Ejemplos:
 
 #### 2.5.3 Composición de listas: `cons` y `append`
 
-Podemos crear nuevas listas a partir de ya existentes con las
-funciones `cons` y `append`.
+Por último, en el seminario vimos también cómo crear nuevas listas a
+partir de ya existentes con las funciones `cons` y `append`.
 
 La función `cons` crea una lista nueva resultante de añadir un elemento
 al comienzo de la lista. Esta función es la forma habitual de
