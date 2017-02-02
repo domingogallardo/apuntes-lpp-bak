@@ -116,10 +116,10 @@ sucesivamente hasta el 15 que es el F en hexadecimal.
 
 Supongamos que estamos implementando un **juego de guerra de barcos** en
 el que los barcos están situados en coordenadas del plano definidas
-por la posición _x_ y la posición _y_, ambos números reales (metros).
+por la posición _x_ y la posición _y_, ambos números reales (**metros**).
 
 Cada barco puede lanzar un torpedo a otro barco con una velocidad
-determinada (_v_, en km/h). El torpedo tiene combustible, y seguirá
+determinada (_v_, en **km/h**). El torpedo tiene combustible, y seguirá
 moviéndose hasta que se termine. La distancia a la que eso sucede la
 denominamos el **alcance** del torpedo (ver la siguiente figura):
 
@@ -142,8 +142,10 @@ expresión:
 e = v * t
 ```
 
-Esto es, multiplicando la velocidad (en m/segundo) por el tiempo
-(segundos) resulta el espacio en metros recorrido.
+Esto es, multiplicando la velocidad por el tiempo resulta el espacio
+en recorrido. Las unidades de la velocidad y el tiempo deben ser
+compatibles. Esto es, si _v_ está en m/s, _t_ deberá estar en
+segundos y el espacio reorrido resultará en metros.
 
 Dadas todas estas condiciones, debes programar en Scheme la función 
 
@@ -151,9 +153,9 @@ Dadas todas estas condiciones, debes programar en Scheme la función
 (dentro-alcance? x1 y1 x2 y2 v)
 ```
 
-que tome como parámetros las coordenadas `x1`, `y1` del barco 1 que lanza
-el torpedo, `x2`, `y2` del barco 2 al que se le lanza y `v` la velocidad
-del torpedo. 
+que tome como parámetros las coordenadas `x1`, `y1` del barco 1 que
+lanza el torpedo (en metros), `x2`, `y2` del barco 2 al que se le
+lanza (en metros) y `v` la velocidad del torpedo (en km/h).
 
 La función debe comprobar si el barco 2 está dentro del alcance del
 torpedo, tal y como lo hemos definido previamente y devolver el 
