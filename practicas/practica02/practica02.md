@@ -30,17 +30,43 @@ elementos y devuelva el número de símbolos que contiene.
 
 ### Ejercicio 2
 
-Implementa la función `(minimo lista)` que reciba una lista numérica
-como argumento y devuelva el menor número de la lista. Suponemos
-listas de 1 o más elementos. No puedes utilizar la función `min` de
-Scheme, aunque puedes definirte y utilizar una función auxiliar
-`menor`.
+a) Implementa las funciones `(menor x y)` y `(mayor x y)` que
+reciben dos números y devuelven el menor y el mayor de ambos. En el caso
+de que los números sean iguales, se devuelve el propio numero.
+
+Ejemplos:
+
+```scheme
+(menor 10 20) ; ⇒ 10
+(mayor 10 20) ; ⇒ 20
+(menor 20 20) ; ⇒ 20
+(mayor 20 20) ; ⇒ 20
+```
+
+b) Supongamos la expresión 
+
+```scheme
+(mayor (+ 2 3) (menor (- 10 2) (* 2 2)))
+```
+
+Realiza la evaluación paso a paso de esta expresión mediante el **modelo
+de sustitución**, utilizando tanto el **orden aplicativo** y como el **orden
+normal**.
+
+Escribe la solución entre comentarios en el propio fichero `.rkt` de
+la práctica.
+
+c) Implementa la función recursiva `(minimo lista)` que recibe una
+lista con números como argumento y devuelve el menor número de la
+lista. Suponemos listas de 1 o más elementos.
+
+Para la implementación debes usar la función `menor` definida en el
+apartado anterior.
 
 **Pista**: Podemos expresar el caso general de la recursión de la siguiente forma:
 
 > El mínimo de los elementos de una lista es el menor entre
 > el primer elemento de la lista y el mínimo del resto de la lista.
-
 
 Ejemplos:
 
