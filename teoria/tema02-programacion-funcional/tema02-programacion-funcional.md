@@ -2548,27 +2548,46 @@ cuadrado de un número.
 
 Podemos asignarlo a un identificador. Por ejemplo, en la siguiente
 expresión, primero se evalúa la *expresión lambda* y el procedimiento
-resultante se asocia al identificador `cuadrado`.
+resultante se asocia al identificador `f`.
 
 ```scheme
-(define cuadrado (lambda (x) (* x x)))
+(define f (lambda (x) (* x x)))
 ```
 
-Si escribimos el identificador `cuadrado` Scheme devuelve el
-procedimiento asociado a esta variable:
+El ejemplo anterior funciona de una forma idéntica al siguiente:
 
 ```scheme
-cuadrado ; ⇒ #<procedure:cuadrado>
+(define x (+ 2 3))
 ```
 
-Ahora podemos usar la función cuadrado como si la hubiéramos creado de
-la forma habitual:
+En ambos casos se evalúa la expresión derecha y el resultado se guarda
+en un identificador. En el primer caso la expresión que se evalúa
+devuelve un procedimiento, que se guarda en la variable `f` y en el
+segundo un número, que se guarda en la variable `x`.
+
+Si escribimos los identificadores `f` y `x` en el intérprete Scheme los
+evalúa y muestra los valores guardados:
 
 ```scheme
-(cuadrado 3) ; ⇒ 9
+f ; ⇒ #<procedure:f>
+x ; ⇒ 5
 ```
 
-También podemos invocar a una función anónima sin darle un nombre:
+En el primer caso se devuelve un procedimiento y en el segundo un
+número. Fíjate que Scheme trata a los procedimientos y a los números
+de la misma forma; son lo que se denominan datos de primera clase.
+
+Una vez asignado un procedimiento a un identificador, lo podemos
+utilizar como de la misma forma que invocamos habitualmente a una
+función:
+
+```scheme
+(f 3) ; ⇒ 9
+```
+
+No es necesario un identificador para invocar a una función; podemos
+crear la función con una expresión lambda e invocar a la función
+anónima recién creada:
 
 ```scheme
 ((lambda (x) (* x x)) 3) ; ⇒ 9
@@ -2582,18 +2601,19 @@ izquierda lo invoca con el parámetro 3:
 ```
 
 Y también podemos pasar el procedimiento como parámetro de otra
-función, como en el siguiente ejemplo. El procedimiento se asigna al
-parámetro `f` y se invoca en el cuerpo. En el ejemplo la función
-`aplica-dos-veces` recibe un procedimiento que se aplica al parámetro
-`x` y se vuelve aplicar al número resultante.
+función, como en el siguiente ejemplo:
 
 ```scheme
 (define (aplica-dos-veces f x)
    (f (f x)))
 ```
 
-Lo podemos invocar pasándole cualquier función de un argumento y
-cualquier dato:
+La función `aplica-dos-veces` espera una función `f` y otro parámetro
+`x`. La función `f` se aplicará al parámetro `x` y al resultado se le 
+vuelve a aplicar la misma función `f`.
+
+Podemos invocar a `aplica-dos-veces` pasándole cualquier función de un
+argumento y cualquier dato (siempre que sea compatible con la función).
 
 ```scheme
 (aplica-dos-veces (lambda (x)
@@ -2668,7 +2688,6 @@ asigna a la variable `suma`. El resultado final es que tanto `+` como
 `suma` tienen como valor el mismo procedimiento:
 
 <img src="imagenes/suma.png" width="100px"/>
-
 
 La forma especial `define` para definir una función no es más que
 *azucar sintáctico*.
@@ -2954,22 +2973,30 @@ tienen ya predefinidas algunas funciones de orden superior que
 permiten tratar listas o *streams* de una forma muy concisa y
 compacta.
 
-Para trabajar con las funciones de orden superior definidas en Scheme
-R6RS (`map`, `filter`, `fold-right`) hay que importar todas las
-bibliotecas con la instrucción `(import (rnrs))`:
+Para trabajar con las funciones de orden superior sobre listas
+definidas en Scheme R6RS hay que importar la librería de utilidades
+sobre listas con la instrucción `(import (rnrs lists (6)))`:
 
 ```scheme
 #lang r6rs
-(import (rnrs))
+(import (rnrs lists (6)))
 ```
 
-Vamos a comenzar viendo la función `map` de Scheme, como ejemplo
-típico de función de orden superior. Después veremos las funciones
-`filter` y `fold-right` y las definiremos también nosotros para
-comprobar su implementación recursiva. Y terminaremos viendo cómo la
-utilización de funciones de orden superior es una excelente
-herramienta de la programación funcional que permite hacer código muy
-conciso y expresivo.
+Las funciones que veremos son:
+
+- `map`
+- `filter`
+- `fold-right`
+- `exists`
+- `for-all`
+
+Para las tres primeras funciones veremos también una implementación
+recursiva que nos ayudará a comprobar su funcionamiento. 
+
+Y después de explicar estas funciones terminaremos con un ejemplo de
+su aplicación en el que comprobaremos cómo la utilización de funciones
+de orden superior es una excelente herramienta de la programación
+funcional que permite hacer código muy conciso y expresivo.
 
 La combinación de funciones de nivel superior con listas es una de las
 características más potentes de la programación funcional.
@@ -3018,6 +3045,31 @@ función `mi-map`. La implementación es la siguiente:
         (cons (f (car lista))
               (mi-map f (cdr lista)))))
 ```
+
+##### Función `map` con más de una lista
+
+Es posible pasar más de una lista como parámetro de la función
+`map`. Todas las listas deben tener la misma longitud:
+
+```scheme
+(map f lista-1 ... lista-n)
+```
+
+En ese caso, la función de mapeado `f` debe tener tantos parámetros
+como listas. El resultado es el mismo que antes: la función `f` coge
+sus argumentos de los elementos de las listas y se devuelve la lista
+con los resultados.
+
+Ejemplos:
+
+```scheme
+(map + '(1 2 3) '(10 20 30)) ; ⇒ {11 22 33}
+(map cons '(1 2 3) '(10 20 30)) ; ⇒ {{1 . 10} {2 . 20} {3 . 30}}
+(map > '(12 3 40) '(20 0 10)) ; ⇒ {#f #t #t}
+(map (lambda (x y)
+	    (if (> x y) x y)) '(12 3 40) '(20 0 10)) ; ⇒ {20 3 40}
+```
+
 
 #### 5.6.2. Función `filter`
 
@@ -3160,43 +3212,79 @@ Podríamos implementar de forma recursiva la función `fold-right`:
       (func (car lista) (mi-fold-right func base (cdr lista)))))
 ```
 
-#### 5.6.4. Uso de funciones de orden superior
+#### 5.6.4. Función `exists`
+
+La función de orden superior `exists` recibe un predicado y una lista
+y comprueba si algún elemento de la lista cumple ese predicado.
+
+Ejemplo de uso:
+
+```scheme
+(exists even? '(1 2 3 4 5 6)) ; ⇒ #t
+(exists (lambda (x)
+             (> x 10)) '(1 3 5 8)) ; ⇒ #f
+```
+
+¿Cuál sería la implementación recursiva de la función `exists`? 
+
+#### 5.6.5. Función `for-all`
+
+La función de orden superior `for-all` recibe un predicado y una lista
+y comprueba que todos los elementos de la lista cumplen ese predicado.
+
+Ejemplo de uso:
+
+```scheme
+(for-all even? '(2 4 6)) ; ⇒ #t
+(for-all (lambda (x)
+             (> x 10)) '(12 30 50 80)) ; ⇒ #t
+```
+
+¿Cuál sería la implementación recursiva de la función `for-all`?
+
+#### 5.6.6. Uso de funciones de orden superior
 
 El uso de funciones de orden superior y las expresiones lambda
 proporciona muchísima expresividad en un lenguaje de programación. Es
 posible escribir código muy conciso, que hace cosas complicadas en
 pocas líneas.
 
+##### Función `(suma-n n lista)`
+
 No lo hemos hecho hasta ahora, pero es posible utilizar en el cuerpo
 de las expresiones lambda los parámetros de la función principal en la
 que se usa esta expresión. Veamos un ejemplo.
 
-Supongamos que queremos definir una función `(suma-n lista n)` que
+Supongamos que queremos definir una función `(suma-n n lista)` que
 devuelve la lista resultante el resultado de sumar un número `n` a
 todos los elementos de una lista.
 
 Podemos hacerlo de forma recursiva:
 
 ```scheme
-(define (suma-n lista n)
+(define (suma-n n lista)
     (if (null? lista)
         '()
         (cons (+ (car lista) n)
-              (suma-n (cdr lista)))))
+              (suma-n n (cdr lista)))))
 ```
 
 Funciona de la siguiente manera:
 
 ```scheme
-(suma-n '(1 2 3 4) 10) ; ⇒ (11 12 13 14)
+(suma-n 10 '(1 2 3 4)) ; ⇒ (11 12 13 14)
 ```
 
-Pero podemos implementar la función de otra forma, utilizando la
-función de orden superior `map` y una expresión lambda que sume el
-número `n` a los elementos de la lista:
+**Implementacion con `map`**
+
+Pero si utilizamos funciones de orden superior, podemos implementar la
+misma función de una forma mucho más concisa y expresiva. 
+
+Lo podemos hacer utilizando la función de orden superior `map` y una
+expresión lambda que sume el número `n` a los elementos de la lista:
 
 ```scheme
-(define (suma-n lista n)
+(define (suma-n n lista)
     (map (lambda (x) (+ x n)) lista))
 ```
 
@@ -3210,6 +3298,8 @@ valor de los elementos de la lista.
 (suma-n '(1 2 3 4) 10) = (map (lambda (x) (+ x 10)) (11 12 13 14)) =  (11 12 13 14)
 ```
 
+##### Función `(contienen-letra caracter lista-pal)`
+
 Veamos otro ejemplo. Supongamos que queremos definir la función
 `(contienen-letra caracter lista-pal)` que devuelve las palabras de
 una lista que contienen un determinado carácter.
@@ -3221,34 +3311,63 @@ Por ejemplo:
 ```
 
 Podemos implementar `contienen-letra` usando la función de orden
-superior `filter`, escribiendo en la expresión lambda un predicado que
-compruebe si la palabra contiene el carácter:
+superior `filter`, con una expresión lambda que se aplicará a cada una
+de las palabras de la lista para comprobar si la palabra contiene el
+carácter:
 
 ```scheme
 (define (contienen-letra caracter lista-pal)
    (filter (lambda (pal)
-              (letra-en-str? caracter pal)) lista-pal))
+              (letra-en-pal? caracter pal)) lista-pal))
 ```
 
-La función `(letra-en-str? caracter pal)` es un predicado auxiliar que
-necesitamos, que comprueba si una cadena contiene un carácter.
+El parámetro `pal` de la expresión lambda irá cogiendo el valor de
+todas las palabras de `lista-pal` y la función `(letra-en-pal?
+caracter pal)` comprobará si la cadena contiene el carácter.
+
+La función `(letra-en-pal? caracter pal)` es una función auxiliar que
+tenemos que implementar.
 
 Por ejemplo:
 
 ```scheme
-(letra-en-str? #\a "Hola") ; ⇒ #t
-(letra-en-str? #\a "Pepe") ; ⇒ #f
+(letra-en-pal? #\a "Hola") ; ⇒ #t
+(letra-en-pal? #\a "Pepe") ; ⇒ #f
 ```
 
-Sólo nos falta implementar esta función `letra-en-str`. Lo podemos
-implementar obteniendo una lista de caracteres a partir de la cadena y
-volviendo a usar la función `filter`:
+La podemos implementar de una forma muy elegante obteniendo una lista
+de caracteres a partir de la cadena y volviendo a usar la función
+`filter`:
 
 ```scheme
 (define (letra-en-pal? caracter palabra)
     (not (null? (filter (lambda (c)
                            (equal? c caracter)) (string->list palabra))))
 ```
+
+##### Función `(primo? n)`
+
+Por último, podemos repasar la función ya vista `(primo? n)` que
+comprueba si un número es primo o no, y reformular la función
+`divisores` utilizando `filter`:
+
+```scheme
+(define (primo? n)
+    (= 2 (length (divisores n))))
+
+(define (divisores n)
+  (filter (lambda (x)
+            (divisor? x n)) (numeros-hasta n)))
+
+(define (numeros-hasta n)
+  (if (= 0 n)
+      '()
+      (cons n (numeros-hasta (- n 1)))))
+
+(define (divisor? x n)
+  (= 0 (mod n x)))
+```
+
 
 ----
 
