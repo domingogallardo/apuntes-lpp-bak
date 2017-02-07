@@ -9,8 +9,10 @@ exploréis también en los enlaces que hemos dejado en los apuntes para
 ampliar información.
 
 * [DrRacket](http://racket-lang.org/), [Entorno de programación DrRacket](http://docs.racket-lang.org/drracket/index.html)
-* _R6RS_ [(pdf)](http://www.r6rs.org/final/r6rs.pdf)
+* _R6RS_ base [(pdf)](http://www.r6rs.org/final/r6rs.pdf)
 [(html)](https://docs.racket-lang.org/r6rs/)
+* Librerías R6RS [(pdf)](http://www.r6rs.org/final/r6rs-lib.pdf)
+[(html)](http://www.r6rs.org/final/html/r6rs-lib/r6rs-lib.html)
 * [Simply Scheme](http://www.eecs.berkeley.edu/~bh/ss-toc2.html)
 
 ### El lenguaje de programación Scheme
