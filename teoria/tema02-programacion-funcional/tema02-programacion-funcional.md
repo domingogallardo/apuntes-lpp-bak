@@ -3249,6 +3249,8 @@ proporciona muchísima expresividad en un lenguaje de programación. Es
 posible escribir código muy conciso, que hace cosas complicadas en
 pocas líneas.
 
+
+
 ##### Función `(suma-n n lista)`
 
 No lo hemos hecho hasta ahora, pero es posible utilizar en el cuerpo
@@ -3297,6 +3299,38 @@ valor de los elementos de la lista.
 ```scheme
 (suma-n '(1 2 3 4) 10) = (map (lambda (x) (+ x 10)) (11 12 13 14)) =  (11 12 13 14)
 ```
+
+##### Composición de funciones de orden superior
+
+Dado que muchas de las anteriores funciones de orden superior
+devuelven listas, es muy común componer las llamadas, de forma que la
+salida de una haga de entrada de otra.
+
+Por ejemplo, supongamos que tenemos una lista de parejas de números y
+queremos contar aquellas parejas cuya suma de ambos números es mayor
+que un umbral (por ejemplo, 10).
+
+```scheme
+(define lista-parejas (list (cons 1 2) 
+	                        (cons 3 8) 
+							(cons 2 3) 
+							(cons 9 6)))
+(cuenta-mayores-que 10 lista-parejas) ; => 2
+```
+
+Se podría implementar de una forma muy concisa componiendo una llamada
+a `map` para realizar la suma de cada pareja junto con una llamada a
+`filter` que compruebe que el resultado sea mayor de `n`. Y al final
+llamamos a `length` para contar la longitud de la lista resultante:
+
+```scheme
+(define (cuenta-mayores-que n lista-parejas)
+  (length
+   (filter (lambda (x)
+             (> x n)) (map (lambda (pareja)
+                             (+ (car pareja) (cdr pareja))) lista-parejas))))
+```								 
+
 
 ##### Función `(contienen-letra caracter lista-pal)`
 
