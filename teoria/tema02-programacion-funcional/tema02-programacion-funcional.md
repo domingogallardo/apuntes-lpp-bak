@@ -2039,17 +2039,13 @@ recursiva:
 > Para devolver el elemento que está en la posición 0 de una lista,
 > devuelvo el `car` de la lista
 
-La implementación de todo esto en Scheme sería la siguiente (incluimos
-un segundo caso base en el que se intenta obtener la posición de una
-lista vacía; se llegaría a este caso si la posición que pedimos es
-mayor que el número de elementos de la lista):
+La implementación de todo esto en Scheme sería la siguiente:
 
 ```scheme
 (define (mi-list-ref lista n)
-(cond
-    ((null? lista)  (error "indice demasiado largo"))
-    ((= n 0) (car lista))
-    (else (mi-list-ref (cdr lista) (- n 1)))))
+   (if (= n 0) 
+      (car lista)
+      (mi-list-ref (cdr lista) (- n 1))))
 ```
 
 ##### Función `list-tail`
@@ -2067,10 +2063,9 @@ se ha llegado a ella:
 
 ```scheme
 (define (mi-list-tail lista n)
-    (cond
-        ((null? lista)  (error "indice demasiado largo"))
-        ((= n 0) lista)
-        (else (mi-list-tail (cdr lista) (- n 1)))))
+   (if (= n 0) 
+       lista
+       (mi-list-tail (cdr lista) (- n 1))))
 ```
 
 ##### Función `mi-append` 
