@@ -173,23 +173,23 @@ de Lisp y que resaltan sus aspectos funcionales, aunque actualizando
 su sintaxis. Destacamos entre ellos:
 
 - [Clojure](https://en.wikipedia.org/wiki/Clojure)
-- [Erlang](https://en.wikipedia.org/wiki/Erlang_(programming_language))
+- [Erlang](https://en.wikipedia.org/wiki/Erlang_(programming_language)
 
 También hay una tendencia desde mediados de la década de 2000 de
 incluir aspectos funcionales como las _expresiones lambda_ o las
 funciones de orden superior en lenguajes imperativos orientados a
 objetos, dando lugar a lenguajes *multi-paradigma*:
 
-- [Ruby](https://en.wikipedia.org/wiki/Ruby_(programming_language))
-- [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
-- [Groovy](https://en.wikipedia.org/wiki/Groovy_(programming_language))
-- [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language))
-- [Swift](https://en.wikipedia.org/wiki/Swift_(programming_language))
+- [Ruby](https://en.wikipedia.org/wiki/Ruby_(programming_language)
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)
+- [Groovy](https://en.wikipedia.org/wiki/Groovy_(programming_language)
+- [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language)
+- [Swift](https://en.wikipedia.org/wiki/Swift_(programming_language)
 
 
 Por último, en la década del 2010 también se ha hecho popular un
 lenguaje **exclusivamente funcional** como
-[Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language)). Este
+[Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language). Este
 lenguaje, a diferencia de Scheme y de otros lenguajes multi-paradigma,
 no tienen ningún elemento imperativo y consigue que todas sus
 expresiones sean puramente funcionales.
