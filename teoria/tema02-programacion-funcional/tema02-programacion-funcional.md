@@ -25,12 +25,11 @@
     - [4.3. Funciones recursivas sobre listas](#4-3)
     - [4.4. Funciones con número variable de argumentos](#4-4)
 - [5. Funciones como tipos de datos de primera clase](#5)
-    - [5.1. Un primer ejemplo](#5-1)
-    - [5.2. Forma especial `lambda`](#5-2)
-    - [5.3. Funciones como argumentos de otras funciones](#5-3)
-    - [5.4. Funciones en estructuras de datos](#5-4)
-    - [5.5. Generalización](#5-5)
-    - [5.6. Funciones de orden superior](#5-6)
+    - [5.1. Forma especial `lambda`](#5-1)
+    - [5.2. Funciones como argumentos de otras funciones](#5-2)
+    - [5.3. Funciones en estructuras de datos](#5-3)
+    - [5.4. Generalización](#5-4)
+    - [5.5. Funciones de orden superior](#5-5)
 
 ## Bibliografía - SICP
 
@@ -2411,85 +2410,14 @@ o incluso en la última versión de Java,
 [Java 8](http://docs.oracle.com/javase/tutorial/java/javaOO/lambdaexpressions.html),
 (donde se denominan *expresiones lambda*).
 
-### <a name="5-1"></a>5.1. Un primer ejemplo
+### <a name="5-1"></a>5.1. Forma especial `lambda`
 
-Vamos a empezar con un ejemplo introductorio: la función `(map func
-lista)` de Scheme que toma como parámetro **una función** y una
-lista. La función de vuelve la lista resultante de *mapear* (aplicar)
-la función `func` a todos y cada unos de los elementos de la lista
-original.
-
-Veamos cómo funciona. La función que pasamos como parámetro debe tener
-un único argumento. Por ejemplo la función `cuadrado`:
-
-```scheme
-(define (cuadrado x)
-    (* x x))
-```
-
-Probamos la función `map` pasando la función anterior como parámetro:
-
-```scheme
-(map cuadrado '(1 2 3 4 5)) ; ⇒ (1 4 9 16 25)
-```
-
-Vemos que la función `map` aplica la función `cuadrado` a todos los
-elementos de la lista y devuelve la lista resultante. Podemos
-comprobar que se pasa como parámetro *una función*, o sea, código, que
-es ejecutado dentro de la función map, procesando cada elemento de la
-lista y añadiendo el resultado a la lista resultante.
-
-Podemos pasar cualquier función a `map`, siempre que sea una función
-de un parámetro que se pueda aplicar a los elementos de la lista:
-
-```scheme
-(define (doble x)
-   (* x 2))
-
-(define (suma-1 x)
-   (+ x 1))
-```
-
-Ejemplo de invocación a `map` con las funciones anteriores:
-
-```scheme
-(map doble '(1 2 3 4 5)) ; ⇒ (2 4 6 8 10)
-(map suma-1 '(1 2 3 4 5)) ; ⇒ (2 3 4 5 6)
-```
-
-La posibilidad de pasar funciones como argumentos proporciona una gran
-potencia y flexibilidad en el lenguaje. En este ejemplo podemos
-cambiar el comportamiento de `map` dependiendo de la función que
-pasamos como parámetro. En un caso eleva al cuadrado los números, en
-otro los multiplica por dos y en el último les suma 1.
-
-Vemos que para pasar por parámetro la función basta con poner su
-nombre. Para pasar la función que eleva al cuadrado un número ponemos
-como parámetro el nombre de la función: `cuadrado`. Es posible incluso
-pasar una función a la que no le hemos dado nombre, usando lo que se
-denomina una *expresión lambda*.
-
-Por ejemplo, la siguiente expresión lambda construye una función que
-suma 3 a un número:
-
-```scheme
-(lambda (x) (+ x 3))
-```
-
-Si escribimos la expresión lambda como parámetro de `map` tendremos
-una función que suma 3 a todos los elementos de una lista:
-
-```scheme
-(map (lambda (x) (+ x 3)) '(1 2 3 4 5)) ; ⇒ (4 5 6 7 8)
-```
-
-### <a name="5-2"></a>5.2. Forma especial `lambda`
-
-Veamos más despacio cómo funciona la forma especial `lambda`. 
+Vamos a empezar explicando la forma especial `lambda` de Scheme, que
+nos permite crear funciones anónimas en tiempo de ejecución.
 
 De la misma forma que podemos usar cadenas o enteros sin darles un
-nombre, en Scheme es posible usar una función (código) sin darle un
-nombre mediante la forma especial `lambda`.
+nombre, en Scheme es posible usar una función sin darle un
+nombre mediante esta forma especial.
 
 #### Sintaxis de la forma especial `lambda`
 
@@ -2504,7 +2432,7 @@ El cuerpo del lambda define un *bloque de código* y sus argumentos son
 los parámetros necesarios para ejecutar ese bloque de código. Llamamos
 a la función resultante una *función anónima*.
 
-Otros ejemplos:
+Algunos ejemplos:
 
 Una función anónima que suma dos parejas:
 
@@ -2537,7 +2465,6 @@ veremos que devuelve un procedimiento:
 
 El procedimiento construido es un bloque de código que devuelve el
 cuadrado de un número.
-
 
 ¿Qué podemos hacer con este procedimiento? 
 
@@ -2595,36 +2522,13 @@ izquierda lo invoca con el parámetro 3:
 ((lambda (x) (* x x)) 3) = (#<procedure> 3) ⇒ 9
 ```
 
-Y también podemos pasar el procedimiento como parámetro de otra
-función, como en el siguiente ejemplo:
-
-```scheme
-(define (aplica-dos-veces f x)
-   (f (f x)))
-```
-
-La función `aplica-dos-veces` espera una función `f` y otro parámetro
-`x`. La función `f` se aplicará al parámetro `x` y al resultado se le 
-vuelve a aplicar la misma función `f`.
-
-Podemos invocar a `aplica-dos-veces` pasándole cualquier función de un
-argumento y cualquier dato (siempre que sea compatible con la función).
-
-```scheme
-(aplica-dos-veces (lambda (x)
-                     (+ x 5)) 10) ; ⇒ 20
-(aplica-dos-veces (lambda (s)
-                     (string-append s "-jeje")) "Hola") ; ⇒ "Hola-jeje-jeje"
-```
-
 Es importante remarcar que con `lambda` estamos creando una función en
 *tiempo de ejecución*. Es código que creamos para su posterior
 invocación.
 
-No hay que dejar que la sintaxis o la palabra `lambda` confunda. Lo
-único que estamos haciendo es crear *un bloque de código* y definir
-sus argumentos. Quizás ayuda ver cómo define la función anónima que
-devuelve el cuadrado de un número en distintos lenguajes.
+Cada lenguaje de programación tiene su sintaxis propia de expresiones
+lambda. Por ejemplo, las siguientes expresiones crean una función que
+devuelve el cuadrado de un número:
 
 **Java 8**
 
@@ -2732,7 +2636,7 @@ Hemos visto que las funciones pueden asignarse a variables. También
 cumplen las otras condiciones necesarias para ser consideradas objetos
 de primera clase.
 
-### <a name="5-3"></a> 5.3. Funciones argumentos de otras funciones 
+### <a name="5-2"></a> 5.2. Funciones argumentos de otras funciones 
 
 Hemos visto ya un ejemplo de cómo pasar una función como parámetro de
 otra. Veamos algún otro.
@@ -2784,7 +2688,7 @@ devuelve la invocación de `g` con `x`:
 (aplica-2 suma-5 doble 3) ; ⇒ 11
 ```
 
-### <a name="5-4"></a> 5.4. Funciones en estructuras de datos
+### <a name="5-3"></a> 5.3. Funciones en estructuras de datos
 
 La última característica de los tipos de primera clase es que pueden
 formar parte de tipos de datos compuestos, como listas.
@@ -2881,7 +2785,7 @@ Un ejemplo de uso:
 (aplica-funcs lista-funcs 5) ; ⇒ 46656
 ```
 
-### <a name="5-5"></a> 5.5 Generalización
+### <a name="5-4"></a> 5.4 Generalización
 
 La posibilidad de pasar funciones como parámetros de otras es una
 poderosa herramienta de abstracción. Por ejemplo, supongamos que
@@ -2956,7 +2860,7 @@ las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta
 (sum-f-x cubo 1 10) ; ⇒ 3025
 ```
 
-### <a name="5-6"></a> 5.6. Funciones de orden superior
+### <a name="5-5"></a> 5.5. Funciones de orden superior
 
 Llamamos funciones de orden superior (*higher order functions* en
 inglés) a las funciones que toman otras como parámetro o devuelven
@@ -2981,9 +2885,9 @@ Las funciones que veremos son:
 
 - `map`
 - `filter`
-- `fold-right`
 - `exists`
 - `for-all`
+- `fold-right`
 
 Para las tres primeras funciones veremos también una implementación
 recursiva que nos ayudará a comprobar su funcionamiento. 
@@ -3110,13 +3014,44 @@ Podemos implementar la función `filter` de forma recursiva:
     (else (mi-filter pred (cdr lista)))))
 ```
 
-#### 5.6.3. Función `fold-right`
+#### 5.6.3. Función `exists`
 
-Por último vamos a ver la función `(fold-right func base lista)` que
-permite recorrer una lista aplicando una función binaria de forma
-acumulativa a sus elementos. El nombre `fold` significa
-*plegado*. Utilizaremos la función cuando necesitemos obtener un dato
-a partir de los elementos de una lista.
+La función de orden superior `exists` recibe un predicado y una lista
+y comprueba si algún elemento de la lista cumple ese predicado.
+
+Ejemplo de uso:
+
+```scheme
+(exists even? '(1 2 3 4 5 6)) ; ⇒ #t
+(exists (lambda (x)
+             (> x 10)) '(1 3 5 8)) ; ⇒ #f
+```
+
+¿Cuál sería la implementación recursiva de la función `exists`? 
+
+#### 5.6.4. Función `for-all`
+
+La función de orden superior `for-all` recibe un predicado y una lista
+y comprueba que todos los elementos de la lista cumplen ese predicado.
+
+Ejemplo de uso:
+
+```scheme
+(for-all even? '(2 4 6)) ; ⇒ #t
+(for-all (lambda (x)
+             (> x 10)) '(12 30 50 80)) ; ⇒ #t
+```
+
+¿Cuál sería la implementación recursiva de la función `for-all`?
+
+
+#### 5.6.5. Función `fold-right`
+
+Veamos ahora la función `(fold-right func base lista)` que permite
+recorrer una lista aplicando una función binaria de forma acumulativa
+a sus elementos. El nombre `fold` significa *plegado*. Utilizaremos la
+función cuando necesitemos obtener un dato a partir de los elementos
+de una lista.
 
 La explicación de su funcionamiento es la siguiente:
 
@@ -3207,43 +3142,12 @@ Podríamos implementar de forma recursiva la función `fold-right`:
       (func (car lista) (mi-fold-right func base (cdr lista)))))
 ```
 
-#### 5.6.4. Función `exists`
-
-La función de orden superior `exists` recibe un predicado y una lista
-y comprueba si algún elemento de la lista cumple ese predicado.
-
-Ejemplo de uso:
-
-```scheme
-(exists even? '(1 2 3 4 5 6)) ; ⇒ #t
-(exists (lambda (x)
-             (> x 10)) '(1 3 5 8)) ; ⇒ #f
-```
-
-¿Cuál sería la implementación recursiva de la función `exists`? 
-
-#### 5.6.5. Función `for-all`
-
-La función de orden superior `for-all` recibe un predicado y una lista
-y comprueba que todos los elementos de la lista cumplen ese predicado.
-
-Ejemplo de uso:
-
-```scheme
-(for-all even? '(2 4 6)) ; ⇒ #t
-(for-all (lambda (x)
-             (> x 10)) '(12 30 50 80)) ; ⇒ #t
-```
-
-¿Cuál sería la implementación recursiva de la función `for-all`?
-
 #### 5.6.6. Uso de funciones de orden superior
 
 El uso de funciones de orden superior y las expresiones lambda
 proporciona muchísima expresividad en un lenguaje de programación. Es
 posible escribir código muy conciso, que hace cosas complicadas en
 pocas líneas.
-
 
 
 ##### Función `(suma-n n lista)`
