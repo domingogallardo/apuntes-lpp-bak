@@ -47,8 +47,8 @@ Ejemplos:
 
 ```scheme
 (bounding-box (list (cons -10 -10) (cons 0 -20) (cons 8 6)))
-; ⇒ {{-10. 20} . {8 . 6}} 
-; Representación en DrRacket: {{-10 . 20} 8 . 10.0}
+; ⇒ {{-10. -20} . {8 . 6}}
+; Representación en DrRacket: {{-10 . -20} 8 . 6}
 (bounding-box (list (cons 0.5 0.25) (cons 0.25 -10) (cons -5.5 10)))
 ; ⇒ {{-5.5 . -10.0} . {0.5 . 10.0}} 
 ; Representación en DrRacket: {{-5.5 . -10.0} 0.5 . 10.0}
