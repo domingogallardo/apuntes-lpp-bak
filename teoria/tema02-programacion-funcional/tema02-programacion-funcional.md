@@ -27,9 +27,10 @@
 - [5. Funciones como tipos de datos de primera clase](#5)
     - [5.1. Forma especial `lambda`](#5-1)
     - [5.2. Funciones como argumentos de otras funciones](#5-2)
-    - [5.3. Funciones en estructuras de datos](#5-3)
-    - [5.4. Generalización](#5-4)
-    - [5.5. Funciones de orden superior](#5-5)
+    - [5.3. Funciones que devuelven otras funciones](#5-3)
+    - [5.4. Funciones en estructuras de datos](#5-4)
+    - [5.5. Generalización](#5-5)
+    - [5.6. Funciones de orden superior](#5-6)
 
 ## Bibliografía - SICP
 
@@ -2394,10 +2395,9 @@ clase*. Recordemos que un tipo de primera clase es aquel que:
 
 Vamos a ver que las funciones son ejemplos de todos los casos
 anteriores: vamos a poder crear funciones sin nombre y asignarlas a
-variables, pasarlas como parámetro de otras funciones y guardarlas en
-tipos de datos compuestos como listas. En este primer apartado veremos
-los puntos 1, 2 y 4. Veremos las funciones devueltas por funciones en
-el siguiente apartado, cuando hablemos de *clausuras*.
+variables, pasarlas como parámetro de otras funciones, devolverlas
+como resultado de invocar a otra función y guardarlas en
+tipos de datos compuestos como listas.
 
 La posibilidad de usar funciones como objetos de primera clase es una
 característica fundamental de los lenguajes funcionales. Es una
@@ -2688,7 +2688,98 @@ devuelve la invocación de `g` con `x`:
 (aplica-2 suma-5 doble 3) ; ⇒ 11
 ```
 
-### <a name="5-3"></a> 5.3. Funciones en estructuras de datos
+### <a name="5-3"></a> 5.3. Funciones que devuelven funciones
+
+Cualquier objeto de primera clase puede ser devuelto por una
+función; enteros, booleanos, parejas, etc. son objetos primitivos y
+podemos definir funciones que los devuelven.
+
+En el paradigma funcional lo mismo sucede con las funciones. Podemos
+definir una función que cuando se invoque construya otra función y la
+devuelva como resultado. 
+
+Esta es una de la características más importantes que diferencia los
+lenguajes de programación funcionales de otros que no lo
+son. En lenguajes como C, C++ o Java (antes de Java 8) no es posible
+hacer esto.
+
+Para devolver una función en Scheme basta con usar la forma especial
+`lambda` en el cuerpo de una función. Así, cuando se invoca a esta
+función se evalúa `lambda` y se devuelve la función resultante. Es una
+función que creamos en tiempo de ejecución, durante la evaluación de
+la función principal.
+
+La función que se devuelve se denomina **clausura**
+([closure](https://en.wikipedia.org/wiki/Closure_(computer_programming))
+en inglés). Veremos por qué en uno de los siguientes temas, cuando
+hablemos del uso de funciones como objetos de primera clase en
+programación imperativa junto con ámbitos de variables. 
+
+#### Función `sumador`
+
+Vamos a empezar con un ejemplo muy sencillo. Una función que devuelve
+otra que suma `k` a un número:
+
+```scheme
+(define (sumador k)
+   (lambda (x)
+       (+ x k)))
+```
+
+La función `(sumador k)` construye otra función de 1 argumento que
+suma `k` al argumento. Si invocamos a `sumador` se devolverá otra
+función:
+
+```scheme
+(sumador 10) ; => #<procedure>
+```
+
+Esa función que se devuelve debe invocarse con un argumento y
+devolverá el resultado de sumar 10 a ese argumento:
+
+```scheme
+(define f (sumador 10))
+(f 3) ; => 13
+```
+
+O también, de una forma más concisa:
+
+```scheme
+((sumador 10) 3) ; => 13
+```
+
+#### Función `componedor` 
+
+Otro ejemplo de una función que devuelve otra función es la función
+siguiente `(componedor f g)` que recibe dos funciones de un argumento
+y devuelve otra función que realiza la composición de ambas:
+
+```scheme
+(define (componedor f g)
+    (lambda (x)
+	    (f (g x))))
+```
+
+La función devuelta invoca primero a `g` y el resultado se lo pasa a
+`f`. Veamos un ejemplo. Supongamos que tenemos definidas la función
+`cuadrado` y `doble` que calculan el cuadrado y el doble de un número
+respectivamente. Podremos entonces llamar a `componedor` con esas dos
+funciones para construir otra función que primero calcule el cuadrado y
+después el doble de una número:
+
+```scheme
+(define h (componendor doble cuadrado))
+```
+
+La variable `h` contiene la función devuelta por `componedor`. Una
+función de un argumento que devuelve el doble del cuadrado de un
+número:
+
+```scheme
+(h 4) ; => 32
+```
+
+### <a name="5-4"></a> 5.4. Funciones en estructuras de datos
 
 La última característica de los tipos de primera clase es que pueden
 formar parte de tipos de datos compuestos, como listas.
@@ -2785,7 +2876,7 @@ Un ejemplo de uso:
 (aplica-funcs lista-funcs 5) ; ⇒ 46656
 ```
 
-### <a name="5-4"></a> 5.4 Generalización
+### <a name="5-5"></a> 5.5 Generalización
 
 La posibilidad de pasar funciones como parámetros de otras es una
 poderosa herramienta de abstracción. Por ejemplo, supongamos que
@@ -2860,7 +2951,7 @@ las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta
 (sum-f-x cubo 1 10) ; ⇒ 3025
 ```
 
-### <a name="5-5"></a> 5.5. Funciones de orden superior
+### <a name="5-6"></a> 5.6. Funciones de orden superior
 
 Llamamos funciones de orden superior (*higher order functions* en
 inglés) a las funciones que toman otras como parámetro o devuelven
