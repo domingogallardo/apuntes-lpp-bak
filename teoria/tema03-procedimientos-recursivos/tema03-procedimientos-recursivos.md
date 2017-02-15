@@ -42,16 +42,10 @@ resultados de cada llamada recursiva. Por último, veremos un último
 ejemplo curioso e interesante de la recursión para realizar figuras
 fractales con gráficos de tortuga.
 
-En los siguientes apartados del tema veremos que la recursión no sólo
-se utiliza para definir funciones y procedimientos sino que existen
-estructuras de datos cuya definición es recursiva, como las listas o
-los árboles. Estudiaremos estas estructuras, su implementación en
-Scheme y algoritmos recursivos que trabajan sobre ellas.
-
 #### <a name="1-1"></a> 1.1 Pensando recursivamente
 
-Para diseñar procedimientos recursivos no vale intentarlo resolver por
-prueba y error. Hay que diseñar la solución recursiva desde el
+Para diseñar procedimientos recursivos no funciona el método de
+_prueba y error_. Hay que diseñar la solución recursiva desde el
 principio. Debemos fijarnos en *lo que devuelve la función* y debemos
 preguntarnos cómo sería posible descomponer el problema de forma que
 podamos lanzar la recursión sobre una versión más sencilla del
@@ -117,14 +111,15 @@ lista vacía también las consideraremos palíndromas.
 > palindroma(lista) <=> un-elemento(lista) o vacía(lista) 
 
 
-Vamos a escribirlo en Scheme:
+Podemos escribir la definición en Scheme, usando la función `or` para
+indicar que la lista es palíndroma si sucede una de las tres condiciones:
 
 ```scheme
-(define (palindromo? lista)
+(define (palindroma? lista)
    (or (null? lista)
        (null? (cdr lista))
        (and (equal? (car lista) (ultimo lista))
-            (palindromo? (quitar-primero-ultimo lista)))))
+            (palindroma? (quitar-primero-ultimo lista)))))
 ```
 
 La función auxiliar `quitar-primero-ultimo` la podemos definir así:
@@ -142,10 +137,15 @@ La función auxiliar `quitar-primero-ultimo` la podemos definir así:
 
 #### <a name="1-2"></a> 1.2 El coste de la recursión
 
+Hasta ahora hemos estudiado el diseño de funciones recursivas. Vamos a
+tratar por primera vez su coste. Veremos que hay casos en los que es
+prohibitivo utilizar la recursión tal y como la hemos visto. Y veremos
+también que existen soluciones para esos casos.
+
 ##### 1.2.1 La pila de la recursión
 
-Vamos a estudiar el comportamiento del proceso generado por una
-llamada a un procedimiento recursivo. Supongamos la función
+Vamos a estudiar el comportamiento de la evaluación de una llamada a
+una función recursiva. Supongamos la función
 `mi-length`:
 
 ```scheme
@@ -170,16 +170,18 @@ Examinamos cómo se evalúan las llamadas recursivas:
 4
 ```
 
-Cada llamada a la recursión deja una función en espera de ser evaluada
-cuando la recursión devuelva un valor (en el caso anterior el +). Esta
-función, junto con sus argumentos, se almacenan en la *pila de la
-recursión*.
+Cada llamada a la recursión deja una función **en espera de ser
+evaluada** cuando la recursión devuelva un valor (en el caso anterior
+las funciones suma). Estas llamadas en espera, junto con sus
+argumentos, se almacenan en la *pila de la recursión*.
 
 Cuando la recursión devuelve un valor, los valores se recuperan de la
 pila, se realiza la llamada y se devuelve el valor a la anterior
-llamada en espera. Si la recursión está mal hecha y nunca termina se
-genera un *stack overflow* porque la memoria que se almacena en la
-pila sobrepasa la memoria reservada para el intérprete DrRacket.
+llamada en espera. 
+
+Si la recursión está mal hecha y nunca termina se genera un *stack
+overflow* porque la memoria que se almacena en la pila sobrepasa la
+memoria reservada para el intérprete DrRacket.
 
 ##### 1.2.2 Coste espacial de la recursión
 
@@ -225,16 +227,18 @@ Cada llamada a la recursión produce otras dos llamadas, por lo que el
 número de llamadas finales es 2^n siendo n el número que se pasa a la
 función.
 
-El coste espacial y temporal es exponencial, O(2^n). ¿Qué pasa si
-intentamos evaluar `(fibonaci 35)`?
+El coste espacial y temporal es exponencial, O(2^n). Esto hace
+inviable utilizar esta implementación para realizar el cálculo de la
+función. Puedes comprobarlo intentando evaluar en el intérprete
+`(fibonaci 35)`.
 
 #### <a name="1-3"></a> 1.3 Soluciones al coste de la recursión: procesos iterativos
 
-Diferenciamos entre procedimientos y procesos: un procedimiento es un
-algoritmo y un proceso es la ejecución de ese algoritmo.
+Diferenciamos entre procedimientos y procesos: un **procedimiento** es un
+algoritmo y un **proceso** es la ejecución de ese algoritmo.
 
-Es posible definir procedimientos recursivos que generen procesos
-iterativos (como los bucles en programación imperativa) en los que no
+Es posible definir _procedimientos recursivos_ que generen _procesos
+iterativos_ (como los bucles en programación imperativa) en los que no
 se dejen llamadas recursivas en espera ni se incremente la pila de la
 recursión. Para ello construimos la recursión de forma que en cada
 llamada se haga un cálculo parcial y en el caso base se pueda devolver
