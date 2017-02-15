@@ -3,7 +3,7 @@
 ## Entrega de la práctica
 
 Para entregar la práctica debes subir a Moodle el fichero
-`practica02.rkt` con una cabecera inicial con tu nombre y apellidos, y
+`practica03.rkt` con una cabecera inicial con tu nombre y apellidos, y
 las soluciones de cada ejercicio separadas por comentarios. Cada
 solución debe incluir:
 
@@ -199,7 +199,7 @@ Ejemplo:
 
 ```scheme
 (filtra-sexo 'mujer personas) ; ⇒ Lista con las personas "Ana" y "Paula"
-(mayores-edad 20 personas) ; ⇒ Lista con las personas "Juan" y "Antonio"
+(mayores-edad 20 personas) ; ⇒ Lista con las personas "Juan", "Pablo" y "Antonio"
 (mayores-edad-sexo 25 'hombre personas) ; ⇒ Lista con la personas "Pablo"
 ```
 
