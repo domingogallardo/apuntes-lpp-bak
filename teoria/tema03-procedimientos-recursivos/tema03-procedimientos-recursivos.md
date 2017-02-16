@@ -42,16 +42,10 @@ resultados de cada llamada recursiva. Por último, veremos un último
 ejemplo curioso e interesante de la recursión para realizar figuras
 fractales con gráficos de tortuga.
 
-En los siguientes apartados del tema veremos que la recursión no sólo
-se utiliza para definir funciones y procedimientos sino que existen
-estructuras de datos cuya definición es recursiva, como las listas o
-los árboles. Estudiaremos estas estructuras, su implementación en
-Scheme y algoritmos recursivos que trabajan sobre ellas.
-
 #### <a name="1-1"></a> 1.1 Pensando recursivamente
 
-Para diseñar procedimientos recursivos no vale intentarlo resolver por
-prueba y error. Hay que diseñar la solución recursiva desde el
+Para diseñar procedimientos recursivos no funciona el método de
+_prueba y error_. Hay que diseñar la solución recursiva desde el
 principio. Debemos fijarnos en *lo que devuelve la función* y debemos
 preguntarnos cómo sería posible descomponer el problema de forma que
 podamos lanzar la recursión sobre una versión más sencilla del
@@ -117,14 +111,15 @@ lista vacía también las consideraremos palíndromas.
 > palindroma(lista) <=> un-elemento(lista) o vacía(lista) 
 
 
-Vamos a escribirlo en Scheme:
+Podemos escribir la definición en Scheme, usando la función `or` para
+indicar que la lista es palíndroma si sucede una de las tres condiciones:
 
 ```scheme
-(define (palindromo? lista)
+(define (palindroma? lista)
    (or (null? lista)
        (null? (cdr lista))
        (and (equal? (car lista) (ultimo lista))
-            (palindromo? (quitar-primero-ultimo lista)))))
+            (palindroma? (quitar-primero-ultimo lista)))))
 ```
 
 La función auxiliar `quitar-primero-ultimo` la podemos definir así:
@@ -142,10 +137,15 @@ La función auxiliar `quitar-primero-ultimo` la podemos definir así:
 
 #### <a name="1-2"></a> 1.2 El coste de la recursión
 
+Hasta ahora hemos estudiado el diseño de funciones recursivas. Vamos a
+tratar por primera vez su coste. Veremos que hay casos en los que es
+prohibitivo utilizar la recursión tal y como la hemos visto. Y veremos
+también que existen soluciones para esos casos.
+
 ##### 1.2.1 La pila de la recursión
 
-Vamos a estudiar el comportamiento del proceso generado por una
-llamada a un procedimiento recursivo. Supongamos la función
+Vamos a estudiar el comportamiento de la evaluación de una llamada a
+una función recursiva. Supongamos la función
 `mi-length`:
 
 ```scheme
@@ -170,16 +170,18 @@ Examinamos cómo se evalúan las llamadas recursivas:
 4
 ```
 
-Cada llamada a la recursión deja una función en espera de ser evaluada
-cuando la recursión devuelva un valor (en el caso anterior el +). Esta
-función, junto con sus argumentos, se almacenan en la *pila de la
-recursión*.
+Cada llamada a la recursión deja una función **en espera de ser
+evaluada** cuando la recursión devuelva un valor (en el caso anterior
+las funciones suma). Estas llamadas en espera, junto con sus
+argumentos, se almacenan en la *pila de la recursión*.
 
 Cuando la recursión devuelve un valor, los valores se recuperan de la
 pila, se realiza la llamada y se devuelve el valor a la anterior
-llamada en espera. Si la recursión está mal hecha y nunca termina se
-genera un *stack overflow* porque la memoria que se almacena en la
-pila sobrepasa la memoria reservada para el intérprete DrRacket.
+llamada en espera. 
+
+Si la recursión está mal hecha y nunca termina se genera un *stack
+overflow* porque la memoria que se almacena en la pila sobrepasa la
+memoria reservada para el intérprete DrRacket.
 
 ##### 1.2.2 Coste espacial de la recursión
 
@@ -225,16 +227,18 @@ Cada llamada a la recursión produce otras dos llamadas, por lo que el
 número de llamadas finales es 2^n siendo n el número que se pasa a la
 función.
 
-El coste espacial y temporal es exponencial, O(2^n). ¿Qué pasa si
-intentamos evaluar `(fibonaci 35)`?
+El coste espacial y temporal es exponencial, O(2^n). Esto hace
+inviable utilizar esta implementación para realizar el cálculo de la
+función. Puedes comprobarlo intentando evaluar en el intérprete
+`(fibonaci 35)`.
 
 #### <a name="1-3"></a> 1.3 Soluciones al coste de la recursión: procesos iterativos
 
-Diferenciamos entre procedimientos y procesos: un procedimiento es un
-algoritmo y un proceso es la ejecución de ese algoritmo.
+Diferenciamos entre procedimientos y procesos: un **procedimiento** es un
+algoritmo y un **proceso** es la ejecución de ese algoritmo.
 
-Es posible definir procedimientos recursivos que generen procesos
-iterativos (como los bucles en programación imperativa) en los que no
+Es posible definir _procedimientos recursivos_ que generen _procesos
+iterativos_ (como los bucles en programación imperativa) en los que no
 se dejen llamadas recursivas en espera ni se incremente la pila de la
 recursión. Para ello construimos la recursión de forma que en cada
 llamada se haga un cálculo parcial y en el caso base se pueda devolver
@@ -248,61 +252,84 @@ proceso, eliminando la pila de la recursión.
 
 ##### 1.3.1 Factorial iterativo
 
-Es posible modificar la formulación de la recursión para se eviten las
-llamadas en espera:
+Empezamos a explicar la recursión por la cola con un ejemplo muy
+sencillo: la versión iterativa de la típica función `factorial`. Le
+pondremos de nombre a la función `factorial-iter`:
 
-* Definimos la función `(fact-iter-aux product n)` que es la que
-  define el proceso iterativo
-* Tiene un parámetro adicional (`product`) que es el parámetro en el
-  que se irán guardando los cálculos intermedios
-* Al final de la recursión el factorial debe estar calculado en
-  `product` y se devuelve
+```scheme
+(define (factorial n)
+   (fact-iter n n))
 
-```
-(define (factorial-iter n)
-   (fact-iter-aux n n))
-
-(define (fact-iter-aux product n)
+(define (fact-iter n result)
    (if (= n 1)
-      product
-      (fact-iter-aux (* product (- n 1))  (- n 1))))
+      result
+      (fact-iter (- n 1) (* result (- n 1))  )))
 ```
 
-Secuencia de llamadas:
+
+La función `(fact-iter n result)` es la que define el proceso
+iterativo. Su argumento `n` es el valor del que hay que calcular el
+factorial y el argumento `result` es un parámetro adicional en el que
+se van guardando los resultados intermedios.
+
+En cada llamada recursiva, `n` se va haciendo cada vez más pequeño y
+`result` se va acercando al resultado a devolver. Al final de la
+recursión el factorial debe estar calculado en `result` y se devuelve.
+
+Veamos la secuencia de llamadas:
 
 ```
-(factorial-iter 4)
-(factorial-iter-aux 4 4)
-(factorial-iter-aux 12 3)
-(factorial-iter-aux 24 2)
-(factorial-iter-aux 24 1)
+(factorial 4)
+(factorial-iter 4 4)
+(factorial-iter 3 4*3=12)
+(factorial-iter 2 12*2=24)
+(factorial-iter 1 24*1=24)
 24
 ```
 
+Es importante el valor inicial de `resultado`. La función `factorial`
+se encarga de inicializar este parámetro. En este caso es el mismo
+valor del número `n` a calcular el factorial. 
+
+La secuencia de llamadas recursivas acumula en la variable `result` el
+valor del factorial:
+
+```4 * 3 * 2 * 1 = 24```
+
 ##### 1.3.2. Versión iterativa de mi-length
 
-¿Cómo sería la versión iterativa de mi-length?
+Veamos un segundo ejemplo. ¿Cómo sería la versión iterativa de
+`mi-length`, la función que calcula la logitud de una lista?.
 
-Solución:
+Tenemos que añadir un parámetro adicional en el que iremos acumulando
+el resultado parcial. En este caso, cada vez que llamemos a la
+recursión eliminado un elemento de la lista, incrementaremos en 1 el
+valor del resultado. Para que funcione bien este enfoque, debemos
+inicializar este resultado a 0.
+
+La solución es la siguiente:
 
 ```scheme
-(define (mi-length-iter lista)
-   (mi-length-iter-aux lista 0))
+(define (mi-length lista)
+   (mi-length-iter lista 0))
 
-(define (mi-length-iter-aux lista result)
+(define (mi-length-iter lista result)
    (if (null? lista)
       result
-      (mi-length-iter-aux (cdr lista) (+ result 1))))
+      (mi-length-iter (cdr lista) (+ result 1))))
 ```
 
 ##### 1.3.3 Procesos iterativos
 
-* La recursión resultante es menos elegante
-* Se necesita una parámetro adicional en el que se van acumulando los
-  resultados parciales
-* La última llamada a la recursión devuelve el valor acumulado
-* El proceso resultante de la recursión es iterativo en el sentido de
-  que no deja llamadas en espera ni incurre en coste espacial
+Un resumen de las características de los procesos iterativos
+resultantes de hacer una recursión por la cola:
+
+- La recursión resultante es menos elegante.
+- Se necesita una parámetro adicional en el que se van acumulando los
+  resultados parciales.
+- La última llamada a la recursión devuelve el valor acumulado.
+- El proceso resultante de la recursión es iterativo en el sentido de
+  que no deja llamadas en espera ni incurre en coste espacial.
 
 ##### 1.3.4 Fibonacci iterativo
 
@@ -312,19 +339,40 @@ un proceso iterativo.
 En general, las versiones iterativas son menos intuitivas y más
 difíciles de entender y depurar.
 
-Ejemplo: Fibonacci iterativo
+Veamos, por ejemplo, la formulación iterativa de Fibonacci:
 
 ```scheme
-(define (fib-iter n)
-   (fib-iter-aux 1 0 n))
+(define (fib n)
+   (fib-iter 1 0 n))
 
-(define (fib-iter-aux a b count)
+(define (fib-iter a b count)
    (if (= count 0)
       b
-      (fib-iter-aux (+ a b) a (- count 1))))
+      (fib-iter (+ a b) a (- count 1))))
 ```
 
+La secuencia de llamadas recursivas sería la siguiente:
+
+```
+(fib 6)
+(fib-iter 1 0 6)
+(fib-iter 1+0=1 1 5)
+(fib-iter 1+1=2 1 4)
+(fib-iter 2+1=3 2 3)
+(fib-iter 3+2=5 3 2)
+(fib-iter 5+3=8 5 1)
+(fib-iter 8+5=13 8 0)
+8
+```
+
+En la llamada recursiva `n`, el parámetro `a` guarda el valor de
+fibonacci `n+1` y el parámetro `b` guarda el valor de fibonacci `n`,
+que es el que se devuelve. Conseguimos `n` llamadas inicializando
+`count` a n y decrementando el parámetro en 1 cada vez.
+
 ##### 1.3.5 Triángulo de Pascal
+
+El [triángulo de Pascal](https://en.wikipedia.org/wiki/Pascal's_triangle) es el siguiente triángulo de números.
 
 ```
 1
@@ -338,50 +386,105 @@ Ejemplo: Fibonacci iterativo
           ...
 ```
 
-Formulación matemática:
+Si numeramos las filas y columnas empezando a contar por 0, la
+expresión general del valor en una fila y columna determinada se puede
+obtener con la siguiente definición recursiva:
 
 ```
-> Pascal (0,0) = Pascal (1,0) = Pascal (1,1) = 1  
-> Pascal (fila, columna) = Pascal (fila-1,columna-1) + Pascal (fila-1, columna)
+Pascal (n, 0) = 1  
+Pascal (n, n) = 1  
+Pascal (fila, columna) = Pascal (fila-1,columna-1) + Pascal (fila-1, columna)
 ```
 
-La versión recursiva pura:
+En Scheme es fácil escribir una función recursiva que implemente la
+definición anterior:
 
 ```scheme
-(define (pascal row col)
+(define (pascal fila col)
    (cond ((= col 0) 1)
-         ((= col row) 1)
-         (else (+ (pascal (- row 1) (- col 1))
-               (pascal (- row 1) col) ))))
+         ((= col fila) 1)
+         (else (+ (pascal (- fila 1) (- col 1))
+               (pascal (- fila 1) col) ))))
 (pascal 4 2)
-⇒ 6
+; ⇒ 6
 (pascal 8 4)
-⇒ 70
+; ⇒ 70
 (pascal 27 13)
-⇒ 20058300
+; ⇒ 20058300
 ```
 
-La versión iterativa:
+Sin embargo, el coste de esta recursión es también exponencial, igual
+que pasaba en el caso de la secuencia de fibonacci. Por ejemplo, la última
+expresión `(pascal 27 13)` tarda un buen rato en devolver el
+resultado. Sería imposible calcular el valor de números de Pascal un
+poco más grandes, como `(pascal 40 20)`.
+
+Veamos cómo se puede conseguir una versión iterativa.
+
+La idea es definir una función iterativa `pascal-fila` a la que le
+pasamos el número de fila `n` y nos devuelve la lista de `n+1` números que
+constituyen la fila `n` del triángulo de Pascal:
+
+```
+fila 0 = {1}
+fila 1 = {1 1}
+fila 2 = {1 2 1}
+fila 3 = {1 3 3 1}
+fila 4 = {1 4 6 4 1}
+...
+```
+
+Esta función necesitará un parámetro adicional (`lista-fila`) que se
+inicializa con la lista `{1}` y en el que se va guardando cada fila
+sucesiva. Esta fila va creciendo hasta que llegamos a la fila que
+tenemos que devolver. Hay que hacer la iteración `n` veces, por lo que
+vamos decrementando el parámetro `n` hasta que se llega a 0.
+
+Para implementar esta función usamos otra llamada `(pascal-sig-fila
+lista-fila)` que recibe una fila del triángulo y devuelve la
+siguiente. 
+
+Por ejemplo:
 
 ```scheme
-(define (pascal-iter fila col)
-   (list-ref (pascal-iter-aux '(1 1) fila) col))
+(pascal-sig-fila '(1 3 3 1))
+; ⇒ {1 4 6 4 1}
+```
 
-(define (pascal-iter-aux fila n)
-   (if (= n (length fila))
-      fila
-      (pascal-iter-aux (pascal-sig-fila fila) n)))
+Esta función la implementamos con una función recursiva auxiliar (esta
+es recursiva pura) llamada `(pascal-suma-dos-a-dos lista-fila)` que es
+la que se encarga de realizar el cálculo de la nueva fila.
 
-(define (pascal-sig-fila fila)
+El código completo es el siguiente:
+
+```scheme
+(define (pascal fila col)
+   (list-ref (pascal-fila '(1) fila) col))
+
+(define (pascal-fila lista-fila n)
+   (if (= 0 n)
+      lista-fila
+      (pascal-fila (pascal-sig-fila lista-fila) (- n 1))))
+	  
+(define (pascal-sig-fila lista-fila)
    (append '(1)
-	       (pascal-sig-fila-central fila)
+           (pascal-suma-dos-a-dos lista-fila)
            '(1)))
 
-(define (pascal-sig-fila-central fila)
-   (if (= 1 (length fila))
+(define (pascal-suma-dos-a-dos lista-fila)
+   (if (null? (cdr lista-fila))
       '()
-      (append (list (+ (car fila) (car (cdr fila))))
-	          (pascal-sig-fila-central (cdr fila)))))
+      (cons (+ (car lista-fila) (car (cdr lista-fila)))
+            (pascal-suma-dos-a-dos (cdr lista-fila)))))
+			
+```
+
+Con esta implementación ya no se tiene un coste exponencial y se puede
+calcular el valor de números como Pascal(
+
+```scheme
+(pascal 40 20)
+; ⇒ 137846528820
 ```
 
 #### <a name="1-4"></a> 1.4 Soluciones al coste de la recursión: memoization
@@ -396,69 +499,85 @@ veces.
 En programación funcional la llamada a `(fibonacci 3)` siempre va a
 devolver el mismo valor.
 
-Podemos guardar el valor devuelto por la primera llamada en alguna
-estructura (una lista de asociación, por ejemplo) y no volver a
-realizar la llamada a la recursión las siguientes veces.
+La idea de la _memoization_ es guardar el valor devuelto por la
+cada llamada en alguna estructura (una lista de asociación, por
+ejemplo) y no volver a realizar la llamada a la recursión las
+siguientes veces.
 
 ##### 1.4.1 Fibonacci con memoization
 
-Usamos los métodos procedurales `put` y `get` que implementan un
-diccionario *clave-valor* (para probarlos hay que importar la librería
-de Scheme que permite mutar las parejas):
+Para implementar la _memoization_ necesitamos dos métodos imperativos 
+`put` y `get` que implementan un diccionario *clave-valor*.
+
+- La función `(put key value lista)` asocia un valor a una clave, la
+guarda en la lista (con mutación) y devuelve el valor.
+- La función `(get key lista)` devuelve el valor de la lista asociado a
+una clave.
+
+Inicialmente la lista debe tener un símbolo cualquiera al comienzo. 
+
+Ejemplos:
+
+```
+(define mi-lista (list 'lista-asoc))
+(put 1 10 mi-lista) ; ⇒ 10
+(get 1 mi-lista) ; ⇒ 10
+(get 2 mi-lista) ; ⇒ '()
+```
+
+Estos métodos son imperativos porque modifican (mutan) los datos de la
+lista de asociación que pasamos como parámetro. Para implementarlos
+tenemos que salirnos del paradigma funcional, importando una librería
+de Scheme que permite mutar las parejas.
+
+No es importante la implementación, la dejamos aquí como referencia y
+para poder probar la _memoization_. Veremos con más detalle esta
+implementación en el tema de programación imperativa.
 
 ```scheme
 (import (rnrs)
       (rnrs mutable-pairs))
 
-(define lista (list '*table*))
+(define lista (list 'lista-asoc))
 
 (define (get key lista)
-   (let ((record (assq key (cdr lista))))
-      (if (not record)
-         '()
-         (cdr record))))
+  (define record (assq key (cdr lista)))
+  (if (not record)
+      '()
+      (cdr record)))
 
 (define (put key value lista)
-   (let ((record (assq key (cdr lista))))
-      (if (not record)
-	      (set-cdr! lista
-	         (cons (cons key value)
-                (cdr lista)))
-	      (set-cdr! record value)))
-	'ok)
-```
-
-La función `(put key value lista)` asocia un valor a una clave y la
-guarda en la lista (con mutación).
-
-La función `(get key lista)` devuelve el valor de la lista asociado a
-una clave.
-
-Ejemplos:
-
-```
-(define mi-lista (list '*table*))
-(put 1 10 mi-lista)
-(get 1 mi-lista) ; ⇒ 10
-(get 2 mi-lista) ; ⇒ '()
+  (define record (assq key (cdr lista)))
+  (if (not record)
+      (set-cdr! lista
+                (cons (cons key value)
+                      (cdr lista)))
+      (set-cdr! record value))
+  value)
 ```
 
 La función `fib-memo` realiza el cálculo de la serie de Fibonacci
-utilizando el proceso recursivo visto anteriormente y la técnica de
-memoización, en la que se consulta el valor de Fibonacci de la lista
-antes de realizar la llamada recursiva:
+utilizando exactamente la misma definición recursiva original, pero
+añadiendo la técnica de _memoization_: lo primero que hacemos para
+calcular el número de fibonacci `n`, antes de llamar a la recursión,
+es comprobar si está ya guardado en la lista de asociación. En el caso
+en que esté, lo devolvemos. Sólo cuando el número no está calculado
+llamamos a la recursión para calcularlo.
+
+La implementación se muestra a continuación. Vemos que para devolver
+el número de fibonacci `n` se comprueba si ya está guardado en la
+lista. Sólo en el caso en que no esté guardado se llama a la recursión
+para calcularlo y guardarlo. La función `put` que guarda el nuevo
+valor calculado también lo devuelve.
 
 ```scheme
 (define (fib-memo n lista)
-   (cond ((= n 0) 0)
-         ((= n 1) 1)
-         ((not (null? (get n lista)))
-          (get n lista))
-         (else (let ((result (+ (fib-memo (- n 1) lista)
-                                (fib-memo (- n 2) lista))))
-                   (begin
-                      (put n result lista)
-                      result)))))
+  (cond ((= n 0) 0)
+        ((= n 1) 1)
+        ((not (null? (get n lista)))
+         (get n lista))
+        (else (put n (+ (fib-memo (- n 1))
+                        (fib-memo (- n 2) lista))))))
 ```
 
 Podemos comprobar la diferencia de tiempos de ejecución entre esta
@@ -467,7 +586,6 @@ O(n). Frente al coste O(2^n) de la versión inicial que la hacía
 imposible de utilizar.
 
 ```scheme
-(define lista (list '*table*))
 (fib-memo 200 lista)
 ⇒ 280571172992510140037611932413038677189525
 ```
