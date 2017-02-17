@@ -2969,7 +2969,8 @@ sobre listas con la instrucción `(import (rnrs lists (6)))`:
 
 ```scheme
 #lang r6rs
-(import (rnrs lists (6)))
+(import (rnrs base)
+        (rnrs lists (6)))
 ```
 
 Las funciones que veremos son:
@@ -3360,36 +3361,14 @@ Por ejemplo:
 ```
 
 La podemos implementar de una forma muy elegante obteniendo una lista
-de caracteres a partir de la cadena y volviendo a usar la función
-`filter`:
+de caracteres a partir de la cadena y usando la función de orden
+superior `exists`:
 
 ```scheme
 (define (letra-en-pal? caracter palabra)
-    (not (null? (filter (lambda (c)
-                           (equal? c caracter)) (string->list palabra))))
-```
-
-##### Función `(primo? n)`
-
-Por último, podemos repasar la función ya vista `(primo? n)` que
-comprueba si un número es primo o no, y reformular la función
-`divisores` utilizando `filter`:
-
-```scheme
-(define (primo? n)
-    (= 2 (length (divisores n))))
-
-(define (divisores n)
-  (filter (lambda (x)
-            (divisor? x n)) (numeros-hasta n)))
-
-(define (numeros-hasta n)
-  (if (= 0 n)
-      '()
-      (cons n (numeros-hasta (- n 1)))))
-
-(define (divisor? x n)
-  (= 0 (mod n x)))
+  (exists (lambda (c)
+            (equal? c caracter)) (string->list palabra)))
+            
 ```
 
 
