@@ -8,11 +8,12 @@ las soluciones de cada ejercicio separadas por comentarios. Cada
 solución debe incluir:
 
 - La **definición de las funciones** que resuelven el ejercicio.
-- Una visualización por pantalla de uno de los ejemplos incluidos en
-  el enunciado que **demuestre qué hace la función**, usando la
-  función de `display`.
 - Un conjunto de **pruebas** que comprueben su funcionamiento
-  utilizando la librería `schemeunit`. 
+  utilizando la librería `schemeunit`.
+  
+**Nota:** No es necesario incluir demostraciones de las funciones con
+`display`, pero sí un par de pruebas por cada función con `schemeunit`
+para comprobar su correcto funcionamiento.
 
 ## Ejercicios
 
