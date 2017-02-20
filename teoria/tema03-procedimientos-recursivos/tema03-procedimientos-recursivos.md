@@ -204,14 +204,14 @@ dispararse. Supongamos la famosa [secuencia de Fibonacci]:
 Formulación matemática de la secuencia de Fibonacci:
 
 ```
->Fibonacci(n) = Fibonacci(n-1) + Fibonacci(n-2)  
->Fibonacci(0) = 0  
->Fibonacci(1) = 1
+Fibonacci(n) = Fibonacci(n-1) + Fibonacci(n-2)  
+Fibonacci(0) = 0  
+Fibonacci(1) = 1
 ```
 
 Formulación recursiva en Scheme:
 
-```
+```scheme
 (define (fib n)
    (cond ((= n 0) 0)
       ((= n 1) 1)
@@ -230,7 +230,7 @@ función.
 El coste espacial y temporal es exponencial, O(2^n). Esto hace
 inviable utilizar esta implementación para realizar el cálculo de la
 función. Puedes comprobarlo intentando evaluar en el intérprete
-`(fibonaci 35)`.
+`(fib 35)`.
 
 #### <a name="1-3"></a> 1.3 Soluciones al coste de la recursión: procesos iterativos
 
@@ -576,8 +576,8 @@ valor calculado también lo devuelve.
         ((= n 1) 1)
         ((not (null? (get n lista)))
          (get n lista))
-        (else (put n (+ (fib-memo (- n 1))
-                        (fib-memo (- n 2) lista))))))
+        (else (put n (+ (fib-memo (- n 1) lista)
+                        (fib-memo (- n 2) lista)) lista))))
 ```
 
 Podemos comprobar la diferencia de tiempos de ejecución entre esta
@@ -737,7 +737,7 @@ triángulo de Sierpinski. No es funcional porque se realizan *pasos de
 ejecución*, usando la forma especial `begin` o múltiples instrucciones
 en una misma función (por ejemplo la función `triangle`).
 
-```
+```scheme
 #lang r6rs
 (import (rnrs)
         (graphics turtles))
@@ -932,7 +932,7 @@ Curva de Hilbert de nivel 7 con trazo de longitud 5:
 (turn -90)
 (move 350)
 (turn 90)
-(h-izq 7 5))
+(h-izq 7 5)
 ```
 
 <img src="imagenes/hilbert-scheme.png"/>
