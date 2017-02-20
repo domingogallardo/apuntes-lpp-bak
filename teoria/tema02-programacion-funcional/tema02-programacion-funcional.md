@@ -3154,6 +3154,11 @@ La explicación de su funcionamiento es la siguiente:
 > invocación a `f` se hace con el último dato de la lista y el caso
 > base.
 
+> La función de plegado `f` debe tener dos parámetros: `(f dato
+> result)` el primero (`dato`) se irá cogiendo de la lista y el
+> segundo (`result`) se obtendrá del resultado de la aplicación
+> anterior de `f`.
+
 Por ejemplo, supongamos la función de dos argumentos que suma dos valores. 
 
 ```scheme
