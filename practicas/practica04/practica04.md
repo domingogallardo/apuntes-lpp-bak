@@ -49,8 +49,8 @@ siguientes funciones de la práctica 3:
 - `(mayores-edad-sexo edad sexo personas)`
 
 En el caso de la última función, no debes llamar a las funciones
-anteriores, sino usar más de una llamada a funciones de orden superior
-en su cuerpo.
+anteriores, sino usar una llamada a una única función de orden
+superior en su cuerpo.
 
 
 ### Ejercicio 3
