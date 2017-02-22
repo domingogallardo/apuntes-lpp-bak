@@ -407,7 +407,7 @@ definición anterior:
    (cond ((= col 0) 1)
          ((= col fila) 1)
          (else (+ (pascal (- fila 1) (- col 1))
-               (pascal (- fila 1) col) ))))
+                  (pascal (- fila 1) col) ))))
 (pascal 4 2)
 ; ⇒ 6
 (pascal 8 4)
