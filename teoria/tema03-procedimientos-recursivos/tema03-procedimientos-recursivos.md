@@ -396,6 +396,9 @@ Pascal (n, n) = 1
 Pascal (fila, columna) = Pascal (fila-1,columna-1) + Pascal (fila-1, columna)
 ```
 
+La función sólo está definida para valores de `columna` menores o
+iguales que `fila`.
+
 En Scheme es fácil escribir una función recursiva que implemente la
 definición anterior:
 
@@ -413,11 +416,16 @@ definición anterior:
 ; ⇒ 20058300
 ```
 
-Sin embargo, el coste de esta recursión es también exponencial, igual
-que pasaba en el caso de la secuencia de fibonacci. Por ejemplo, la última
-expresión `(pascal 27 13)` tarda un buen rato en devolver el
-resultado. Sería imposible calcular el valor de números de Pascal un
-poco más grandes, como `(pascal 40 20)`.
+Hay que llamar a la función con un valor de `col` menor o igual que
+`fila`. En el caso en que se pase un valor `col` mayor que `fila` la
+recursión no termina y se entra en un bucle infinito.
+
+La función tiene una formulación sencilla y funciona
+correctamente. Sin embargo, el coste de esta recursión es también
+exponencial, igual que pasaba en el caso de la secuencia de
+fibonacci. Por ejemplo, la última expresión `(pascal 27 13)` tarda un
+buen rato en devolver el resultado. Sería imposible calcular el valor
+de números de Pascal un poco más grandes, como `(pascal 40 20)`.
 
 Veamos cómo se puede conseguir una versión iterativa.
 
@@ -512,7 +520,8 @@ Para implementar la _memoization_ necesitamos dos métodos imperativos
 - La función `(put key value lista)` asocia un valor a una clave, la
 guarda en la lista (con mutación) y devuelve el valor.
 - La función `(get key lista)` devuelve el valor de la lista asociado a
-una clave.
+una clave. En el caso en que no exista ningún valor se devuelve la
+lista vacía.
 
 Inicialmente la lista debe tener un símbolo cualquiera al comienzo. 
 
