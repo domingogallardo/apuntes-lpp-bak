@@ -1,7 +1,7 @@
 
-## Tema 3: Procedimientos recursivos
+# Tema 3: Procedimientos recursivos
 
-### Contenidos
+## Contenidos
 
 - [1 Procedimientos recursivos](#1)
     - [1.1 Pensando recursivamente](#1-1)
@@ -10,14 +10,14 @@
 	- [1.4 Soluciones al coste de la recursión: memoization](#1-4)
     - [1.5 Recursión y gráficos de tortuga](#1-5)
 
-### Bibliografía - SICP
+## Bibliografía - SICP
 
 En este tema explicamos conceptos de los siguientes capítulos del libro *Structure and Intepretation of Computer Programs*:
 
 - [1.2 - Procedures and the Processes They Generate](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2)
 - [1.2.1 - Linear Recursion and Iteration](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.1)
 
-### <a name="1"></a> 1 Procedimientos recursivos
+## <a name="1"></a> 1 Procedimientos recursivos
 
 Ya hemos visto algunos muchos ejemplos de funciones recursivas. Una
 función es recursiva cuando se llama a si misma. Una vez que uno se
@@ -42,7 +42,7 @@ resultados de cada llamada recursiva. Por último, veremos un último
 ejemplo curioso e interesante de la recursión para realizar figuras
 fractales con gráficos de tortuga.
 
-#### <a name="1-1"></a> 1.1 Pensando recursivamente
+### <a name="1-1"></a> 1.1 Pensando recursivamente
 
 Para diseñar procedimientos recursivos no funciona el método de
 _prueba y error_. Hay que diseñar la solución recursiva desde el
@@ -135,14 +135,14 @@ La función auxiliar `quitar-primero-ultimo` la podemos definir así:
    (cdr (quitar-ultimo lista)))
 ```
 
-#### <a name="1-2"></a> 1.2 El coste de la recursión
+### <a name="1-2"></a> 1.2 El coste de la recursión
 
 Hasta ahora hemos estudiado el diseño de funciones recursivas. Vamos a
 tratar por primera vez su coste. Veremos que hay casos en los que es
 prohibitivo utilizar la recursión tal y como la hemos visto. Y veremos
 también que existen soluciones para esos casos.
 
-##### 1.2.1 La pila de la recursión
+#### 1.2.1 La pila de la recursión
 
 Vamos a estudiar el comportamiento de la evaluación de una llamada a
 una función recursiva. Supongamos la función
@@ -183,7 +183,7 @@ Si la recursión está mal hecha y nunca termina se genera un *stack
 overflow* porque la memoria que se almacena en la pila sobrepasa la
 memoria reservada para el intérprete DrRacket.
 
-##### 1.2.2 Coste espacial de la recursión
+#### 1.2.2 Coste espacial de la recursión
 
 El coste espacial de un programa es una función que relaciona la
 memoria consumida por una llamada para resolver un problema con alguna
@@ -193,7 +193,7 @@ En el caso de la función `mi-length` el tamaño del problema viene dado
 por la longitud de la lista. El coste espacial de `mi-lenght` es
 *O(n)*, siendo *n* la longitud de la lista.
 
-##### 1.2.3 El coste depende del número de llamadas a la recursión
+#### 1.2.3 El coste depende del número de llamadas a la recursión
 
 Veamos con un ejemplo que el coste de las llamadas recursivas puede
 dispararse. Supongamos la famosa [secuencia de Fibonacci]:
@@ -232,7 +232,7 @@ inviable utilizar esta implementación para realizar el cálculo de la
 función. Puedes comprobarlo intentando evaluar en el intérprete
 `(fib 35)`.
 
-#### <a name="1-3"></a> 1.3 Soluciones al coste de la recursión: procesos iterativos
+### <a name="1-3"></a> 1.3 Soluciones al coste de la recursión: procesos iterativos
 
 Diferenciamos entre procedimientos y procesos: un **procedimiento** es un
 algoritmo y un **proceso** es la ejecución de ese algoritmo.
@@ -250,7 +250,7 @@ Este estilo de recursión se denomina *recursión por la cola*
 Se puede realizar una implementación eficiente de la ejecución del
 proceso, eliminando la pila de la recursión.
 
-##### 1.3.1 Factorial iterativo
+#### 1.3.1 Factorial iterativo
 
 Empezamos a explicar la recursión por la cola con un ejemplo muy
 sencillo: la versión iterativa de la típica función `factorial`. Le
@@ -296,7 +296,7 @@ valor del factorial:
 
 ```4 * 3 * 2 * 1 = 24```
 
-##### 1.3.2. Versión iterativa de mi-length
+#### 1.3.2. Versión iterativa de mi-length
 
 Veamos un segundo ejemplo. ¿Cómo sería la versión iterativa de
 `mi-length`, la función que calcula la logitud de una lista?.
@@ -319,7 +319,7 @@ La solución es la siguiente:
       (mi-length-iter (cdr lista) (+ result 1))))
 ```
 
-##### 1.3.3 Procesos iterativos
+#### 1.3.3 Procesos iterativos
 
 Un resumen de las características de los procesos iterativos
 resultantes de hacer una recursión por la cola:
@@ -331,7 +331,7 @@ resultantes de hacer una recursión por la cola:
 - El proceso resultante de la recursión es iterativo en el sentido de
   que no deja llamadas en espera ni incurre en coste espacial.
 
-##### 1.3.4 Fibonacci iterativo
+#### 1.3.4 Fibonacci iterativo
 
 Cualquier programa recursivo se puede transformar en otro que genera
 un proceso iterativo.
@@ -370,7 +370,7 @@ fibonacci `n+1` y el parámetro `b` guarda el valor de fibonacci `n`,
 que es el que se devuelve. Conseguimos `n` llamadas inicializando
 `count` a n y decrementando el parámetro en 1 cada vez.
 
-##### 1.3.5 Triángulo de Pascal
+#### 1.3.5 Triángulo de Pascal
 
 El [triángulo de Pascal](https://en.wikipedia.org/wiki/Pascal's_triangle) es el siguiente triángulo de números.
 
@@ -495,7 +495,7 @@ calcular el valor de números como Pascal(
 ; ⇒ 137846528820
 ```
 
-#### <a name="1-4"></a> 1.4 Soluciones al coste de la recursión: memoization
+### <a name="1-4"></a> 1.4 Soluciones al coste de la recursión: memoization
 
 Una alternativa que mantiene la elegancia de los procesos recursivos y
 la eficiencia de los iterativos es la
@@ -512,7 +512,7 @@ cada llamada en alguna estructura (una lista de asociación, por
 ejemplo) y no volver a realizar la llamada a la recursión las
 siguientes veces.
 
-##### 1.4.1 Fibonacci con memoization
+#### 1.4.1 Fibonacci con memoization
 
 Para implementar la _memoization_ necesitamos dos métodos imperativos 
 `put` y `get` que implementan un diccionario *clave-valor*.
@@ -599,7 +599,7 @@ imposible de utilizar.
 ⇒ 280571172992510140037611932413038677189525
 ```
 
-#### <a name="1-5"></a> 1.5 Recursión y gráficos de tortuga
+### <a name="1-5"></a> 1.5 Recursión y gráficos de tortuga
 
 Vamos a terminar el apartado sobre procedimientos recursivos con un
 último ejemplo algo distinto de los vistos hasta ahora. Usaremos la
@@ -614,7 +614,7 @@ Ten cuidado con la forma especial `begin`, es una forma especial
 imperativa. No debes usarla en la implementación de ninguna función
 cuando estemos usando el paradigma funcional.
 
-##### 1.5.1 Gráficos de tortuga en Racket
+#### 1.5.1 Gráficos de tortuga en Racket
 
 Se pueden utilizar los
 [gráficos de tortuga](http://en.wikipedia.org/wiki/Turtle_graphics) en
@@ -684,7 +684,7 @@ base del triángulo de Sierpinski.
       (turn 135)))
 ```
 
-##### 1.5.2 Triángulo de Sierpinski
+#### 1.5.2 Triángulo de Sierpinski
 
 <img src="imagenes/sierpinski.png" width="400px"/>
 
@@ -739,7 +739,7 @@ Sierpinsky (x, y, h):
 ```		
 
 
-##### 1.5.3 Sierpinski en Racket
+#### 1.5.3 Sierpinski en Racket
 
 La siguiente es una versión imperativa del algoritmo que dibuja el
 triángulo de Sierpinski. No es funcional porque se realizan *pasos de
@@ -806,7 +806,7 @@ antes de invocar a `sierpinski`:
 (sierpinski 700)
 ```
 
-##### 1.5.4 Recursión mutua
+#### 1.5.4 Recursión mutua
 
 En la recursión mutua definimos una función en base a una segunda, que
 a su vez se define en base a la primera.
@@ -833,7 +833,7 @@ Programas en Scheme:
       (par? (- x 1))))
 ```
 
-##### 1.5.5 Ejemplo avanzado: curvas de Hilbert
+#### 1.5.5 Ejemplo avanzado: curvas de Hilbert
 
 La curva de Hilbert es una curva fractal que tiene la propiedad de
 rellenar completamente el espacio
