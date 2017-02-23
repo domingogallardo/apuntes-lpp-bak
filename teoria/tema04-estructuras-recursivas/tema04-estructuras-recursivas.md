@@ -304,6 +304,10 @@ haciendo un `fold-right` con la función `+`:
                                (num-hojas-fos sublista))) lista)))
 ```
 
+Una explicación gráfica de cómo funciona la función sobre la lista `'(1 (2 3) (4) (5 (6 7) 8))`:
+
+<img src="imagenes/map-lista.png" width="700px"/>
+
 
 #### 1.2.2 Altura de una lista estructurada
 
@@ -359,15 +363,50 @@ con el máximo.
 Vamos a diseñar otras funciones recursivas que trabajan con la
 estructura jerárquica de las listas estructuradas.
 
-* `(pertenece-lista? dato lista)`: busca una hoja en una lista
+- `(aplana lista)`: devuelve una lista plana con todas las hojas de la lista
+- `(pertenece-lista? dato lista)`: busca una hoja en una lista
   estructurada
-* `(nivel-lista dato lista)`: devuelve el nivel en el que se encuentra
+- `(nivel-lista dato lista)`: devuelve el nivel en el que se encuentra
   un dato en una lista
-* `(cuadrado-lista lista)`: eleva todas las hojas al cuadrado
+- `(cuadrado-lista lista)`: eleva todas las hojas al cuadrado
   (suponemos que la lista estructurada contiene números)
-* `(map-lista f lista)`: similar a map, aplica una función a todas las
+- `(map-lista f lista)`: similar a map, aplica una función a todas las
   hojas de la lista estructurada y devuelve el resultado (otra lista
   estructurada)
+
+##### `(aplana lista)`
+
+Devuelve una lista plana con todas las hojas de la lista.
+
+```scheme
+(define (aplana lista)
+  (cond
+    ((null? lista) '())
+    ((hoja? lista) (list lista))
+    (else 
+     (append (aplana (car lista))
+             (aplana (cdr lista))))))
+```
+
+Por ejemplo:
+
+```scheme
+(aplana '(1 2 (3 (4 (5))) (((6)))))
+; ⇒ {1 2 3 4 5 6}
+```
+
+Con funciones de orden superior:
+
+```scheme
+(define (aplana-FOS lista)
+  (fold-right (lambda (lista result)
+                (append lista result))
+              '()
+              (map (lambda (x)
+                     (if (hoja? x)
+                         (list x)
+                         (aplana-FOS x))) lista)))
+```
 
 ##### `(pertenece-lista? dato lista)`
 
@@ -389,50 +428,62 @@ Ejemplos:
 (pertenece? 'a '(b c (d e (f)) g)) ⇒ #f
 ```
 
+Con funciones de orden superior:
+
+```scheme
+#lang r6rs
+(import (rnrs base)
+        (rnrs lists (6)))
+        
+(define (pertenece-FOS? elem lista)
+  (exists (lambda (x)
+             (if (hoja? x)
+                 (equal? elem x)
+                 (pertenece-FOS? elem x))) lista))
+```
+
 ##### `(nivel-lista dato lista)`
 
-Veamos por último la función `(nivel-lista dato lista)` que recorre la
-lista buscando el dato y devuelve el nivel en que se encuentra. Si el
-dato no se encuentra en la lista, se devolverá 0. Si el dato se
-encuentra en más de un lugar de la lista se devolverá el nivel del
-primero que se encuentre.
+Veamos como última función que explora una lista estructurada la
+función `(nivel-lista dato lista)` que recorre la lista buscando el
+dato y devuelve el nivel en que se encuentra. Si el dato no se
+encuentra en la lista, se devolverá -1. Si el dato se encuentra en más
+de un lugar de la lista se devolverá el nivel menor.
 
 Ejemplos:
 
 ```scheme
 (nivel-hoja 'b '(a b (c))) ; ⇒ 1
 (nivel-hoja 'b '(a (b) c)) ; ⇒ 2
-(nivel-hoja 'b '(a c d ((b))) ; ⇒ 4
+(nivel-hoja 'b '(a (b) d ((b)))) ; ⇒ 2
 (nivel-hoja 'b '(a c d ((e)))) ; ⇒ 0
 ```
 
-Vamos a implementar la función con una recursión por la cola en la que
-pasamos como parámetro el nivel en el que se encuentra la recursión.
-
-En el parámetro `lista` se pasa o bien una lista o un elemento y se
-comprueba si el elemento es igual que el dato. En el caso en que lo
-sea se devuelve el `nivel` actual. Y en el caso en sea una lista, se
-llama a la recursión con su primer elemento (aumentando el nivel) y se
-guarda el resultado en la variable local `nivel-dato-car` usando un
-`let`. Se comprueba si se ha encontrado el dato comprobando si el
-valor es mayor de 0. En el caso en que no se encuentre el dato, se
-continua buscando por el resto de la lista (sin aumentar el nivel).
-
+```scheme
+(define (nivel-hoja dato lista)
+  (cond
+    ((null? lista) -1)
+    ((hoja? lista) (if (equal? lista dato) 0 -1))
+    (else (min-mayor-0 (suma-1-si-mayor-igual-que-0 (nivel-hoja dato (car lista)))
+                       (nivel-hoja dato (cdr lista))))))
 ```
-(define (nivel-lista dato lista)
-    (nivel-lista-iter dato 0 lista))
 
-(define (nivel-lista-iter dato nivel lista)
-    (cond
-        ((null? lista) 0)
-        ((hoja? lista) (if (equal? lista dato)
-                           nivel
-                           0))
-        (else (let ((nivel-dato-car (nivel-lista-iter dato (+ nivel 1) (car lista))))
-                 (if (> nivel-dato-car 0)
-                     nivel-dato-car
-                     (nivel-lista-iter dato nivel (cdr lista)))))))
+Las funciones auxiliares se definen de la siguiente forma:
+
+```scheme
+(define (suma-1-si-mayor-igual-que-0 x)
+  (if (>= x 0)
+      (+ x 1)
+      x))
+
+(define (min-mayor-0 x y)
+  (cond
+    ((and (> x 0)
+          (> y 0)) (min x y))
+    ((<= x 0) y)
+    (else x)))
 ```
+
 
 ##### `(cuadrado-lista lista)`
 
