@@ -324,7 +324,6 @@ devolver el máximo de los dos números.
 
 Como casos base, la altura de una lista vacía o de una hoja (dato) es 0.
 
-
 En Scheme:
 
 ```
@@ -399,8 +398,7 @@ Con funciones de orden superior:
 
 ```scheme
 (define (aplana-FOS lista)
-  (fold-right (lambda (lista result)
-                (append lista result))
+  (fold-right append
               '()
               (map (lambda (x)
                      (if (hoja? x)
@@ -448,7 +446,7 @@ Veamos como última función que explora una lista estructurada la
 función `(nivel-lista dato lista)` que recorre la lista buscando el
 dato y devuelve el nivel en que se encuentra. Si el dato no se
 encuentra en la lista, se devolverá -1. Si el dato se encuentra en más
-de un lugar de la lista se devolverá el nivel menor.
+de un lugar de la lista se devolverá el nivel mayor.
 
 Ejemplos:
 
@@ -464,8 +462,8 @@ Ejemplos:
   (cond
     ((null? lista) -1)
     ((hoja? lista) (if (equal? lista dato) 0 -1))
-    (else (min-mayor-0 (suma-1-si-mayor-igual-que-0 (nivel-hoja dato (car lista)))
-                       (nivel-hoja dato (cdr lista))))))
+    (else (max (suma-1-si-mayor-igual-que-0 (nivel-hoja dato (car lista)))
+               (nivel-hoja dato (cdr lista))))))
 ```
 
 Las funciones auxiliares se definen de la siguiente forma:
@@ -475,13 +473,6 @@ Las funciones auxiliares se definen de la siguiente forma:
   (if (>= x 0)
       (+ x 1)
       x))
-
-(define (min-mayor-0 x y)
-  (cond
-    ((and (> x 0)
-          (> y 0)) (min x y))
-    ((<= x 0) y)
-    (else x)))
 ```
 
 
