@@ -22,7 +22,7 @@ numérica y devuelve el mínimo de sus elementos.
 Ejemplo:
 
 ```scheme
-(min-lista '(2 5 9 12 5 0 4)) ; => 0
+(min-lista '(2 5 9 12 5 0 4)) ; ⇒ 0
 ```
 
 ### Ejercicio 2
@@ -37,7 +37,7 @@ Ejemplo:
 
 ```scheme
 (aplica-funciones (list (cons list 2) (cons even? 5) (cons not #f))) 
-; => {{2} #f #t}
+; ⇒ {{2} #f #t}
 ```
 
 
@@ -57,15 +57,15 @@ Ejemplos:
 
 ```scheme
 (composicion-conmutativa? 
-    (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))) 10) ; => {#t}
+    (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))) 10) ; ⇒ {#t}
 (composicion-conmutativa? 
     (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))
-          (cons (lambda(x) (* x 2)) (lambda(x) (/ x 5)))) 10) ; => {#t #t}
+          (cons (lambda(x) (* x 2)) (lambda(x) (/ x 5)))) 10) ; ⇒ {#t #t}
 (composicion-conmutativa? 
     (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))
-          (cons (lambda(x) (* x 2)) (lambda(x) (+ x 5)))) 10) ; => {#t #f}
+          (cons (lambda(x) (* x 2)) (lambda(x) (+ x 5)))) 10) ; ⇒ {#t #f}
 (composicion-conmutativa? 
-    (list (cons (lambda(x) (/ x 2)) (lambda(x) (- x 5)))) 10) ; => {#f}
+    (list (cons (lambda(x) (/ x 2)) (lambda(x) (- x 5)))) 10) ; ⇒ {#f}
 ```
 
 ### Ejercicio 4
