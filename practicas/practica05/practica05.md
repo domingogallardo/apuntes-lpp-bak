@@ -56,15 +56,15 @@ contenidas en una pareja, si se cumple `f(g(x)) = g(f(x))`.
 Ejemplos:
 
 ```scheme
-(composicion-conmutativa? 
+(composicion-conmutativa 
     (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))) 10) ; ⇒ {#t}
-(composicion-conmutativa? 
+(composicion-conmutativa 
     (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))
           (cons (lambda(x) (* x 2)) (lambda(x) (/ x 5)))) 10) ; ⇒ {#t #t}
-(composicion-conmutativa? 
+(composicion-conmutativa 
     (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))
           (cons (lambda(x) (* x 2)) (lambda(x) (+ x 5)))) 10) ; ⇒ {#t #f}
-(composicion-conmutativa? 
+(composicion-conmutativa 
     (list (cons (lambda(x) (/ x 2)) (lambda(x) (- x 5)))) 10) ; ⇒ {#f}
 ```
 
@@ -93,7 +93,7 @@ siguiente para que funcione correctamente cuando la clave es una pareja:
 
 ### Ejercicio 5
 
-a) Usando gráficos de tortura, implementa la función
+a) Usando gráficos de tortuga, implementa la función
 `(piramide-hexagonal lado decremento)` que dibuje hexágonos
 concéntricos.
 
