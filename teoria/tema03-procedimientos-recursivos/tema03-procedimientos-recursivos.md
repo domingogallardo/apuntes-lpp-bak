@@ -296,6 +296,7 @@ valor del factorial:
 
 ```4 * 3 * 2 * 1 = 24```
 
+
 #### 1.3.2. Versión iterativa de mi-length
 
 Veamos un segundo ejemplo. ¿Cómo sería la versión iterativa de
@@ -319,7 +320,27 @@ La solución es la siguiente:
       (mi-length-iter (cdr lista) (+ result 1))))
 ```
 
-#### 1.3.3 Procesos iterativos
+#### 1.3.3. Función `suma-lista` usando recursión por la cola
+
+Veamos otro ejemplo. Supongamos que queremos calcular usando recursión
+por la cola la suma de los números de una lista.
+
+Deberíamos añadir un parámetro adicional en el que vamos acumulando
+esa suma. Inicializaremos a 0 ese parámetro e iremos en cada llamada
+recursiva acumulando el primer elemento de la lista:
+
+```scheme
+(define (suma-lista lista)
+   (suma-lista-iter lista 0))
+
+(define (suma-ista-iter lista result)
+   (if (null? lista)
+      result
+      (mi-length-iter (cdr lista) (+ result (car lista)))))
+```
+
+
+#### 1.3.4 Procesos iterativos
 
 Un resumen de las características de los procesos iterativos
 resultantes de hacer una recursión por la cola:
@@ -331,7 +352,7 @@ resultantes de hacer una recursión por la cola:
 - El proceso resultante de la recursión es iterativo en el sentido de
   que no deja llamadas en espera ni incurre en coste espacial.
 
-#### 1.3.4 Fibonacci iterativo
+#### 1.3.5 Fibonacci iterativo
 
 Cualquier programa recursivo se puede transformar en otro que genera
 un proceso iterativo.
@@ -370,7 +391,7 @@ fibonacci `n+1` y el parámetro `b` guarda el valor de fibonacci `n`,
 que es el que se devuelve. Conseguimos `n` llamadas inicializando
 `count` a n y decrementando el parámetro en 1 cada vez.
 
-#### 1.3.5 Triángulo de Pascal
+#### 1.3.6 Triángulo de Pascal
 
 El [triángulo de Pascal](https://en.wikipedia.org/wiki/Pascal's_triangle) es el siguiente triángulo de números.
 
