@@ -466,7 +466,7 @@ Ejemplos:
                (nivel-hoja dato (cdr lista))))))
 ```
 
-Las funciones auxiliares se definen de la siguiente forma:
+La función auxiliar se define de la siguiente forma:
 
 ```scheme
 (define (suma-1-si-mayor-igual-que-0 x)
@@ -475,6 +475,17 @@ Las funciones auxiliares se definen de la siguiente forma:
       x))
 ```
 
+Con funciones de orden superior:
+
+```scheme
+(define (nivel-hoja-FOS dato lista)
+  (suma-1-si-mayor-igual-que-0
+       (fold-right max -1
+                   (map (lambda (sublista)
+                          (if (hoja? sublista)
+                              (if (equal? sublista dato) 0 -1)
+                              (nivel-hoja-FOS dato sublista)))  lista))))
+```
 
 ##### `(cuadrado-lista lista)`
 
