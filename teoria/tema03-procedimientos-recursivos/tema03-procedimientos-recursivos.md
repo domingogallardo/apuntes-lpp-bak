@@ -333,10 +333,10 @@ recursiva acumulando el primer elemento de la lista:
 (define (suma-lista lista)
    (suma-lista-iter lista 0))
 
-(define (suma-ista-iter lista result)
+(define (suma-lista-iter lista result)
    (if (null? lista)
       result
-      (mi-length-iter (cdr lista) (+ result (car lista)))))
+      (suma-lista-iter (cdr lista) (+ result (car lista)))))
 ```
 
 
