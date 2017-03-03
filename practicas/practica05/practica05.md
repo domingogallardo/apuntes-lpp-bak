@@ -70,7 +70,7 @@ Ejemplos:
 
 ### Ejercicio 4
 
-Define la función `(pascal-memo fila col)` que devuelve la posición
+Define la función `(pascal-memo fila col lista)` que devuelve la posición
 `(fila, col)` del Triángulo de Pascal visto en teoría, utilizando la
 técnica _memoization_. 
 
