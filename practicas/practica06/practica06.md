@@ -23,7 +23,8 @@ Ejemplos:
 
 ```scheme
 (cuenta-pred-lista even? '(((1 2) 3 (4) 5) 6)) ; ⇒ 3
-(cuenta-pred-lista string? (aplana-predicado string? '(1 ("hola" 2 3 (4 "adios")) 4)) ; ⇒ 2
+(cuenta-pred-lista pair? '(((1 . 2) 3 (4 . 3) 5) 6)) ; ⇒ 2
+(cuenta-pred-lista string? '(("hola" 3 ((a "que") hola) "hora" 6 (("es"))) "time")) ; ⇒ 5
 ```
 
 b) Define la función del apartado anterior utilizando funciones de
@@ -35,11 +36,11 @@ a) Implementa la función `(cumplen-predicado pred lista)` que devuelva
 una lista con todos los elementos de lista estructurada que cumplen un
 predicado.
 
-Ejemplos:
+Ejemplo:
 
 ```scheme
 (cumplen-predicado even? '(1 (2 (3 (4))) (5 6))) ; ⇒ {2 4 6}
-(cumplen-predicado string? (aplana-predicado string? '(1 ("hola" 2 3 (4 "adios")) 4)) ; ⇒ {"hola" "adios"}
+(cumplen-predicado pair? '(((1 . 2) 3 (4 . 3) 5) 6)) ; ⇒ {{1 . 2} {4 . 3}
 ```
 
 b) Implementa la función del apartado anterior utilizando funciones de
