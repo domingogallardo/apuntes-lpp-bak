@@ -989,8 +989,8 @@ evalúa de una forma diferente.
 
 **Evaluación**
 
-1. Evaluar *<expresión>*
-2. Asociar el valor resultante con el *<identificador>*
+1. Evaluar _expresión_
+2. Asociar el valor resultante con el _identificador_
 
 **Ejemplo**
 
@@ -1038,9 +1038,9 @@ de la semántica:
 
 **Evaluación**
 
-1. Evaluar *<condición>*
-2. Si el resultado es `#t` evaluar la *<expresión-true>*, en otro
-   caso, evaluar la *<expresión-false>*
+1. Evaluar _condición_
+2. Si el resultado es `#t` evaluar la _expresión-true_, en otro
+   caso, evaluar la _expresión-false_
 
 **Ejemplo**
 
