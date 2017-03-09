@@ -566,7 +566,7 @@ Un ejemplo de árbol:
 El árbol anterior tiene como dato de la raíz es el símbolo `+` y tiene
 3 árboles hijos:
 
-<img src="imagenes/arboles-hijos.png" width="300px"/>
+<img src="imagenes/tres-arboles-hijos.png" width="300px"/>
 
 - El primer hijo es un árbol hoja, con valor 5 y sin hijos
 - El segundo hijo es un árbol con valor `*` y dos hijos hoja, el 2 y
