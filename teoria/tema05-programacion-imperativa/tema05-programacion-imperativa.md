@@ -261,7 +261,7 @@ for (int i = 1; i <= 9 ; i++) {
 - Es posible definir pasos de ejecución con la forma especial `begin`
 - Todas las sentencias de la forma especial se ejecutan de forma
   secuencial, una tras otra
-- Tanto en la forma especial `let` como en `lambda` y `define` es
+- Tanto en la definición de funciones como en `lambda` es
   posible definir cuerpos de función con múltiples sentencias que se
   ejecutan también de forma secuencial. Hasta ahora no hemos usado
   esta característica porque hemos utilizado Scheme de forma
@@ -320,17 +320,18 @@ puede realizar de esta forma en Scheme:
 (set! a (+ a 1))
 a  ; ⇒ 11
 ```
-	
-Ejemplo (usando `let`):
+
+La forma especial `set!` funciona con cualquier tipo de datos. Por
+ejemplo, utilizando la característica de que Scheme es débilmente
+tipeado, puede incluso asignar un nuevo tipo de valor a una variable:
 
 ```scheme
-(define a '(1 2 3 4))
-(define b '(hola adios))
-(let ((aux a))
-	(set! a b)
-	(set! b aux)))
+(define a "Hola")
+a ; ⇒ "Hola"
+(set! a (cons 1 2))
+a ; ⇒ {1 . 2}
 ```
-
+	
 #### 2.2.2. Datos mutables
 
 - En Scheme se definen las formas especiales `set-car!` y `set-cdr!`
@@ -679,13 +680,13 @@ La barrera de abstracción del mapa es la siguiente:
   (list '*dic*))
 
 (define (get-dic dic clave)
-  (let ((pareja (assq clave (cdr dic))))
+    (define pareja (assq clave (cdr dic)))
     (if (not pareja)
         #f
         (cdr pareja))))
 
 (define (put-dic! dic clave valor)
-  (let ((pareja (assq clave (cdr dic))))
+    (define pareja (assq clave (cdr dic)))
     (if (not pareja)
         (set-cdr! dic
                   (cons (cons clave valor)
@@ -693,6 +694,10 @@ La barrera de abstracción del mapa es la siguiente:
         (set-cdr! pareja valor)))
   'ok)
 ```
+
+En las funciones anteriores usamos la forma especial `define` en el
+interior de una función. Veremos más adelante que esta es la forma de
+definir una variable local a la función.
 
 Ejemplos de uso:
   
@@ -764,17 +769,18 @@ Vamos a nombrar el par mostrado en rojo como `p`:
 
 ```scheme
 (define (manejar-dos-parejas! p)
-	(let ((key (car p)))                   ;; 1
-		(set-car! p (cdr p))               ;; 2
-		(set-cdr! p (cdr (car p)))         ;; 3
-		(set-cdr! (car p) (car (car p)))   ;; 4
-		(set-car! (car p) key)))           ;; 5
+	(define key (car p))               ;; 1
+	(set-car! p (cdr p))               ;; 2
+	(set-cdr! p (cdr (car p)))         ;; 3
+	(set-cdr! (car p) (car (car p)))   ;; 4
+	(set-car! (car p) key)))           ;; 5
 ```
 
 Se han numerado las líneas para una mejor explicación. En la línea 1,
-`(let ((key (car p)))`, utilizamos un `let` para guardar el valor
-actual del `(car p)`, ese valor será la clave de la primera pareja de
-la lista de asociación; necesitamos almacenarlo para no perderlo.
+`(define key (car p))`, creamos una variable local `key` que guarda el
+valor actual del `(car p)`, ese valor será la clave de la primera
+pareja de la lista de asociación; necesitamos almacenarlo para no
+perderlo.
 
 En la línea 2, `(set-car! p (cdr p))`, cambiamos el `car` de `p` para
 que apunte a la siguiente pareja (la azul):
