@@ -979,17 +979,21 @@ Ejemplos:
 
 Solución con funciones de orden superior:
 
-La función `max-altura-bosque` puede implementarse de una forma más
-concisa todavía usando las funciones con funciones de orden superior:
-
 ```scheme
-(define (max-altura-bosque-fos bosque)
-   (fold-right max 0 (map altura-tree bosque)))
+(define (altura-tree-fos tree)
+   (+ 1 (fold-right max 0
+           (map (lambda (subarbol)
+                   (if (hoja-tree? subarbol)
+                      0
+                      (altura-tree-fos subarbol))) (hijos-tree tree)))))
 ```
 	
-La función `map` mapea la función `altura-tree` a todos los elementos
-del *bosque* (lista de árboles) devolviendo una lista de números, de
-la que obtenemos el máximo plegando la lista con la función `max`.
+La función `map` mapea sobre los árboles hijos una función que
+devuelve 0 o la altura del hijo. Devuelve una lista de números
+(alturas de los hijos), de la que obtenemos el máximo plegando la
+lista con la función `max`. Por último sumamos 1 para devolver la
+altura del árbol completo (un nivel más que el nivel máximo de los
+hijos). 
 
 ----
 
