@@ -416,6 +416,8 @@ Ejemplo:
 
 ### <a name="3-1"></a> 3.1. Mutación de elementos
 
+**Ejemplo 1**
+
 Vamos a empezar con un ejemplo sencillo en el que vamos a mutar un
 elemento de una estructura de datos formada por parejas. Supongamos la
 siguiente estructura:
@@ -474,19 +476,93 @@ expresión `(cdr (cdr datos))`:
 (set-cdr! (car (cdr datos)) (cdr (cdr datos)))
 ```
 
-### <a name="3-2"></a> 3.2. Funciones mutadoras: `append!`
+**Ejemplo 2**
 
-- Normalmente las funciones mutadoras no devuelven una estructura,
-  sino que modifican la que se pasa como parámetro
-- Por convenio, indicaremos que una función es mutadora terminando su
-  nombre con un signo de admiración
+Veamos un segundo ejemplo. 
+
+Supongamos las siguientes sentencias. ¿Cuál sería el _box-and-pointer_
+resultante? 
+
+```scheme
+(define x '((a b) c d))
+(define y '(e f))
+(set-car! x y)
+(define z (cons y (cdr x)))
+(set-cdr! x y)
+(set-car! z (caar x))
+```
+
+Debemos ir paso a paso ejecutando cada instrucción y dibujando cómo
+cambia el diagrama. El diagrama representa el **estado del programa**,
+y es un conjunto de parejas que contienen valores y referencias entre
+ellas. 
+
+Es muy importante considerar cuándo la sentencia copia un valor y cuando
+copia una referencia. Las parejas siempre tienen semántica de
+referencia.
+
+El diagrama resultante después de las dos primeras sentencias es:
+
+<img src="imagenes/x-y-z-1.png" width="400px"/>
+
+Y el diagrama después de todas las sentencias es:
+
+<img src="imagenes/x-y-z-2.png" width="400px"/>
+
+Los valores de las variables después de todas las sentencias son los siguientes:
+
+```scheme
+x ; ⇒ {{e f} e f}
+y ; ⇒ {e f}
+z ; ⇒ {e c d}
+```
 
 
-Como ejemplo inicial, la siguiente función es la versión mutadora de
-`append`.  La llamamos `append!`:
+### <a name="3-2"></a> 3.2. Funciones mutadoras: `make-ciclo!` y `append!`
+
+Normalmente las funciones mutadoras no devuelven una estructura, sino
+que modifican la que se pasa como parámetro.
+
+Por convenio, indicaremos que una función es mutadora terminando su
+nombre con un signo de admiración.
+
+**make-ciclo!**
+
+Empecemos con una función muta una lista, haciendo que la parte
+derecha de la última pareja apunte a la pareja inicial de la misma.
+
+<img src="imagenes/ciclo.png" width="600px"/>
+
+Para conseguirlo, necesitamos guardar la referencia a la pareja
+inicial de la lista en el primer parámetro de la función. Y el segundo
+parámetro irá avanzando hasta encontrar el final de la lista:
+
+```scheme
+(define (make-ciclo! lista ref)
+    (if (null? (cdr ref))
+        (set-cdr! ref lista)
+        (make-ciclo! lista (cdr ref))))
+```
+
+Si probamos la función con una lista, podemos comprobar que DrRacket
+detecta el ciclo que se produce al final de la misma:
+
+```scheme
+(define lista '(1 2 3 4 5 6))
+(make-ciclo! lista lista)
+lista ; ⇒ #0={1 2 3 4 5 6 . #0#}
+```
+
+**append!**
+
+Y vemos a continuación una versión mutadora de `append` que llamamos
+`append!` y que mejora la eficiencia de la original, copiando al final
+de la primera lista una referencia a la segunda:
+
 
 <img src="imagenes/append.png" width="400px">
 
+La implementación es la siguiente:
 
 ```scheme
 (define (append! l1 l2)
@@ -508,30 +584,26 @@ Algunas puntualizaciones:
 
 - Al igual que `set!`, `set-car!` o `set-cdr!`, la función `append!`
   no devuelve ningún valor, sino que modifica directamente la lista
-  que se pasa como primer parámetro
+  que se pasa como primer parámetro.
 - Al modificarse la lista, todas las referencias que apuntan a ellas
-  quedan también modificadas
+  quedan también modificadas.
 - La función daría un error en el caso en que la llamáramos con una
-  lista vacía como primer argumento
+  lista vacía como primer argumento.
 
 ### <a name="3-3"></a> 3.3. Lista ordenada mutable
 
-Vamos a presentar un tipo de dato mutable completo, una lista ordenada
-en la que insertaremos elementos de forma ordenada.
+Veamos ahora una lista ordenada mutable de números, en la que insertaremos
+elementos de forma ordenada.
 
-La barrera de abstracción del tipo de dato `olist` es la siguiente:
+Definiremos las siguientes funciones:
 
-- `(make-olist)`: devuelve una lista ordenada vacía
-- `(primero-olist olist)`: devuelve el primer elemento de una lista ordenada
-- `(resto-olist olist)`: devuelve el resto de la lista ordenada
-- `(vacia-olist? olist)`: devuelve `#t` o `#f` dependiendo de si la
-  lista tiene o no elementos
-- `(borra-primero-olist! olist)`: elimina (con mutación) el primer
-  elemento de la lista
-- `(inserta-olist! olist n)`: inserta (con mutación) de forma ordenada
-  un número en la lista
+- `(make-olist)`: construye una lista ordenada vacía
+- `(borra-primero-olist! olist)`: función mutadora que elimina (con
+  mutación) el primer elemento de la lista
+- `(inserta-olist! olist n)`: función mutadora que inserta (con
+  mutación) de forma ordenada un número en la lista
 
-Implementaremos el tipo de datos con una lista normal con una pareja
+Implementamos el tipo de datos con una lista normal con una pareja
 adicional en cabeza. Esta pareja adicional funcionará de **cabecera de
 la lista** y será la referencia inmutable a la que apuntará cualquier
 variable que apunte a la lista. De esta forma podremos insertar
@@ -543,43 +615,6 @@ convenio el símbolo `'*olist*'`.
 ```
 <img src="imagenes/olist.png" width="600px">
 
-**Selectores**
-
-La implementación de los selectores es la siguiente:
-
-
-```scheme
-(define (primero-olist olist)
-    (cadr olist))
-
-(define (resto-olist olist)
-    (cdr olist))
-
-(define (vacia-olist? olist)
-    (null? (cdr olist)))
-```
-
-- La función `first-olist` devuelve el primer elemento de la lista
-  ordenada. Devuelve el `cadr` para saltar la cabecera.
-- La función `empty-olist?` devuelve `#t` si la lista ordenada tiene
-  algún elemento. Para ello comprueba si hay alguna pareja tras la
-  cabecera.
-- La función `rest-olist` devuelve el resto de la lista
-  ordenada. Devuelve la referencia a la segunda pareja de la lista
-  original. Esta pareja hará de cabecera de la lista devuelta,
-  conteniendo en su parte izquierda el primer elemento de la lista
-  original (no importa, porque puede haber cualquier valor como
-  cabecera).
-
-Por ejemplo, puedes comprobar en el siguiente código el funcionamiento
-de estos selectores:
-
-```scheme
-(define lista '(*olist* 10 20))
-(primero-olist lista) ; ⇒ 10
-(primero-olist (resto-olist lista)) ; ⇒ 20
-(vacia-olist? (resto-olist (resto-olist lista))) ; ⇒ #t
-```
 
 **Constructor**
 
@@ -601,8 +636,7 @@ con mutación el primer elemento de la lista ordenada:
 
 ```scheme
 (define (borra-primero-olist! olist)
-    (set-cdr! olist (cddr olist))
-    olist)
+    (set-cdr! olist (cddr olist)))
 ```
 
 Definimos la función mutadora `inserta-olist!` que modifica la lista
@@ -632,7 +666,9 @@ Ejemplo de uso:
 ```scheme
 (define c (make-olist))
 (inserta-olist! c 5)
-(inserta-olist! c 8)
+(inserta-olist! c 10)
+(inserta-olist! c -10)
+c ; ⇒ {*olist* -10 5 10}
 ```
 
 ### <a name="3-4"></a> 3.4. Diccionario mutable
