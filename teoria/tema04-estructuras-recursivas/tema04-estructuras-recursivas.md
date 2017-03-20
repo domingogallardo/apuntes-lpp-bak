@@ -981,19 +981,21 @@ Solución con funciones de orden superior:
 
 ```scheme
 (define (altura-tree-fos tree)
-   (+ 1 (fold-right max 0
-           (map (lambda (subarbol)
-                   (if (hoja-tree? subarbol)
-                      0
-                      (altura-tree-fos subarbol))) (hijos-tree tree)))))
+   (if (hoja-tree? tree)
+       0
+       (+ 1 (fold-right max 0
+               (map altura-tree-fos (hijos-tree tree))))))
 ```
 	
-La función `map` mapea sobre los árboles hijos una función que
-devuelve 0 o la altura del hijo. Devuelve una lista de números
-(alturas de los hijos), de la que obtenemos el máximo plegando la
-lista con la función `max`. Por último sumamos 1 para devolver la
-altura del árbol completo (un nivel más que el nivel máximo de los
-hijos). 
+La función `map` mapea sobre los árboles hijos la propia función que
+calcula la altura del hijo (será uno menos que la altura del padre, 0
+si se trata de una hoja).
+
+La función `map` devuelve entonces una lista altura de los hijos, de
+la que obtenemos el máximo plegando la lista con la función `max`. 
+
+Por último sumamos 1 para devolver la altura del árbol completo (un
+nivel más que el nivel máximo de los hijos).
 
 ----
 
