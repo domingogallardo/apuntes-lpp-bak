@@ -899,11 +899,11 @@ Vamos a nombrar el par mostrado en rojo como `p`:
 
 ```scheme
 (define (manejar-dos-parejas! p)
-	(define key (car p))               ;; 1
-	(set-car! p (cdr p))               ;; 2
-	(set-cdr! p (cdr (car p)))         ;; 3
-	(set-cdr! (car p) (car (car p)))   ;; 4
-	(set-car! (car p) key)))           ;; 5
+    (let (key (car p))               ;; 1
+         (set-car! p (cdr p))               ;; 2
+	     (set-cdr! p (cdr (car p)))         ;; 3
+	     (set-cdr! (car p) (car (car p)))   ;; 4
+	     (set-car! (car p) key)))           ;; 5
 ```
 
 Se han numerado las líneas para una mejor explicación. En la línea 1,
@@ -954,7 +954,8 @@ maneja toda la lista:
 ## <a name="4"></a> 4. Ámbitos de variables y clausuras
 
 El concepto del **ámbito** de vida de las variables es un concepto
-fundamental en los lenguajes de programación. En inglés se utiliza el
+fundamental en los lenguajes de programación. Utilizaremos las
+palabras _ámbito_ y _entorno_ como sinónimos. En inglés se utiliza el
 término
 *[scope](https://en.wikipedia.org/wiki/Scope_(computer_science))*.
 
@@ -984,10 +985,6 @@ Todas las variables definidas fuera de funciones forman parte del
 
 ### <a name="4-2"></a> 4.2. Variables de ámbito local
 
-Utilizaremos las palabras _ámbito_ y _entorno_ como sinónimos. Se
-corresponden con la palabra inglesa
-[_scope_](https://en.wikipedia.org/wiki/Scope_(computer_science))
-(_local scope_ y _global scope_).
 
 En Scheme existen dos formas de definir variables de ámbito local: la
 forma especial `define` dentro de una función y la forma especial
