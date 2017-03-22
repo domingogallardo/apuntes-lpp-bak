@@ -12,7 +12,7 @@
 	- [2.3. Igualdad de referencia y de valor](#2-3)
 - [3. Estructuras de datos mutables](#3)
     - [3.1. Mutación de elementos](#3-1)
-	- [3.2. Funciones mutadoras: `append!`](#3-2)
+	- [3.2. Funciones mutadoras: `make-ciclo!`, `append!` y `intercambia!`](#3-2)
     - [3.3. Lista ordenada mutable](#3-3)
 	- [3.4. Diccionario mutable](#3-4)
 	- [3.5. Ejemplo de mutación con listas de asociación](#3-5)
@@ -517,8 +517,67 @@ y ; ⇒ {e f}
 z ; ⇒ {e c d}
 ```
 
+**Ejemplo 3**
 
-### <a name="3-2"></a> 3.2. Funciones mutadoras: `make-ciclo!` y `append!`
+En este ejemplo vamos a usar una nueva forma especial de Scheme que
+permite crear variables locales y ejecutar expresiones en las que se
+utilicen esas variables. 
+
+Se trata de la forma especial `let`. Veremos algo más de esta forma
+especial más adelante, cuando hablemos de ámbitos de variables. Por
+ahora es suficiente saber que permite crear variables locales y
+ejecutar un cuerpo (que puede tener más de una sentencia) con esas
+variables.
+
+```scheme
+(let ((x (+ 2 3))
+      (y (* 2 10))
+    (+ x y))
+; ⇒ 25
+```
+
+En este caso `let` permite crear dos variables locales `x` e `y` y
+asignarles los valores `5` y `20` respectivamente. Las sentencias del
+cuerpo del `let` (en este caso la sentencia `(+ x y)`) se evalúan con
+estos valores recién creados.
+
+Vamos a usar esta forma especial en ocasiones para guardar valores o
+referencias que después necesitamos asignar.
+
+Por ejemplo, ¿cómo podríamos definir una función que mute **las
+referencias** de una lista para intercambiar sus posiciones segunda y
+tercera (sin crear nuevas parejas)?
+
+Si llamamos a la función `intercambia!` debería hacer lo siguiente:
+
+```scheme
+(define lista '(1 2 3 4 5 6))
+(intercambia! lista)
+lista ; ⇒ {1 3 2 4 5 6}
+```
+
+Dibujando el diagrama _box-and-pointer_ podemos ver las mutaciones que
+tenemos que hacer:
+
+<img src="imagenes/intercambia.png" width="600px"/>
+
+La función es la siguiente:
+
+```scheme
+(define (intercambia! lista)
+    (let ((segundo (cdr lista))
+          (tercero (cddr lista)))
+        (set-cdr! lista tercero)
+        (set-cdr! segundo (cdr tercero))
+        (set-cdr! tercero segundo)))
+```
+
+
+
+### <a name="3-2"></a> 3.2. Funciones mutadoras: `make-ciclo!`, `append!` e `intercambia-lista!`
+
+Veamos ahora varios ejemplos de funciones recursivas que recorren
+listas y realizan mutaciones en ellas.
 
 Normalmente las funciones mutadoras no devuelven una estructura, sino
 que modifican la que se pasa como parámetro.
@@ -577,7 +636,7 @@ Ejemplo:
 (define a '(1 2 3 4))
 (define b '(5 6 7))
 (append! a b)
-a ; ⇒ (1 2 3 4 5 6 7)
+a ; ⇒ {1 2 3 4 5 6 7}
 ```
 
 Algunas puntualizaciones:
@@ -589,6 +648,43 @@ Algunas puntualizaciones:
   quedan también modificadas.
 - La función daría un error en el caso en que la llamáramos con una
   lista vacía como primer argumento.
+
+**intercambia-lista!**
+
+Un último ejemplo de función recursiva que muta una lista. Queremos
+definir una función que intercambie todas las parejas de una lista con
+un número de datos impar, pero **sin usar set-car!**.
+
+Llamamos a la función `(intercambia-lista! lista)` y debería hacer lo
+siguiente:
+
+```scheme
+(define lista '(1 2 3 4 5 6 7))
+(intercambia-lista! lista)
+lista ; ⇒ {1 3 2 5 4 7 6}
+```
+
+La forma de implementar esta función va a ser llamando a la función
+`intercambia!` (la que hemos definido anteriormente que intercambia el
+segundo y el tercer elemento) hasta que lleguemos al final de la
+lista. Lo hacemos con una recursión:
+
+```scheme
+(define (intercambia-lista! lista)
+  (if (not (null? (cdr lista)))
+           (begin
+             (intercambia! lista)
+             (intercambia-lista! (cddr lista)))))
+```
+
+La función termina cuando llegamos a la pareja final de la lista, la
+que tiene la lista vacía en su parte derecha. 
+
+Si no estamos en el final de la lista llamamos a la función
+`intercambia!` para intercambiar la siguiente pareja con su siguiente
+y llamamos a la recursión con la variable `lista` apuntando a la
+tercera pareja de la lista.
+
 
 ### <a name="3-3"></a> 3.3. Lista ordenada mutable
 
@@ -716,24 +812,22 @@ La barrera de abstracción del mapa es la siguiente:
   (list '*dic*))
 
 (define (get-dic dic clave)
-    (define pareja (assq clave (cdr dic)))
-    (if (not pareja)
-        #f
-        (cdr pareja))))
+    (let (pareja (assq clave (cdr dic)))
+        (if (not pareja)
+            #f
+            (cdr pareja))))
 
 (define (put-dic! dic clave valor)
-    (define pareja (assq clave (cdr dic)))
-    (if (not pareja)
-        (set-cdr! dic
+    (let (pareja (assq clave (cdr dic)))
+        (if (not pareja)
+            (set-cdr! dic
                   (cons (cons clave valor)
                         (cdr dic)))
         (set-cdr! pareja valor)))
-  'ok)
+    'ok)
 ```
 
-En las funciones anteriores usamos la forma especial `define` en el
-interior de una función. Veremos más adelante que esta es la forma de
-definir una variable local a la función.
+En las funciones anteriores volvemos a usar la forma especial `let`.
 
 Ejemplos de uso:
   
@@ -890,15 +984,24 @@ Todas las variables definidas fuera de funciones forman parte del
 
 ### <a name="4-2"></a> 4.2. Variables de ámbito local
 
+Utilizaremos las palabras _ámbito_ y _entorno_ como sinónimos. Se
+corresponden con la palabra inglesa
+[_scope_](https://en.wikipedia.org/wiki/Scope_(computer_science))
+(_local scope_ y _global scope_).
+
+En Scheme existen dos formas de definir variables de ámbito local: la
+forma especial `define` dentro de una función y la forma especial
+`let`.
+
+#### 4.2.1 Variables locales con `define`
+
 Como en la mayoría de lenguajes de programación, en Scheme se crea un
-**entorno local** (memoria local de la invocación de la función) cada
-vez que se invoca a una función. 
+**entorno o ámbito local** (memoria local de la invocación de la
+función) cada vez que se invoca a una función.
 
 En este entorno local toman valor los parámetros y las variables
-locales de la función.
-
-En Scheme es posible definir variables locales en una función
-utilizando la forma especial `define` dentro de la propia
+locales de la función. Es posible definir variables locales en una
+función utilizando la forma especial `define` dentro de la propia
 función. Esto no lo hacíamos dentro del paradigma funcional, para
 evitar realizar pasos de ejecución. Pero ahora que estamos en el
 paradigma imperativo podemos utilizarlo.
@@ -996,6 +1099,101 @@ z ; ⇒ error, no definida
 y ; ⇒ error, no definida
 ```
 
+**Define en el cuerpo de una función**
+
+La forma especial `define` para crear variables locales sólo puede
+utilizarse al comienzo de la definición de una función. Si intentamos
+utilizarla a mitad del código de la función tendremos un error:
+
+```scheme
+(define (suma-10-si-mayor-que-0 x)
+   (if (> x 0)
+      (begin 
+         ;; ERROR:
+         ;; no es posible usar define a mitad del código
+         ;; de una función
+         (define y 10)
+         (+ x y))
+     x))
+```
+
+
+#### 4.2.1 Variables locales con `let`
+
+La otra forma de definir variables locales en Scheme es con la forma
+especial `let`.
+
+La forma especial `let` permite crear un ámbito local en el que se da
+valor a variables y se evalúan expresiones.
+
+Sintaxis:
+
+```scheme
+(let ((<var1> <exp-1>)
+        ...
+      (<varn> <exp-n>))
+    <cuerpo>)
+```
+
+Las variables `var1`, … `varn` toman los valores devueltos por las
+expresiones `exp1`, … `expn` y el cuerpo se evalúa con esos
+valores. Esas variables sólo tienen valor en el ámbito de la forma
+especial.
+
+Por ejemplo:
+
+```scheme
+(define x 10)
+(let ((x (+ 1 2))
+      (y (* 10 2))
+    (+ x y))
+; ⇒ 23
+x ; ⇒ x
+y ; ⇒ error, no definida
+```
+
+Cuando ha terminado la evaluación del `let` el ámbito local desaparece
+y quedan los valores definidos en el ámbito anterior.
+
+
+Las expresiones que dan valor a las variables del let se evalúan antes
+de crear el ámbito local. Por ejemplo, en el siguiente código, las
+expresiones `(+ x 3)` y `(+ y 2)` devuelven 4 y 7 respectivamente:
+
+```scheme
+(define x 1)
+(define y 5)
+(let ((w (+ x 3))
+      (z (+ y 2)))
+    (+ w z))
+; ⇒ 11
+```
+
+En el cuerpo del `let` puede haber más de una expresión:
+
+```scheme
+(let ((x 10)
+      (y 20))
+    (display "x: ")
+    (display x)
+    (display "\ny: ")
+    (display y))
+```
+
+**Let en el cuerpo de una función**
+
+A diferencia de `define` sí que es posible usar `let` en cualquier
+expresión de Scheme, por ejemplo, en un `if`:
+
+```scheme
+(define (suma-10-si-mayor-que-0 x)
+   (if (> x 0)
+      (let ((y 10))
+         (+ x y))
+      x))
+```
+
+
 ### <a name="4-3"></a> 4.3. Clausuras y estado local
 
 Recordemos que la forma especial `lambda` permite crear funciones
@@ -1069,6 +1267,42 @@ k: 10 (valor capturado del entorno local en el que se creó la clausura
 
 En este ámbito se ejecuta la expresión `(+ x k)`, devolviéndose el
 valor 12.
+
+
+Por último, también es posible crear la clausura dentro de un estado
+local definido con un `let` y usar en el cuerpo del `lambda` variables
+locales definidas en el `let`:
+
+
+```scheme
+(define (make-sumador-cuadrado k)
+    (if (not (= k 0))
+        (let ((y (cuadrado k)))
+          (lambda (x)
+            (+ x y)))
+        (lambda (x)
+          x)))
+```
+
+La función anterior tiene un condicional en el que se comprueba si `k`
+es 0. Si es distinto de 0, se devuelve una clausura creada en el
+ámbito del `let` con la variable `y` capturada con el valor del
+cuadrado de `k`. Esta clausura suma a su entrada el valor de `y`. 
+
+Por ejemplo:
+
+```scheme
+(define f (make-sumador-cuadrado 4))
+(f 3) ; ⇒ 19
+```
+
+En el caso en que `k` sea 0, se devuelve una clausura que devuelve
+siempre el valor que recibe:
+
+```scheme
+(define f (make-sumador-cuadrado 0))
+(f 3) ; ⇒ 3
+```
 
 La definición de clausuras con un estado local inicializado a un valor
 creado en tiempo de ejecución es una característica muy
