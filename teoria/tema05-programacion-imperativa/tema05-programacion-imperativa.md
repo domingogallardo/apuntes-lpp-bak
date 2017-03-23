@@ -652,8 +652,9 @@ Algunas puntualizaciones:
 **intercambia-lista!**
 
 Un último ejemplo de función recursiva que muta una lista. Queremos
-definir una función que intercambie todas las parejas de una lista con
-un número de datos impar, pero **sin usar set-car!**.
+definir una función que intercambie todas las parejas excepto la
+primera de una lista con un número de datos impar, pero **sin usar
+set-car!**.
 
 Llamamos a la función `(intercambia-lista! lista)` y debería hacer lo
 siguiente:
