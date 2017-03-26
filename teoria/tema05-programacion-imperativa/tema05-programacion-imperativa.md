@@ -612,6 +612,20 @@ detecta el ciclo que se produce al final de la misma:
 lista ; ⇒ #0={1 2 3 4 5 6 . #0#}
 ```
 
+Una forma alternativa de implementar esta función es mediante una
+función que devuelva la referencia de la última pareja de la lista:
+
+```scheme
+(define (ultima-pareja lista)
+    (if (null? (cdr lista))
+        lista
+        (ultima-pareja (cdr lista))))
+
+(define (make-ciclo2! lista)
+    (let ((ultima-pareja (ultima-pareja lista)))
+        (set-cdr! ultima-pareja lista)))
+```
+
 **append!**
 
 Y vemos a continuación una versión mutadora de `append` que llamamos
