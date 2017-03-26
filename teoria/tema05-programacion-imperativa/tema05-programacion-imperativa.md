@@ -1056,8 +1056,7 @@ Por ejemplo, supongamos las siguientes expresiones:
   (define x 10)
   (+ x y))
 
-(suma-10 3)
-; ⇒ 13
+(suma-10 3) ; ⇒ 13
 ```
 
 La primera sentencia de la función `(suma y)` define una variable
@@ -1074,8 +1073,7 @@ Sucede igual si un parámetro tiene el mismo nombre que una variable global:
 (define (suma-3 x)
    (+ x 3))
 
-(suma-3 12)
-; ⇒ 15
+(suma-3 12) ; ⇒ 15
 ```
 
 Cuando se ejecuta la expresión `(+ x 3)` en la invocación a `(suma-3
@@ -1090,8 +1088,7 @@ el entorno global. Por ejemplo:
    (define x 10)
    (+ x y z))
 
-(foo 5)
-; ⇒ 27
+(foo 5) ; ⇒ 27
 ```
 
 La expresión `(+ x y z)` se evalúa en el entorno local en el que `x`
@@ -1111,8 +1108,7 @@ entorno global la expresión `(+ 12 x)`. En este contexto la variable
    (define x 10)
    (+ x y))
 
-(+ (suma 2) x)
-; ⇒ 17
+(+ (suma 2) x) ; ⇒ 17
 ```
 
 Otro ejemplo:
@@ -1176,9 +1172,8 @@ Por ejemplo:
 (define x 10)
 (let ((x (+ 1 2))
       (y (* 10 2))
-    (+ x y))
-; ⇒ 23
-x ; ⇒ x
+    (+ x y)) ; ⇒ 23
+x ; ⇒ 10
 y ; ⇒ error, no definida
 ```
 
@@ -1195,8 +1190,7 @@ expresiones `(+ x 3)` y `(+ y 2)` devuelven 4 y 7 respectivamente:
 (define y 5)
 (let ((w (+ x 3))
       (z (+ y 2)))
-    (+ w z))
-; ⇒ 11
+    (+ w z)) ; ⇒ 11
 ```
 
 En el cuerpo del `let` puede haber más de una expresión:
@@ -1236,25 +1230,38 @@ variable local definida en la función principal?
 
 Vamos a verlo:
 
-```swift
-(define (make-suma10)
+```scheme
+(define (make-sumador)
    (define z 10)
    (lambda (x) (+ x z)))
-
-(define f (make-suma10))
 ```
 
-La función `make-suma10` define una variable local `z` con el valor
-de 10. Y después construye una función con la expresión `lambda` y la
-devuelve. En la siguiente línea vemos que se invoca a `make-suma10r` y
-que la función que devuelve se guarda en la variable `f`.
+La función `make-sumador` define una variable local `z` con el valor
+de 10. Y después construye una función con la expresión `lambda`. Al
+ser la última expresión de la función `make-sumador`, esta función
+construida en tiempo de ejecución es lo que se devuelve. 
 
-¿Qué pasa al invocar a `f` con la variable local `z`? En teoría, la
-variable debería haber desaparecido porque ya ha terminado la invocación
-a `make-suma10`. Sin embargo, si llamamos a `(f 5)` podemos comprobar
-que devuelve 15:
+Si invocamos a `make-sumador` vemos que devuelve un procedimiento:
 
-```swift
+```scheme
+(make-sumador) ; ⇒ #<procedure>
+```
+Si guardamos el procedimiento en una variable y después lo invocamos,
+tendremos que pasarle un parámetro (correspondiente al argumento `x`
+de la expresión `lambda`). ¿Qué devolverá esa invocación?
+
+
+```scheme
+(define f (make-sumador))
+(f 5) ; ⇒ ???
+```
+
+Al invocar a `f` se ejecutará el cuerpo del procedimiento, esto es, la
+expresión `(+ x z)`. La variable `x` valdrá 5 (el valor del
+parámetro). Pero, ¿cuál es el valor de la variable z?. Podemos
+comprobar que es 10, porque la invocación devuelve devuelve 15:
+
+```scheme
 (f 5) ; ⇒ 15
 ```
 
@@ -1298,11 +1305,9 @@ k: 10 (valor capturado del entorno local en el que se creó la clausura
 En este ámbito se ejecuta la expresión `(+ x k)`, devolviéndose el
 valor 12.
 
-
 Por último, también es posible crear la clausura dentro de un estado
 local definido con un `let` y usar en el cuerpo del `lambda` variables
 locales definidas en el `let`:
-
 
 ```scheme
 (define (make-sumador-cuadrado k)
