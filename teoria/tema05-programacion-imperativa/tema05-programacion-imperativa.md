@@ -814,7 +814,7 @@ c ; ⇒ {*olist* -10 5 10}
 (assq p l-assoc) ; ⇒ {{1 . 2} . 2}
 ```
 
-La barrera de abstracción del mapa es la siguiente:
+Las funciones que vamos a implementar del diccionario son las siguientes:
 
 - `(make-dic)`: construye un diccionario vacío
 - `(put-dic! dic clave valor)`: inserta en el diccionario un nuevo
@@ -822,16 +822,34 @@ La barrera de abstracción del mapa es la siguiente:
 - `(get-dic dic clave)`: devuelve el valor asociado a una clave en un
   diccionario
 
+Al igual que la lista ordenada mutable, el diccionario necesita una
+cabecera:
+  
 ```scheme
 (define (make-dic)
   (list '*dic*))
+```
 
+La función `(get-dic dic clave)` usa la función `assq` para buscar la pareja que
+contiene una clave determinada en la lista de asociación (el `cdr` de
+dic). Y después devuelve el `cdr` de esa pareja (el valor guardado
+junto con la clave:
+
+```scheme
 (define (get-dic dic clave)
     (let (pareja (assq clave (cdr dic)))
         (if (not pareja)
             #f
             (cdr pareja))))
+```
 
+La función `(put-dic! dic clave valor)` usa igual que antes la función
+`assq` para comprobar si la clave ya está en la lista de
+asociación. Si existe, sustituye el valor por el nuevo. Si no existe,
+crea una pareja con la clave y el valor y la inserta al comienzo del
+diccionario (después de la cabecera):
+
+```scheme
 (define (put-dic! dic clave valor)
     (let (pareja (assq clave (cdr dic)))
         (if (not pareja)
@@ -871,9 +889,9 @@ Ejemplo:
 
 ```scheme
 (define my-list (list 'a 1 'b 2 'c 3))
-my-list ; ⇒ (a 1 b 2 c 3)
+lista ; ⇒ (a 1 b 2 c 3)
 (regular->assoc! my-list)
-my-list ; ⇒ ((a . 1) (b . 2) (c . 3))
+lista ; ⇒ ((a . 1) (b . 2) (c . 3))
 ```
 
 Una posible solución a este problema sería la siguiente (no es la
@@ -885,40 +903,39 @@ puntero para el ejemplo anterior:
 
 Antes de llamar a regular->assoc!:
 
-<img src="imagenes/mutable1.png" width="500px">
+<img src="imagenes/mutable1.png" width="750px">
 
 Después de llamar a regular->assoc!:
 
-<img src="imagenes/mutable2.png" width="250px">
+<img src="imagenes/mutable2.png" width="400px">
 
-Por un lado, no podemos crear nuevas parejas, por lo que cada pareja
-en el primer diagrama corresponde a una pareja particular en el
-segundo diagrama. Por otro lado, no podemos modificar la primera
-pareja de la lista (porque perderíamos la ligadura de la variable
-`my-list`), por lo que es primera pareja tiene que permanecer en el
-primer lugar. Por otra parte, `a` y `1` van a formar parte del mismo
-par en la lista de asociación, por lo que vamos a considerar el
-siguiente cambio:
+Queremos hacer la transformación sin crear nuevas parejas, por lo que
+cada pareja en el primer diagrama corresponde a una pareja particular
+en el segundo diagrama. No podemos modificar la primera pareja de la
+lista (porque perderíamos la ligadura de la variable `lista`), por
+lo que es primera pareja tiene que permanecer en el primer lugar. Por
+otra parte, `a` y `1` van a formar parte del mismo par en la lista de
+asociación, por lo que vamos a considerar el siguiente cambio de las
+dos primeras parejas.
 
-Antes de llamar a `regular->assoc!`:
+Diagrama inicial:
 
-<img src="imagenes/mutable3.png" width="500px">
+<img src="imagenes/mutable3.png" width="750px">
 
-Después de llamar a `regular->assoc!`:
+Después del cambio de las dos primeras parejas:
 
-<img src="imagenes/mutable4.png" width="250px">
+<img src="imagenes/mutable4.png" width="650px">
 
-Vamos a nombrar el par mostrado en rojo como `p`:
-
-<img src="imagenes/mutable5.png" width="500px">
+La siguiente función `manejar-dos-parejas!` es la encargada de hacer
+esta mutación:
 
 ```scheme
 (define (manejar-dos-parejas! p)
-    (let (key (car p))               ;; 1
-         (set-car! p (cdr p))               ;; 2
-	     (set-cdr! p (cdr (car p)))         ;; 3
-	     (set-cdr! (car p) (car (car p)))   ;; 4
-	     (set-car! (car p) key)))           ;; 5
+    (let ((key (car p)))            ;; 1
+        (set-car! p (cdr p))        ;; 2
+        (set-cdr! p (cdar p))       ;; 3
+        (set-cdr! (car p) (caar p)) ;; 4
+        (set-car! (car p) key)))    ;; 5
 ```
 
 Se han numerado las líneas para una mejor explicación. En la línea 1,
@@ -930,40 +947,41 @@ perderlo.
 En la línea 2, `(set-car! p (cdr p))`, cambiamos el `car` de `p` para
 que apunte a la siguiente pareja (la azul):
 
-<img src="imagenes/mutable6.png" width="250px">
+<img src="imagenes/mutable6.png" width="300px">
 
-En la línea 3, `(set-cdr! p (cdr (car p)))`, cambiamos el `cdr` de `p`
-para que apunte al `cdr` de la pareja en azul:
+En la línea 3, `(set-cdr! p (cdar p))`, copiamos en el `cdr` de `p`
+el `cdr` de la pareja en azul para que ambos apunten a la siguiente
+pareja:
 
-<img src="imagenes/mutable7.png" width="250px">
+<img src="imagenes/mutable7.png" width="300px">
 
-En la línea 4, `(set-cdr! (car p) (car (car p)))`, cambiamos el `cdr`
+En la línea 4, `(set-cdr! (car p) (caar p))`, cambiamos el `cdr`
 de la pareja en azul al `car` de la misma pareja. Hacemos ésto porque
 en una lista de asociación, los valores se guardan en los `cdrs` y las
 claves en los `cars`:
 
-<img src="imagenes/mutable8.png" width="250px">
+<img src="imagenes/mutable8.png" width="300px">
 
-Por último, en la línea 5 `(set-car! (car p) key)))`, completamos el
+Por último, en la línea 5 `(set-car! (car p) key)`, completamos el
 problema poniendo la clave que habíamos guardado, en el `car` de la
 pareja azul:
 
-<img src="imagenes/mutable9.png" width="250px">
+<img src="imagenes/mutable9.png" width="300px">
 
 Reordenamos el diagrama para verlo más claro:
 
-<img src="imagenes/mutable10.png" width="250px">
+<img src="imagenes/mutable10.png" width="220px">
 
 Hemos definido un procedimiento que maneja un subproblema (dos
 parejas) del problema. Ahora sólo nos queda definir la función que
 maneja toda la lista:
 
 ```scheme
-(define (regular->assoc l)
-  (if (null? l) 
+(define (regular->assoc! lista)
+  (if (null? lista) 
      'ok
-     (begin (manejar-dos-parejas! l)
-            (regular->assoc! (cdr l)))))
+     (begin (manejar-dos-parejas! lista)
+            (regular->assoc! (cdr lista)))))
 ```
 
 ## <a name="4"></a> 4. Ámbitos de variables y clausuras
@@ -1034,11 +1052,11 @@ Por ejemplo, supongamos las siguientes expresiones:
 
 ```scheme
 (define x 5)
-(define (suma y)
+(define (suma-10 y)
   (define x 10)
   (+ x y))
 
-(suma 3)
+(suma-10 3)
 ; ⇒ 13
 ```
 
@@ -1068,11 +1086,11 @@ el entorno global. Por ejemplo:
 
 ```scheme
 (define z 12)
-(define (suma2 y)
+(define (foo y)
    (define x 10)
    (+ x y z))
 
-(suma2 5)
+(foo 5)
 ; ⇒ 27
 ```
 
@@ -1083,13 +1101,13 @@ entorno local, se usa su definición de ámbito global.
 Una vez realizada la invocación, desparece el entorno local junto con
 las variables locales definidas en él, y se recupera el contexto
 global. Por ejemplo, en la siguiente expresión, una vez realizada la
-invocación a `(suma-3 12)` se devuelve el número 15 y se evalúa en el
-entorno global la expresión `(+ 15 x)`. En este contexto la variable
+invocación a `(suma-10 2)` se devuelve el número 12 y se evalúa en el
+entorno global la expresión `(+ 12 x)`. En este contexto la variable
 `x` vale 5 por lo que la expresión devuelve 17.
 
 ```scheme
 (define x 5)
-(define (suma y)
+(define (suma-10 y)
    (define x 10)
    (+ x y))
 
@@ -1101,11 +1119,11 @@ Otro ejemplo:
 
 ```scheme
 (define x 10)
-(define (prueba y)
+(define (foo2 y)
    (define z 5)
    (+ x y z))
 
-(prueba 2) ; ⇒ 17
+(foo2 2) ; ⇒ 17
 x ; ⇒ 10
 z ; ⇒ error, no definida
 y ; ⇒ error, no definida
