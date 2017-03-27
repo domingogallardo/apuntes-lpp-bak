@@ -38,13 +38,13 @@ mutadoras y estudia la estructura del diagrama resultante.
 (define lista (list (cons 'a 'b) (cons 'c 'd) 'e))
 (set-cdr! (car lista) '())
 (set-cdr! (cadr lista) (cddr lista))
-lista ; => ???
+lista ; ⇒ ???
 (set-car! (cddr lista) 'f)
-lista ; => ???
+lista ; ⇒ ???
 (set-car! (cadr lista) (caar lista))
-lista ; => ???
+lista ; ⇒ ???
 (set-cdr! (car lista) (cons 'g (cadr lista)))
-lista ; => ???
+lista ; ⇒ ???
 ```
 
 ### Ejercicio 2
@@ -57,7 +57,7 @@ crear nuevas parejas ni usar `set-car!`.
 ```scheme
 (define lista (list '*olist* 10 15 20 25 30 35 40 45))
 (filtra-olist! odd? lista)
-lista ; => {*olist* 15 25 35 45}
+lista ; ⇒ {*olist* 15 25 35 45}
 ```
 
 ### Ejercicio 3
@@ -71,7 +71,7 @@ Ejemplo:
 (define clista1 '(*clist* 1 2 3))
 (define clista2 '(*clist* 8 7 6))
 (append-clist! clista1 clista2)
-clista1 ; => {*clist* 1 2 3 8 7 6}
+clista1 ; ⇒ {*clist* 1 2 3 8 7 6}
 ```
 
 b) Implementa el  procedimiento mutador `(fusiona-olist! olista1 olista2)` que recibe dos listas
@@ -87,7 +87,7 @@ Ejemplo:
 (define olista1 '(*olist* 2 3 5 8))
 (define olista2 '(*olist* 1 4 6 7 9))
 (fusiona-olist! olista1 olista2)
-olista1 ; => {*olist* 1 2 3 4 5 6 7 8 9}
+olista1 ; ⇒ {*olist* 1 2 3 4 5 6 7 8 9}
 ```
 
 ### Ejercicio 4
@@ -116,7 +116,7 @@ Ejemplo:
 ```scheme
 (define l (list '*list* 1 2 3 4))
 (reverse-olist! l)
-l ; => {*list* 4 3 2 1}
+l ; ⇒ {*list* 4 3 2 1}
 ```
 
 ----
