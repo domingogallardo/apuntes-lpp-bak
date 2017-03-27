@@ -6,11 +6,13 @@ Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad d
 ### Contenidos
 
 - [1. El lenguaje de programación Swift](#1)
-- [2. Máquina Vagrant con Swift](#2)
-    - [2.1. Instalación de la máquina virtual Vagrant](#2-1)
-    - [2.2. (Windows) Conexión ssh mediante PuTTY](#2-2)
-    - [2.3. Directorio compartido entre el ordenador *host* y la máquina virtual](#2-3)
-    - [2.4 Editor de código Atom](#2-4)
+- [2. Ejecución de programas Swift](#2)
+    - [2.1. Ejecución en IBM Swift Sandbox](#2-1)
+    - [2.2. Máquina Vagrant con Swift](#2-2)
+        - [2.1. Instalación de la máquina virtual Vagrant](#2-2-1)
+        - [2.2. (Windows) Conexión ssh mediante PuTTY](#2-2-2)
+        - [2.3. Directorio compartido entre el ordenador *host* y la máquina virtual](#2-2-3)
+        - [2.4 Editor de código Atom](#2-2-4)
 - [3. Un tour de Swift](#3)
 
 ### <a name="0"></a> Bibliografía y referencias
@@ -40,8 +42,8 @@ edición 2014 de la Conferencia de Desarrolladores de Apple
 lenguaje. Inicialmente fue un lenguaje propietario, pero el 3 de
 diciembre de 2015 se hizo _open source_ bajo la licencia Apache 2.0,
 para las plataformas Apple y Linux. En la actualidad se ha
-estabilizado la versión 2.2 del lenguaje y se está desarrollando la
-versión 3.0 que se presentará a finales de 2016.
+estabilizado la versión 3 del lenguaje y se está desarrollando la
+versión 4 que se presentará a finales de 2017.
  
 La siguiente descripción se ha extraído del repositorio GitHub de
 Swift:
@@ -61,14 +63,36 @@ Swift:
 > éstas inducen.
 
 
-### <a name="2"></a> 2. Máquina Vagrant con Swift 
+### <a name="2"></a> 2. Ejecución de programas Swift
+
+Presentamos dos posibles configuraciones para poder ejecutar programas
+Swift en cualquier sistema operativo (Mac, Windows o Linux): 
+
+- Ejecución on-line en un entorno de IBM (IBM Swift Sandbox).
+- Ejecución local en una máquina virtual Vagrant.
+
+#### <a name="2-1"></a> 2.1. Ejecución en IBM Swift Sandbox
+
+IBM mantiene un entorno de edición y ejecución on-line de Swift con el
+que es posible editar, salvar y ejecutar programas Swift:
+[IBM Swift Sandbox](https://swift.sandbox.bluemix.net/). 
+
+<img src="imagenes/bluemix.png" width="700px"/>
+
+
+Es un entorno bastante completo, que tiene la ventaja de poder usarse
+sin necesidad de realizar ninguna instalación en local. El
+inconveniente obvio es que estamos a expensas de tener una conexión a
+Internet y de que el entorno no esté caído.
+
+#### <a name="2-2"></a> 2.2. Ejecución en entorno local
 
 Vamos a utilizar una máquina virtual Vagrant con la versión Linux de
 Swift para realizar las prácticas. De esta forma todos trabajaremos
 con el mismo entorno, independientemente del sistema operativo que
 tengamos.
 
-#### <a name="2-1"></a> 2.1. Instalación de la máquina virtual Vagrant
+#### <a name="2-2-1"></a> 2.2.1. Instalación de la máquina virtual Vagrant
 
 Veamos los pasos para construir una máquina virtual Linux (Ubuntu
 14.04) con Swift gestionada por Vagrant. Funcionan tanto para Windows
@@ -78,7 +102,7 @@ como para Mac OS X:
    [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads).
 2. Instala Vagrant
    [https://www.vagrantup.com/downloads.html](https://www.vagrantup.com/downloads.html).
-3. Crea un directorio llamado `Swift` en la ruta que desees.
+3. Crea un directorio llamado `swift` en la ruta que desees.
 4. Crea dentro de este directorio un fichero llamado `Vagrantfile` con
    el siguiente contenido. Este fichero define la configuración base
    de la máquina Vagrant, incluyendo el script de aprovisionamiento
@@ -88,44 +112,44 @@ como para Mac OS X:
 
     ```
     # -*- mode: ruby -*-
-    # vi: set ft=ruby :
+# vi: set ft=ruby :
 
-    SWIFT_VERSION = "swift-2.2-SNAPSHOT-2016-03-01-a"
+SWIFT_VERSION = "swift-3.0.2-RELEASE"
+SWIFT_URL = "https://swift.org/builds/swift-3.0.2-release/ubuntu1404/swift-3.0.2-RELEASE/swift-3.0.2-RELEASE-ubuntu14.04.tar.gz"
 
-    Vagrant.configure(2) do |config|
+Vagrant.configure(2) do |config|
 
-        config.vm.box = "ubuntu/trusty64"
+    config.vm.box = "ubuntu/trusty64"
 
-        config.vm.provider "virtualbox" do |vb|
-        # Display the VirtualBox GUI when booting the machine
-            vb.gui = false
-            # Customize the amount of memory on the VM:
-            vb.memory = "1024"
-        end
-
-        config.vm.provision "fix-no-tty", type: "shell" do |s|
-            s.privileged = false
-            s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
-        end
-
-        # Aprovisionamiento inline
-        config.vm.provision "shell", inline: <<-SHELL
-            sudo apt-get -y install -f clang libicu-dev
-            wget -q https://swift.org/builds/swift-2.2-branch/ubuntu1404/#{SWIFT_VERSION}/#{SWIFT_VERSION}-ubuntu14.04.tar.gz
-            tar xzf #{SWIFT_VERSION}-ubuntu14.04.tar.gz
-            sudo chown -R vagrant #{SWIFT_VERSION}-ubuntu14.04 
-            sudo mv #{SWIFT_VERSION}-ubuntu14.04 /usr/local 
-            echo "export PATH=/usr/local/#{SWIFT_VERSION}-ubuntu14.04/usr/bin:\"${PATH}\"" >> /home/vagrant/.bashrc
-        SHELL
-
+    config.vm.provider "virtualbox" do |vb|
+    # Display the VirtualBox GUI when booting the machine
+        vb.gui = false
+        # Customize the amount of memory on the VM:
+        vb.memory = "1024"
     end
+
+    config.vm.provision "fix-no-tty", type: "shell" do |s|
+        s.privileged = false
+        s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
+    end
+
+    # Aprovisionamiento inline
+    config.vm.provision "shell", inline: <<-SHELL
+        sudo apt-get -y install -f clang libicu-dev
+        wget -q #{SWIFT_URL}
+        tar xzf #{SWIFT_VERSION}-ubuntu14.04.tar.gz
+        sudo chown -R vagrant #{SWIFT_VERSION}-ubuntu14.04 
+        sudo mv #{SWIFT_VERSION}-ubuntu14.04 /usr/local 
+        echo "export PATH=/usr/local/#{SWIFT_VERSION}-ubuntu14.04/usr/bin:\"${PATH}\"" >> /home/vagrant/.bashrc
+    SHELL
+end
     ```
 
-5. Abre un terminal, muévete al directorio `Swift` y lanza el commando
+5. Abre un terminal, muévete al directorio `swift` y lanza el commando
    `vagrant up`:
 
     ```
-    $ cd RUTA-AL-DIRECTORIO-SWIFT
+    $ cd swift
     $ vagrant up
     ```
 
@@ -140,7 +164,7 @@ como para Mac OS X:
 
     ```
     $ vagrant ssh
-    Last login: Mon Jan 25 10:54:26 2016 from 10.0.2.2
+    Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-113-generic x86_64)
     vagrant:~$
     ```
 
@@ -148,7 +172,7 @@ como para Mac OS X:
     
     ```
     vagrant:~$ swift
-    Welcome to Swift version 2.2-dev (LLVM 846c513aa9, Clang 71eca7da8e, Swift 96628e41cc). Type :help for assistance.
+    Welcome to Swift version 3.0.2 (swift-3.0.2-RELEASE). Type :help for assistance.
     1> 
     ```
 
@@ -163,7 +187,7 @@ como para Mac OS X:
 
     El comando `vagrant halt` detiene la máquina virtual y la deja apagada hasta la siguiente vez que hagamos `vagrant up` 
 
-#### <a name="2-2"></a> 2.2. (Windows) Conexión ssh mediante PuTTY
+#### <a name="2-2-2"></a> 2.2.2. (Windows) Conexión ssh mediante PuTTY
 
 En Windows es conveniente instalar la utilidad
 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
@@ -177,13 +201,13 @@ realizar una conexión ssh con los siguientes parámetros:
 - password: vagrant
 
 
-#### <a name="2-3"></a> 2.3. Directorio compartido entre el ordenador *host* y la máquina virtual
+#### <a name="2-2-3"></a> 2.2.3. Directorio compartido entre el ordenador *host* y la máquina virtual
 
 En la máquina Vagrant se monta automáticamente el directorio del
 ordenador anfitrión en el que se se encuentra el fichero `Vagrantfile`
-(el que hemos llamado `Swift`) en el directorio `/vagrant`. Lo podemos
-comprobar moviéndonos a ese directorio en la máquina vagrant y
-examinando su contenido:
+(el que hemos llamado `swift`). Se monta en el directorio
+`/vagrant`. Lo podemos comprobar moviéndonos a ese directorio en la
+máquina vagrant y examinando su contenido:
 
 ```text
 vagrant:~$ cd /vagrant
@@ -199,7 +223,7 @@ la siguiente sección podemos ver cómo instalar Atom.
 
 Probamos a usar el directorio compartido:
 
-1. Editamos en el directorio `Swift` del ordenador anfitrión un
+1. Editamos en el directorio `swift` del ordenador anfitrión un
    programa llamado `holaMundo.swift`.
 
     **Fichero `holaMundo.swift`**:
@@ -252,7 +276,7 @@ Probamos a usar el directorio compartido:
     $ vagrant halt
     ```
 
-#### <a name="2-4"></a> 2.4 Editor de código Atom
+#### <a name="2-2-4"></a> 2.2.4 Editor de código Atom
 
 Para editar código Swift puedes usar cualquier editor orientado a
 programación. Aconsejamos [Atom](https://atom.io), un editor
@@ -261,8 +285,15 @@ instalarlo en cualquier plataforma.
 
 Atom es un editor modular en el que se pueden instalar múltiples
 extensiones desarrolladas por terceros. Para programar con swift es
-conveniente instalar el _package_ `language-swift` que proporciona
-coloreado de sintaxis de Swift.
+conveniente instalar los siguientes paquetes (en **Preferencias >
+Settings > Install Packages**):
+
+- `language-swift`: proporciona coloreado de sintaxis de
+  Swift
+- `platformio-ide-terminal`: proporciona la posibilidad de abrir un
+  terminal en la parte inferior de la ventana.
+
+<img src="imagenes/atom.png" width="700px"/>
 
 Puedes consultar los conceptos básicos de Atom, y el manual completo en [este enlace](http://flight-manual.atom.io/getting-started/sections/atom-basics/).
 
@@ -270,7 +301,7 @@ Puedes consultar los conceptos básicos de Atom, y el manual completo en [este e
 
 Aquí empieza el seminario de Swift. El texto que hay a continuación es
 una traducción del documento de Apple
-*[A Swift Tour](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1)*
+*[A Swift Tour](https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/GuidedTour.html#//apple_ref/doc/uid/TP40014097-CH2-ID1)*
 en el que se presenta una introducción rápida a los conceptos
 fundamentales del lenguaje. En los temas siguientes de la asignatura
 (Tema 5 - Programación Funcional con Swift y Tema 6 - Programación
@@ -489,8 +520,6 @@ switch verdura {
         print("Buena para la vista.")
     case "lechuga", "tomates":
         print("Podrías hacer una buena ensalada.")
-    case let x where x.hasPrefix("pimiento"):
-        print("¿Es un \(x) picante?")
     default:
         print("Siempre puedes hacer una buena sopa.")
 }
@@ -507,7 +536,7 @@ programa sale de la sentencia `switch`. La ejecución no continua con
 el siguiente caso, por lo que no hay necesidad de romper el `switch`
 al final del código de cada caso.
 
-Usas `for-in` para iterar sobre elementos en un diccionario
+Usa `for-in` para iterar sobre elementos en un diccionario
 proporcionando una pareja de nombres para usar en cada pareja
 clave-valor. Los diccionarios son colecciones desordenadas, por lo que
 sus claves y valores se iteran en un orden arbitrario.
@@ -539,13 +568,13 @@ asegurando que el bucle se ejecuta al menos una vez.
 ```swift
 var n = 2
 while n < 100 {
-    n = n * 2
+    n *= 2
 }
 print(n)
  
 var m = 2
 repeat {
-    m = m * 2
+    m *=  2
 } while m < 100
 print(m)
 ```
@@ -554,17 +583,11 @@ Puedes definir un índice en un bucle usando `..<` para construir un
 rango de índices.
 
 ```swift
-var primerBucleFor = 0
+var total = 0
 for i in 0..<4 {
-    primerBucleFor += i
+    total += i
 }
-print(primerBucleFor)
-
-var segundoBucleFor = 0
-for i in 0...4 {
-    segundoBucleFor += i
-}
-print(segundoBucleFor)
+print(total)
 ```
 
 Usa `..<` para construir un rango que omita su valor superior, y usa
@@ -575,20 +598,30 @@ Usa `..<` para construir un rango que omita su valor superior, y usa
 
 Usa `func` para declarar una función. Usa `->` para separar los
 nombres de los parámetros y sus tipos del tipo devuelto de la
-función. Para llamar a una función hay que escribir el nombre externo
-de los parámetros 2 .. n. El primer parámetro se pasa sin escribir su
-nombre.
+función.
 
 ```swift
 func saluda(nombre: String, dia: String) -> String {
     return "Hola \(nombre), hoy es \(dia)."
 }
-saluda("Bob", dia: "Martes")
+saluda(nombre: "Bob", dia: "Martes")
 ```
 
 > EXPERIMENTO  
 > Elimina el parámetro día. Añade un parámetro para incluir la comida
 > de hoy en el saludo.
+
+Por defecto, las funciones usan los nombres de los parámetros como
+etiquetas de los argumentos. Es posible definir una etiqueta
+escribiéndola antes del nombre del parámetro, o no usar etiqueta
+escribiendo `_`:
+
+```swift
+func saluda(_ nombre: String, el dia: String) -> String {
+    return "Hola \(nombre), hoy es \(dia)."
+}
+saluda("Bob", el: "Martes")
+```
 
 Las funciones pueden devolver cualquier tipo de dato, como tuplas.
 
@@ -941,25 +974,25 @@ con nombre, las enumeraciones pueden tener métodos asociados.
 
 ```swift
 enum Valor: Int {
-    case As = 1
-    case Dos, Tres, Cuatro, Cinco, Seis, Siete, Ocho, Nueve, Diez
-    case Sota, Caballo, Rey
+    case uno = 1
+    case dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez
+    case sota, caballo, rey
     func descripcionSencilla() -> String {
         switch self {
-        case .As:
+        case .uno:
             return "as"
-        case .Sota:
+        case .sota:
             return "sota"
-        case .Caballo:
+        case .caballo:
             return "caballo"
-        case .Rey:
+        case .rey:
             return "rey"
         default:
             return String(self.rawValue)
         }
     }
 }
-let carta = Valor.As
+let carta = Valor.uno
 let valorBrutoCarta = carta.rawValue
 ```
 
@@ -975,7 +1008,8 @@ se asignan en orden. Puedes también usar cadenas o números en punto
 flotante como valores brutos de una enumeración. Utiliza la propiedad
 `rawValue` para acceder al valor bruto de una enumeración.
 
-Usa el inicializador `init?(rawValue:)` para construir una instancia de una enumeración a través de un valor bruto.
+Usa el inicializador `init?(rawValue:)` para construir una instancia
+de una enumeración a través de un valor bruto.
 
 ```swift
 if let valorConvertido = Valor(rawValue: 3) {
@@ -990,21 +1024,21 @@ proporcionar uno.
 
 ```swift
 enum Palo {
-    case Oros, Bastos, Copas, Espadas
+    case oros, bastos, copas, espadas
     func descripcionSencilla() -> String {
         switch self {
-        case .Oros:
+        case .oros:
             return "oros"
-        case .Bastos:
+        case .bastos:
             return "bastos"
-        case .Copas:
+        case .copas:
             return "copas"
-        case .Espadas:
+        case .espadas:
             return "espadas"
         }
     }
 }
-let copas = Palo.Copas
+let copas = Palo.copas
 let descripcionCopas = copas.descripcionSencilla()
 ```
 
@@ -1036,17 +1070,17 @@ error.
 
 ```swift
 enum RespuestaServidor {
-    case Resultado(String, String)
-    case Error(String)
+    case resultado(String, String)
+    case error(String)
 }
  
-let exito = RespuestaServidor.Resultado("6:00 am", "8:09 pm")
-let fallo = RespuestaServidor.Error("Sin queso.")
+let exito = RespuestaServidor.resultado("6:00 am", "8:09 pm")
+let fallo = RespuestaServidor.error("Sin queso.")
  
 switch exito {
-    case let .Resultado(salidaSol, puestaSol):
+    case let .resultado(salidaSol, puestaSol):
         print("La salida del sol es a las \(salidaSol) y la puesta es a \(puestaSol).")
-    case let .Error(error):
+    case let .error(error):
         print("Fallo...  \(error)")
 }
 ```
@@ -1073,7 +1107,7 @@ struct Carta {
         return "El \(valor.descripcionSencilla()) de \(palo.descripcionSencilla())"
     }
 }
-let tresDeEspadas = Carta(valor: .Tres, palo: .Espadas)
+let tresDeEspadas = Carta(valor: .tres, palo: .espadas)
 let descripcionTresDeEspadas = tresDeEspadas.descripcionSencilla()
 ```
 
