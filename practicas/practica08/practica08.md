@@ -1,4 +1,4 @@
-## Práctica 8: Programación imperativa
+## Práctica 8: Estructuras de datos mutables
 
 ### Entrega de la práctica
 
@@ -8,150 +8,119 @@ las soluciones de cada ejercicio separadas por comentarios. Cada
 solución debe incluir:
 
 - La **definición de las funciones** que resuelven el ejercicio.
-- Una visualización por pantalla de uno de los ejemplos incluidos en
-  el enunciado que **demuestre qué hace la función**, usando la
-  función de `display`.
 - Un conjunto de **pruebas** que comprueben su funcionamiento
-  utilizando la librería `schemeunit`. Estas pruebas deben incluir los
-  ejemplos proporcionados en los ejercicios y un mínimo de **2 casos
-  de prueba sustancialmente distintos** a estos ejemplos.
+  utilizando la librería `schemeunit`.
 
-#### Notas
+## Ejercicios
 
-- En las funciones en las que hay que trabajar con mutación es
-  importante dibujar los diagramas _box_and_pointer_ de las
-  estructuras y pensar la solución sobre estos dibujos.
+### Ejercicio 1
 
-- En el ejercicio 1 no hace falta hacer pruebas con `check`.
-
-#### Ejercicio 1
-
-Implementa el procedimiento mutador `(crear-lista-circular! clista)`
-que reciba una lista con cabecera y devuelva la correspondiente lista
-circular: el siguiente al último elemento será el primer elemento
-
-Ejemplo:
-
-```swift
-(define clista '(*clista* 1 4 9 7))
-```
-
-<img src="imagenes/lista1.png" width="500px"/>
+a) Dado el siguiente diagrama _box-and-pointer_:
 
 
-```swift
-(crear-lista-circular! clista)
-clista ⇒ {*clista* . #0={1 4 9 7 . #0#}}
-```
-<img src="imagenes/lista2.png" width="500px"/>
+<img src="imagenes/box-pointer-1.png" width="350px"/>
 
-
-#### Ejercicio 2
-
-Implementa el procedimiento mutador `(intercambia-elementos! lista)`
-que reciba una lista con cabecera con un número par de elementos e
-intercambie sus elementos de dos en dos. Debes proponer una solución
-que no utilice `set-car!`
-
-Ejemplos:
+1. Escribe las instrucciones de Scheme que lo generan. Sólo puedes
+   usar las variables auxiliares mostradas en el diagrama.
+2. Dibuja el diagrama resultante después de evaluar la expresión:
 
 ```scheme
-(define lista '(*clist* 1 2 3 4))
-(intercambia-elementos! lista)
-lista ⇒ (*clist* 2 1 4 3)
+(set-car! (cddr x) (caar x))
 ```
 
+b) Dadas las siguientes instrucciones, ¿qué imprimirá DrRacket en las
+distintas evaluaciones de la variable lista?.  Evidentemente, debes
+hacer el ejercicio **sin utilizar el intérprete**. Dibuja el diagrama
+_box-and-pointer_, comprueba cómo se modifica con las sentencias
+mutadoras y estudia la estructura del diagrama resultante.
 
-#### Ejercicio 3
+```scheme
+(define lista (list (cons 'a 'b) (cons 'c 'd) 'e))
+(set-cdr! (car lista) '())
+(set-cdr! (cadr lista) (cddr lista))
+lista ; => ???
+(set-car! (cddr lista) 'f)
+lista ; => ???
+(set-car! (cadr lista) (caar lista))
+lista ; => ???
+(set-cdr! (car lista) (cons 'g (cadr lista)))
+lista ; => ???
+```
 
-Define el tipo de dato mutable _Pila_ que implementa una
-[pila](https://en.wikipedia.org/wiki/Stack_(abstract_data_type)) en la
-que se añaden y se sacan elementos con mutación. La barrera de
-abstracción se define por las siguientes funciones:
+### Ejercicio 2
 
-- `(make-pila)`: construye una pila vacía y la devuelve
-- `(push-pila! pila dato)`: añade un dato en la pila
-- `(pop-pila! pila)`: devuelve el último dato añadido en la pila y
-  desapila la pila. No devuelve nada si la pila está vacía.
-- `(vacia-pila? pila)`: #t si la pila está vacía
+Define la función mutadora `(filtra-olist! pred olist)` que recibe una
+lista ordenada con cabecera y un predicado, y elimina con mutación los
+elementos de la lista que no cumplan el predicado. La solución no debe
+crear nuevas parejas ni usar `set-car!`.
+
+```scheme
+(define lista (list '*olist* 10 15 20 25 30 35 40 45))
+(filtra-olist! odd? lista)
+lista ; => {*olist* 15 25 35 45}
+```
+
+### Ejercicio 3
+
+a) Implementa la versión mutadora de `append` para listas con cabecera. Define para ello
+el procedimiento mutador `(append-clist! clista1 clista2)`.
 
 Ejemplo:
 
 ```scheme
-(define pila1 (make-pila))
-(push-pila! pila1 10)
-(push-pila! pila1 "hola")
-(push-pila! pila1 'a)
-(pop-pila! pila1) ⇒ 'a
-(pop-pila! pila1) ⇒ "hola"
-(pop-pila! pila1) ⇒ 10
-(vacia-pila? pila1) ⇒ #t
-(pop-pila! pila1)
+(define clista1 '(*clist* 1 2 3))
+(define clista2 '(*clist* 8 7 6))
+(append-clist! clista1 clista2)
+clista1 ; => {*clist* 1 2 3 8 7 6}
 ```
 
-#### Ejercicio 4
+b) Implementa el  procedimiento mutador `(fusiona-olist! olista1 olista2)` que recibe dos listas
+ordenadas con cabecera, y muta `olista1` para que incluya los elementos de `olista2`, manteniendo el
+orden de sus elementos.
 
-Modifica el tipo de dato mutable _Diccionario_ visto en el
-[tema de teoría](http://domingogallardo.github.io/lpp/teoria/Tema04-ProgramacionImperativa.html#3-4)
-para que se guarde la información de cuántas veces se ha cambiado el
-valor asociado a cada clave. El primer `put` de una clave se considera
-un cambio (se guarda 1) y cada nuevo `put` debe incrementar en 1 el
-número de cambios.
-
-Se debe definir también la función `(cambios-dic diccionario clave)`
-que devuelve el número de cambios que ha tenido una clave. En el caso
-en que la clave no exista en el diccionario se devolverá 0.
+**Importante**: debes implementar una solución en la que solo se recorra una vez cada una de las listas
+y sin crear nuevas parejas. Además suponemos que los elementos de ambas listas son distintos.
 
 Ejemplo:
-
 
 ```scheme
-(define dic (make-dic))
-(put-dic! dic 'a 20) ⇒ ok
-(cambios-dic dic 'a) ⇒ 1
-(put-dic! dic 'a 30) ⇒ ok
-(cambios-dic dic 'a) ⇒ 2
-(get-dic dic 'a) ⇒ 30
-(cambios-dic dic 'b) ⇒ 0
-(put-dic! dic 'b 10)
-(cambios-dic dic 'b) ⇒ 1
+(define olista1 '(*olist* 2 3 5 8))
+(define olista2 '(*olist* 1 4 6 7 9))
+(fusiona-olist! olista1 olista2)
+olista1 ; => {*olist* 1 2 3 4 5 6 7 8 9}
 ```
 
-#### Ejercicio 5
+### Ejercicio 4
 
-Implementa la función `(memorizador func)` que recibe una función de
-un argumento y devuelve una clausura que se comporta como la función
-original, pero que guarda los resultados que se van generando en una
-pila local (usa la pila implementada en el ejercicio anterior). Cuando
-recibe como parámetro el símbolo `'mem` devuelve el último resultado
-apilado y lo desapila.
+Implementa el procedimiento mutador `(eliminar-duplicados! olista)`,
+que recibe una lista ordenada mutable con cabecera y elimina de la
+lista mutable los elementos duplicados
 
 Ejemplo:
 
-```swift
-(define (cuadrado x)
-   (* x x))
-(define f (memorizador cuadrado))
-
-(f 10) ⇒ 100
-(f 3) ⇒ 9
-(f 2) ⇒ 4
-(f 'mem) ⇒ 4
-(f 'mem) ⇒ 9
-(f 6) ⇒ 36
-(f 'mem) ⇒ 36
-(f 'mem) ⇒ 100
-(f 'mem)
+```scheme
+(define olista '(*olist* 1 2 2 3 4 4 4 5 5))
+(eliminar-duplicados! olista)
+olista ; ⇒ {*olist* 1 2 3 4 5}
 ```
 
+### Ejercicio 5
+
+Define la función mutadora `(reverse-olist! lista)` que recibe una lista
+con cabecera y mute sus elementos para que queden invertidos. La
+solución no debe crear nuevas parejas ni usar `set-car!`. Puedes
+recorrer la lista más de una vez.
+
+Ejemplo:
+
+```scheme
+(define l (list '*list* 1 2 3 4))
+(reverse-olist! l)
+l ; => {*list* 4 3 2 1}
+```
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16  
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 Antonio Botía, Domingo Gallardo, Cristina Pomares  
-
-
-
-
-
