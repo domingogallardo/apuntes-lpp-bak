@@ -1,5 +1,5 @@
 
-## Tema 5: Programación Funcional con Swift
+## Tema 6: Programación Funcional con Swift
 
 ### Contenidos
 
