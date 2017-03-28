@@ -29,7 +29,41 @@
 
 ### <a name="1"></a> 1. Introducción
 
-Repaso de conceptos básicos de programación funcional.
+Te recomendamos que leas los primeros apartados del
+[seminario de Swift](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md),
+en el que se introduce el lenguaje y se explica cómo ejecutar
+programas en este lenguaje:
+
+- [El lenguaje de programación Swift](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md#-1-el-lenguaje-de-programación-swift)
+- [Ejecución de programas Swift en IBM Swift Sandbox](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md#-21-ejecución-en-ibm-swift-sandbox)
+- [Valores simples (primer apartado de Un tour de Swift)](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md#valores-simples)
+
+De esta forma podrás probar los distintos ejemplos que presentamos en
+este tema.
+
+Swift es un lenguaje principalmente imperativo, pero en su diseño se
+han introducido conceptos modernos de programación funcional,
+extraídos de lenguajes como Rust o Haskell. 
+
+Como dice su creador [Chris Lattner](http://nondot.org/sabre/):
+
+> El lenguaje Swift es el resultado de un esfuerzo incansable de un
+> equipo de expertos en lenguajes, gurús de documentación, ninjas de
+> optimización de compiladores [..]. Por supuesto, también se
+> benefició enormemente de las experiencias ganadas en muchos otros
+> lenguajes, tomando ideas de Objective-C, Rust, Haskell, Ruby,
+> Python, C#, CLU, y demasiados otros para ser enumerados.
+
+Vamos a repasar en este tema cómo se implementan en Swift conceptos
+principalmente funcionales como:
+
+- Valores inmutables
+- Funciones como objetos de primera clase y clasuras
+- Funciones de orden superior
+
+
+Repasamos rápidamente algunos conceptos básicos de programación
+funcional, vistos en los primeros temas de la asignatura.
 
 Programación Funcional:
 
@@ -37,16 +71,19 @@ Programación Funcional:
 > la computación como la evaluación de funciones matemáticas y que
 > evita cambios de estado y datos mutables.
 
-Funciones matemáticas:
+Funciones matemáticas o puras:
 
-> Las funciones matemáticas tienen la característica de que cuando les
-> das el mismo argumento te devolverán el mismo resultado.
+> Las funciones matemáticas tienen la característica de que cuando las
+> invocas con el mismo argumento siempre te devolverán el mismo
+> resultado.
 
-Funciones como tipos de primera clase:
+Funciones como objetos de primera clase:
 
-> Las funciones son objetos de primera clase del lenguaje, similares a
-> enteros o _strings_. Podemos pasar funciones como argumentos o
-> devolver funciones como resultados.
+> En programación funcional, las funciones son objetos de primera
+> clase del lenguaje, similares a enteros o _strings_. Podemos pasar
+> funciones como argumentos en las denominadas _funciones de orden
+> superior_ o devolver funciones creadas en tiempo de ejecución
+> (clausuras).
 
 ### <a name="2"></a> 2. Funciones
 
@@ -57,56 +94,53 @@ definir el nombre de la función, sus parámetros y el tipo de
 vuelto. El valor devuelto por la función se debe devolver usando la
 palabra `return`.
 
-Código de la función `diHola(_:)`:
+Código de la función `saluda(nombre:)`:
 
 ```swift
-func diHola(nombrePersona: String) -> String {
-    let saludo = "Hola, " + nombrePersona + "!"
+func saluda(nombre: String) -> String {
+    let saludo = "Hola, " + nombre + "!"
     return saludo
 }
 ```
 
-Para invocar a la función `diHola(_:)`:
+Para invocar a la función `saluda(nombre:)`:
 
-```
-print(diHola("Ana"))
-print(diHola("Pedro"))
+```swift
+print(saluda(nombre:"Ana"))
+print(saluda(nombre:"Pedro"))
 // Imprime "Hola, Ana!"
 // Imprime "Hola, Pedro!"
 ```
 
-#### Nombres de parámetros externos e internos
+#### Etiquetas de argumentos y nombres de parámetros
 
-Al llamar a una función con más de un parámetro hay que etiquetar los
-argumentos después del primero con el correspondiente nombre del
-parámetro.
-
-Funciones `diHolaOtraVez(_:)` y `diHola(_:yaSaludado:)`:
-
+Cada parámetro de una función tiene una etiqueta del argumento y un
+nombre de parámetro. La etiqueta del argumento se usa cuando se llama a
+la función y el nombre del parámetro se usa internamente en su
+implementación. Por defecto, los parámetros usan su nombre de
+parámetro como etiqueta del argumento:
 
 ```swift
-func diHolaOtraVez(nombrePersona: String) -> String {
-    return "Hola otra vez, " + nombrePersona + "!"
+func unaFuncion(primerNombreParametro: Int, segundoNombreParametro: Int) {
+    // En el cuerpo de la función, primerNombreParametro y
+    // segundoNombreParametro se refieren a los valores de los
+    // argumentos del primer y el segundo parámetro
 }
-
-func diHola(nombrePersona: String, yaSaludado: Bool) -> String {
-    if yaSaludado {
-        return diHolaOtraVez(nombrePersona)
-    } else {
-        return diHola(nombrePersona)
-    }
-}
-
-print(diHola("Tim", yaSaludado: true))
-// Imprime "Hola otra vez, Tim!"
+unaFuncion(primerNombreParametro: 1, segundoNombreParametro: 2)
 ```
 
-Los parámetros tienen un nombre externo y otro interno.
+Es posible hacer distintos la etiqueta del argumento del nombre del
+parámetro:
 
-Cuando se llama a la función es obligatorio etiquetar a los argumentos
-con el nombre externo.
+```swift
+func saluda(nombre: String, de ciudad: String) -> String {
+    return "Hola \(nombre)! Me alegro de que hayas podido visitarnos desde \(ciudad)."
+}
+print(saluda(nombre: "Bill", de: "Cupertino"))
+// Imprime "Hola Bill! Me alegro de que hayas podido visitarnos desde Cupertino."
+```
 
-Por ejemplo, la siguiente función `concatena(palabra:con:)`: 
+Otro ejemplo, la siguiente función `concatena(palabra:con:)`: 
 
 ```swift
 func concatena(palabra str1: String, con str2: String) -> String {
@@ -116,15 +150,12 @@ func concatena(palabra str1: String, con str2: String) -> String {
 print(concatena(palabra:"Hola", con:"adios"))
 ```
 
-Es posible definir un nombre externo "vacío" usando el símbolo `_` en
-la definición del nombre externo.
-
-Por defecto, si no se especifica ningún nombre externo, el nombre
-externo del primer argumento es vacío y el del resto de argumentos el
-mismo que el interno.
+Si no se quiere una etiqueta del argumento para un parámetro, se puede
+escribir un subrayado (`_`) en lugar de una etiqueta del argumento
+explícita para ese parámetro:
 
 ```swift
-func max(x:Int, _ y: Int) -> Int {
+func max(_ x:Int, _ y: Int) -> Int {
    if x > y {
       return x
    } else {
@@ -134,18 +165,18 @@ func max(x:Int, _ y: Int) -> Int {
 
 print(max(10,3))
 
-func divide(x:Double, entre y: Double) -> Double {
+func divide(_ x:Double, entre y: Double) -> Double {
    return x / y
 }
 
 print(divide(30, entre:4))
 ```
 
-El perfil de la función está formado por el nombre de la función, los
-nombres externos de los parámetros y el tipo devuelto por la
-función. En la documentación de las funciones usaremos el nombre y los
-parámetros externos separados por dos puntos. Por ejemplo, las
-funciones anteriores son `max(_:_:)` y `divide(_:entre:)`.
+El perfil de la función está formado por el nombre de la función, las
+etiquetas de los argumentos y el tipo devuelto por la función. En la
+documentación de las funciones usaremos las etiquetas separadas por
+dos puntos. Por ejemplo, las funciones anteriores son `max(_:_:)` y
+`divide(_:entre:)`.
 
 #### Parámetros y valores devueltos
 
@@ -160,19 +191,19 @@ print(diHolaMundo())
 ```
 
 Podemos definir funciones sin valor devuelto. Por ejemplo, la
-siguiente función `sayGoodbye(_:)`. No hay que escribir flecha con el
+siguiente función `diAdios(nombre:)`. No hay que escribir flecha con el
 tipo devuelto. Cuidado, no sería propiamente programación funcional.
 
 ```swift
-func sayGoodbye(personName: String) {
-    print("Goodbye, \(personName)!")
+func diAdios(nombre: String) {
+    print("Adiós, \(nombre)!")
 }
-sayGoodbye("Dave")
-// Prints "Goodbye, Dave!"
+diAdios(nombre:"Dave")
+// Imprime "Adiós, Dave!"
 ```
 
 Es posible devolver múltiples valores, construyendo una tupla. Por
-ejemplo, la siguiente función `minMax(_:)` busca el número más pequeño
+ejemplo, la siguiente función `minMax(array:)` busca el número más pequeño
 y más grande de un array de enteros.
 
 ```swift
@@ -194,16 +225,17 @@ Los valores de la tupla devuelta se etiquetan y se puede acceder por
 esos nombres cuando se consulta el valor devuelto por la función:
 
 ```swift
-let limites = minMax([8, -6, 2, 109, 3, 71])
+let limites = minMax(array: [8, -6, 2, 109, 3, 71])
 print("min es \(limites.min) y max es \(limites.max)")
 // Imprime "min es -6 y max es 109"
 ```
 
 Si hay algún caso en el que la función pueda devolver "no hay valor"
 para los elementos de la tupla podemos usar un tipo _opcional_ para
-indicar que el valor devuelto puede ser `nil`. Para ello se escribe un
-símbolo de interrogación tras el paréntesis. Por ejemplo, `(Int,
-Int)?` o `(String, Int, Bool)?`.
+indicar que el valor devuelto puede ser `nil` (hablaremos más adelante
+de los tipos opcionales). Para ello se escribe un símbolo de
+interrogación tras el paréntesis. Por ejemplo, `(Int, Int)?` o
+`(String, Int, Bool)?`.
 
 Podemos modificar la función anterior para considerar el caso en que
 pasemos un array sin elementos:
@@ -228,7 +260,7 @@ Tendremos entonces que llamar a la función comprobando si el valor
 devuelto es distinto de `nil`:
 
 ```swift
-if let limites = minMax([8, -6, 2, 109, 3, 71]) {
+if let limites = minMax(array: [8, -6, 2, 109, 3, 71]) {
     print("min es \(limites.min) y max es \(limites.max)")
 }
 // Imprime "min es -6 y max es 109"
@@ -245,10 +277,10 @@ Cada función tiene un tipo específico, definido por el tipo de sus
 parámetros y el tipo del valor devuelto.
 
 ```swift
-func sumaDosInts(a: Int, _ b: Int) -> Int {
+func sumaDosInts(_ a: Int, _ b: Int) -> Int {
     return a + b
 }
-func multiplicaDosInts(a: Int, _ b: Int) -> Int {
+func multiplicaDosInts(_ a: Int, _ b: Int) -> Int {
     return a * b
 }
 ```
@@ -273,14 +305,14 @@ print("Resultado: \(funcionMatematica(2, 3))")
 Podemos usar un tipo función en parámetros de otras funciones:
 
 ```swift
-func printResultado(funcionMatematica: (Int, Int) -> Int, _ a: Int, _ b: Int) {
+func printResultado(funcion: (Int, Int) -> Int, _ a: Int, _ b: Int) {
     print("Resultado: \(funcionMatematica(a, b))")
 }
-printResultado(sumaDosInts, 3, 5)
+printResultado(funcion: sumaDosInts, 3, 5)
 // Prints "Resultado: 8"
 ```
 
-La función `printResultado(_:_:_:)` toma como primer parámetro otra
+La función `printResultado(funcion:_:_:)` toma como primer parámetro otra
 función que recibe dos `Int` y devuelve un `Int`, y como segundo y
 tercer parámetro dos `Int`.
 
@@ -310,15 +342,15 @@ func sumatorio(desde a: Int, hasta b: Int, func f: (Int) -> Int) -> Int {
    }
 }
 
-func identidad(x: Int) -> Int {
+func identidad(_ x: Int) -> Int {
    return x
 }
 
-func doble(x: Int) -> Int {
+func doble(_ x: Int) -> Int {
    return x + x
 }
 
-func cuadrado(x: Int) -> Int {
+func cuadrado(_ x: Int) -> Int {
     return x * x
 }
 
@@ -340,9 +372,8 @@ func eligeFuncionPaso(menorQueCero: Bool) -> (Int) -> Int {
     return menorQueCero ? pasoAdelante : pasoAtras
 }
 
-
 var valorActual = -4
-let acercarseACero = eligeFuncionPaso(valorActual < 0)
+let acercarseACero = eligeFuncionPaso(menorQueCero: valorActual < 0)
 // acercarseACero ahora se refiere a la función anidada pasoAdelante
 while valorActual != 0 {
     print("\(valorActual)... ")
@@ -363,53 +394,57 @@ Ejemplos de funciones recursivas en Swift.
 Recursión pura:
 
 ```swift
-func sumaHasta(x: Int) -> Int {
+func suma(hasta x: Int) -> Int {
   if x == 0 {
     return 0
   } else {
-    return x + sumaHasta(x - 1)
+    return x + suma(hasta: x - 1)
   }
 }
 
-print(sumaHasta(5))
+print(suma(hasta: 5))
 ```
 
 Los arrays en Swift no funcionan exactamente como las listas de Scheme
 (no son listas de parejas), pero podríamos obtener el primer elemento
 y el resto de la siguiente forma.
 
-
 ```swift
-let a = [1,2,3,4,5,6]
+let a = [10, 20, 30, 40, 50, 60]
 let primero = a[0]
-let resto = a[1..<a.endIndex]]
+let resto = a[1..<a.endIndex]
 ```
 
 En `resto` se guardará un `ArraySlice`. Es una vista de un rango de
-elementos del array, en este caso el que va de 1 hasta el último. Un
-`ArraySlice` puede situarse sobre cualquier zona de un array. Por
+elementos del array, en este caso el que va desde la posición 1 hasta
+la 5 (la posición inicial de un array es la 0). 
+
+Un `ArraySlice` puede situarse sobre cualquier zona de un array. Por
 ejemplo:
 
 ```swift
 let b = a[2...3]
 // b: ArraySlice<Int> = 2 values {
-//  [2] = 3
-//  [3] = 4
+//  [2] = 30
+//  [3] = 40
 //}
 ```
 
-Este rango va a ir cambiando conforme vayamos moviéndonos por el
-`ArraySlice`. Iremos avanzando el índice de comienzo y dejando fijo el
-índice final. De forma que, en general, usaremos las siguientes
-expresiones para obtener el primero y el resto:
+Para trabajar con funciones recursivas de una forma similar a cómo lo
+hacíamos con las listas de Scheme vamos a ir cambiando el rango
+conforme nos movemos por el `ArraySlice`. Iremos avanzando el índice
+de comienzo y dejando fijo el índice final. 
 
-```
-let primero = valores[valores.startIndex]
-let resto = valores[valores.startIndex+1..<valores.endIndex]
+Podemos acceder al primer elemento de un `ArraySlice` usando su
+atributo `startIndex`:
+
+```swift
+print(b.startIndex) // => 2
+print(b[b.startIndex]) // => 3
 ```
 
-Con estas expresiones podemos definir una función recursiva que
-recorre un `ArraySlice`:
+De esta forma podemos definir una función recursiva que recorre un
+`ArraySlice`:
 
 ```swift
 func sumaValores(valores: ArraySlice<Int>) -> Int {
@@ -418,10 +453,10 @@ func sumaValores(valores: ArraySlice<Int>) -> Int {
   } else {
     let primero = valores[valores.startIndex]
     let resto = valores[valores.startIndex+1..<valores.endIndex]
-    return primero + sumaValores(resto)
+    return primero + sumaValores(valores: resto)
   }
 }
-print(sumaValores([1,2,3,4,5,6,7,8]))
+print(sumaValores(valores: [1,2,3,4,5,6,7,8]))
 // 36
 ```
 
@@ -433,7 +468,7 @@ definamos árboles en Swift.
 
 ### <a name="5"></a> 5. Tipos
 
-Swift es un lenguaje fuertemente tipado, a diferencia de
+Swift es un lenguaje fuertemente tipeado, a diferencia de
 Scheme. Muchos otros lenguajes de programación funcional, como Haskell
 o Clojure también lo son.
 
@@ -478,7 +513,7 @@ Definimos un tipo al definir:
 - nombres de protocolos 
 
 Por ejemplo, instancias de una clase definida por el usuario llamada
-`MyClass` tienen el tipo `MyClass`. Además de los tipos definidos por
+`MiClase` tienen el tipo `MiClase`. Además de los tipos definidos por
 el usuario, la biblioteca estándar de Swift tiene un gran número de
 tipos predefinidos. A diferencia de otros lenguajes, estos tipos no
 son parte del propio lenguaje sino que se definen en su mayoría como
@@ -500,12 +535,12 @@ función los hemos visto previamente.
 let tupla: (Int, Int, String) = (2, 3, "Hola")
 let otraTupla: (Int, Int, String) = (5, 8, "Adios")
 
-func sumaTupla(t1: (Int, Int), con t2: (Int, Int)) -> (Int, Int) {
+func sumaTupla(tupla t1: (Int, Int), con t2: (Int, Int)) -> (Int, Int) {
   return (t1.0 + t2.0, t1.1 + t2.1)
 }
 
-print(sumaTupla((tupla.0, tupla.1),
-                 con: (otraTupla.0, otraTupla.1)))
+print(sumaTupla(tupla: (tupla.0, tupla.1),
+                con: (otraTupla.0, otraTupla.1)))
 
 // Imprime (7, 11)
 ```
@@ -517,10 +552,10 @@ valores:
 
 ```swift
 enum Direccion {
-    case Norte
-    case Sur
-    case Este
-    case Oeste
+    case norte
+    case sur
+    case este
+    case oeste
 }
 ```
 
@@ -530,24 +565,25 @@ la enumeración, un punto y el valor definido. Si el tipo de
 enumeración se puede inferir no es necesario escribirlo.
 
 ```swift
-var direccionActual = Direccion.Norte
+let hemosGirado = true
+var direccionActual = Direccion.norte
 if hemosGirado {
-   direccionActual = .Sur
+   direccionActual = .sur
 }
 ```
 
 En sentencias switch:
 
 ```swift
-direccionActual = .Sur
+let direccionAIr = Direccion.sur
 switch direccionAIr {
-case .Norte:
-    print("Nos vamos al norte")
-case .Sur:
-    print("Cuidado con los pinguinos")
-case .Este:
+case .norte:
+   print("Nos vamos al norte")
+case .sur:
+   print("Cuidado con los pinguinos")
+case .este:
     print("Donde nace el sol")
-case .Oeste:
+case .oeste:
     print("Donde el cielo es azul")
 }
 // Imprime "Cuidado con los pinguinos"
@@ -557,7 +593,7 @@ Otro ejemplo:
 
 ```swift
 enum Planeta {
-    case Mercurio, Venus, Tierra, Marte, Jupiter, Saturno, Urano, Neptuno
+    case mercurio, venus, tierra, marte, jupiter, saturno, urano, neptuno
 }
 ```
 
@@ -568,9 +604,9 @@ un tipo subyacente:
 
 ```swift
 enum CaracterControlASCII: Character {
-    case Tab = "\t"
-    case LineFeed = "\n"
-    case CarriageReturn = "\r"
+    case tab = "\t"
+    case lineFeed = "\n"
+    case carriageReturn = "\r"
 }
 ```
 
@@ -585,9 +621,9 @@ También se puede hacer de forma implícita cuando el tipo subyacente es
 
 ```swift
 enum Planeta: Int {
-    case Mercurio=1, Venus, Tierra, Marte, Jupiter, Saturno, Urano, Neptuno
+    case mercurio=1, venus, tierra, marte, jupiter, saturno, urano, neptuno
 }
-let posicionTierra = Planeta.Tierra.rawValue
+let posicionTierra = Planeta.tierra.rawValue
 // posicionTierra es 3
 ```
 
@@ -597,10 +633,10 @@ cadenas:
 
 ```swift
 enum Direccion: String {
-    case Norte, Sur, Este, Oeste
+    case norte, sur, este, oeste
 }
-let direccionAtardecer = Direccion.Oeste.rawValue
-// direccionAtardecer es "Oeste"
+let direccionAtardecer = Direccion.oeste.rawValue
+// direccionAtardecer es "oeste"
 ```
 
 Cuando se definen valores brutos es posible inicializar el enumerado
@@ -610,7 +646,7 @@ opcional):
 
 ```swift
 let posiblePlaneta = Planeta(rawValue: 7)
-// posiblePlaneta es de tipo Planeta? y es igual a Planeta.Urano
+// posiblePlaneta es de tipo Planeta? y es igual a Planeta.urano
 ```
 
 #### Valores asociados a instancias de enumeraciones
@@ -618,8 +654,6 @@ let posiblePlaneta = Planeta(rawValue: 7)
 En otros lenguajes de programación se llaman _uniones etiquetadas_ o
 _variantes_. Permiten asociar valores de otro tipo a las opciones del
 enumerado.
-
-Repasemos un primer ejemplo, recogido del seminario de Scheme.
 
 Una instancia de un caso de enumeración puede tener valores asociados
 con la instancia. Instancias del mismo caso de enumeración pueden
@@ -629,60 +663,36 @@ brutos son distintos: el valor bruto de un caso de enumeración es el
 mismo para todas las instancias, mientras que el valor asociado se
 proporciona cuando se define el valor concreto de la enumeración.
 
-Por ejemplo, podemos definir un enumerado con el que formalizar una
-respuesta de un servidor. Puede ser de dos tipos o `Resultado`, en
-cuyo caso va acompañado de dos `String` o `Error`, en el que el valor
-asociado es un único `String`. Por ejemplo, podríamos usarlo para
-devolver la petición sobre la hora de salir y ponerse el sol. También
-podríamos dar un mensaje de error:
-
-```swift
-enum RespuestaServidor {
-    case Resultado(String, String)
-    case Error(String)
-}
- 
-let exito = RespuestaServidor.Resultado("6:00 am", "8:09 pm")
-let fallo = RespuestaServidor.Error("La base de datos no responde")
- 
-switch exito {
-    case let .Resultado(salidaSol, puestaSol):
-        print("La salida del sol es a las \(salidaSol) y la puesta es a \(puestaSol).")
-    case let .Error(error):
-        print("Fallo...  \(error)")
-}
-```
-
-Otro ejemplo, en el que usamos un enum para definir posibles valores
-de un código de barras, en el que incluimos dos posibles tipos de
-código de barras: el código de barras lineal (denominado UPCA) y el
+Veamos un ejemplo, en el que usamos un enum para definir posibles
+valores de un código de barras, en el que incluimos dos posibles tipos
+de código de barras: el código de barras lineal (denominado UPC) y el
 código QR:
 
 ```swift
 enum CodigoBarras {
-    case UPCA(Int, Int, Int, Int)
-    case QRCode(String)
+    case upc(Int, Int, Int, Int)
+    case qrCode(String)
 }
 ```
 
 Se lee de la siguiente forma: “Definimos un tipo enumerado llamado
-`CodigoBarras`, que puede tomar como valor un `UPCA` (código de barras
+`CodigoBarras`, que puede tomar como valor un `upc` (código de barras
 lineal) con un valor asociado de tipo `(Int, Int, Int, Int)` (los 4
-números que hay en los códigos de barras lineales) o un valor `QR` con
-valor asociado de tipo `String`". Esta definición no proporciona
+números que hay en los códigos de barras lineales) o un valor `qrCode`
+con valor asociado de tipo `String`". Esta definición no proporciona
 valores concretos de `Int` o `String`, sino que define el _tipo_ de
 valores asociados que las constantes y variables pueden almacenar
-cuando son de tipo `CodigoBarras.UPCA` o `CodigoBarras.QR`.
+cuando son de tipo `CodigoBarras.upc` o `CodigoBarras.qrCode`.
 
 ```swift
-var codigoBarrasProducto = Barcode.UPCA(8, 85909, 51226, 3)
-codigoBarrasProducto = .QRCode("ABCDEFGHIJKLMNOP")
+var codigoBarrasProducto = CodigoBarras.upc(8, 85909, 51226, 3)
+codigoBarrasProducto = .qrCode("ABCDEFGHIJKLMNOP")
 
 switch codigoBarrasProducto {
-case let .UPCA(sistemaNumeracion, fabricante, producto, control):
-    print("UPC-A: \(sistemaNumeracion), \(fabricante), \(producto), \(control).")
-case let .QRCode(codigoProducto):
-    print("Código QR: \(codigoProducto).")
+case let .upc(sistemaNumeracion, fabricante, producto, control):
+   print("UPC: \(sistemaNumeracion), \(fabricante), \(producto), \(control).")
+case let .qrCode(codigoProducto):
+   print("Código QR: \(codigoProducto).")
 }
 // Imprime  "Código QR : ABCDEFGHIJKLMNOP."
 ```
@@ -695,15 +705,15 @@ la palabra clave `enum` con `indirect`:
 
 ```swift
 indirect enum ExpresionAritmetica {
-    case Numero(Int)
-    case Suma(ExpresionAritmetica, ExpresionAritmetica)
-    case Multiplicacion(ExpresionAritmetica, ExpresionAritmetica)
+    case numero(Int)
+    case suma(ExpresionAritmetica, ExpresionAritmetica)
+    case multiplicacion(ExpresionAritmetica, ExpresionAritmetica)
 }
 
-let cinco = ExpresionAritmetica.Numero(5)
-let cuatro = ExpresionAritmetica.Numero(4)
-let suma = ExpresionAritmetica.Suma(cinco, cuatro)
-let producto = ExpresionAritmetica.Multiplicacion(suma, ExpresionAritmetica.Numero(2))
+let cinco = ExpresionAritmetica.numero(5)
+let cuatro = ExpresionAritmetica.numero(4)
+let suma = ExpresionAritmetica.suma(cinco, cuatro)
+let producto = ExpresionAritmetica.multiplicacion(suma, ExpresionAritmetica.numero(2))
 ```
 
 Es muy cómodo manejar enumeraciones recursivas de forma recursiva:
@@ -711,14 +721,17 @@ Es muy cómodo manejar enumeraciones recursivas de forma recursiva:
 ```swift
 func evalua(expresion: ExpresionAritmetica) -> Int {
     switch expresion {
-    case let .Numero(valor):
+    case let .numero(valor):
         return valor
-    case let .Suma(izquierda, derecha):
-        return evalua(izquierda) + evalua(derecha)
-    case let .Multiplicacion(izquierda, derecha):
-        return evalua(izquierda) * evalua(derecha)
+    case let .suma(izquierda, derecha):
+        return evalua(expresion: izquierda) + evalua(expresion: derecha)
+    case let .multiplicacion(izquierda, derecha):
+        return evalua(expresion: izquierda) * evalua(expresion: derecha)
     }
 }
+
+print(evalua(expresion: producto))
+// Imprime 18
 ```
 
 #### Typealias
@@ -731,23 +744,23 @@ efectos (es únicamente azúcar sintáctico).
 typealias Resultado = (Int, Int)
 
 enum Quiniela {
-    case Uno, Equis, Dos
+    case uno, equis, dos
 }
 
-func resultado(resultado: Resultado) -> Quiniela {
+func quiniela(resultado: Resultado) -> Quiniela {
   switch resultado {
     case let (goles1, goles2) where goles1 < goles2:
-      return .Dos
+      return .dos
     case let (goles1, goles2) where goles1 > goles2:
-      return .Uno
+      return .uno
     default:
-      return .Equis
+      return .equis
   }
 }
 
-resultado((1,3))
+print(quiniela(resultado: (1,3)))
 // Imprime Dos
-resultado((2,2))
+print(quiniela(resultado: (2,2)))
 // Imprime Equis
 ```
 
@@ -853,16 +866,6 @@ if let numeroVerdadero = Int(posibleNumero) {
 Podemos leer el código anterior de la siguiente forma: "Si el `Int`
 opcional devuelto por `Int(posibleNumero)` contiene un valor, define
 la constante `numeroVerdadero` con el valor contenido en el opcional".
-
-Es posible incluir varios ligados opcionales y añadir una cláusula
-`where` que comprueba una condición en el caso que existan valores:
-
-```swift
-if let primerNumero = Int("4"), segundoNumero = Int("42") where primerNumero < segundoNumero {
-    print("\(primerNumero) < \(segundoNumero)")
-}
-// Imprime "4 < 42"
-```
 
 #### Opcionales implícitamente desenvueltos
 
