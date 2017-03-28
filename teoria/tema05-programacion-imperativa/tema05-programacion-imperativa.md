@@ -1108,7 +1108,7 @@ entorno global la expresión `(+ 12 x)`. En este contexto la variable
    (define x 10)
    (+ x y))
 
-(+ (suma 2) x) ; ⇒ 17
+(+ (suma-10 2) x) ; ⇒ 17
 ```
 
 Otro ejemplo:
@@ -1311,7 +1311,7 @@ locales definidas en el `let`:
 
 ```scheme
 (define (make-sumador-cuadrado k)
-    (if (not (= k 0))
+    (if (> k 0)
         (let ((y (cuadrado k)))
           (lambda (x)
             (+ x y)))
@@ -1320,9 +1320,9 @@ locales definidas en el `let`:
 ```
 
 La función anterior tiene un condicional en el que se comprueba si `k`
-es 0. Si es distinto de 0, se devuelve una clausura creada en el
-ámbito del `let` con la variable `y` capturada con el valor del
-cuadrado de `k`. Esta clausura suma a su entrada el valor de `y`. 
+es mayor que 0. Si lo es, se devuelve una clausura creada en el ámbito
+del `let` con la variable `y` capturada con el valor del cuadrado de
+`k`. Esta clausura suma a su entrada el valor de `y`.
 
 Por ejemplo:
 
@@ -1331,11 +1331,11 @@ Por ejemplo:
 (f 3) ; ⇒ 19
 ```
 
-En el caso en que `k` sea 0, se devuelve una clausura que devuelve
-siempre el valor que recibe:
+En el caso en que `k` menor o igual que 0, se devuelve una clausura
+que devuelve siempre el valor que recibe:
 
 ```scheme
-(define f (make-sumador-cuadrado 0))
+(define f (make-sumador-cuadrado -8))
 (f 3) ; ⇒ 3
 ```
 
