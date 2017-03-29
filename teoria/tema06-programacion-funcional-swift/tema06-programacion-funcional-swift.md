@@ -415,9 +415,9 @@ let primero = a[0]
 let resto = a[1..<a.endIndex]
 ```
 
-En `resto` se guardará un `ArraySlice`. Es una vista de un rango de
+En `resto` se guarda un `ArraySlice`. Es una vista de un rango de
 elementos del array, en este caso el que va desde la posición 1 hasta
-la 5 (la posición inicial de un array es la 0). 
+la 5 (la posición inicial de un array es la 0).
 
 Un `ArraySlice` puede situarse sobre cualquier zona de un array. Por
 ejemplo:
@@ -430,17 +430,24 @@ let b = a[2...3]
 //}
 ```
 
-Para trabajar con funciones recursivas de una forma similar a cómo lo
-hacíamos con las listas de Scheme vamos a ir cambiando el rango
-conforme nos movemos por el `ArraySlice`. Iremos avanzando el índice
-de comienzo y dejando fijo el índice final. 
-
 Podemos acceder al primer elemento de un `ArraySlice` usando su
 atributo `startIndex`:
 
 ```swift
 print(b.startIndex) // => 2
 print(b[b.startIndex]) // => 3
+```
+
+Para trabajar con funciones recursivas de una forma similar a cómo lo
+hacíamos con las listas de Scheme vamos a ir cambiando el rango
+conforme nos movemos por el `ArraySlice`. Iremos obteniendo el primer
+elemento de la colección y avanzando el índice de comienzo, de forma
+similar a como hacíamos con las funciones _car_ y _cdr_ (o _primero_ y
+_resto_):
+
+```
+let primero = valores[valores.startIndex]
+let resto = valores[valores.startIndex+1..<valores.endIndex]
 ```
 
 De esta forma podemos definir una función recursiva que recorre un
@@ -796,9 +803,12 @@ tiene un valor numérico al que convertirse.
 El siguiente ejemplo muestra la forma correcta de usar el inicializador:
 
 ```swift
-let posibleNumero = "123"
+var posibleNumero = "123"
 let numeroConvertido = Int(posibleNumero)
-// numeroConvertido es de tipo "Int?", o "Int opcional"
+posibleNumero = "Hola mundo"
+let conversionErronea = Int(posibleNumero)
+// numeroConvertido y conversionErronea son de tipo "Int?", o "Int opcional"
+// El primero contiene un número y el segundo nil
 ```
 
 Debido a que el inicializador puede fallar, devuelve un `Int`
@@ -835,8 +845,8 @@ if numeroConvertido != nil {
 // Imprime "numeroConvertido contiene algún valor entero."
 ```
 
-Una vez que estamos seguros de que el opcional contiene un valor,
-debemos acceder a él usando un signo de exclamación (`!`). Quiere
+Si estamos seguros de que el opcional contiene un valor,
+podemos acceder a él usando un signo de exclamación (`!`). Quiere
 decir "Sé que hay este opcional tiene un valor concreto; por favor
 úsalo". Esto se conoce como _desenvoltura forzosa_ (_forced
 unwrapping_) del valor opcional:
@@ -1627,6 +1637,28 @@ print(car(cdr(lista))!) // Imprime 30
 print(car(cdr(cdr(lista)))!) // Imprime 40
 print(vacia(cdr(cdr(cdr(lista))))) // Imprime true
 ```
+
+<!-- ¿Cambiamos lo de antes por un árbol?:
+
+class Node {
+  var value: String
+  var children: [Node] = []
+  weak var parent: Node?
+ 
+  init(value: String) {
+    self.value = value
+  }
+ 
+  func add(child: Node) {
+    children.append(child)
+    child.parent = self
+  }
+}
+
+https://www.raywenderlich.com/138190/swift-algorithm-club-swift-tree-data-structure
+
+--> 
+
 
 ----
 
