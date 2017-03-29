@@ -230,41 +230,6 @@ print("min es \(limites.min) y max es \(limites.max)")
 // Imprime "min es -6 y max es 109"
 ```
 
-Si hay algún caso en el que la función pueda devolver "no hay valor"
-para los elementos de la tupla podemos usar un tipo _opcional_ para
-indicar que el valor devuelto puede ser `nil` (hablaremos más adelante
-de los tipos opcionales). Para ello se escribe un símbolo de
-interrogación tras el paréntesis. Por ejemplo, `(Int, Int)?` o
-`(String, Int, Bool)?`.
-
-Podemos modificar la función anterior para considerar el caso en que
-pasemos un array sin elementos:
-
-```swift
-func minMax(array: [Int]) -> (min: Int, max: Int)? {
-    if array.isEmpty { return nil }
-    var minActual = array[0]
-    var maxActual = array[0]
-    for valor in array[1..<array.count] {
-        if valor < minActual {
-            minActual = valor
-        } else if valor > maxActual {
-            maxActual = valor
-        }
-    }
-    return (minActual, maxActual)
-}
-```
-
-Tendremos entonces que llamar a la función comprobando si el valor
-devuelto es distinto de `nil`:
-
-```swift
-if let limites = minMax(array: [8, -6, 2, 109, 3, 71]) {
-    print("min es \(limites.min) y max es \(limites.max)")
-}
-// Imprime "min es -6 y max es 109"
-```
 
 ### <a name="3"></a> 3. Tipos función 
 
@@ -360,10 +325,61 @@ print(sumatorio(desde: 0, hasta: 10, func: cuadrado)) // Imprime 385
 ```
 
 
+#### Funciones en estructuras
+
+Como cualquier otro tipo Las funciones pueden también incluirse en
+  estructuras de datos compuestas, como arrays:
+  
+```swift
+var funciones = [identidad, doble, cuadrado]
+print(funciones[0](10)) // 10
+print(funciones[1](10)) // 20 
+print(funciones[2](10)) // 100
+```
+
+El tipo de la variable `funciones` sería `[(Int) -> Int]`. 
+
+Al ser Swift fuertemente tipeado, no podríamos hacer un array con
+distintos tipos de funciones. Por ejemplo el siguiente código daría un
+error:
+
+```swift
+func suma(_ x: Int, _ y: Int) -> Int {
+   return x + y
+}
+// La siguiente línea genera un error
+var misFunciones = [doble, cuadrado, suma]
+// error: heterogenous collection literal could only be inferred to
+// '[Any]'; add explicit type annotation if this is intentional
+
+```
+
 #### Funciones que devuelven otras funciones
 
 Por último, veamos un ejemplo de funciones que devuelven otras
-funciones y que se declaran de forma anidada:
+funciones.
+
+Empecemos por un ejemplo sencillo de una función que devuelve otra que
+suma 10:
+
+```swift
+func makeSumador10() -> (Int) -> Int {
+  func suma10(x: Int) -> Int {return x+10}
+  return suma10
+}
+
+var f = makeSumador10()
+print(f(20))
+// Imprime 30
+```
+
+Hay que hacer notar la declaración de la función `makeSumador10`. Es
+una función que no recibe argumentos y que devuelve otra función del
+tipo `(Int) -> Int`, esto es, una función que recibe un entero y
+devuelve otro entero.
+
+Otro ejemplo, un poco más complicado:
+
 
 ```swift
 func eligeFuncionPaso(menorQueCero: Bool) -> (Int) -> Int {
@@ -918,8 +934,35 @@ if let cadenaDefinitiva = supuestaCadena {
 // Imprime "Una cadena opcional implícitamente desenvuelta"
 ```
 
-### <a name="7"></a> 7. Inmutabilidad
+Como ejemplo de uso de opcionales adaptamos el ejemplo anterior de la
+función `minMax` para que pueda recibir un array vacío:
 
+```swift
+func minMax(array: [Int]) -> (min: Int, max: Int)? {
+    if array.isEmpty { return nil }
+    var minActual = array[0]
+    var maxActual = array[0]
+    for valor in array[1..<array.count] {
+        if valor < minActual {
+            minActual = valor
+        } else if valor > maxActual {
+            maxActual = valor
+        }
+    }
+    return (minActual, maxActual)
+}
+```
+
+Una vez obtenidos los valores deberemos desenvolver el resultado:
+
+```swift
+let limites = minMax(array:[10,20,-1])
+print("min es \(limites!.min) y max es \(limites!.max)")
+// Imprime "min es -6 y max es 109"
+```
+
+### <a name="7"></a> 7. Inmutabilidad
+<!--
 Una de las características funcionales importantes de Swift es el
 énfasis en la inmutabilidad para reforzar la seguridad del
 lenguaje. Veamos algunas características relacionadas con esto.
@@ -1014,9 +1057,11 @@ valor. En Swift todas las instancias de clases tienen esta semántica.
 En Swift las estructuras son tipos valor y las clases tipos de
 referencia. Comentaremos más diferencias en el tema de programación
 orientada a objetos.
+-->
 
 ### <a name="8"></a> 8. Expresiones de clausuras
 
+<!--
 Ya hemos visto previamente que en Swift las funciones son objetos de
 primera clase del lenguaje y que es posible definir funciones y
 pasarlas como parámetro de otras funciones.
@@ -1374,7 +1419,12 @@ tambienIncrementaDiez()
 // devuelve 50
 ```
 
+-->
+
 ### <a name="9"></a> 9. Funciones de orden superior
+
+
+<!--
 
 Una de las características funcionales que más hemos usado para
 trabajar con listas en Scheme son las funciones de orden superior como
@@ -1482,7 +1532,11 @@ cadenas.reduce("", combine: +)
 // devuelve "PatatasArrozHuevos"
 ```
 
+-->
+
 ### <a name="10"></a> 10. Genéricos
+
+<!--
 
 Empecemos con un ejemplo sencillo. Supongamos la siguiente función
 `intercambia(_:)` que recibe una tupla `(Int, String)` y devuelve una
