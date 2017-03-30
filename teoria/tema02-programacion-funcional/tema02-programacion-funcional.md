@@ -1215,7 +1215,8 @@ general. Por ejemplo, el caso general de la suma hasta 5 se calcularía
 con la expresión:
 
 ```scheme
-(+ (suma-hasta (- 5 1)) 5)```
+(+ (suma-hasta (- 5 1)) 5)
+```
 
 La evaluación de esta función calculará la llamada recursiva
 `(suma-hasta 4)`. Ahí es donde debemos **confiar en que la recursión
