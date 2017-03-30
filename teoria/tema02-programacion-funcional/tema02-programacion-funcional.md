@@ -1227,7 +1227,8 @@ hacer algo más, sumarle el propio número 5.
 ```(+ (suma-hasta (- 5 1)) 5) =
 (+ (suma-hasta 4) 5) = (confiamos en la recursión: (suma-hasta 4) = 10)
 (+ 10 5) =
-15```
+15
+```
 
 Otra característica necesaria del caso general en una definición
 recursiva, que también vemos en este ejemplo, es que **la llamada
