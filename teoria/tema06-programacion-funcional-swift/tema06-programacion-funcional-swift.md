@@ -757,6 +757,52 @@ print(evalua(expresion: producto))
 // Imprime 18
 ```
 
+Otro ejemplo de enums recursivos, para definir un tipo de datos
+`Lista` basado en parejas (similar a Scheme):
+
+```swift
+indirect enum Lista{
+ case vacia
+ case cons(Int, Lista)
+}
+
+func suma(lista: Lista) -> Int {
+   switch lista {
+   case  .vacia:
+     return 0
+   case let .cons(car, cdr):
+     let res = suma(lista: cdr)
+     return car + res
+   }
+}
+
+let z: Lista = .cons(20, .cons(10, .vacia))
+
+print(suma(lista: z))
+// Imprime 30
+```
+
+Podemos definir también una función recursiva `makeLista(array:[Int])`
+que devuelve una lista a partir de una array de enteros:
+
+```swift
+func makeLista(array: ArraySlice<Int>) -> Lista {
+ if (array.isEmpty) {
+   return .vacia
+ } else {
+   let primero = array[array.startIndex]
+   let resto = array[array.startIndex+1..<array.endIndex]
+   return .cons(primero, makeLista(array: resto))
+ }
+}
+
+let lista = makeLista(array: [1,2,3,4,5])
+
+print(suma(lista: lista))
+// Imprime 15
+```
+
+
 #### Typealias
 
 En Swift se define la palabra clave `typealias` para darle un nombre
@@ -874,6 +920,15 @@ if numeroConvertido != nil {
 // Imprime "numeroConvertido tiene un valor entero de 123."
 ```
 
+Si se desenvuelve un opcional que contiene un `nil` se causa un error
+en tiempo de ejecución:
+
+```swift
+let x = Int("Hola")
+let y = x! + 100
+// La sentencia anterior provoca un error en tiempo de ejecución
+```
+
 #### Ligado opcional
 
 Es posible comprobar si un opcional tiene valor y asignar su valor a
@@ -893,49 +948,12 @@ Podemos leer el código anterior de la siguiente forma: "Si el `Int`
 opcional devuelto por `Int(posibleNumero)` contiene un valor, define
 la constante `numeroVerdadero` con el valor contenido en el opcional".
 
-#### Opcionales implícitamente desenvueltos
 
-Algunas veces está claro a partir de la estructura del programa que un
-opcional siempre va a tener valor. En estos casos es útil eliminar la
-necesidad de comprobar y desenvolver el valor cada vez que se
-necesita. Estos valores se declaran como _opcionales implícitamente
-desenvueltos_ (_implicitly unwrapped optionals_). Se definen
-escribiendo un signo de admiración después del tipo (`String!`) en
-lugar del signo de interrogación (`String?`).
-
-El valor de un opcional declarado de esta forma se desenvuelve
-automáticamente cada vez que se usa, sin necesidad del signo de
-admiración.
-
-```swift
-let posibleCadena: String? = "Una cadena opcional."
-let cadenaExtraida: String = posibleCadena! // requiere un signo de admiración
-
-let supuestaCadena: String! = "Una cadena opcional implícitamente desenvuelta" // implicitly unwrapped optional
-let cadenaImplicita: String = supuestaCadena // no se necesita el signo de admiración
-```
-
-Es posible usar un opcional implícitamente desenvuelto como un
-opcional normal, para comprobar si tiene valor:
-
-```swift
-if supuestaCadena != nil {
-    print(supuestaCadena)
-}
-// Imprime "Una cadena opcional implícitamente desenvuelta"
-```
-
-Y también se puede utilizar en un ligado opcional:
-
-```swift
-if let cadenaDefinitiva = supuestaCadena {
-    print(cadenaDefinitiva)
-}
-// Imprime "Una cadena opcional implícitamente desenvuelta"
-```
+#### Ejemplos de uso de opcionales
 
 Como ejemplo de uso de opcionales adaptamos el ejemplo anterior de la
-función `minMax` para que pueda recibir un array vacío:
+función `minMax` para que pueda recibir un array vacío, en cuyo caso
+devolverá `nil`.
 
 ```swift
 func minMax(array: [Int]) -> (min: Int, max: Int)? {
@@ -953,12 +971,32 @@ func minMax(array: [Int]) -> (min: Int, max: Int)? {
 }
 ```
 
-Una vez obtenidos los valores deberemos desenvolver el resultado:
+Una vez obtenidos, la variable `limites` devuelta es también un
+opcional, y para obtener los valores deberemos desenvolver el resultado:
 
 ```swift
 let limites = minMax(array:[10,20,-1])
 print("min es \(limites!.min) y max es \(limites!.max)")
 // Imprime "min es -6 y max es 109"
+```
+
+En el caso anterior sabemos que `limites` va a devolver un valor
+(porque llamamos a `minMax` con un array con elementos), por lo que
+podemos desenvolverlo sin temor de provocar un error. 
+
+Sin embargo, en el ejemplo siguiente no es recomendable hacer una
+desenvoltura forzosa, porque no sabemos si `minMax` va a devolver
+`nil` o no:
+
+```swift
+let valores = pedirNums() // La función pedirNums() pide una lista de 
+                          // números por la entrada estándar y
+                          // devuelve un [Int] (que puede estar vacío)
+if let limites = minMax(valores) {
+    print("min es \(limites.min) y max es \(limites.max)")
+} else {
+    print("No hay números")
+}
 ```
 
 ### <a name="7"></a> 7. Inmutabilidad
