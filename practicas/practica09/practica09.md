@@ -1,4 +1,4 @@
-## Práctica 9: Estructuras de datos mutables, clausuras, ámbito de variables y mutación
+## Práctica 9: Estructuras de datos mutables, clausuras, ámbito de variables y estado local
 
 ### Entrega de la práctica
 
