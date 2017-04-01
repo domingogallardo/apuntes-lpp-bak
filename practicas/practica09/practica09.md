@@ -1,135 +1,221 @@
-## Práctica 9: Introducción a Swift
+## Práctica 9: Estructuras de datos mutables, clausuras, ámbito de variables y mutación
+
+### Entrega de la práctica
 
 Para entregar la práctica debes subir a Moodle el fichero
-`practica09.swift` con una cabecera inicial con tu nombre y apellidos,
-y las soluciones de cada ejercicio separadas por comentarios. Cada
+`practica09.rkt` con una cabecera inicial con tu nombre y apellidos, y
+las soluciones de cada ejercicio separadas por comentarios. Cada
 solución debe incluir:
 
 - La **definición de las funciones** que resuelven el ejercicio.
-- Una visualización por pantalla de todos los ejemplos incluidos en el
-  enunciado que **demuestren qué hace la función**.
+- Un conjunto de **pruebas** que comprueben su funcionamiento
+  utilizando la librería `schemeunit`.
+
+## Ejercicios
+
+### Ejercicio 1
+
+¿Qué devolvería Scheme en las siguientes expresiones? Rellena los
+huecos o indica qué aparecería en pantalla sin consultar el
+intérprete.
+
+a)
+```scheme
+(define x 1)
+(define (foo)
+   (+ x 1))
+(define (bar)
+   (define x 2)
+   (foo))
+(bar) ; ⇒ ________
+```
+
+b)
+
+```scheme
+(define y 1)
+(define (foo)
+   (define y 2)
+   (lambda (x)
+      (+ x y)))
+(define (bar f)
+    (define y 3)
+    (lambda (x)
+        (f x)))
+(define g (bar (foo)))
+(g 10) ; ⇒ __________
+```
+
+c)
+
+```scheme
+(define (foo z)
+   (set! z (+ z 1))
+   (if (> x 0)
+      (let ((y (+ z 10))
+            (z 20))
+         (lambda (x)
+            (+ x y z)))
+      (begin 
+         (define g (lambda (x)
+            (+ x  y z)))
+         g)))
+         
+(define f (foo -10))
+(define g (foo 10))
+(f 1) ; ⇒ ________
+(g 1) ; ⇒ ________
+```
+
+d) 
+
+```scheme
+(define x 0)
+(define (foo x)
+   (define y 0)
+   (define z (/ x y))
+   (lambda (x)
+      (/ z x)))
+(display "A")
+(define g (foo x))
+(display "B")
+(display (g 0))
+```
 
 
-#### Ejercicio 1
 
-Implementa en Swift la función `ordenado(array: [Int]) -> Bool` que
-recibe como argumento un array de `Int` y devuelve `true` si los
-números del array están ordenados de forma creciente y `false` en caso
-contrario. Suponemos arrays de 1 o más elementos.
+e)
+
+```scheme
+(define (foo)
+  (define x 100)
+  (lambda (y)
+    (+ x y)))
+
+(define (bar)
+  (define x 1)
+  (lambda (y)
+    (set! x (+ x y))
+    x))
+
+(define (aplica f g)
+  (define x 10)
+  (g x) 
+  (f (g x)))
+
+(define f1 (foo)) 
+(define f2 (bar))
+(aplica f1 f2) ; ⇒ _________
+```
+
+
+### Ejercicio 2
+
+Define la función `(make-flip)` que construya una función que cada vez
+que se ejecute devuelva 1, 0, 1 ...
 
 Ejemplo:
 
-```swift
-let aOrdenado = [10, 20, 30]
-let aDesordenado = [20, 10, 30]
-
-print("¿El array \(aOrdenado) está ordenado?: \(ordenado(aOrdenado))")
-// Imprime: ¿El array [10, 20, 30] está ordenado?: true
-print("¿El array \(aDesordenado) está ordenado?: \(ordenado(aDesordenado))")
-// Imprime: ¿El array [20, 10, 30] está ordenado?: false
+```scheme
+(define flip (make-flip))
+(flip) ; ⇒ 1
+(flip) ; ⇒ 0
+(flip) ; ⇒ 1
 ```
 
+### Ejercicio 3
 
-#### Ejercicio 2
+a) Define el tipo de dato mutable `Cola` que implementa una cola FIFO
+en la que se añaden y se sacan elementos con mutación. La barrera de
+abstracción se define por las siguientes funciones:
 
-Implementa las funciones 
-
-- `union(intervalo: (Int, Int), con intervalo2: (Int, Int)) -> (Int, Int)` 
-- `interseccion(intervalo:(Int, Int), con intervalo2: (Int, Int)) -> (Int, Int)?`
-
-que devuelvan el resultado de unir e intersectar dos intervalos de
-números representados por tuplas `(Int, Int)`. El primer `Int` de la
-tupla representa el límite inferior del intervalo y el segundo su
-límite superior (ver ejemplos en la práctica 2 de la asignatura). En
-el caso de la intersección, si los intervalos no intersectan se
-devolverá `nil`.
+- `(make-cola)`: construye una cola vacía y la devuelve.
+- `(encolar! dato cola)`: añade un dato al final de la cola.
+- `(desencolar! cola)`: devuelve el primer dato de la cola y lo
+  elimina de la cola. No devuelve nada si la cola está vacía.
+- `(vacia-cola? cola)`: #t si la cola está vacía
 
 Ejemplo:
 
-```swift
-let intervalo1 = (4, 10)
-let intervalo2 = (3, 8)
-
-print("La unión de \(intervalo1) y \(intervalo2) es \(union(intervalo1, con: intervalo2))")
-// Imprime: La unión de (4, 10) y (3, 8) es (3, 10)
-
-let intervalo3 = (8, 15)
-let intervalo4 = (12, 20)
-
-print("La intersección de \(intervalo1) y \(intervalo3) es \(interseccion(intervalo1, con: intervalo3))")
-// Imprime: La intersección de (4, 10) y (8, 15) es Optional((8, 10))
-print("La intersección de \(intervalo1) y \(intervalo4) es \(interseccion(intervalo1, con: intervalo4))")
-// Imprime: La intersección de (4, 10) y (12, 20) es nil
+```scheme
+(define cola (make-cola))
+(encolar! 1 cola)
+(encolar! 2 cola)
+(encolar! 'a cola)
+(encolar! 'b cola)
+(desencolar! cola)  ; ⇒ 1
+(vacia-cola? cola)  ; ⇒ #f
+(desencolar! cola)  ; ⇒ 2
+(desencolar! cola)  ; ⇒ 'a
+(desencolar! cola)  ; ⇒ 'b
+(vacia-cola? cola)  ; ⇒ #t
 ```
 
-#### Ejercicio 3
-
-Implementa la función `buscaValores` que recibe un array de enteros y
-un diccionario de enteros y cadenas y devuelve un array de
-cadenas. Los números del array son claves del diccionario que pasamos
-como segundo parámetro. La función debe devolver el array de cadenas
-correspondientes a los números que hay en el array de enteros.
-
-Ejemplo de invocación:
-
-```swift
-buscaValores([1,2,2,1,3], [1: "patatas", 2: "huevos", 3: "leche"])
-// devuelve ["patatas", "huevos", "huevos", "patatas", "leche"]
-```
-
-#### Ejercicio 4
-
-Supongamos que queremos calcular estadísticas sobre respuestas de una
-encuesta. Las respuestas se definen con el siguiente `enum`:
-
-```swift
-enum Respuesta: Int {
-   case Nada = 0, Regular, Medio, Bastante, Todo
-}
-```
-
-Implementa la función `estadisticas(respuestas: [Respuesta]) ->
-(Respuesta, Double)` que recibe un array de respuestas de la encuesta
-y devuelve la respuesta más frecuente y la media numérica de las
-respuestas, suponiendo que el valor de `Respuesta.Nada` es `0` y el de
-`Respuesta.Todo` es 4.
+b) Implementa la función `(memorizador func)` que recibe una función
+de dos argumentos y devuelve una clausura que se comporta como la
+función original, pero que guarda los resultados que se van generando
+en una cola local (usa la implementación de la cola del apartado
+anterior). Cuando recibe en uno de sus argumentos el símbolo `'res`,
+devuelve el primer resultado encolado y lo desencola.
 
 Ejemplo:
 
-```swift
-let contestaciones = [Respuesta.Nada, Respuesta.Nada, Respuesta.Todo, Respuesta.Medio, Respuesta.Regular]
-print(estadisticas(contestaciones))
-// Imprime (Respuesta.Nada, 1.4)
+```scheme
+(define f (memorizador +))
+(define g (memorizador string-append))
+(f 5 7) ; ⇒ 12
+(f 3 2) ; ⇒ 5
+(f 1 6) ; ⇒ 7
+(g "hola" "que tal") ; ⇒ "holaque tal"
+(g "lo siguiente es " "Swift") ; ⇒ "lo siguiente es Swift"
+(f 'res 'res) ; ⇒ 12
+(g 'res 'res) ; ⇒ "holaque tal"
+(f 'res 'res) ; ⇒ 5
+(g 'res 'res) ; ⇒ "lo siguiente es Swift"
+(f 8 9) ; ⇒ 17
+(f 'res 'res) ; ⇒ 7
+(f 'res 'res) ; ⇒ 17
 ```
 
-#### Ejercicio 5
+### Ejercicio 4
 
-Implementa la función `cuentaOcurrencias(array1: [String], _ array2:
-[String]) -> [(String, Int, Int)]` que recibe dos arrays de cadenas y
-devuelve una lista de tuplas de tipo `(String, Int, Int)`. Las tuplas
-representan el número de veces que aparece la cadena en la primera y
-la segunda lista.
+Define la función `(mi-cons x y)` que almacene dos valores `x` e
+`y`. Devuelve una función _dispatch_ que espera un mensaje: `'car`,
+`'cdr`, `set-car!` o `'set-cdr!`. Utilizando estado local construye
+`mi-cons` para implementar con el _dispatch_ una pareja y sus
+funciones asociadas.
 
 Ejemplo:
 
-```swift
-print(cuentaOcurrencias(["pera", "melón", "pera", "manzana", "orégano"], 
-                        ["perejil", "pera", "hierbabuena", "orégano", "perejil"]))
-// Imprime: [("pera", 2, 1),
-//           ("melón", 1, 0),
-//           ("manzana", 1, 0),
-//           ("orégano", 1, 1),
-//           ("perejil", 0, 2),
-//           ("hierbabuena", 0, 1)]
+```scheme
+(define a (mi-cons 1 2))
+((a 'car)) ; ⇒ 1
+((a 'cdr)) ; ⇒ 2
+((a 'set-car!) 40)
+((a 'set-cdr!) 60)
+((a 'car)) ; ⇒ 40
+((a 'cdr)) ; ⇒ 60
 ```
+
+### Ejercicio 5
+
+Define la función `cuenta-bancaria` que simule una cuenta en un banco
+con estado local.  Al crear la cuenta bancaria se inicializa con un
+saldo inicial. Debe proporcionar acceso a ingresos, reintegros,
+consulta de saldo e historial de operaciones realizadas.
+
+```scheme
+(define c (cuenta-bancaria 100))
+((c 'reintegro) 50)
+((c 'ingreso) 250)
+((c 'reintegro) 25)
+((c 'saldo)) ; ⇒ 275
+((c 'historial)) ; ⇒ {*hist* {reintegro . 25} {ingreso . 250} {reintegro . 50}}
+```
+
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16  
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 Antonio Botía, Domingo Gallardo, Cristina Pomares  
-
-
-
-
-
