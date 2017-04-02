@@ -771,8 +771,7 @@ func suma(lista: Lista) -> Int {
    case  .vacia:
      return 0
    case let .cons(car, cdr):
-     let res = suma(lista: cdr)
-     return car + res
+     return car + suma(lista: cdr)
    }
 }
 
@@ -997,6 +996,31 @@ if let limites = minMax(valores) {
 } else {
     print("No hay números")
 }
+```
+
+Otro ejemplo, una segunda versión del enum `Lista`, en el que
+utilizamos un único `case`, pero dando la posibilidad de que el `cdr`
+de la lista sea `nil` haciéndolo opcional:
+
+```swift
+indirect enum Lista{
+	case cons(Int, Lista?)
+}
+
+func suma(lista: Lista) -> Int {
+	switch lista {
+		case let .cons(car, cdr):
+		if (cdr == nil) {
+			return car
+		} else {
+			return car + suma(lista: cdr!)
+		}
+	}
+}
+
+let z: Lista = .cons(20, .cons(10, nil))
+print(suma(lista: z))
+/// Devuelve 30
 ```
 
 ### <a name="7"></a> 7. Inmutabilidad
