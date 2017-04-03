@@ -180,7 +180,9 @@ Define la función `(mi-cons x y)` que almacene dos valores `x` e
 `y`. Devuelve una función _dispatch_ que espera un mensaje: `'car`,
 `'cdr`, `set-car!` o `'set-cdr!`. Utilizando estado local construye
 `mi-cons` para implementar con el _dispatch_ una pareja y sus
-funciones asociadas.
+funciones asociadas. 
+
+No puedes usar la función `cons`.
 
 Ejemplo:
 
