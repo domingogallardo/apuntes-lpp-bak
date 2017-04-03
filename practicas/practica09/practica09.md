@@ -123,14 +123,21 @@ Ejemplo:
 ### Ejercicio 3
 
 a) Define el tipo de dato mutable `Cola` que implementa una cola FIFO
-en la que se añaden y se sacan elementos con mutación. La barrera de
-abstracción se define por las siguientes funciones:
+con cabecera en la que se añaden y se sacan elementos con mutación. La
+barrera de abstracción se define por las siguientes funciones:
 
 - `(make-cola)`: construye una cola vacía y la devuelve.
 - `(encolar! dato cola)`: añade un dato al final de la cola.
 - `(desencolar! cola)`: devuelve el primer dato de la cola y lo
   elimina de la cola. No devuelve nada si la cola está vacía.
 - `(vacia-cola? cola)`: #t si la cola está vacía
+
+Proporcionamos como pista la definición de la función `(make-cola)`:
+
+```scheme
+(define (make-cola)
+   (list '*cola*))
+```
 
 Ejemplo:
 
