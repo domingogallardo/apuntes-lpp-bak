@@ -15,11 +15,11 @@ solución debe incluir:
 
 ### Ejercicio 1
 
-¿Qué devolvería Scheme en las siguientes expresiones? Rellena los
-huecos o indica qué aparecería en pantalla sin consultar el
-intérprete.
+¿Qué devolvería o imprimiría Scheme en las siguientes expresiones?
+Hazlo sin consultar el intérprete.
 
-a)
+a) Rellena los huecos:
+
 ```scheme
 (define x 1)
 (define (foo)
@@ -30,7 +30,7 @@ a)
 (bar) ; ⇒ ________
 ```
 
-b)
+b) Rellena los huecos:
 
 ```scheme
 (define y 1)
@@ -46,28 +46,27 @@ b)
 (g 10) ; ⇒ __________
 ```
 
-c)
+c) Rellena los huecos:
 
 ```scheme
 (define (foo z)
+   (define y 5)
    (set! z (+ z 1))
-   (if (> x 0)
+   (if (> z 0)
       (let ((y (+ z 10))
             (z 20))
          (lambda (x)
             (+ x y z)))
-      (begin 
-         (define g (lambda (x)
-            (+ x  y z)))
-         g)))
-         
+      (lambda (x)
+         (+ x  y z)))))
+
 (define f (foo -10))
 (define g (foo 10))
 (f 1) ; ⇒ ________
 (g 1) ; ⇒ ________
 ```
 
-d) 
+d) Indica qué aparecería por pantalla:
 
 ```scheme
 (define x 0)
@@ -82,9 +81,7 @@ d)
 (display (g 0))
 ```
 
-
-
-e)
+e) Rellena los huecos:
 
 ```scheme
 (define (foo)
