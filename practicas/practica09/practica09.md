@@ -58,7 +58,7 @@ c) Rellena los huecos:
          (lambda (x)
             (+ x y z)))
       (lambda (x)
-         (+ x  y z)))))
+         (+ x  y z))))
 
 (define f (foo -10))
 (define g (foo 10))
