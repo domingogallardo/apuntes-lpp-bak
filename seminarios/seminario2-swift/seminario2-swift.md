@@ -87,7 +87,7 @@ sin necesidad de realizar ninguna instalación en local. El
 inconveniente obvio es que estamos a expensas de tener una conexión a
 Internet y de que el entorno no esté caído.
 
-### <a name="2-2"></a> 2.2. Instalación en MacOS
+### <a name="2-2"></a> 2.2. Instalación en MacOS
 
 Para instalar la última versión de Swift en MacOs debes instalar
 Xcode. Una vez instalado puedes ejecutar Swift desde el terminal.
