@@ -14,7 +14,7 @@ Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad d
         - [2.4.1. Instalación de la máquina virtual Vagrant](#2-4-1)
         - [2.4.2. (Windows) Conexión ssh mediante PuTTY](#2-4-2)
         - [2.4.3. Directorio compartido entre el ordenador *host* y la máquina virtual](#2-4-3)
-    - [2.4. Editor de código Atom](#2-4)
+    - [2.5. Editor de código Atom](#2-5)
 - [3. Un tour de Swift](#3)
 
 ## <a name="0"></a> Bibliografía y referencias
