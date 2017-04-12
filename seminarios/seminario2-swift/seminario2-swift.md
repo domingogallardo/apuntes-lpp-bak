@@ -1,21 +1,23 @@
-## Seminario 2: Seminario de Swift
+# Seminario 2: Seminario de Swift
 
 [Lenguajes y Paradigmas de Programación](https://moodle2015-16.ua.es/moodle/course/view.php?id=4802), curso 2016-17  
 Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 
-### Contenidos
+## Contenidos
 
 - [1. El lenguaje de programación Swift](#1)
 - [2. Ejecución de programas Swift](#2)
     - [2.1. Ejecución en IBM Swift Sandbox](#2-1)
-    - [2.2. Máquina Vagrant con Swift](#2-2)
-        - [2.1. Instalación de la máquina virtual Vagrant](#2-2-1)
-        - [2.2. (Windows) Conexión ssh mediante PuTTY](#2-2-2)
-        - [2.3. Directorio compartido entre el ordenador *host* y la máquina virtual](#2-2-3)
-        - [2.4 Editor de código Atom](#2-2-4)
+    - [2.2. Instalación en MacOs](#2-2)
+    - [2.3. Instalación en Linux Ubuntu](#2-3)
+    - [2.4. Máquina Vagrant con Swift](#2-4)
+        - [2.4.1. Instalación de la máquina virtual Vagrant](#2-4-1)
+        - [2.4.2. (Windows) Conexión ssh mediante PuTTY](#2-4-2)
+        - [2.4.3. Directorio compartido entre el ordenador *host* y la máquina virtual](#2-4-3)
+    - [2.4. Editor de código Atom](#2-4)
 - [3. Un tour de Swift](#3)
 
-### <a name="0"></a> Bibliografía y referencias
+## <a name="0"></a> Bibliografía y referencias
 
 - Documentación sobre Swift
     - [The Swift Programming Language (ePub)](https://swift.org/documentation/TheSwiftProgrammingLanguage(Swift3.1).epub)
@@ -30,7 +32,7 @@ Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad d
 - Atom
     - [Manual de Atom](https://atom.io/docs/v1.5.3/)
 
-### <a name="1"></a> 1. El lenguaje de programación Swift
+## <a name="1"></a> 1. El lenguaje de programación Swift
 
 Swift
 [(enlace a la Wikipedia)](https://en.wikipedia.org/wiki/Swift_(programming_language))
@@ -63,7 +65,7 @@ Swift:
 > éstas inducen.
 
 
-### <a name="2"></a> 2. Ejecución de programas Swift
+## <a name="2"></a> 2. Ejecución de programas Swift
 
 Presentamos dos posibles configuraciones para poder ejecutar programas
 Swift en cualquier sistema operativo (Mac, Windows o Linux): 
@@ -71,7 +73,7 @@ Swift en cualquier sistema operativo (Mac, Windows o Linux):
 - Ejecución on-line en un entorno de IBM (IBM Swift Sandbox).
 - Ejecución local en una máquina virtual Vagrant.
 
-#### <a name="2-1"></a> 2.1. Ejecución en IBM Swift Sandbox
+### <a name="2-1"></a> 2.1. Ejecución en IBM Swift Sandbox
 
 IBM mantiene un entorno de edición y ejecución on-line de Swift con el
 que es posible editar, salvar y ejecutar programas Swift:
@@ -85,14 +87,38 @@ sin necesidad de realizar ninguna instalación en local. El
 inconveniente obvio es que estamos a expensas de tener una conexión a
 Internet y de que el entorno no esté caído.
 
-#### <a name="2-2"></a> 2.2. Ejecución en entorno local
+### <a name="2-2"></a> 2.2. Instalación en MacOS
+
+Para instalar la última versión de Swift en MacOs debes instalar
+Xcode. Una vez instalado puedes ejecutar Swift desde el terminal.
+
+
+### <a name="2-3"></a> 2.3. Instalación en Linux Ubuntu
+
+Existe una distribución oficial de Swift para Ubuntu de 64 bits
+(distribuciones 14.04, 16.04 y 16.10).
+
+Puedes encontrar la información completa en la
+[web oficial de Apple](https://swift.org/download/).
+
+Brevemente, los pasos son los siguientes:
+
+```
+$ sudo apt-get install clang libicu-dev
+// Descargar la versión y plataforma deseada (fichero swift-<VERSION>-<PLATFORM>.tar.gz)
+$ tar xzf swift-<VERSION>-<PLATFORM>.tar.gz
+// Esto crea el directorio usr/ en la localización del archivo
+// Actualizar el PATH o mover usr/bin/swift al directorio /usr/bin
+```
+
+### <a name="2-4"></a> 2.4. Ejecución en entorno local
 
 Vamos a utilizar una máquina virtual Vagrant con la versión Linux de
 Swift para realizar las prácticas. De esta forma todos trabajaremos
 con el mismo entorno, independientemente del sistema operativo que
 tengamos.
 
-#### <a name="2-2-1"></a> 2.2.1. Instalación de la máquina virtual Vagrant
+#### <a name="2-4-1"></a> 2.4.1. Instalación de la máquina virtual Vagrant
 
 Veamos los pasos para construir una máquina virtual Linux (Ubuntu
 14.04) con Swift gestionada por Vagrant. Funcionan tanto para Windows
@@ -187,7 +213,7 @@ como para Mac OS X:
 
     El comando `vagrant halt` detiene la máquina virtual y la deja apagada hasta la siguiente vez que hagamos `vagrant up` 
 
-#### <a name="2-2-2"></a> 2.2.2. (Windows) Conexión ssh mediante PuTTY
+#### <a name="2-4-2"></a> 2.4.2. (Windows) Conexión ssh mediante PuTTY
 
 En Windows es conveniente instalar la utilidad
 [PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
@@ -201,7 +227,7 @@ realizar una conexión ssh con los siguientes parámetros:
 - password: vagrant
 
 
-#### <a name="2-2-3"></a> 2.2.3. Directorio compartido entre el ordenador *host* y la máquina virtual
+#### <a name="2-4-3"></a> 2.4.3. Directorio compartido entre el ordenador *host* y la máquina virtual
 
 En la máquina Vagrant se monta automáticamente el directorio del
 ordenador anfitrión en el que se se encuentra el fichero `Vagrantfile`
@@ -276,7 +302,7 @@ Probamos a usar el directorio compartido:
     $ vagrant halt
     ```
 
-#### <a name="2-2-4"></a> 2.2.4 Editor de código Atom
+### <a name="2-5"></a> 2.5. Editor de código Atom
 
 Para editar código Swift puedes usar cualquier editor orientado a
 programación. Aconsejamos [Atom](https://atom.io), un editor
@@ -297,7 +323,7 @@ Settings > Install Packages**):
 
 Puedes consultar los conceptos básicos de Atom, y el manual completo en [este enlace](http://flight-manual.atom.io/getting-started/sections/atom-basics/).
 
-### <a name="3"></a> 3. Un tour de Swift
+## <a name="3"></a> 3. Un tour de Swift
 
 Aquí empieza el seminario de Swift. El texto que hay a continuación es
 una traducción del documento de Apple
@@ -652,15 +678,15 @@ Las funciones también pueden tener un número variable de argumentos,
 agrupándose todos ellos en un array.
 
 ```swift
-func sumaDe(numeros: Int...) -> Int {
+func suma(numeros: Int...) -> Int {
     var suma = 0
     for numeros in numeros {
         suma += numeros
     }
     return suma
 }
-sumaDe()
-sumaDe(42, 597, 12)
+suma()
+suma(numeros: 42, 597, 12)
 ```
 
 > EXPERIMENTO  
@@ -773,7 +799,7 @@ después de los paréntesis. Cuando una clausura es el único argumento
 de una función, puedes omitir los paréntesis por completo.
 
 ```swift
-let numerosOrdenados = numeros.sort { $0 > $1 }
+let numerosOrdenados = numeros.sorted { $0 > $1 }
 print(numerosOrdenados)
 ```
 
@@ -818,8 +844,9 @@ se asignan en orden. Puedes también usar cadenas o números en punto
 flotante como valores brutos de una enumeración. Utiliza la propiedad
 `rawValue` para acceder al valor bruto de una enumeración.
 
-Usa el inicializador `init?(rawValue:)` para construir una instancia
-de una enumeración a través de un valor bruto.
+Usa el inicializador para construir un valor de una enumeración a
+través de un valor bruto. Si el valor bruto no existe, el
+inicializador devolverá `nil`.
 
 ```swift
 if let valorConvertido = Valor(rawValue: 3) {
@@ -856,12 +883,12 @@ let descripcionCopas = copas.descripcionSencilla()
 > Añade un método `color()` a `Palo` que devuelva "agresivo" para
 > *bastos* y *espadas* y devuelva "reflexivo" para *oros* y *copas*.
 
-Date cuenta de las dos formas en las que nos referimos al caso `Copas`
+Date cuenta de las dos formas en las que nos referimos al caso `copas`
 de la enumeración anterior: cuando se asigna un valor a la constante
-`copas`, nos referimos al caso de la enumeración `Palo.Copas` usando
+`copas`, nos referimos al caso de la enumeración `Palo.copas` usando
 su nombre completo porque la constante no tiene un tipo explícito
 especificado. Dentro del `switch`, nos referimos al caso de la
-enumeración con la forma abreviada `.Copas` porque ya se sabe que el
+enumeración con la forma abreviada `.copas` porque ya se sabe que el
 valor de `self` es un `Palo`. Puedes usar la forma abreviada en
 cualquier momento en que el tipo del valor ya se conozca.
 
