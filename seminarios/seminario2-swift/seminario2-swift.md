@@ -777,7 +777,133 @@ let numerosOrdenados = numeros.sort { $0 > $1 }
 print(numerosOrdenados)
 ```
 
-#### Objetos y clases
+#### Enumeraciones 
+
+Usa `enum` para crear una enumeración. Como las clases y otros tipos
+con nombre, las enumeraciones pueden tener métodos asociados.
+
+```swift
+enum Valor: Int {
+    case uno = 1
+    case dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez
+    case sota, caballo, rey
+    func descripcionSencilla() -> String {
+        switch self {
+        case .uno:
+            return "as"
+        case .sota:
+            return "sota"
+        case .caballo:
+            return "caballo"
+        case .rey:
+            return "rey"
+        default:
+            return String(self.rawValue)
+        }
+    }
+}
+let carta = Valor.uno
+let valorBrutoCarta = carta.rawValue
+```
+
+> EXPERIMENTO  
+> Escribe una función que compare dos valores `Valor` a través de una
+> comparación de sus valores brutos.
+
+Por defecto, Swift asigna los valores brutos comenzando en cero e
+incrementándolos por uno cada vez, pero puedes cambiar esta conducta
+especificando explícitamente los valores. En el ejemplo anterior, a
+`As` se le da un valor bruto de `1` y el resto de los valores brutos
+se asignan en orden. Puedes también usar cadenas o números en punto
+flotante como valores brutos de una enumeración. Utiliza la propiedad
+`rawValue` para acceder al valor bruto de una enumeración.
+
+Usa el inicializador `init?(rawValue:)` para construir una instancia
+de una enumeración a través de un valor bruto.
+
+```swift
+if let valorConvertido = Valor(rawValue: 3) {
+    let descripcionTres = valorConvertido.descripcionSencilla()
+}
+```
+
+Los valores *case* de una enumeración son valores reales, no una forma
+nueva de escribir sus valores brutos. De hecho, en los casos en los
+que no hay un valor bruto que tenga sentido, no tienes que
+proporcionar uno.
+
+```swift
+enum Palo {
+    case oros, bastos, copas, espadas
+    func descripcionSencilla() -> String {
+        switch self {
+        case .oros:
+            return "oros"
+        case .bastos:
+            return "bastos"
+        case .copas:
+            return "copas"
+        case .espadas:
+            return "espadas"
+        }
+    }
+}
+let copas = Palo.copas
+let descripcionCopas = copas.descripcionSencilla()
+```
+
+> EXPERIMENTO  
+> Añade un método `color()` a `Palo` que devuelva "agresivo" para
+> *bastos* y *espadas* y devuelva "reflexivo" para *oros* y *copas*.
+
+Date cuenta de las dos formas en las que nos referimos al caso `Copas`
+de la enumeración anterior: cuando se asigna un valor a la constante
+`copas`, nos referimos al caso de la enumeración `Palo.Copas` usando
+su nombre completo porque la constante no tiene un tipo explícito
+especificado. Dentro del `switch`, nos referimos al caso de la
+enumeración con la forma abreviada `.Copas` porque ya se sabe que el
+valor de `self` es un `Palo`. Puedes usar la forma abreviada en
+cualquier momento en que el tipo del valor ya se conozca.
+
+Una instancia de un caso de enumeración puede tener valores asociados
+con la instancia. Instancias del mismo caso de enumeración pueden
+tener asociados valores diferentes. Proporcionas los valores asociados
+cuando creas la instancia. Los valores asociados y los valores brutos
+son distintos: el valor bruto de un caso de enumeración es el mismo
+para todas las instancias, mientras que proporcionas el valor asociado
+cuando defines la enumeración.
+
+Por ejemplo, considera el caso de realizar una petición a un servidor
+de la hora de salir el sol y de la hora de ponerse el sol. El servidor
+responde con la información o responde con alguna información de
+error.
+
+```swift
+enum RespuestaServidor {
+    case resultado(String, String)
+    case error(String)
+}
+ 
+let exito = RespuestaServidor.resultado("6:00 am", "8:09 pm")
+let fallo = RespuestaServidor.error("Sin queso.")
+ 
+switch exito {
+    case let .resultado(salidaSol, puestaSol):
+        print("La salida del sol es a las \(salidaSol) y la puesta es a \(puestaSol).")
+    case let .error(error):
+        print("Fallo...  \(error)")
+}
+```
+
+> EXPERIMENTO  
+> Añade un tercer caso al `ServerResponse` y al switch.
+
+Date cuenta de cómo la hora de salir el sol y de ponerse el sol se
+extraen del `ServerResponse` como parte del emparejamiento entre el
+valor y los casos switch.
+
+
+#### Objetos, clases y estructuras
 
 Usa `class` seguido por el nombre de la clase para crear una
 clase. Una declaración de una propiedad en una clase se escribe de la
@@ -966,131 +1092,6 @@ es un valor opcional.
 let cuadradoOpcional: Cuadrado? = Cuadrado(longitudLado: 2.5, nombre: "Cuadrado opcional")
 let longitudLado = cuadradoOpcional?.longitudLado
 ```
-
-#### Enumeraciones y estructuras
-
-Usa `enum` para crear una enumeración. Como las clases y otros tipos
-con nombre, las enumeraciones pueden tener métodos asociados.
-
-```swift
-enum Valor: Int {
-    case uno = 1
-    case dos, tres, cuatro, cinco, seis, siete, ocho, nueve, diez
-    case sota, caballo, rey
-    func descripcionSencilla() -> String {
-        switch self {
-        case .uno:
-            return "as"
-        case .sota:
-            return "sota"
-        case .caballo:
-            return "caballo"
-        case .rey:
-            return "rey"
-        default:
-            return String(self.rawValue)
-        }
-    }
-}
-let carta = Valor.uno
-let valorBrutoCarta = carta.rawValue
-```
-
-> EXPERIMENTO  
-> Escribe una función que compare dos valores `Valor` a través de una
-> comparación de sus valores brutos.
-
-Por defecto, Swift asigna los valores brutos comenzando en cero e
-incrementándolos por uno cada vez, pero puedes cambiar esta conducta
-especificando explícitamente los valores. En el ejemplo anterior, a
-`As` se le da un valor bruto de `1` y el resto de los valores brutos
-se asignan en orden. Puedes también usar cadenas o números en punto
-flotante como valores brutos de una enumeración. Utiliza la propiedad
-`rawValue` para acceder al valor bruto de una enumeración.
-
-Usa el inicializador `init?(rawValue:)` para construir una instancia
-de una enumeración a través de un valor bruto.
-
-```swift
-if let valorConvertido = Valor(rawValue: 3) {
-    let descripcionTres = valorConvertido.descripcionSencilla()
-}
-```
-
-Los valores *case* de una enumeración son valores reales, no una forma
-nueva de escribir sus valores brutos. De hecho, en los casos en los
-que no hay un valor bruto que tenga sentido, no tienes que
-proporcionar uno.
-
-```swift
-enum Palo {
-    case oros, bastos, copas, espadas
-    func descripcionSencilla() -> String {
-        switch self {
-        case .oros:
-            return "oros"
-        case .bastos:
-            return "bastos"
-        case .copas:
-            return "copas"
-        case .espadas:
-            return "espadas"
-        }
-    }
-}
-let copas = Palo.copas
-let descripcionCopas = copas.descripcionSencilla()
-```
-
-> EXPERIMENTO  
-> Añade un método `color()` a `Palo` que devuelva "agresivo" para
-> *bastos* y *espadas* y devuelva "reflexivo" para *oros* y *copas*.
-
-Date cuenta de las dos formas en las que nos referimos al caso `Copas`
-de la enumeración anterior: cuando se asigna un valor a la constante
-`copas`, nos referimos al caso de la enumeración `Palo.Copas` usando
-su nombre completo porque la constante no tiene un tipo explícito
-especificado. Dentro del `switch`, nos referimos al caso de la
-enumeración con la forma abreviada `.Copas` porque ya se sabe que el
-valor de `self` es un `Palo`. Puedes usar la forma abreviada en
-cualquier momento en que el tipo del valor ya se conozca.
-
-Una instancia de un caso de enumeración puede tener valores asociados
-con la instancia. Instancias del mismo caso de enumeración pueden
-tener asociados valores diferentes. Proporcionas los valores asociados
-cuando creas la instancia. Los valores asociados y los valores brutos
-son distintos: el valor bruto de un caso de enumeración es el mismo
-para todas las instancias, mientras que proporcionas el valor asociado
-cuando defines la enumeración.
-
-Por ejemplo, considera el caso de realizar una petición a un servidor
-de la hora de salir el sol y de la hora de ponerse el sol. El servidor
-responde con la información o responde con alguna información de
-error.
-
-```swift
-enum RespuestaServidor {
-    case resultado(String, String)
-    case error(String)
-}
- 
-let exito = RespuestaServidor.resultado("6:00 am", "8:09 pm")
-let fallo = RespuestaServidor.error("Sin queso.")
- 
-switch exito {
-    case let .resultado(salidaSol, puestaSol):
-        print("La salida del sol es a las \(salidaSol) y la puesta es a \(puestaSol).")
-    case let .error(error):
-        print("Fallo...  \(error)")
-}
-```
-
-> EXPERIMENTO  
-> Añade un tercer caso al `ServerResponse` y al switch.
-
-Date cuenta de cómo la hora de salir el sol y de ponerse el sol se
-extraen del `ServerResponse` como parte del emparejamiento entre el
-valor y los casos switch.
 
 Usa `struct` para crear una estructura. Las estructuras comparten
 muchas características de las clases, incluyendo métodos e
