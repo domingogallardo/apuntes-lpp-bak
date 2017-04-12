@@ -111,7 +111,7 @@ $ tar xzf swift-<VERSION>-<PLATFORM>.tar.gz
 // Actualizar el PATH o mover usr/bin/swift al directorio /usr/bin
 ```
 
-### <a name="2-4"></a> 2.4. Instalación con máquina virtual Vagrant
+### <a name="2-4"></a> 2.4. Máquina Vagrant con Swift
 
 Es posible también utilizar una máquina virtual Vagrant con la versión
 Linux de Swift para realizar las prácticas. De esta forma todos
