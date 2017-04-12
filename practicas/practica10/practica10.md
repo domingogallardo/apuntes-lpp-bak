@@ -1,4 +1,4 @@
-## Práctica 10: Programación Funcional en Swift
+## Práctica 10: Introducción y programación funcional en Swift
 
 Para entregar la práctica debes subir a Moodle el fichero
 `practica10.swift` con una cabecera inicial con tu nombre y apellidos,
@@ -9,72 +9,67 @@ solución debe incluir:
 - Una visualización por pantalla de todos los ejemplos incluidos en el
   enunciado que **demuestren qué hace la función**.
 
+#### Seminario de Swift
+
+Antes de proceder a realizar los ejercicios de la práctica, debes
+completar el
+[seminario de Swift](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md)
+hasta el apartado de **Enumeraciones**.
+
 
 #### Ejercicio 1
 
-a) Implementa en Swift una **función recursiva** `sumaParejas`
+Escribe unas funciones en Swift que permitan calcular e imprimir las
+frecuencias de un conjunto de respuestas, representadas como un array
+de `Int`. Puedes definir las funciones que consideres necesario.
+
+Como ejemplo de funcionamiento puedes ver el siguiente código:
+
 
 ```swift
-func sumaParejas(parejas: ArraySlice<(Int, Int)>) -> Int 
+let respuestas = [0,0,1,1,2,1,2,3,5,8,1,8,2,2,2,6,8]
+print("Valores: \(respuestas)" )
+let frec = obtenerFrecuencias(respuestas: respuestas)
+print("Frecuencias: \(frec)")
+print("\nHistograma")
+print("----------")
+imprimir(frecuencias: frec, maxAsteriscos: 10)
 ```
 
-que recibe un `ArraySlice` de tuplas de dos enteros y devuelve un
-entero resultante de sumar todos los números.
+Sacaría por pantalla lo siguiente:
 
-Ejemplo:
 
-```swift
-let parejas = [(1, 1), (2, 2), (3, 3)]
-print("La suma de las parejas: \(parejas) es \(sumaParejas(ArraySlice(parejas)))")
-// Imprime: La suma de las parejas: [(1, 1), (2, 2), (3, 3)] es 12
+```
+Valores: [0, 0, 1, 1, 2, 1, 2, 3, 5, 8, 1, 8, 2, 2, 2, 6, 8]
+Frecuencias: [2, 4, 5, 1, 0, 1, 1, 0, 3]
+
+Histograma
+----------
+0: ****
+1: ********
+2: **********
+3: **
+4: 
+5: **
+6: **
+7: 
+8: ******
 ```
 
-b) Implementa en Swift una **función recursiva** `sumaParejasArray`
+El parámetro `maxAsteriscos` define el número de asteriscos de la
+frecuencia máxima (en el caso anterior, el valor 2). Todos los demás
+asteriscos están escalados proporcionalmente a este número máximo.
 
-```swift
-func sumaParejasArray(parejas: ArraySlice<(Int, Int)>) -> [Int]
-```
-
-que, como antes, recibe un `ArraySlice` de tuplas de dos enteros pero
-que esta vez devuelve el array con las sumas de cada pareja.
-
-**Pista**: puedes usar el operador `+` para concatenar dos arrays.
-
-Ejemplo:
-
-```swift
-sumaParejasArray([(1, 1), (2, 2), (3, 3)])
-// devuelve [2, 4, 6])
-```
 
 #### Ejercicio 2
 
-Implementa en Swift la **función recursiva**
-`aplica3D(_:funcion:coord:)` que reciba un `ArraySlice` de coordenadas
-3D en forma de tupla, una función unaria `funcion` y un enumerado
-`coord` que puede tener los valores `Coord.X`, `Coord.Y` o
-`Coord.Z`. Deberá aplicar la función a los elementos correspondientes
-a esa coordenada y devolver las nuevas coordenadas.
-
-Ejemplo:
-
-```swift
-func suma2(x: Int) -> Int {
-   return x + 2
-}
-aplica3D([(1,2,3), (4,5,6), (7,8,9), (10,11,12)], funcion: suma2, coord: Coord.Y)
-// devuelve [(1,4,3), (4,7,6), (7,10,9), (10,13,12)]
-```
-
-### Ejercicio 3
-
-Implementa en Swift la **función recursiva**
-`compruebaParejas(_:funcion)` que reciba un `ArraySlice` enteros y una
-función que recibe un entero y devuelve un entero, y devuelva un array
-de tuplas. Este array debe de contener las tupla formadas por aquellos
-números contiguos del primer array que cumplan que el número es el
-resultado de aplicar la función al número situado en la posición
-anterior.
+**2.a)** Implementa en Swift la **función recursiva**
+`compruebaParejas(_:funcion)` que recibe dos parámetros: un
+`ArraySlice` de enteros y una función que recibe un entero y devuelve
+un entero. La función devolverá un array de tuplas que contiene las
+tuplas formadas por aquellos números contiguos del primer array que
+cumplan que el número es el resultado de aplicar la función al número
+situado en la posición anterior.
 
 Ejemplo:
 
@@ -86,34 +81,46 @@ compruebaParejas([2, 4, 16, 5, 10, 100, 105], funcion: cuadrado)
 // devuelve [(2,4), (4,16), (10,100)]
 ```
 
-### Ejercicio 4
-
-Implementa nuevas versiones de las funciones `union` e `interseccion`
-de la práctica anterior que trabajaban con intervalos, en las que se
-contemple la posibilidad de intervalos vacíos.
-
-Para ello debes definir el tipo `Intervalo` como un **enumerado** que
-puede como valores asociados una tupla de enteros en el caso de
-enumeración `Limites` o la constante `Vacio`. Definidos de esta forma,
-los intervalos se inicializarán así:
+**2.b)** Implementa en Swift la **función recursiva**
+`coinciden(parejas:(Int,Int), funcion: (Int)->Int)` que devuelve un array de booleanos que
+indica si el resultado de aplicar la función al primer número de
+cada pareja coincide con el segundo.
 
 ```swift
-let intervalo1 = Intervalo.Limites(10, 20)
-let intervalo2 = Intervalo.Limites(15, 30)
-let intervalo3 = Intervalo.Limites(25, 30)
-let intervalo4 = Intervalo.Vacio
+let array = [(2,4), (4,14), (4,16), (5,25), (10,100)]
+func cuadrado(x: Int) -> Int {
+   return x * x
+}
+print("Resultado coinciden:  \(coinciden(parejas: ArraySlice(array), funcion: cuadrado))\n")
+// Imprime: Resultado coinciden:  [true, false, true, true, true]
 ```
 
-Ejemplo de llamadas a las funciones:
+
+#### Ejercicio 3
+
+Supongamos que estamos escribiendo un programa que debe tratar
+movimientos de cuentas bancarias. Define un enumerado `Movimiento `
+con valores asociados con el que podamos representar:
+
+- Depósito (valor asociado: `(Double)`)
+- Cargo de un recibo (valor asociado: `(String, Double)`)
+- Cajero (valor asociado: `(Double)`)
+
+Y define la función `aplica(movimientos:[Movimiento])` que reciba un
+array de movimientos y devuelva el dinero resultante de acumular todos
+los movimientos.
+
+Ejemplo:
+
 
 ```swift
-union(intervalo1, intervalo2) // devuelve Intervalo.Limites(10, 30)
-union(intervalo1, intervalo4) // devuelve Intervalo.Limites(10, 20)
-interseccion(intervalo1, intervalo2) // devuelve Intervalo.Limites(15, 20)
-interseccion(intervalo1, intervalo3) // devuelve Intervalo.Vacio
+let movimientos: [Movimiento] = [.deposito(830.0), .cargoRecibo("Gimnasio", 45.0), .deposito(400.0), .cajero(100.0)]
+print(aplica(movimientos: movimientos))
+// Imprime 1085.0
 ```
 
-### Ejercicio 5
+
+#### Ejercicio 4
 
 Implementa en Swift un tipo enumerado recursivo que permita construir
 árboles binarios de enteros. El enumerado debe tener un caso en el que
@@ -124,7 +131,7 @@ vacío. Llamaremos al tipo `BinaryTree` y a los casos `Node` y `Empty`.
 Impleméntalo de forma que el siguiente ejemplo funcione correctamente:
 
 ```swift
-let arbol: BinaryTree = .Node(8, .Node(2, .Empty, .Empty), .Node(12, .Empty, .Empty))
+let arbol: BinaryTree = .nodo(8, .nodo(2, .vacio, .vacio), .node(12, .vacio, .vacio))
 ```
 
 Implementa también la función `suma(_:)` que reciba una instancia de
@@ -135,9 +142,19 @@ print(suma(arbol))
 // Imprime: 22
 ```
 
+#### Ejercicio 5
+
+Responde a las siguientes preguntas de tipo test.
+
+<img src="imagenes/test-1.png" width="600px"/>
+<img src="imagenes/test-2.png" width="600px"/>
+<img src="imagenes/test-3.png" width="500px"/>
+<img src="imagenes/test-4.png" width="600px"/>
+
+
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16  
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 Antonio Botía, Domingo Gallardo, Cristina Pomares  
 
