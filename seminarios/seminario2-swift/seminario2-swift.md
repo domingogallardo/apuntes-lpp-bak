@@ -20,7 +20,7 @@ Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad d
 ## <a name="0"></a> Bibliografía y referencias
 
 - Documentación sobre Swift
-    - [The Swift Programming Language (ePub)](https://swift.org/documentation/TheSwiftProgrammingLanguage(Swift3.1).epub)
+    - [The Swift Programming Language (ePub)](https://swift.org/documentation/TheSwiftProgrammingLanguage(Swift3.1)
     - [The Swift Programming Language (html)](https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
     - [Recursos Swift en Apple](https://developer.apple.com/swift/resources/)
     - [swift.org](https://swift.org)
@@ -35,17 +35,19 @@ Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad d
 ## <a name="1"></a> 1. El lenguaje de programación Swift
 
 Swift
-[(enlace a la Wikipedia)](https://en.wikipedia.org/wiki/Swift_(programming_language))
+[(enlace a la Wikipedia)](https://en.wikipedia.org/wiki/Swift_(programming_language)
 es un lenguaje de programación compilado, de propósito general y
 multi-paradigma desarrollado por Apple. Swift se presentó en la
 edición 2014 de la Conferencia de Desarrolladores de Apple
-(WWDC). Durante el año 2014 evolucionó la versión 1.2 y en la WWDC
+(WWDC). Durante el año 2014 se desarrolló la versión 1.2 y en la WWDC
 2015 se presentó Swift 2, una actualización importante del
 lenguaje. Inicialmente fue un lenguaje propietario, pero el 3 de
 diciembre de 2015 se hizo _open source_ bajo la licencia Apache 2.0,
-para las plataformas Apple y Linux. En la actualidad se ha
-estabilizado la versión 3 del lenguaje y se está desarrollando la
-versión 4 que se presentará a finales de 2017.
+para las plataformas Apple y Linux. Los cambios en el lenguaje son
+propuestos y discutidos por la comunidad en un proceso denominado
+[Swift evolution](https://github.com/apple/swift-evolution). En la
+actualidad se ha estabilizado la versión 3 del lenguaje y se está
+desarrollando la versión 4 que se presentará a finales de 2017.
  
 La siguiente descripción se ha extraído del repositorio GitHub de
 Swift:
@@ -67,10 +69,12 @@ Swift:
 
 ## <a name="2"></a> 2. Ejecución de programas Swift
 
-Presentamos dos posibles configuraciones para poder ejecutar programas
+Presentamos varias posibles configuraciones para poder ejecutar programas
 Swift en cualquier sistema operativo (Mac, Windows o Linux): 
 
 - Ejecución on-line en un entorno de IBM (IBM Swift Sandbox).
+- Ejecución local en MacOS.
+- Ejecución local en Ubuntu.
 - Ejecución local en una máquina virtual Vagrant.
 
 ### <a name="2-1"></a> 2.1. Ejecución en IBM Swift Sandbox
