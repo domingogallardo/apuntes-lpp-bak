@@ -82,7 +82,7 @@ compruebaParejas([2, 4, 16, 5, 10, 100, 105], funcion: cuadrado)
 ```
 
 **2.b)** Implementa en Swift la **función recursiva**
-`coinciden(parejas:(Int,Int), funcion: (Int)->Int)` que devuelve un array de booleanos que
+`coinciden(parejas:ArraySlice<(Int,Int)>, funcion: (Int)->Int)` que devuelve un array de booleanos que
 indica si el resultado de aplicar la función al primer número de
 cada pareja coincide con el segundo.
 
@@ -126,12 +126,12 @@ Implementa en Swift un tipo enumerado recursivo que permita construir
 árboles binarios de enteros. El enumerado debe tener un caso en el que
 guardar tres valores (un `Int`, y dos árboles binarios: el hijo
 izquierdo y el hijo derecho) y otro caso constante: un árbol binario
-vacío. Llamaremos al tipo `BinaryTree` y a los casos `Node` y `Empty`.
+vacío. Llamaremos al tipo `ArboBinario` y a los casos `nodo` y `vacio`.
 
 Impleméntalo de forma que el siguiente ejemplo funcione correctamente:
 
 ```swift
-let arbol: BinaryTree = .nodo(8, .nodo(2, .vacio, .vacio), .node(12, .vacio, .vacio))
+let arbol: ArbolBinario = .nodo(8, .nodo(2, .vacio, .vacio), .node(12, .vacio, .vacio))
 ```
 
 Implementa también la función `suma(_:)` que reciba una instancia de
