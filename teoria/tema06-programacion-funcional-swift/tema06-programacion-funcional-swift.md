@@ -1576,11 +1576,17 @@ incrementa(valores: [10, 20, 30], con: 5)
 
 #### Filter
 
-La función `filter` 
+
+La función `filter` recibe una clausura de un argumento que devuelve
+un booleano. La función devuelve una colección con los elementos de la
+colección para los que la clausura devuelve _true_. 
+
+Ejemplo:
 
 ```swift
 let numeros = [Int](0...10)
 numeros.filter {$0 % 2 == 0}
+// devuelve [0, 2, 4, 6, 8, 10]
 ```
 
 
@@ -1596,14 +1602,27 @@ numeros.reduce(0, +)
 La función combina los elementos de la colección usando la función de
 combinación que se pasa como parámetro. La función que se pasa como
 parámetro recibe dos parámetros: el primero es el resultado de la
-combinación y el segundo se coge de la colección. Por ejemplo:
+combinación y el segundo se coge de la colección. 
 
+Por ejemplo:
 
 ```swift
 let cadenas = ["Patatas", "Arroz", "Huevos"]
 cadenas.reduce(0, {(i: Int, c: String) -> Int in
                       c.characters.count + i })
 // devuelve 18
+```
+
+Es posible simplificar la notación anterior:
+
+```swift
+cadenas.reduce(0, {$1.characters.count + $0})
+```
+
+También se puede utilizar la notación de clausura al final:
+
+```swift
+cadenas.reduce(0) {$1.characters.count + $0}
 ```
 
 La combinación se hace de izquierda a derecha:
