@@ -1713,37 +1713,27 @@ de listas al estilo Scheme, con las funciones `car`, `cdr` y `vacia`
 usando un enum recursivo con un tipo genérico que permite generalizar
 el tipo de elementos de la lista.
 
-En la implementación utilizamos la característica de Swift de lanzar
-errores (similar a Java) cuando se intenta hacer el `car` o el `cdr`
-de una lista vacía.
-
-
 ```swift
 indirect enum Lista<T> {
      case vacia
      case cons(T, Lista<T>)
 }
 
-enum ErrorLista: Error {
-     case vaciaNoTieneCar
-     case vaciaNoTieneCdr
-}
-
-func car<T>(_ lista: Lista<T>) throws -> T {
+func car<T>(_ lista: Lista<T>) -> T? {
    switch lista {
       case let .cons(primero, _):
          return primero
       case .vacia:
-         throw ErrorLista.vaciaNoTieneCar
+         throw nil
    }
 }
 
-func cdr<T>(_ lista: Lista<T>) throws -> Lista<T> {
+func cdr<T>(_ lista: Lista<T>) -> Lista<T>? {
    switch lista {
       case let .cons(_, resto):
          return resto
       case .vacia:
-         throw ErrorLista.vaciaNoTieneCdr
+         throw nil
    }
 }
 
@@ -1758,10 +1748,10 @@ func vacia<T>(_ lista: Lista<T>) -> Bool {
 
 let lista : Lista = .cons(20, .cons(30, .cons(40, .vacia)))
 
-try print(car(lista)) // Imprime 20
-try print(car(cdr(lista))) // Imprime 30
-try print(car(cdr(cdr(lista)))) // Imprime 40
-try print(vacia(cdr(cdr(cdr(lista))))) // Imprime true
+print(car(lista)!) // Imprime 20
+print(car(cdr(lista)!)!) // Imprime 30
+print(car(cdr(cdr(lista)!)!)!) // Imprime 40
+print(vacia(cdr(cdr(cdr(lista)!)!)!)) // Imprime true
 ```
 
 
