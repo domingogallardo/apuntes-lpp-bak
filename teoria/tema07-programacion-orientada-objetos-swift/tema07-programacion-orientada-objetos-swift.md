@@ -13,6 +13,7 @@
 - [8. Casting de tipos](#8)
 - [9. Extensiones](#9)
 - [10. Funciones operador](#10)
+- [11. Genericos](#11)
 
 
 ----
@@ -2775,4 +2776,102 @@ if dosTres == otroDosTres {
     print("Los dos vectores son equivalentes.")
 }
 // Los dos vectores son equivalentes
+```
+
+### <a name="11"></a> 11. Genéricos
+
+Veamos cómo podemos utilizar los genéricos con clases y estructuras.
+
+Vamos a utilizar como ejemplo un tipo de dato muy sencillo: una pila
+(_stack_) en la que se podrán añadir (_push_) y retirar (_pop_)
+elementos.
+
+La versión no genérica del tipo de dato es la siguiente, en la que se
+implementa una pila de enteros.
+
+```swift
+struct IntStack {
+    var items = [Int]()
+    mutating func push(_ item: Int) {
+        items.append(item)
+    }
+    mutating func pop() -> Int {
+        return items.removeLast()
+    }
+}
+```
+
+La estructura usa un array para guardar los ítems y los métodos `push`
+y `pop` añaden y retiran los elementos. 
+
+El problema de esta estructura es su falta de genericidad; sólo puede
+almacenar enteros.
+
+Aquí está una versión genérica del mismo código:
+
+```swift
+struct Stack<Element> {
+    var items = [Element]()
+    mutating func push(_ item: Element) {
+        items.append(item)
+    }
+    mutating func pop() -> Element {
+        return items.removeLast()
+    }
+}
+```
+
+El parámetro del tipo `Element` define un tipo genérico que se utiliza
+como _placeholder_ del tipo real del que se declare la
+estructura. Podemos ver que se utiliza en la definición de los
+distintos elementos de la estructura. Por ejemplo, el array de ítems
+es un array de `Element`s. Y los ítems añadidos y retirados de la pila
+son también objetos de tipo `Element`.
+
+Por ejemplo, podemos crear una pila de cadenas:
+
+```swift
+var stackOfStrings = Stack<String>()
+stackOfStrings.push("uno")
+stackOfStrings.push("dos")
+stackOfStrings.push("tres")
+stackOfStrings.push("cuatro")
+// la pila contiene ahora 4 cadenas
+```
+
+Y podemos retirar la última cadena de la pila:
+
+```swift
+let fromTheTop = stackOfStrings.pop()
+```
+
+#### Extensión de un tipo genérico
+
+Cuando se extiende un tipo genérico, no hace falta añadir el parámetro
+del tipo entre `<>`. El tipo genérico está disponible a partir de la
+definición original y se puede usar tal cual en el cuerpo de la
+extensión.
+
+Por ejemplo, podemos extender el tipo genérico `Stack` para añadir una
+propiedad computable de sólo lectura que devuelva el tope de la pila:
+
+```swift
+extension Stack {
+    var topItem: Element? {
+        return items.isEmpty ? nil : items[items.count - 1]
+    }
+}
+```
+
+En la extensión se utiliza el nombre genérico `Element` sin tener que
+declararlo después de `Stack`, porque está definido en la estructura
+original.
+
+Ahora ya se puede acceder al tope de la pila sin retirar el elemento:
+
+```swift
+if let topItem = stackOfStrings.topItem {
+    print("El ítem en el tope de la pila es \(topItem).")
+}
+// Imprime "El ítem en el tope de la pila es tres."
 ```
