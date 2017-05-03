@@ -195,7 +195,7 @@ Escribir `<T: Equatable>` es lo mismo que escribir `<T where T: Equatable>`.
 -->
 
 
-### <a name="1"></a> 1. Introducción, historia y características
+### <a name="1"></a> 1. Introducción, historia y características de la Programación Orientada a Objetos
 
 #### Nacimiento
 
@@ -203,7 +203,7 @@ Escribir `<T: Equatable>` es lo mismo que escribir `<T where T: Equatable>`.
   que explota en los 80 pero nace a partir de ideas a finales de los
   60 y 70
 - Primer lenguaje con las ideas fundamentales de POO: Simula
-- Smalltalk como lenguaje paradigmática de POO
+- Smalltalk (1980) como lenguaje paradigmática de POO
 - Alan Kay es el creador del término “Object-Oriented”
 - Artículo de Alan Kay:
   [“The Early History of Smalltalk”](http://gagne.homedns.org/%7etgagne/contrib/EarlyHistoryST.html),
@@ -396,6 +396,8 @@ vacíos. Esto crea una nueva instancia de una clase o estructura, con
 sus propiedades inicializadas a sus valores por defectos. Más adelante
 comentaremos otras formas más elaboradas de inicialización.
 
+Todas las propiedades de una instancia deben estar definidas después
+de haberse inicializado, a no ser que la propiedad se un opcional.
 
 #### Acceso a propiedades
 
@@ -414,8 +416,9 @@ print("El ancho de unModoVideo es ahora \(unModoVideo.resolucion.ancho)")
 
 #### Inicialización de las estructuras por sus propiedades
 
-Podemos inicializar las estructuras (no las clases) dando valores a
-todas sus propiedades en el inicializador:
+Podemos inicializar las estructuras el **inicializador por defecto**,
+en el que damos valor a todas sus propiedades. En las clases no se
+puede usar esta inicialización por defecto.
 
 ```swift
 let vga = Resolucion(ancho: 640, alto: 480)
@@ -496,6 +499,16 @@ variables no "almacenan" instancias de `ModoVideo`, sino que se
 "refieren" a una instancia de `ModoVideo`. Es la propiedad `frameRate`
 de la instancia subyacente la que se cambia, no los valores de las
 referencias constantes a la instancia de `ModoVideo`.
+
+A diferencia de las clases, una instancia de un `struct` definida con
+un `let` define como constantes todas sus propiedades. Por ejemplo, el
+siguiente código generaría un error:
+
+```swift
+let hd = Resolucion(ancho: 1920, alto: 1080)
+hd.ancho = 2080
+// error: cannot assign to property: 'hd' is a 'let' constant
+```
 
 #### Operadores de identidad
 
@@ -905,7 +918,8 @@ Podemos definir también propiedades que pertenecen al tipo propiamente
 dicho, no a ninguna de las instancias de ese tipo. Sólo habrá una
 copia de estas propiedades, sea cual sea el número de instancias de
 ese tipo que creemos. Estos tipos de propiedades se llaman propiedades
-del tipo (_type propierties_).
+del tipo (_type propierties_). Se pueden definir en tanto en
+estructuras, clases como en enumeraciones.
 
 Las propiedades del tipo son útiles para definir valores que son
 universales a todas las instancias de un tipo particular, como una
@@ -933,12 +947,15 @@ tipo calculadas de clases, podemos usar en su lugar la palabra clave
 `class` para permitir a las subclases que sobreescriban la
 implementación de la superclase.
 
+Las propiedades del tipo pueden ser también constantes (`let`) o
+variables (`var`).
+
 Ejemplo:
 
 ```swift
 
 struct UnaEstructura {
-    static var propiedadTipoAlmacenada = "Algún valor."
+    static let propiedadTipoAlmacenada = "Algún valor."
     static var propiedadTipoCalculada : Int {
         return 1
     }
@@ -1036,7 +1053,7 @@ class Contador {
     func incrementa() {
         veces += 1
     }
-    func incrementaEn(cantidad: Int) {
+    func incrementa(en cantidad: Int) {
         veces += cantidad
     }
     func reset() {
@@ -1052,7 +1069,7 @@ let contador = Contador()
 // el valor inicial del contador es 0
 contador.incrementa()
 // el valor del contador es ahora 1
-contador.incrementaEn(5)
+contador.incrementa(en: 5)
 // el valor del contador es ahora 6
 contador.reset()
 // el valor del contador es ahora 0
@@ -1066,37 +1083,41 @@ los métodos no son más que funciones asociadas con un tipo.
 
 Los nombres de los métodos en Swift se refieren normalmente al primer
 parámetro usando una preposición como `con`, `en`, `a` o `por`, como
-hemos visto en el ejemplo anterior `incrementaEn(_:)`. El uso de la
+hemos visto en el ejemplo anterior `incrementa(en:)`. El uso de la
 preposición permite que el método se lea como una frase.
 
-El nombre del primer parámetro del método es un nombre interno y por
-defecto no tiene ningún nombre externo. Al resto de parámetros por
-defecto usan el nombre de parámetro como nombre externo e interno. Es
-una convención habitual en Objective-C que se ha mantenido en Swift y
-que permite que las llamadas a los métodos sean expresivas, sin
-necesidad de definir nombres de parámetros adicionales.
+El nombre de una parámetro se utiliza también como etiqueta del
+argumento (nombre externo). Al igual que en las funciones, es posible
+definir dos nombres del parámetro, uno externo y otro interno. Y el
+nombre externo puede ser un `_` para indicar que no es necesario usar
+la etiqueta del argumento.
+
+Esta forma de invocar a los métodos hace que el lenguaje sea más
+expresivo, sin necesidad de nombres largos de métodos o funciones.
 
 Consideremos por ejemplo esta versión alternativa de la clase
 `Contador`, que define una forma más compleja del método
-`incrementaEn(_:)`:
+`incrementa(en:)`:
 
 ```swift
 class Contador {
     var valor: Int = 0
-    func incrementaEn(cantidad: Int, numeroDeVeces: Int) {
+    func incrementa(en cantidad: Int, numeroDeVeces: Int) {
         valor += cantidad * numeroDeVeces
     }
 }
 ```
 
-El método `incrementaEn(_:numeroDeVeces:)` tiene dos parámetros:
-`cantidad` y `numeroDeVeces`. Por defecto, Swift trata `cantidad` como
-un nombre sólo local, y `numeroDeVeces` como un nombre local y
-externo. Podemos llamar al método de la siguiente forma:
+El método `incrementa(en:numeroDeVeces:)` tiene dos parámetros:
+`cantidad` y `numeroDeVeces`. El primer parámetro tiene un nombre
+externo y otro interno. En el cuerpo del método se utiliza el nombre
+interno (`cantidad`). El segundo parámetro `numeroDeVeces` es tanto
+nombre externo como interno. Podemos llamar al método de la siguiente
+forma:
 
 ```swift
 let contador = Contador()
-contador.incrementaEn(5, numeroDeVeces: 3)
+contador.incrementa(en: 5, numeroDeVeces: 3)
 // el valor del contador es ahora 15
 ```
 
@@ -1133,12 +1154,12 @@ Un ejemplo:
 ```swift
 struct Punto {
     var x = 0.0, y = 0.0
-    func estaAlaDerechaDeX(x: Double) -> Bool {
+    func estaAlaDerecha(de x: Double) -> Bool {
         return self.x > x
     }
 }
 let unPunto = Punto(x: 4.0, y: 5.0)
-if unPunto.estaAlaDerechaDeX(1.0) {
+if unPunto.estaAlaDerecha(de: 1.0) {
     print("Este punto está a la derecha de la línea donde x == 1.0")
 }
 // Imprime "Este punto está a la derecha de la línea donde x == 1.0"
@@ -1164,19 +1185,19 @@ antes de la palabra `func` del método:
 ```swift
 struct Punto {
     var x = 0.0, y = 0.0
-    mutating func incrementaEnX(deltaX: Double, y deltaY: Double) {
-        x += deltaX
-        y += deltaY
+    mutating func incrementa(incX: Double, incY: Double) {
+        x += incX
+        y += incY
     }
 }
 var unPunto = Punto(x: 1.0, y: 1.0)
-unPunto.incrementaEnX(2.0, y: 3.0)
+unPunto.incrementa(incX: 2.0, incY: 3.0)
 print("El punto está ahora en (\(unPunto.x), \(unPunto.y))")
 // Imprime "El punto está ahora en (3.0, 4.0)"
 ```
 
 La estructura `Punto` anterior define un método mutador
-`incrementaEnX(_:y:)` que mueve una instancia de `Punto` una cierta
+`increment(incX:incY:)` que mueve una instancia de `Punto` una cierta
 cantidad. En lugar de devolver un nuevo punto, el método modifica
 realmente el punto en el que es llamado. La palabra clave `mutating`
 se añade a su definición para permitirle modificar sus propiedades.
@@ -1187,7 +1208,7 @@ pueden cambiar, incluso aunque sean propiedades variables:
 
 ```swift
 let puntoFijo = Punto(x: 3.0, y: 3.0)
-puntoFijo.incrementaEnX(2.0, y: 3.0)
+puntoFijo.incrementa(incX: 2.0, incY: 3.0)
 // esto provocará un error
 ```
 
@@ -1200,13 +1221,13 @@ escrito de la siguiente forma:
 ```swift
 struct Punto {
     var x = 0.0, y = 0.0
-    mutating func incrementaEnX(deltaX: Double, y deltaY: Double) {
-        self = Punto(x: x + deltaX, y: y + deltaY)
+    mutating func incrementa(incX: Double, incY: Double) {
+        self = Punto(x: x + incX, y: y + incY)
     }
 }
 ```
 
-Esta versión del método mutador `incrementaEnX(_:y:)` crea una
+Esta versión del método mutador `incrementa(incX:incY:)` crea una
 estructura nueva cuyos valores `x` e `y` se inicializan a los valores
 desados. El resutado final de llamar a esta versión alternativa será
 exactamente el mismo que llamar a la versión anterior (aunque con una
@@ -1219,23 +1240,23 @@ enumeración:
 
 ```swift
 enum InterruptorTriEstado {
-    case Apagado, Medio, Alto
+    case apagado, medio, alto
     mutating func siguiente() {
         switch self {
-        case Apagado:
-            self = Medio
-        case Medio:
-            self = Alto
-        case Alto:
-            self = Apagado
+        case .apagado:
+            self = .medio
+        case .medio:
+            self = .alto
+        case .alto:
+            self = .apagado
         }
     }
 }
-var luzHorno = InterruptorTriEstado.Medio
+var luzHorno = InterruptorTriEstado.medio
 luzHorno.siguiente()
-// luzHorno es ahora .Alto
+// luzHorno es ahora .alto
 luzHorno.siguiente()
-// luzHorno es ahora .Apagado
+// luzHorno es ahora .apagado
 ```
 
 #### Métodos del tipo
@@ -1272,33 +1293,34 @@ del tipo. Se puede utilizar estos nombres sin necesidad de añadir el
 prefijo del nombre del tipo.
 
 Veamos un ejemplo en el que se define una estructura llamada
-`NivelTracker` que sigue el progreso de un jugador a través de los
-distintos niveles de un juego. Es un juego de un único jugador, pero
-puede almacenar la información para múltiples jugadores en un mismo
-dispositivo.
+`ContadorNivel` que sigue el progreso de un jugador a través de los
+distintos niveles de un juego. Suponemos que varios jugadores juegan
+al juego y que todos los niveles del juego (con excepción del nivel
+uno) están bloqueados cuando el juego se juega por primera vez. 
 
-Todos los niveles del juego (con excepción del nivel uno) están
-bloqueados cuando el juego se juega por primera vez. Cada vez que un
-jugador termina un nivel, ese nivel se desbloquea para todos los
-jugadores del dispositivo. La estructura `NivelTracker` usa
+Cada vez que un jugador termina un nivel, ese nivel se desbloquea para
+todos los demás jugadores. La estructura `ContadorNivel` usa
 propiedades y métodos del tipo para mantener la información de qué
 niveles del juego han sido desbloqueados. También mantiene la
 información del nivel actual para un jugador individual.
 
 ```swift
-struct NivelTracker {
+struct ContadorNivel {
+    var nivelActual = 1
     static var nivelMasAltoDesbloqueado = 1
-    static func desbloqueaNivel(nivel: Int) {
+    
+    static func desbloquea(nivel: Int) {
         if nivel > nivelMasAltoDesbloqueado {
            nivelMasAltoDesbloqueado = nivel }
     }
-    static func nivelEstaDesbloqueado(nivel: Int) -> Bool {
+
+    static func desbloqueado(nivel: Int) -> Bool {
         return nivel <= nivelMasAltoDesbloqueado
     }
-    var nivelActual = 1
-    mutating func avanzarAlNivel(nivel: Int) -> Bool {
-        if NivelTracker.nivelEstaDesbloqueado(nivel) {
-            nivelActual = nivel
+    
+    mutating func avanzar(nivel n: Int) -> Bool {
+        if ContadorNivel.desbloqueado(nivel: n) {
+            nivelActual = n
             return true
         } else {
             return false
@@ -1307,16 +1329,18 @@ struct NivelTracker {
 }
 ```
 
-La estructura `NivelTracker` se usa junto con la clase `Jugador`:
+La estructura `ContadorNivel` se puede usar junto con la clase `Jugador`:
 
 ```swift
 class Jugador {
-    var tracker = NivelTracker()
+    var contadorNivel = ContadorNivel()
     let nombreJugador: String
-    func nivelCompletado(nivel: Int) {
-        NivelTracker.desbloqueaNivel(nivel + 1)
-        tracker.avanzarAlNivel(nivel + 1)
+    
+    func completado(nivel n: Int) {
+        ContadorNivel.desbloquea(nivel: n+1)
+        contadorNivel.avanzar(nivel: n+1)
     }
+    
     init(nombre: String) {
         nombreJugador = nombre
     }
@@ -1328,8 +1352,8 @@ nuevo, y comprobar qué pasa cuando el jugador completa el nivel uno:
 
 ```swift
 var jugador = Jugador(nombre: "Lucía")
-jugador.nivelCompletado(1)
-print("el mayor nivel desbloqueado es ahora \(NivelTracker.nivelMasAltoDesbloqueado)")
+jugador.completado(nivel: 1)
+print("el mayor nivel desbloqueado es ahora \(ContadorNivel.nivelMasAltoDesbloqueado)")
 // Imprime "el mayor nivel desbloqueado es ahora 2"
 ```
 
@@ -1339,7 +1363,7 @@ nuevo nivel falla:
 
 ```swift
 jugador = Jugador(nombre: "Anabel")
-if jugador.tracker.avanzarAlNivel(6) {
+if jugador.contadorNivel.avanzar(nivel: 6) {
     print("el jugador está ahora en el nivel 6")
 } else {
     print("el nivel 6 no ha sido desbloqueado todavía")
@@ -1495,7 +1519,7 @@ solo lectura que hereda de `Vehiculo`:
 ```swift
 let tandem = Tandem()
 tandem.tieneCesta = true
-tandem.numeroActualPasajeros = 2
+tandem.numeroActualDePasajeros = 2
 tandem.velocidadActual = 18.0
 print("Tandem: \(tandem.descripcion)")
 // Tandem: viajando a 18.0 kilómetros por hora
@@ -1677,7 +1701,7 @@ struct Fahrenheit {
     }
 }
 var f = Fahrenheit()
-print("La temperatura por defecto es \(f.temperatura)° Fahrenheit")
+print("La temperatura por defecto es \(f.temperatura) Fahrenheit")
 // Imprime "La temperatura por defecto es 32.0° Fahrenheit"
 ```
 
@@ -2001,7 +2025,8 @@ class GeneradorLinealCongruente: GeneradorNumerosAleatorios {
     let a = 3877.0
     let c = 29573.0
     func random() -> Double {
-        ultimoRandom = ((ultimoRandom * a + c) % m)
+        let number = ultimoRandom * a + c
+        ultimoRandom = number.truncatingRemainder(dividingBy: m)
         return ultimoRandom / m
     }
 }
@@ -2030,20 +2055,20 @@ protocol Conmutable {
 }
 
 enum Interruptor: Conmutable {
-    case Apagado, Encendido
+    case apagado, encendido
     mutating func conmutar() {
         switch self {
-        case Apagado:
-            self = Encendido
-        case Encendido:
-            self = Apagado
+        case .apagado:
+            self = .encendido
+        case .encendido:
+            self = .apagado
         }
     }
 }
 
-var interruptorLampara = Interruptor.Apagado
+var interruptorLampara = Interruptor.apagado
 interruptorLampara.conmutar()
-// interruptorLampara es ahora igual a .Encendido
+// interruptorLampara es ahora igual a .encendido
 ```
 
 #### Protocolos como tipos
@@ -2368,7 +2393,7 @@ for item in array {
         print("un punto (x, y) en \(x), \(y)")
     case let pelicula as Pelicula:
         print("una película: \(pelicula.nombre), dir. \(pelicula.director)")
-    case let stringConverter as String -> String:
+    case let stringConverter as (String) -> String:
         print(stringConverter("Michael"))
     default:
         print("alguna otra cosa")
@@ -2645,7 +2670,7 @@ instancia llamado `repeticiones` al tipo `Int`:
 
 ```swift
 extension Int {
-    func repeticiones(tarea: () -> Void) {
+    func repeticiones(_ tarea: () -> Void) {
         for _ in 0..<self {
             tarea()
         }
@@ -2662,22 +2687,22 @@ tarea un cierto número de veces:
 
 ```swift
 3.repeticiones({
-   print("¡Hola!")
+   print("Hola!")
 })
-// ¡Hola!
-// ¡Hola!
-// ¡Hola!
+// Hola!
+// Hola!
+// Hola!
 ```
 
 Usando clausuras por la cola podemos hacer la llamada más concisa:
 
 ```swift
 3.repeticiones {
-   print("¡Adios!")
+   print("Adios!")
 }
-// ¡Adios!
-// ¡Adios!
-// ¡Adios!
+// Adios!
+// Adios!
+// Adios!
 ```
 
 #### Métodos de instancia mutadores
