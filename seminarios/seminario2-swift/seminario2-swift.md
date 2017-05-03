@@ -1147,3 +1147,134 @@ let descripcionTresDeEspadas = tresDeEspadas.descripcionSencilla()
 > Añade un método a `Carta` que cree un mazo completo de cartas, con
 > una carta de cada combinación de valor y palo.
 
+
+
+#### Protocolos y extensiones
+
+Usa `protocol` para declarar un protocolo.
+
+```swift
+protocol ProtocoloEjemplo {
+    var descripcionSencilla: String { get }
+    mutating func ajustar()
+}
+```
+
+Clases, enumeraciones y estructuras pueden todas adoptar protocolos.
+
+```swift
+class ClaseSencilla: ProtocoloEjemplo {
+    var descripcionSencilla: String = "Una clase muy simple."
+    var otraPropiedad: Int = 69105
+    func ajustar() {
+        descripcionSencilla += "  Ahora 100% ajustada."
+    }
+}
+var a = ClaseSencilla()
+a.ajustar()
+let descripcionA = a.descripcionSencilla
+ 
+struct EstructuraSencilla: ProtocoloEjemplo {
+    var descripcionSencilla: String = "Una estructura sencilla"
+    mutating func ajustar() {
+        descripcionSencilla += " (ajustada)"
+    }
+}
+var b = EstructuraSencilla()
+b.ajustar()
+let descripcionB = b.descripcionSencilla
+```
+
+> EXPERIMENTO  
+> Escribe una enumeración que cumpla el protocolo.
+
+Date cuenta del uso de la palabra clave `mutating` en la declaración
+de `SimpleStructure` para marcar el método que modifica la
+estructura. La declaración de `SimpleClass` no necesita que se marquen
+como mutadores ninguno de sus métodos porque los métodos en una clase
+siempre pueden modificar la clase.
+
+Usa `extension` para añadir funcionalidad a un tipo existente, como
+métodos nuevos y propiedades calculadas. Puedes utilizar una extensión
+para añadir un cumplimiento de un protocolo a un tipo que se declara
+en otro lugar, o incluso a un tipo que hayas importado de una
+biblioteca o un *framework*.
+
+```swift
+extension Int: ProtocoloEjemplo {
+    var descripcionSencilla: String {
+        return "El número \(self)"
+    }
+    mutating func ajustar() {
+        self += 42
+    }
+}
+print(7.descripcionSencilla)
+```
+
+Otro ejemplo usando una función:
+
+```swift
+extension Int { 
+    func repetir(task: () -> ()) { 
+        for i in 0...self { 
+            task() 
+        } 
+    } 
+} 
+
+10.repetir {print("Hola")}
+```
+
+
+> EXPERIMENTO  
+> Escribe una extensión para el tipo `Double` que añada una propiedad
+> `absoluteValue`.
+
+Puedes usar un nombre de un protocolo de la misma forma que cualquier
+otro tipo con nombre; por ejemplo, para crear una colección de objetos
+que tienen tipos diferentes pero que cumplen un único
+protocolo. Cuando trabajas con valores cuyo tipo es un tipo de
+protocolo, no están disponibles los métodos fuera del protocolo.
+
+```swift
+let valorProtocolo: ProtocoloEjemplo = a
+print(valorProtocolo.descripcionSencilla)
+// print(valorProtocolo.otraPropiedad)  // Descomentar para comprobar el error
+```
+
+Incluso aunque la variable `valorProtocolo` tenga un tipo en tiempo de
+ejecución de `ClaseSencilla`, el compilador lo trata como uno del tipo
+`ProtocoloEjemplo`. De esta forma no es posible acceder
+accidentalmente a métodos o propiedades que implemente la clase de
+forma adicional al cumplimiento del protocolo.
+
+#### Genéricos 
+
+Escribe un nombre dentro de paréntesis angulares para construir una
+función o un tipo genérico.
+
+```swift
+func itemRepetido<Item>(_ item: Item, numeroDeVeces: Int) -> [Item] {
+    var resultado = [Item]()
+    for _ in 0..<numeroDeVeces {
+        resultado.append(item)
+    }
+    return resultado
+}
+itemRepetido("knock", numeroDeVeces:4)
+```
+
+Puedes hacer formas genéricas de funciones y métodos, así como de
+clases, enumeraciones y estructuras.
+
+```swift
+// Reimplementamos el tipo Optional de la biblioteca estándar de Swift
+enum ValorOpcional<Envuelto> {
+    case ninguno
+    case alguno(Envuelto)
+}
+var posibleInteger: ValorOpcional<Int> = .ninguno
+posibleInteger = .alguno(100)
+```
+

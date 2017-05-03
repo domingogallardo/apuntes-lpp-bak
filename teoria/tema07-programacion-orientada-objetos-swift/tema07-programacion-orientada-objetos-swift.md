@@ -137,8 +137,12 @@ Dos tendencias:
     - Ejemplos: C++, Swift
 
 
-Vamos a detallar a continuación las características de Programación
-Orientada a Objetos de Swift.
+Vamos a detallar a continuación las **características
+de Programación Orientada a Objetos de Swift**. Para tener una
+introducción rápida puedes empezar leyendo los últimos apartados del
+[https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md](seminario
+de Swift) (los apartados **Objetos, clases y estructuras**, **Protocolos y
+extensiones** y **Genéricos**).
 
 ### <a name="2"></a> 2. Clases y estructuras
 
