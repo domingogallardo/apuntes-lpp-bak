@@ -1223,7 +1223,7 @@ general:
 Si aplicamos esta sintaxis al ejemplo anterior:
 
 ```swift
-let alreves = estudiantes.sort(by: { (s1: String, s2: String) -> Bool in
+let alreves = estudiantes.sorted(by: { (s1: String, s2: String) -> Bool in
     return s1 > s2
 })
 ```
@@ -1724,7 +1724,7 @@ func car<T>(_ lista: Lista<T>) -> T? {
       case let .cons(primero, _):
          return primero
       case .vacia:
-         throw nil
+         return nil
    }
 }
 
@@ -1733,7 +1733,7 @@ func cdr<T>(_ lista: Lista<T>) -> Lista<T>? {
       case let .cons(_, resto):
          return resto
       case .vacia:
-         throw nil
+         return nil
    }
 }
 
