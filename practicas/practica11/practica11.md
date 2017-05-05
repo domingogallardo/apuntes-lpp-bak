@@ -303,11 +303,6 @@ el siguiente perfil:
 func calcular(exp str: String, sobre tuplas: Array<(Double, Double)>) -> [Double]? 
 ```
 
-### Ejercicio 5
-
-
-
-
 ----
 
 Lenguajes y Paradigmas de Programación, curso 2016-17  
