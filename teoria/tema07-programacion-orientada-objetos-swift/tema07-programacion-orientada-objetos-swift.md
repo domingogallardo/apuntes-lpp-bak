@@ -2879,3 +2879,9 @@ if let topItem = stackOfStrings.topItem {
 }
 // Imprime "El ítem en el tope de la pila es tres."
 ```
+
+----
+
+Lenguajes y Paradigmas de Programación, curso 2016–17  
+© Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
+Domingo Gallardo

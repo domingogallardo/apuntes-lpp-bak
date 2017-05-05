@@ -1,4 +1,4 @@
-## Práctica 11: Programación Funcional en Swift (2)
+## Práctica 11: Programación funcional en Swift: clausuras y funciones de orden superior
 
 Para entregar la práctica debes subir a Moodle el fichero
 `practica11.swift` con una cabecera inicial con tu nombre y apellidos,
@@ -9,136 +9,307 @@ solución debe incluir:
 - Una visualización por pantalla de todos los ejemplos incluidos en el
   enunciado que **demuestren qué hace la función**.
 
-**Pista**: Puedes encontrar las soluciones en Scheme a las funciones
-  planteadas en estos ejercicios en el apartado de
-  [árboles](http://domingogallardo.github.io/lpp/teoria/Tema03-ProcedimientosEstructurasRecursivas.html#3)
-  del tema 3 de la asignatura. También en la
-  [solución del segundo parcial](https://moodle2015-16.ua.es/moodle/pluginfile.php/89964/mod_forum/attachment/238501/SegundoParcialLPP2015-16.pdf).
+## Ejercicios
 
-#### Ejercicio 1
+### Ejercicio 1
 
-Definimos un árbol de enteros con el siguiente enumerado:
+Implementa en Swift utilizando funciones de orden superior la función
+`ocurrenciasPalabrasLongitud(cadena:String, longitud:Int)` que recibe un
+String que representa una frase y un entero que especifica una
+longitud de palabra, y que devuelva un array de tuplas en donde cada
+tupla contiene una palabra de la longitud especificada contenida en la
+frase y el número de apariciones de esa palabra en dicha frase.
+
+**AYUDA:**
+
+Para construir un array con las palabras que aparecen en la frase,
+puedes usar la siguiente sentencia:
 
 ```swift
-indirect enum Arbol {
-    case Nodo(Int, [Arbol])
-    case Hoja(Int)
+let arrayPalabras = frase.characters.split{$0 == " "}.map(String.init)
+```
+
+Ejemplo:
+
+```swift
+let frase = "vamos a contar las ocurrencias de las palabras con una determinada longitud utilizando funciones de orden superior predefinidas en swift y expresiones de clausuras"
+
+ocurrenciasPalabrasLongitud(cadena:frase, longitud:2) -> [("de", 3), ("en", 1)]
+ocurrenciasPalabrasLongitud(cadena:frase, longitud:3) -> [("las", 2), ("con", 1), ("una", 1)]
+ocurrenciasPalabrasLongitud(cadena:frase, longitud:7) -> []
+ocurrenciasPalabrasLongitud(cadena:frase, longitud:11) -> [("ocurrencias", 1), ("determinada", 1), ("expresiones", 1)]
+```
+
+
+### Ejercicio 2
+
+Implementa en Swift la función `imprimirListadosNotas(alumnos:)` que
+recibe un array de tuplas, en donde cada tupla contiene información de
+la evaluación de un alumno de LPP (nombreAlumno, notaParcial1,
+notaParcial2, añosMatriculacion) y que debe imprimir por pantalla los
+siguientes listados: 
+
+- listado 1: array ordenado por nombre del alumno (orden alfabético
+creciente) 
+- listado 2: array ordenado por la nota del parcial 1 (orden
+decreciente de nota) 
+- listado 3: array ordenado por la nota del parcial 2 (orden creciente
+de nota) 
+- listado 4: array ordenado por nota del parcial 2 y año de
+matriculación (orden decreciente de nota y año) 
+- listado 5: array ordenado por nota que necesita obtener en el
+parcial 3 para aprobar la asignatura en la convocatoria de Junio
+(orden decreciente de nota necesaria)
+ 
+**AYUDA:**
+
+Para que los listados se muestren formateados con espacios, puedes usar la siguiente
+función (para ello también debes incluir el import que se indica)
+ 
+```swift
+import Foundation
+ 
+func imprimirListadoAlumnos(_ alumnos: [(String, Double, Double, Int)]) {
+    print("Alumno   Parcial1   Parcial2   Años")
+    for alu in alumnos {
+        print(String(format:"%-10s",
+                     OpaquePointer(alu.0.cString(using:String.Encoding.utf8)!)),
+              terminator:"")
+
+        print(String(format:"%5.2f      %5.2f    %3d",alu.1,alu.2,alu.3))
+    }
 }
 ```
 
-Es una definición similar a la que vimos en Scheme. Se puede leer de
-la siguiente forma: "Un `Arbol` es un enumerado que puede tener dos
-subtipos con valores asociados. O bien es de subtipo `Nodo`, con
-valores asociados un `Int` (el dato) y un array de `Arbol`es (los
-árboles hijos), o bien es una `Hoja` con un valor `Int` asociado (el
-dato)."
-
-Implementa las funciones de la barrera de abstracción de árbol:
+ 
+Ejemplo:
 
 ```swift
-func datoArbol(arbol : Arbol) -> Int 
-func hijosArbol(arbol : Arbol) -> [Arbol] 
-func esHojaArbol(arbol : Arbol) ->  Bool 
+let listaAlumnos = [("Pepe", 8.45, 3.75, 1), 
+                    ("Maria", 9.1, 7.5, 1), 
+                    ("Jose", 8.0, 6.65, 1),
+                    ("Carmen", 6.25, 1.2, 2), 
+                    ("Felipe", 5.65, 0.25, 3), 
+                    ("Carla", 6.25, 1.25, 2), 
+                    ("Luis", 6.75, 0.25, 2), 
+                    ("Loli", 3.0, 1.25, 3)]
+imprimirListadosNotas(listaAlumnos)
 ```
+ 
+Algunos de los listados que se deben mostrar serían los siguientes:
 
-Escribe un ejemplo de árbol con al menos 4 nodos y prueba varias
-llamadas a las funciones de la barrera de abstracción para comprobar
-que funcionan correctamente.
+```txt
+LISTADO ORIGINAL
+Alumno   Parcial1   Parcial2   Años
+Pepe       8.45       3.75      1
+Maria      9.10       7.50      1
+Jose       8.00       6.65      1
+Carmen     6.25       1.20      2
+Felipe     5.65       0.25      3
+Carla      6.25       1.25      2
+Luis       6.75       0.25      2
+Loli       3.00       1.25      3
+ 
+LISTADO ORDENADO por Parcial1
+Alumno   Parcial1   Parcial2   Años
+Maria      9.10       7.50      1
+Pepe       8.45       3.75      1
+Jose       8.00       6.65      1
+Luis       6.75       0.25      2
+Carmen     6.25       1.20      2
+Carla      6.25       1.25      2
+Felipe     5.65       0.25      3
+Loli       3.00       1.25      3
 
-
-#### Ejercicio 2
-
-Usando la barrera de abstracción anterior, implementa dos versiones de
-la función `sumaArbol` que devuelve la suma de todos los `Int` de sus
-nodos: usando recursión mutua y funciones de orden superior.
-
-Para trabajar con arrays en lugar de con `ArraySlice` en la recursión
-mutua podemos usar el siguiente código para obtener el primer elemento
-y el resto.
-
-```swift
-let primero = bosque[0]
-let resto = Array(bosque[1..<bosque.endIndex])
+LISTADO ORDENADO por Nota para aprobar en Junio
+Alumno   Parcial1   Parcial2   Años
+Maria      9.10       7.50      1
+Jose       8.00       6.65      1
+Pepe       8.45       3.75      1
+Carla      6.25       1.25      2
+Carmen     6.25       1.20      2
+Luis       6.75       0.25      2
+Felipe     5.65       0.25      3
+Loli       3.00       1.25      3
 ```
-
-No es tan eficiente como trabajar con `ArraySlice`, pero hace el
-código algo más sencillo de leer.
-
-Implementa las funciones y pruébalas con el árbol representado en la
-siguiente figura:
-
-<img src="./imagenes/suma-arbol.png" style="width: 200px;"/>
 
 
 ### Ejercicio 3
 
-Implementa dos versiones (recursión mutua y FOS) de la función
-`vecesArbol(_:dato:)` que recibe un árbol de enteros y un dato entero
-y devuelve el número de veces que aparece el dato en el árbol.
-
-Puedes ver un ejemplo (y la solución en Scheme) en el segundo parcial.
-
-
-#### Ejercicio 4
-
-Implementa dos versiones (recursión mutua y FOS) del predicado
-`sumaHijosArbol(_:)` que recibe un árbol de números enteros y recorre
-el árbol devolviendo `true` en caso de que para todos sus nodos
-(excepto los nodos hoja) se cumpla que la suma de las raíces de los
-hijos coincida con el dato del nodo.
-
-Puedes ver un ejemplo (y la solución en Scheme) en el segundo parcial.
-
-#### Ejercicio 5
-
-Implementa una versión genérica del árbol del ejercicio 1 y de la
-barrera de abstracción. Implementa una versión genérica de la función
-suma, llamada `sumaArbolG`.
-
-A continuación puedes ver un ejemplo de ejecución con un árbol de
-enteros `Int` y un árbol de tuplas de parejas de enteros `(Int, Int)`:
+Dado el array listaAlumnos del ejercicio anterior, rellena los huecos
+en las siguientes expresiones para que se obtenga los datos
+requeridos. Deberás utilizar las funciones de orden superior (`filter`,
+`map`, `reduce`).
 
 ```swift
-print("Ejercicio 5")
-
-//
-// Árbol de Int
-//
-
-let arbolInt: ArbolG<Int> = .Node(8, [.Hoja(2), .Hoja(12)])
-// tienes que rellenar correctamente los puntos suspensivos de la siguiente expresion
-let sumaInt = sumaArbolG(arbolInt, suma: ..., neutro: ...)
-
-print("La suma del arbol \(arbolInt) es \(sumaInt)")
-// debe imprimir:
-// "La suma del arbol Node(8, [main.ArbolG<Swift.Int>.Hoja(2), main.ArbolG<Swift.Int>.Hoja(12)]) es 22"
-
-//
-// Arbol de tuplas (Int, Int)
-//
-
-let t1 = (8,10)
-let t2 = (2,7)
-let t3 = (6,4)
-let arbolTuplas: ArbolG<(Int,Int)> = .Node(t1, [.Hoja(t2), .Hoja(t3)])
-// tienes que rellenar correctamente los puntos suspensivos de la siguiente expresion
-let sumaTuplas = sumaArbolG(arbolTuplas, suma: ..., neutro: ...)
-
-print("La suma del arbol \(arbolTuplas) es \(sumaTuplas)")
-// debe imprimir:
-// "La suma del arbol Node((8, 10), [main.ArbolG<(Swift.Int, Swift.Int)>.Hoja(2, 7), main.ArbolG<(Swift.Int, 
-// Swift.Int)>.Hoja(6, 4)]) es (16, 21)"
+let listaAlumnos = [("Pepe", 8.45, 3.75, 1), 
+                    ("Maria", 9.1, 7.5, 1), 
+                    ("Jose", 8.0, 6.65, 1),
+                    ("Carmen", 6.25, 1.2, 2), 
+                    ("Felipe", 5.65, 0.25, 3), 
+                    ("Carla", 6.25, 1.25, 2), 
+                    ("Luis", 6.75, 0.25, 2), 
+                    ("Loli", 3.0, 1.25, 3)]
 ```
+
+A) Eliminar los alumnos que tienen la nota media suspensa
+
+```swift
+print(listaAlumnos.filter ________________________________ )
+// Resultado:
+// [("Pepe", 8.4499999999999993, 3.75, 1), ("Maria", 9.0999999999999996, 7.5, 1), ("Jose", 8.0, 6.6500000000000004, 1)]
+```
+
+B) Número de alumnos que han aprobado primer parcial y suspendido el segundo
+
+```swift
+print(listaAlumnos.filter ________________________________ )
+// Resultado: 5
+```
+
+C) Nota media de cada alumno
+
+```swift
+print(listaAlumnos._______________________________ )
+// Resultado:
+[6.0999999999999996, 8.3000000000000007, 7.3250000000000002, 3.7250000000000001, 2.9500000000000002, 3.75, 3.5, 2.125]
+```
+
+D) Sumar una convocatoria a los que tienen una nota media < 5
+
+
+```swift
+print(listaAlumnos._____  {
+// 
+// Aquí va una expresión de clausura de varias líneas
+//
+// 
+})
+// Resultado: [("Pepe", 8.4499999999999993, 3.75, 1), ("Maria", 9.0999999999999996, 7.5, 1), ("Jose", 8.0,
+// 6.6500000000000004, 1), ("Carmen", 6.25, 1.2, 3), ("Felipe", 5.6500000000000004, 0.25, 4), ("
+// Carla", 6.25, 1.25, 3), ("Luis", 6.75, 0.25, 3), ("Loli", 3.0, 1.25, 4)]
+```
+
+E) Nota total media de los dos parciales
+
+```swift
+print(listaAlumnos.reduce(0) __________________________________ )
+// Resultado: 4.721875
+```
+
+F) Nota media de todos los alumnos en forma de tupla `(media_p1, media_p2)`
+
+```swift
+var tupla = listaAlumnos._____________________________________ )
+tupla = (tupla.0 / Double(listaAlumnos.count), tupla.1 / Double(listaAlumnos.count))
+print(tupla)
+// Resultado: (6.6812499999999995, 2.7624999999999997)
+```
+
+### Ejercicio 4
+
+Queremos escribir la función `calcular(exp: String, sobre:
+[(Double, Double)])` que recibe una cadena que codifica una expresión
+sobre tuplas y una lista de tuplas y devuelve el resultado de aplicar
+esa expresión matemática sobre la lista de tuplas.
+
+Por ejemplo:
+
+```swift
+
+let tuplas = [(1.0, 2.5), (10.8, 3.3), (-1.0, 12.0), (-3.4, 4.0)]
+
+print(calcular(exp: "$1 * 2.0", sobre: tuplas)!)
+print(calcular(exp: "$0 - 5.0", sobre: tuplas)!)
+print(calcular(exp: "$0 + $1", sobre: tuplas)!)
+// Imprime
+// [5.0, 6.5999999999999996, 24.0, 8.0]
+// [-4.0, 5.8000000000000007, -6.0, -8.4000000000000004]
+// [3.5, 14.100000000000001, 11.0, 0.60000000000000009]
+```
+
+La expresión codificada tendrá siempre dos operandos y una
+operación. Los operandos pueden ser las expresiones `$0` y `$1` para
+referirse al primer y segundo elemento de cada tupla o números
+decimales. La operación puede ser `+`, `-`, `*` y `/` para referirse a
+las operaciones suma, resta, multiplicación y división.
+
+Vamos a realizar el ejercicio en tres partes. Primero hay que
+implementar una función que analiza la cadena y devuelve una tupla de
+enumerados; después una función convertirá la tupla de enumerados en
+una clausura y por último la función principal que usa las
+anteriores y aplica la clausura al array de tuplas. Vamos a detallar
+cada una de las partes.
+
+a) En primer lugar debes implementar la función `parse(exp:)` que analice la cadena y
+la transforme en una tupla de dos operandos y una operación, siendo
+éstos los siguientes tipos enumerados:
+
+```swift
+enum Operando {
+   case primero
+   case segundo
+   case valor(Double)
+}
+
+enum Operacion {
+   case suma
+   case resta
+   case mult
+   case div
+}
+```
+
+La función `parse(exp:)` tiene el siguiente perfil:
+
+```swift
+func parse(exp: String) -> (op1: Operando, op2: Operando, op: Operacion)?
+```
+
+Tendrás que definir **funciones auxiliares** para implementar esta
+función. 
+
+**AYUDA**: Puedes usar la pista del ejercicio 1 para dividir la cadena
+y separar los operandos.
+
+Ejemplos:
+
+```swift
+parse("$0 + $1") 
+// Devuelve opcional con la tupla (Operando.primero, Operando.segundo, Operacion.suma)
+parse("5.0 * $1")
+// Devuelve opcional con la tupla (Operando.valor(5.0), Operando.segundo, Operacion.mult)
+parse("Hola")
+// Devuelve nil
+```
+
+b) En segundo lugar debes implementar la función
+`construyeFunc(op1:op2:op:)` que recibe los enumerados que representan
+la expresión matemática y devuelve una clausura que aplica la
+expresión matemática a una tupla.
+
+La función tiene el siguiente perfil:
+
+```swift
+func construyeFunc(op1: Operando, op2: Operando, op: Operacion) -> (Double, Double) -> Double
+```
+También es conveniente que definas **funciones auxiliares**.
+
+
+c) Por último debes implementar la función `calcular(exp:sobre:)` con
+el siguiente perfil:
+
+```swift
+func calcular(exp str: String, sobre tuplas: Array<(Double, Double)>) -> [Double]? 
+```
+
+### Ejercicio 5
+
 
 
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16  
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 Antonio Botía, Domingo Gallardo, Cristina Pomares  
-
-
-
-
-
