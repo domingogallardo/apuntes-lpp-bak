@@ -671,7 +671,7 @@ A continuación podemos ver un ejemplo de `willSet` y `didSet` en
 acción. En el definimos una clase nueva llamada `CuentaPasos`, que
 hace un seguimiento del número total de pasos que una persona hace al
 caminar. Esta clase puede usarse con datos de entrada de un
-_pedómetro_ o cualquier otro sistema de seguir el ejercicio de la
+_podómetro_ o cualquier otro sistema de seguir el ejercicio de la
 persona durante sus rutina diaria.
 
 ```swift
