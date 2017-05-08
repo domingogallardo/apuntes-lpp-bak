@@ -228,11 +228,11 @@ print(calcular(exp: "$0 + $1", sobre: tuplas)!)
 ```
 
 - En el primer ejemplo la expresión indica que hay que multiplicar el
-  segundo número de la tupla por 2.0.
+  segundo número de cada tupla por 2.0.
 - En el segundo ejemplo la expresión indica que hay que restar al
-  primer número de la tupla 5.0.
+  primer número de cada tupla 5.0.
 - En el tercer ejemplo la expresión indica que hay que sumar el primer
-  y el segundo elemento de la tupla.
+  y el segundo elemento de cada tupla.
 
 La expresión codificada tendrá siempre dos operandos y una
 operación. Los operandos pueden ser las expresiones `$0` y `$1` para
