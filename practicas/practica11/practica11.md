@@ -210,8 +210,8 @@ print(tupla)
 
 Queremos escribir la función `calcular(exp: String, sobre:
 [(Double, Double)])` que recibe una cadena que codifica una expresión
-sobre tuplas y una lista de tuplas y devuelve el resultado de aplicar
-esa expresión matemática sobre la lista de tuplas.
+sobre una tupla y una lista de tuplas y devuelve el resultado de aplicar
+esa expresión matemática sobre cada una de las tuplas de la lista.
 
 Por ejemplo:
 
@@ -220,13 +220,19 @@ Por ejemplo:
 let tuplas = [(1.0, 2.5), (10.8, 3.3), (-1.0, 12.0), (-3.4, 4.0)]
 
 print(calcular(exp: "$1 * 2.0", sobre: tuplas)!)
-print(calcular(exp: "$0 - 5.0", sobre: tuplas)!)
-print(calcular(exp: "$0 + $1", sobre: tuplas)!)
-// Imprime
 // [5.0, 6.5999999999999996, 24.0, 8.0]
+print(calcular(exp: "$0 - 5.0", sobre: tuplas)!)
 // [-4.0, 5.8000000000000007, -6.0, -8.4000000000000004]
+print(calcular(exp: "$0 + $1", sobre: tuplas)!)
 // [3.5, 14.100000000000001, 11.0, 0.60000000000000009]
 ```
+
+- En el primer ejemplo la expresión indica que hay que multiplicar el
+  segundo número de la tupla por 2.0.
+- En el segundo ejemplo la expresión indica que hay que restar al
+  primer número de la tupla 5.0.
+- En el tercer ejemplo la expresión indica que hay que sumar el primer
+  y el segundo elemento de la tupla.
 
 La expresión codificada tendrá siempre dos operandos y una
 operación. Los operandos pueden ser las expresiones `$0` y `$1` para
