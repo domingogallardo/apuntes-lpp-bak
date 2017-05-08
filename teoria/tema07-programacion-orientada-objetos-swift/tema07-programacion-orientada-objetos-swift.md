@@ -41,7 +41,11 @@
   60 y 70
 - Primer lenguaje con las ideas fundamentales de POO: Simula
 - Smalltalk (1980) como lenguaje paradigmática de POO
-- Alan Kay es el creador del término “Object-Oriented”
+- Alan Kay es el creador del término “Object-Oriented” y una de las
+  figuras fundamentales de la historia de la informática
+  moderna. Trabajó en Xerox Park y desarrolló allí ideas que han sido
+  clave para la informática personal (como el Dynabook, precursor de
+  tablets y dispositivos móviles y el lenguajes de programación Smalltalk)
 - Artículo de Alan Kay:
   [“The Early History of Smalltalk”](http://gagne.homedns.org/%7etgagne/contrib/EarlyHistoryST.html),
   ACM SIGPLAN, March 1993
@@ -1075,7 +1079,7 @@ exactamente el mismo que llamar a la versión anterior (aunque con una
 pequeña penalización de eficiencia: este método es 1,3 veces más lento
 que el anterior en la versión 2.2 del compilador de Swift).
 
-Los métodos mutadores de enueraciones pueden establecer el parámetro
+Los métodos mutadores de enumeraciones pueden establecer el parámetro
 `self` implícito para que tenga un subtipo distinto de la misma
 enumeración:
 
