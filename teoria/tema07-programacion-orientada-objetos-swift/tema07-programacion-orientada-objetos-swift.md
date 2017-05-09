@@ -2667,6 +2667,41 @@ print(algoRepresentableComoTexto.descripcionTextual)
 // Un hamster llamado Simon
 ```
 
+#### Implementación de métodos de un protocolo
+     
+Los protocolos pueden extenderse para proporcionar implementaciones de
+métodos y propiedades a todos los tipos que se ajustan a él. Esto
+permite definir conductas en los propios protocolos, más que en cada
+tipo individual o en una función global.
+
+Por ejemplo, el protocolo `RandomNumberGenerator` puede ser extendido
+para proporcionar un método `randomBool()`, que usa el resultado del
+`random()` requerido para devolver un valor `Bool` aleatorio:
+
+```swift
+extension RandomNumberGenerator {
+    func randomBool() -> Bool {
+        return random() > 0.5
+    }
+}
+```
+
+Al crear una extensión en el protocolo, todos los tipos que se ajustan
+a él adquieren automáticamente esta implementación sin ninguna
+modificación adicional.
+
+```
+let generator = LinearCongruentialGenerator()
+print("Un número aleatorio: \(generator.random())")
+// Imprime "Un número aleatorio: 0.37464991998171"
+print("Y un booleano aleatorio: \(generator.randomBool())")
+// Imprime "Un booleano aleatorio: true"
+```
+
+El tipo que se ajusta al protocolo puede proporcionar su propia
+implementación, que se usará en lugar de la proporcionada por la extensión.
+
+
 ### <a name="10"></a> 10. Funciones operadoras
 
 Las clases y las estructuras pueden proporcionar sus propias
