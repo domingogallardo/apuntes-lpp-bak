@@ -2138,11 +2138,10 @@ Una constante o variable de un cierto tipo de clase puede referirse
 (contener) a una instancia de una subclase. Cuando creemos que sucede
 esto, podemos intentar hacer un _downcast_ al tipo de la subclase con
 un operador de _cast_ (`as?` o `as!`). Como el _downcast_ puede
-fallar, se utilizan estas las versiones anteriores. La versión
-condicional, `as?`, devuelve un valor opcional del tipo al que estamos
-intentando hacer el _downcasting_. La versión forzosa, `as!`, intenta
-el _downcast_ y fuerza la desenvoltura del resultado en un única
-acción compuesta.
+fallar, la versión condicional, `as?`, devuelve un valor opcional del
+tipo al que estamos intentando hacer el _downcasting_. La versión
+forzosa, `as!`, intenta el _downcast_ y fuerza la desenvoltura del
+resultado en un única acción compuesta.
 
 Debemos usar la versión condicional (`as?`) cuando no estamos seguros
 si el _downcast_ tendrá éxito. Se devolverá un valor opcional y el
@@ -2212,7 +2211,7 @@ array.append(Pelicula(nombre: "Ghostbusters", director: "Ivan Reitman"))
 array.append({ (name: String) -> String in "Hola, \(name)" })
 ```
 
-Las array contiene dos valores `Int`, dos valores `Double`, un valor
+El array contiene dos valores `Int`, dos valores `Double`, un valor
 `String`, una tupla del tipo `(Double, Double)`, la película
 "Ghostbusters", y una clausura que toma un `String` y devuelve otro
 `String`.
@@ -2489,11 +2488,12 @@ inicializador adicional que toma un punto específico del centro y un
 tamaño:
 
 ```swift
-extension Rectangulo {init(centro: Punto, tamaño: Tamaño) {
-                                        let origenX = centro.x - (tamaño.ancho / 2)
-                                        let origenY = centro.y - (tamaño.alto / 2)
-                                        self.init(origen: Punto(x: origenX, y: origenY), tamaño: tamaño)
-                                    }
+extension Rectangulo {
+    init(centro: Punto, tamaño: Tamaño) {
+        let origenX = centro.x - (tamaño.ancho / 2)
+        let origenY = centro.y - (tamaño.alto / 2)
+        self.init(origen: Punto(x: origenX, y: origenY), tamaño: tamaño)
+    }
  }
 ```
 
