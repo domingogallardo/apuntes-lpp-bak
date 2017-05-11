@@ -1120,7 +1120,7 @@ escribiendo el nombre del tipo. Por ejemplo:
 
 ```swift
 class UnaClase {
-    class func unMetodoDelTipo() {
+    static func unMetodoDelTipo() {
         print("Hola desde el tipo")
     }
 }
