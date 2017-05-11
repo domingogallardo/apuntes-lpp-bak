@@ -297,7 +297,7 @@ expresión matemática a una tupla.
 La función tiene el siguiente perfil:
 
 ```swift
-func construyeFunc(op1: Operando, op2: Operando, op: Operacion) -> (Double, Double) -> Double
+func construyeFunc(op1: Operando, op2: Operando, op: Operacion) -> ((Double, Double)) -> Double
 ```
 También es conveniente que definas **funciones auxiliares**.
 
