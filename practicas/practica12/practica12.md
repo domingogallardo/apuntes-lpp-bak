@@ -228,7 +228,7 @@ Responde a las siguientes preguntas de tipo test.
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2015-16  
+Lenguajes y Paradigmas de Programación, curso 2016-17  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 Antonio Botía, Domingo Gallardo, Cristina Pomares  
 
