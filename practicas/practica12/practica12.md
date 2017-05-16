@@ -207,10 +207,19 @@ Las debes declarar tal y como aparecen en los apuntes.
     - `areaTotal` (`Double`) que devuelve la suma total de las áreas
       de todas las figuras creadas.
 
-**Nota**: La implementación del almacén de figuras no es demasiado
-  correcta, porque se utiliza una variable distinta para cada tipo de
-  figura, sin generalizar. En la práctica de la semana que viene
-  veremos cómo mejorarlo utilizando protocolos.
+<!-- Nota -->
+<table>
+<tr><td>
+
+**Nota**
+
+La definición anterior del almacén de figuras no es demasiado correcta,
+porque se utiliza una variable distinta para cada tipo de figura, sin
+generalizar. En la práctica de la semana que viene veremos cómo
+mejorarlo utilizando protocolos.
+
+</td></tr></table>
+<!-- Final de la nota -->
 
 Implementa las estructuras y clases anteriores y escribe algunos
 ejemplos de código para probarlas.
