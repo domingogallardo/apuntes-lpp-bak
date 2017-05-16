@@ -211,7 +211,7 @@ Las debes declarar tal y como aparecen en los apuntes.
 <table>
 <tr><td>
 
-**Nota**
+:exclamation: **Nota**
 
 La definición anterior del almacén de figuras no es demasiado correcta,
 porque se utiliza una variable distinta para cada tipo de figura, sin
