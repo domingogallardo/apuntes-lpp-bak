@@ -1,4 +1,20 @@
 
+<!--
+
+Cosas importantes que no contamos, que habría que contar (si hubiera 
+tiempo en la última sesión):
+
+- Un protocolo puede extender otro protocolo (o más de uno)
+https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID280
+
+- Las extensiones pueden usarse para añadir una implementación por
+  defecto a un protocolo
+https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID521
+
+- Ampliar el tema de genéricos con type constraints y cláusula where
+
+-->
+
 ## Tema 7: Programación Orientada a Objetos con Swift
 
 ### Contenidos
@@ -2071,13 +2087,26 @@ class Cancion: MediaItem {
 
 Por último, creamos un array constante llamado `biblioteca`, que
 contienen dos instancias de `Pelicula` y tres instancias de
-`Cancion`. El tipo del array se infiere a partir de la
-inicialización. El compilador de Swift es capaz de deducir que
-`Pelicula` y `Cancion` tienen una superclase común `MediaItem`, por lo
-que infiriere `[MediaItem]` como el tipo del array:
+`Cancion`. 
 
 ```swift
-let biblioteca = [
+let biblioteca: [MediaItem] = [
+    Pelicula(nombre: "El Señor de los Anillos", director: "Peter Jackson"),
+    Cancion(nombre: "Child in Time", artista: "Deep Purple"),
+    Pelicula(nombre: "El Puente de los Espías", director: "Steven Spielberg"),
+    Cancion(nombre: "I Wish You Were Here", artista: "Pink Floyd"),
+    Cancion(nombre: "Yellow", artista: "Coldplay")
+]
+```
+
+Podríamos también dejar que el compilador infiera el tipo del
+array. Es capaz de deducir que `Pelicula` y `Cancion` tienen una
+superclase común `MediaItem`, por lo que **infiere que el tipo del
+array es `[MediaItem]`**:
+
+```swift
+// Declaración equivalente a la anterior
+let biblioteca  = [
     Pelicula(nombre: "El Señor de los Anillos", director: "Peter Jackson"),
     Cancion(nombre: "Child in Time", artista: "Deep Purple"),
     Pelicula(nombre: "El Puente de los Espías", director: "Steven Spielberg"),
