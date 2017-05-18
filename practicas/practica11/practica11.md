@@ -301,12 +301,20 @@ func construyeFunc(op1: Operando, op2: Operando, op: Operacion) -> ((Double, Dou
 ```
 La clausura que se devuelve También es conveniente que definas **funciones auxiliares**.
 
-**Nota**: La clausura que se devuelve puede ser una clausura que
-captura los parámetros `op1`, `op2` y `op` y que los usa en su
-cuerpo. De esta forma podemos hacer una clausura genérica que llama a
-las funciones auxiliares y evitamos tener que escribir un número
-enorme de clasuras concretas con todas las posibles combinaciones de
-tuplas y operadores.
+<!-- Nota -->
+<table>
+<tr><td>
+
+:exclamation: **Nota**
+
+La clausura que se devuelve puede ser una clausura que captura los
+parámetros `op1`, `op2` y `op` y que los usa en su cuerpo. De esta
+forma podemos hacer una clausura genérica que llama a las funciones
+auxiliares y evitamos tener que escribir un número enorme de clasuras
+concretas con todas las posibles combinaciones de tuplas y operadores.
+</tr></td>
+</table>
+<!-- Nota --> 
 
 c) Por último debes implementar la función `calcular(exp:sobre:)` con
 el siguiente perfil:
