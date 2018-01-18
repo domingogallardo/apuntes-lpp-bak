@@ -1,8 +1,8 @@
 
 ## Lenguajes y Paradigmas de Programación
 
-Toda la información está disponible en el [sitio Moodle de LPP](https://moodle2016-17.ua.es/moodle/course/view.php?id=942) y en la
-[ficha del campus virtual](http://cv1.cpd.ua.es/ConsPlanesEstudio/cvFichaAsiEEES.asp?wCodEst=C203&wcodasi=34017&wLengua=C&scaca=2016-17).
+Toda la información está disponible en el [sitio Moodle de LPP](https://moodle2017-18.ua.es/moodle/course/view.php?id=828) y en la
+[ficha del campus virtual](http://cv1.cpd.ua.es/ConsPlanesEstudio/cvFichaAsiEEES.asp?wCodEst=C203&wcodasi=34017&wLengua=C&scaca=2017-18).
 
 
 ### Datos académicos de la asignatura
@@ -12,16 +12,22 @@ Toda la información está disponible en el [sitio Moodle de LPP](https://moodle
 prácticas de 2 h. a la semana  
 **Profesores**:  
 
-* Antonio Botía ([e-mail](mailto:abotia@dccia.ua.es)): Grupos de prácticas: 2, 5, 6, y 9.
-* Domingo Gallardo ([e-mail](mailto:domingo.gallardo@ua.es)): Profesor coordinador de la asignatura. Grupos de teoría: 3 y 4. Grupos de prácticas: 4 y 8.
-* Cristina Pomares ([e-mail](mailto:cpomares@ua.es)): Grupos de teoría: 1 y 2. Grupos de prácticas: 1, 3 y 7.
+* Antonio Botía ([e-mail](mailto:abotia@dccia.ua.es)): Grupos de
+  prácticas: 2, 9 y 40
+* Domingo Gallardo ([e-mail](mailto:domingo.gallardo@ua.es)): Profesor
+  coordinador de la asignatura. Grupos de teoría: 3, 4 y 40. Grupos de
+  prácticas: 4 y 8. 
+* Francisco Martínez ([e-mail](mailto:fmartine@ua.es)): Grupos de
+  prácticas: 5, 6, 8 y 10 
+* Cristina Pomares ([e-mail](mailto:cpomares@ua.es)): Grupos de
+  teoría: 1 y 2. Grupos de prácticas: 1, 3, 4 y 7.
 
 ### Recursos de la asignatura
 
-* [Sitio Moodle](https://moodle2016-17.ua.es/moodle/course/view.php?id=942)
+* [Sitio Moodle](https://moodle2017-18.ua.es/moodle/course/view.php?id=828)
   abierto y accesible a toda la comunidad educativa, contiene los
   apuntes, transparencias, prácticas y otros materiales docentes
-* [Foro de consultas y anuncios](https://moodle2016-17.ua.es/moodle/mod/forum/view.php?id=8086)
+* [Foro de consultas y anuncios](https://moodle2017-18.ua.es/moodle/mod/forum/view.php?id=8429)
   en el sitio Moodle (sólo accesible a estudiantes)
 
 ### Objetivos y competencias
@@ -71,7 +77,8 @@ dominios concretos.
   programación. Abstracción. Paradigmas de programación. Compiladores
   e intérpretes.
 * Tema 2. **Programación Funcional**: Características e historia del
-  paradigma de Programación Funcional. Características declarativas
+  paradigma de Programación Funcional. Diferencias con el paradigma
+  imperativo. Características declarativas
   del paradigma funcional. Definición de funciones. Funciones como
   datos de primer orden. La forma especial lambda. Ámbito de variables
   y closures. Datos compuestos en Scheme: parejas. Construcción,
@@ -82,18 +89,13 @@ dominios concretos.
   iterativos. Memoization. Recursión y gráficos de tortuga. 
 * Tema 4. **Estructuras recursivas**: Estructuras de datos recursivas:
   listas estructuradas y árboles.
-* Tema 5. **Programación Imperativa**: Historia del paradigma de
-  programación imperativo. Características principales. Datos
-  mutables. Datos mutables en Scheme. Estructuras de datos mutables en
-  Scheme. Ámbito de variables dinámico y modelo de entornos en
-  Scheme. Estado local.
-* Tema 6. **Programación funcional en Swift**: Lenguajes
+* Tema 5. **Programación funcional en Swift**: Lenguajes
   multiparadigma. Programación funcional en Swift. Valores
   opcionales. Listas. Recursión pura y recursión por la
   cola. Funciones como datos de primer orden. Clousures y funciones
   anónimas. Funciones de orden superior: mappings y filtros de
   colecciones.
-* Tema 7. **Programación Orientada a Objetos en Swift**: Características e
+* Tema 6. **Programación Orientada a Objetos en Swift**: Características e
   historia del paradigma de Programación Orientada a
   Objetos. Estructuras y clases en Swift. Herencia. Conceptos
   avanzados de POO en Swift: Extensiones, Protocolos y
@@ -110,7 +112,11 @@ Seminarios:
   arrays y colecciones. Recorriendo colecciones. Valores mutables e
   inmutables. Inicialización. Tipos de referencia y valor en Swift.
 
-El calendario de temas, prácticas y exámenes está disponible en Moodle.
+El calendario de temas, prácticas y exámenes se puede ver en la
+siguiente figura.
+
+<img src="imagenes/planificacion.png" width="800px"/>
+
 
 ### Prácticas
 
@@ -127,14 +133,21 @@ desarrollo:
   Apple, con conceptos modernos de programación funcional y
   programación orientada a objetos)
 
-Se realizarán 12 sesiones de ejercicios de prácticas de una semana de
+Se realizarán 10 sesiones de ejercicios de prácticas de una semana de
 duración y 2 seminarios de lenguajes. En las sesiones de ejercicios de
 prácticas se propondrá una hoja de ejercicios con 5 o 6 problemas de
-programación relacionados con el tema de la sesión de teoría. Los
-ejercicios se resolverán de forma individual y se entregarán en Moodle
-en la fecha indicada. Cuando todos los grupos hayan entregado las
-prácticas, se publicará una hoja de soluciones con distintas
-soluciones posibles para los ejercicios planteados.
+programación relacionados con el tema de la sesión de teoría. Durante
+la sesión de prácticas se deberán realizar los ejercicios marcados
+para realizar en clase. Al final de la clase de prácticas se realizará
+un **cuestionario de aprovechamiento** individual que será necesario
+superar para conseguir la calificación de aprovechamiento de las
+clases prácticas (un 10% de la nota total de la asignatura).
+
+El resto de ejercicios se realizarán en casa se resolverán de forma
+individual y se entregarán en Moodle en la fecha indicada. Cuando
+todos los grupos hayan entregado las prácticas, se publicará una hoja
+de soluciones con distintas soluciones posibles para los ejercicios
+planteados.
 
 Al comienzo de cada sesión de prácticas el profesor resolverá dudas
 sobre la última hoja de soluciones publicada. Después se trabajará en
@@ -144,29 +157,72 @@ problemas.
 
 ### Horarios
 
-La distribución de grupos del curso 2016-17 es la siguiente:
+La distribución de grupos del curso 2017-18 es la siguiente:
 
-<img src="imagenes/horario.png" width="700px"/>
+<img src="imagenes/horario.png" width="800px"/>
 
 ### Evaluación
 
 #### Convocatoria normal (evaluación continua)
 
-En la convocatoria de junio se realizará una evaluación continua con
-tres exámenes parciales, que ponderarán un 33%, 33% y 34% en la nota
-final.
 
-Las entregas de las prácticas no ponderarán para la calificación
-final, pero son esenciales para el aprendizaje de los conceptos y
-técnicas de la asignatura. Junto con la realización de las prácticas,
-también recomendamos encarecidamente la revisión de sus soluciones
-(que iremos publicando también semana a semana) y de los ejemplos
-de código presentados en teoría.
+La asignatura se divide en 3 bloques temáticos, todos ellos de igual
+duración, en los que se utilizará el lenguaje de programación que
+aparece entre paréntesis:
+
+1. Programación funcional (Scheme)
+2. Procesos y estructuras recursivas. (Scheme)
+3. Programación orientada a objetos (Swift)
+
+Para cada bloque temático se realizará un examen parcial escrito que
+ponderará un 30% (90% en total) en la nota final.
+ 
+El 10% restante para la nota final se obtendrá por el aprovechamiento
+de las clases de prácticas, según se explica a continuación.
+
+Las sesiones prácticas consistirán en ejercicios individuales de
+programación sobre los conceptos explicados en la clase de teoría de
+la semana anterior. Evidentemente, para poder realizar correctamente
+estos ejercicios se deberá haber estudiado los conceptos previamente
+explicados.
+
+Al final de cada sesión de prácticas se realizará un **cuestionario de
+aprovechamiento**, una pequeña prueba tipo test sobre los ejercicios
+realizados y los conceptos asociados. La nota final de aprovechamiento
+de las sesiones prácticas será la media de estas calificaciones,
+siempre que se supere la siguiente condición:
+
+**Se deberá aprobar como mínimo** :
+
+- **3 de los 5 cuestionarios del bloque 1**
+- **4 de los 6 cuestionarios del bloque 2 y 3.**
+
+En el caso en que no se alcance el mínimo indicado, la calificación de
+aprovechamiento de las prácticas será de 0.
+
+La calificación total será la media ponderada de las calificaciones de
+cada parcial y la media de los 11 cuestionarios de aprovechamiento,
+condicionado esto último a que se haya superado el mínimo de
+cuestionarios aprovados.
+
+Ejemplo 1: un estudiante que ha obtenido un 4’5, 5 y 4’5 en los
+exámenes parciales y un 8 en el aprovechamiento de las clases de
+prácticas obtendría de nota final:
+
+8 * 0'1 + 4’5 * 0’3 + 5 * 0’3 + 4’5 * 0’3 = 5
+
+Ejemplo 2: un estudiante con las mismas calificaciones en los
+parciales pero sin aprovechamiento de las clases de prácticas:
+
+ 
+0 + 4’5 * 0’3 + 5 * 0’3 + 4’5 * 0’3 = 4’2
+
 
 #### Convocatoria extraordinaria
 
-En la convocatoria de julio se realizará un examen final sobre todos
-los contenidos impartidos en el curso.
+En la convocatoria extraordinaria se realizará un examen final sobre
+todos los bloques temáticos cuya calificación representará el 100% de
+la nota de la asignatura.
 
 #### Consejos para aprender con éxito los contenidos de la asignatura
 
@@ -277,11 +333,11 @@ Para ampliar algunos conceptos se recomiendan los dos siguientes manuales:
 
 <img src="imagenes/swift-cover.png" width="170px"/>
 
-* Apple, *The Swift Programming Language (Swift 3.0.1)*, 2016
+* Apple, *The Swift Programming Language (Swift 4.0.3)*, 2018
 * [Web](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/)
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Domingo Gallardo, Cristina Pomares, Antonio Botía
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
