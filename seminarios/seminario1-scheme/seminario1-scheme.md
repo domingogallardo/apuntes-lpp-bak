@@ -521,10 +521,10 @@ anidados.  `cond` evalúa una serie de condiciones y devuelve el valor
 de la expresión asociada a la primera condición verdadera.
 
 	(cond
-		((> 3 4) “3 es mayor que 4”)
-		((< 2 1) “2 es menor que 1”)
-		((> 3 2) “3 es mayor que 2”)
-		(else “ninguna condicion es cierta”))
+		((> 3 4) “3 es mayor que 4")
+		((< 2 1) “2 es menor que 1")
+		((> 3 2) “3 es mayor que 2")
+		(else “ninguna condicion es cierta"))
 
 ### Comentarios
 
@@ -782,10 +782,10 @@ Instrucción    | Instrucción                                  |
 (+)            | (+ (- (+ (- (+ 2 3) 5) 1) 2) 3)              |
 (sqrt 25)      | (- (sqrt (* 5 ( + 3 2))) (+ 1 1 1 1))        |
 (* (+ 2 3) 5)  | (> (* 3 (+ 2 (+ 3 1)) (+ 1 1)) (+ (* 2 2) 3))|
-+              | (= (* 3 2) (+ 1 (+ 2 2) 1))                  |
+`+`            | (= (* 3 2) (+ 1 (+ 2 2) 1))                  |
 `#\+`          | (not (> (+ 3 2) 5))                          |
 "+"            | (and (even? 2) (odd? (+ 3 2)))               |
-“hola”         | (mod (+ 6 2) (+ 1 1))                        |
+"hola"         | (mod (+ 6 2) (+ 1 1))                        |
 
 
 ### Ejercicio 2
@@ -797,14 +797,14 @@ era correcta. Si no lo era, intenta comprender por qué.
 
 Instrucción                                  |Instrucción                                                    |
 -------------------------------------------- |---------------------------------------------------------------|
-(equal? “hola” “hola”)                       | (+ (char->integer(integer->char 1200))(char->integer #\A))    |
-(string-ref “pepe” 1)                        | (string-length (make-string 7 #\E))                           |
-(substring “buenos dias” 1 4)                | (define a 3) <br/> (define b (+ a 1))                         |
-(= “hola” “hola”)                            | (+ a b (* a b))                                               |
-(string-ref (substring “buenos dias 2 5) 1)  | (= a b)                                                       |
+(equal? "hola" "hola")                       | (+ (char->integer(integer->char 1200))(char->integer #\A))    |
+(string-ref "pepe" 1)                        | (string-length (make-string 7 #\E))                           |
+(substring "buenos dias" 1 4)                | (define a 3) <br/> (define b (+ a 1))                         |
+(= "hola" "hola")                            | (+ a b (* a b))                                               |
+(string-ref (substring "buenos dias 2 5) 1)  | (= a b)                                                       |
 (define pi 3.14159)                          | (if (and (> a b) (< b (* a b))) b a)                          |
 pi                                           | (cond ((= a 4) 6) <br/> ((= b 4) (+ 6 7 a)) <br/> (else 25))  |
-“pi”                                         | (+ 2 (if (> b a) b a))                                        |
+"pi"                                         | (+ 2 (if (> b a) b a))                                        |
 (+ pi (+ pi pi))                             | (* (cond ((> a b) a) <br/> ((< a b) b) <br/>(else -1)) <br/> (+ a 1))|
 (+ (* pi pi) (- 2 pi pi pi pi))              | ((if (< a b) + -) a b)                                        |
 
