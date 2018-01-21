@@ -171,7 +171,7 @@ aparece entre paréntesis:
 
 1. Programación funcional (Scheme)
 2. Procesos y estructuras recursivas. (Scheme)
-3. Programación orientada a objetos (Swift)
+3. Programación funcional en Swift y programación orientada a objetos (Swift)
 
 Para cada bloque temático se realizará un examen parcial escrito que
 ponderará un 30% (90% en total) en la nota final.
@@ -194,7 +194,7 @@ siempre que se supere la siguiente condición:
 **Se deberá aprobar como mínimo** :
 
 - **3 de los 5 cuestionarios del bloque 1**
-- **4 de los 6 cuestionarios del bloque 2 y 3.**
+- **4 de los 6 cuestionarios del bloque 2 y 3**
 
 En el caso en que no se alcance el mínimo indicado, la calificación de
 seguimiento de las prácticas será de 0.
