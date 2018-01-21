@@ -3,7 +3,7 @@
 
 ### Bibliografía
 
-Este seminario está basado en los siguientes materiales. Os
+Este adsasfaf **seminario** está basado en los siguientes materiales. Os
 recomendamos que los leáis y, si os interesa y os queda tiempo, que
 exploréis también en los enlaces que hemos dejado en los apuntes para
 ampliar información.
@@ -178,7 +178,7 @@ parámetros y devuelve la suma de sus cuadrados:
 	(suma-cuadrados 2 3)  ; ⇒ 13
 
 Podemos comprobar una característica muy importante de Scheme. Se
-trata de un lenguaje débilmente tipeado, en el que los argumentos `x`
+trata de un lenguaje débilmente tipado, en el que los argumentos `x`
 e `y` no tienen tipo. Si se invoca a la función pasando algún dato que
 no sea un número, el intérprete no detectará ningún error hasta que el
 momento en que se intente evaluar la multiplicación. Lo podemos
@@ -350,7 +350,7 @@ Por ejemplo:
 
 	(cons 1 2) ; ⇒ {1 . 2}
 
-Scheme es un lenguaje débilmente tipeado y las variables y parejas
+Scheme es un lenguaje débilmente tipado y las variables y parejas
 pueden contener cualquier tipo de dato. Incluso otras parejas:
 
 	(define p1 (cons 1 2)) ; definimos una pareja formada por 1 y 2

@@ -20,7 +20,7 @@ prácticas de 2 h. a la semana
 * Francisco Martínez ([e-mail](mailto:fmartine@ua.es)): Grupos de
   prácticas: 5, 6, 8 y 10 
 * Cristina Pomares ([e-mail](mailto:cpomares@ua.es)): Grupos de
-  teoría: 1 y 2. Grupos de prácticas: 1, 3, 4 y 7.
+  teoría: 1 y 2. Grupos de prácticas: 1, 3 y 7.
 
 ### Recursos de la asignatura
 
@@ -137,17 +137,16 @@ Se realizarán 10 sesiones de ejercicios de prácticas de una semana de
 duración y 2 seminarios de lenguajes. En las sesiones de ejercicios de
 prácticas se propondrá una hoja de ejercicios con 5 o 6 problemas de
 programación relacionados con el tema de la sesión de teoría. Durante
-la sesión de prácticas se deberán realizar los ejercicios marcados
-para realizar en clase. Al final de la clase de prácticas se realizará
-un **cuestionario de aprovechamiento** individual que será necesario
-superar para conseguir la calificación de aprovechamiento de las
-clases prácticas (un 10% de la nota total de la asignatura).
+la sesión de prácticas se deberán realizar como mínimo los ejercicios
+indicados. Al final de la clase de prácticas se realizará un
+**cuestionario de seguimiento** individual que será necesario superar
+para conseguir la calificación de seguimiento de las clases prácticas
+(un 10% de la nota total de la asignatura).
 
-El resto de ejercicios se realizarán en casa se resolverán de forma
-individual y se entregarán en Moodle en la fecha indicada. Cuando
-todos los grupos hayan entregado las prácticas, se publicará una hoja
-de soluciones con distintas soluciones posibles para los ejercicios
-planteados.
+La hoja de ejercicios se deberá terminar durante el resto de la semana
+y entregar en Moodle en la fecha indicada. Cuando todos los grupos
+hayan entregado las prácticas, se publicará una hoja de soluciones con
+distintas soluciones posibles para los ejercicios planteados.
 
 Al comienzo de cada sesión de prácticas el profesor resolverá dudas
 sobre la última hoja de soluciones publicada. Después se trabajará en
@@ -177,7 +176,7 @@ aparece entre paréntesis:
 Para cada bloque temático se realizará un examen parcial escrito que
 ponderará un 30% (90% en total) en la nota final.
  
-El 10% restante para la nota final se obtendrá por el aprovechamiento
+El 10% restante para la nota final se obtendrá por el seguimiento
 de las clases de prácticas, según se explica a continuación.
 
 Las sesiones prácticas consistirán en ejercicios individuales de
@@ -187,8 +186,8 @@ estos ejercicios se deberá haber estudiado los conceptos previamente
 explicados.
 
 Al final de cada sesión de prácticas se realizará un **cuestionario de
-aprovechamiento**, una pequeña prueba tipo test sobre los ejercicios
-realizados y los conceptos asociados. La nota final de aprovechamiento
+seguimiento**, una pequeña prueba tipo test sobre los ejercicios
+realizados y los conceptos asociados. La nota final de seguimiento
 de las sesiones prácticas será la media de estas calificaciones,
 siempre que se supere la siguiente condición:
 
@@ -198,21 +197,21 @@ siempre que se supere la siguiente condición:
 - **4 de los 6 cuestionarios del bloque 2 y 3.**
 
 En el caso en que no se alcance el mínimo indicado, la calificación de
-aprovechamiento de las prácticas será de 0.
+seguimiento de las prácticas será de 0.
 
 La calificación total será la media ponderada de las calificaciones de
-cada parcial y la media de los 11 cuestionarios de aprovechamiento,
+cada parcial y la media de los 11 cuestionarios de seguimiento,
 condicionado esto último a que se haya superado el mínimo de
 cuestionarios aprovados.
 
 Ejemplo 1: un estudiante que ha obtenido un 4’5, 5 y 4’5 en los
-exámenes parciales y un 8 en el aprovechamiento de las clases de
+exámenes parciales y un 8 en el seguimiento de las clases de
 prácticas obtendría de nota final:
 
 8 * 0'1 + 4’5 * 0’3 + 5 * 0’3 + 4’5 * 0’3 = 5
 
 Ejemplo 2: un estudiante con las mismas calificaciones en los
-parciales pero sin aprovechamiento de las clases de prácticas:
+parciales pero sin seguimiento de las clases de prácticas:
 
  
 0 + 4’5 * 0’3 + 5 * 0’3 + 4’5 * 0’3 = 4’2
