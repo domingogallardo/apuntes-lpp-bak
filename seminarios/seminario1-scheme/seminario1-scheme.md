@@ -3,7 +3,7 @@
 
 ### Bibliografía
 
-Este adsasfaf **seminario** está basado en los siguientes materiales. Os
+Este **seminario** está basado en los siguientes materiales. Os
 recomendamos que los leáis y, si os interesa y os queda tiempo, que
 exploréis también en los enlaces que hemos dejado en los apuntes para
 ampliar información.
@@ -39,7 +39,7 @@ Cuando lanzamos DrRacket, vemos que tiene tres partes: una fila de
 botones arriba, dos paneles de edición en el medio y una barra de
 estado abajo.
 
-![](imagenes/racket1.png)
+<img src="imagenes/racket1.png" width="500px"/>
 
 El panel de edición superior es la ventana de definiciones. Se utiliza
 para implementar funciones, como la función square en el ejemplo. El
@@ -58,7 +58,7 @@ queremos tenerlo por ejemplo en español, vamos al menú _Help ->
 Interactúa con DrRacket en español_. Nos aparecerá un diálogo que nos
 obligará a reiniciar el intérprete para aceptar los cambios.
 
-![](imagenes/racket2.png)
+<img src="imagenes/racket2.png" width="400px"/>
 
 #### Eligiendo un lenguaje
 
@@ -73,26 +73,26 @@ siguiente:
    "_Determine language from source_"
 2. En el panel de edición debemos escribir las siguientes líneas:
 
-    ```
-    #lang r6rs
-    (import (rnrs base))
-    ```
+```scheme
+#lang r6rs
+(import (rnrs base))
+```
 
 3. Finalmente pulsar el botón _Run_ (Ejecutar) para que se cargue ese
    lenguaje en el intérprete.
 
-![](imagenes/racket3.png)
+<img src="imagenes/racket3.png" width="800px"/>
 
 **Aclaraciones:**
 
-```
+```scheme
 #lang r6rs
 ```  
 
 es una directiva de DrRacket que determina qué lenguaje será
 interpretado
 
-```
+```scheme
 (import (rnrs base))
 ```
 
@@ -110,11 +110,13 @@ Scheme es un lenguaje interpretado. Vamos a lanzar DrRacket y teclear
 en la ventana de interacción algunas expresiones. El intérprete
 analizará la expresión y mostrará el valor resultante de evaluarla.
 
-	2
-	(+ 2 3)
-	(+)
-	(+ 2 4 5 6)
-	(+ (* 2 3) (- 3 1))
+```scheme
+2
+(+ 2 3)
+(+)
+(+ 2 4 5 6)
+(+ (* 2 3) (- 3 1))
+```
 
 Las expresiones en Scheme tienen una forma denominada _notación
 prefija de Cambridge_ (el nombre de Cambridge es por la localidad
@@ -122,7 +124,9 @@ Cambridge, Massachusets, donde reside el MIT, lugar en el que se ideó
 el Lisp), en la que la expresión está delimitada por paréntesis y el
 operador va seguido de los operandos. La sintaxis es la siguiente:
 
-	(<función> <arg1> ... <argn>)
+```scheme
+(<función> <arg1> ... <argn>)
+```
 
 En Scheme podemos interpretar los paréntesis abiertos ‘(’ como
 evaluadores o lanzadores de la función que hay a continuación. La
@@ -132,11 +136,13 @@ forma que tiene Scheme de evaluar una expresión es muy sencilla:
 2. Aplica la función nombrada tras el paréntesis a los valores
    resultantes de la evaluación anterior
 
-		(+ (* 2 3) (- 3 (/ 12 3)))
-		⇒ (+ 6 (- 3 (/ 12 3)))
-		⇒ (+ 6 (- 3 4))
-		⇒ (+ 6 -1)
-		⇒ 5
+```scheme
+(+ (* 2 3) (- 3 (/ 12 3)))
+⇒ (+ 6 (- 3 (/ 12 3)))
+⇒ (+ 6 (- 3 4))
+⇒ (+ 6 -1)
+⇒ 5
+```
 
 En Scheme los términos función y procedimiento significan lo mismo y
 se usan de forma intercambiable. Son ejemplos de funciones o
@@ -144,7 +150,9 @@ procedimientos: +, -, \*. En Scheme la evaluación de una función
 siempre devuelve un valor, a no ser que se produzca un error que
 detiene la evaluación:
 
-	(* (+ 3 4) (/ 3 0))
+```scheme
+(* (+ 3 4) (/ 3 0))
+```
 
 #### Definiendo variables y funciones
 
@@ -158,24 +166,30 @@ que los programas se construyen mediante la definición de funciones.
 
 Definimos variables en la ventana de interacción:
 
-	(define pi 3.14159)
-	pi
-	(sin (/ pi 2))
-	(define a (+ 2 (* 3 4)))
-	a
+```scheme
+(define pi 3.14159)
+pi
+(sin (/ pi 2))
+(define a (+ 2 (* 3 4)))
+a
+```
 
 Para implementar una función también se utiliza define, con la siguiente sintaxis:
 
-	(define (<nombre-funcion> <args>)
-		<cuerpo-funcion>
-	)
+```scheme
+(define (<nombre-funcion> <args>)
+	<cuerpo-funcion>
+)
+```
 
 Por ejemplo, vamos a implementar una función que toma dos números como
 parámetros y devuelve la suma de sus cuadrados:
 
-	(define (suma-cuadrados x y)
-		(+ (* x x) (* y y)))
-	(suma-cuadrados 2 3)  ; ⇒ 13
+```scheme
+(define (suma-cuadrados x y)
+	(+ (* x x) (* y y)))
+(suma-cuadrados 2 3)  ; ⇒ 13
+```
 
 Podemos comprobar una característica muy importante de Scheme. Se
 trata de un lenguaje débilmente tipado, en el que los argumentos `x`
@@ -184,18 +198,24 @@ no sea un número, el intérprete no detectará ningún error hasta que el
 momento en que se intente evaluar la multiplicación. Lo podemos
 comprobar con el siguiente ejemplo:
 
-	(suma-cuadrados 10 "hola")
+```scheme
+(suma-cuadrados 10 "hola")
+```
 
 Veremos más adelante que hay distintos tipos de números, y la función
 definida va a funcionar bien para todos ellos. En el ejemplo anterior
 hemos pasado como parámetro números enteros. Podemos pasar números
 reales:
 
-	(suma-cuadrados 2.4 5.8)  ; ⇒ 39.4
+```scheme
+(suma-cuadrados 2.4 5.8)  ; ⇒ 39.4
+```
 
 o fracciones:
 
-	(suma-cuadrados (/ 2 3) (/ 3 5))  ; ⇒ 181/225
+```scheme
+(suma-cuadrados (/ 2 3) (/ 3 5))  ; ⇒ 181/225
+```
 
 #### Algunas primitivas
 
@@ -225,15 +245,17 @@ Scheme, tenemos los símbolos #t y #f para expresar verdadero y falso
 respectivamente, pero en muchas operaciones se considera que cualquier
 valor distinto de #f es verdadero. Ejemplos:
 
-	#t
-	#f
-	(> 3 1.5)
-	(= 3 3.0)
-	(equal? 3 3.0)
-	(or (< 3 1.5) #t)
-	(and #t #t #f)
-	(not #f)
-	(not 3)
+```scheme
+#t
+#f
+(> 3 1.5)
+(= 3 3.0)
+(equal? 3 3.0)
+(or (< 3 1.5) #t)
+(and #t #t #f)
+(not #f)
+(not 3)
+```
 
 ##### Números
 
@@ -243,128 +265,156 @@ complejos e inexactos.
 
 ###### Algunas primitivas sobre números
 
-	(<= 2 3 3 4 5)
-	(max 3 5 10 1000)
-	(/ 22 4)  ; Devuelve una fracción
-	(div 22 4)
-	(mod 22 4)
-	(equal? 0.5 (/ 1 2))
-	(= 0.5 (/ 1 2))
-	(abs (* 3 -2))
-	(sin 2.2) ; relacionados: cos, tan, asin, acos, ata
+```scheme
+(<= 2 3 3 4 5)
+(max 3 5 10 1000)
+(/ 22 4)  ; Devuelve una fracción
+(div 22 4)
+(mod 22 4)
+(equal? 0.5 (/ 1 2))
+(= 0.5 (/ 1 2))
+(abs (* 3 -2))
+(sin 2.2) ; relacionados: cos, tan, asin, acos, ata
+```
 
 ###### Primitivas que devuelven números inexactos
 
-	(floor x) devuelve el entero más grande no mayor que x
-	(ceiling x) devuelve el entero más pequeño no menor que x
-	(truncate x) devuelve el entero más cercano a x cuyo valor absoluto no es mayor que el valor absoluto de x
-	(round x) devuelve el entero más cercano a x, redondeado
-	(floor -4.3)    ; ⇒ -5.0
-	(floor 3.5)     ; ⇒ 3.0
-	(ceiling -4.3)  ; ⇒ -4.0
-	(ceiling 3.5)   ; ⇒ 4.0
-	(truncate -4.3) ; ⇒ -4.0
-	(truncate 3.5)  ; ⇒ 3.0
-	(round -4.3)    ; ⇒ -4.0
-	(round 3.5)     ; ⇒ 4.0
+```scheme
+(floor x) devuelve el entero más grande no mayor que x
+(ceiling x) devuelve el entero más pequeño no menor que x
+(truncate x) devuelve el entero más cercano a x cuyo valor absoluto no es mayor que el valor absoluto de x
+(round x) devuelve el entero más cercano a x, redondeado
+(floor -4.3)    ; ⇒ -5.0
+(floor 3.5)     ; ⇒ 3.0
+(ceiling -4.3)  ; ⇒ -4.0
+(ceiling 3.5)   ; ⇒ 4.0
+(truncate -4.3) ; ⇒ -4.0
+(truncate 3.5)  ; ⇒ 3.0
+(round -4.3)    ; ⇒ -4.0
+(round 3.5)     ; ⇒ 4.0
+```
 
 ###### Operaciones sobre números
 
-	(number? 1)
-	(integer? 2.3)
-	(integer? 4.0)
-	(real? 1)
-	(positive? -4)
-	(negative? -4)
-	(zero? 0.2)
-	(even? 2)
-	(odd? 3)
+```scheme
+(number? 1)
+(integer? 2.3)
+(integer? 4.0)
+(real? 1)
+(positive? -4)
+(negative? -4)
+(zero? 0.2)
+(even? 2)
+(odd? 3)
+```
 
 ##### Caracteres
 
 Se soportan caracteres internacionales y se codifican en UTF-8.
 
-	#\a
-	#\A
-	#\space
-	#\ñ
-	#\á		
+```scheme
+#\a
+#\A
+#\space
+#\ñ
+#\á
+```
 
 ##### Operaciones sobre caracteres
 
-	(char<? #\a #\b)
-	(char-numeric? \#1)
-	(char-alphabetic? #\3)
-	(char-whitespace? #\space)
-	(char-upper-case? #\A)
-	(char-lower-case? #\a)
-	(char-upcase #\ñ)
-	(char->integer #\space)
-	(integer->char 32) ;#\space
-	(char->integer (integer->char 5000))
+```scheme
+(char<? #\a #\b)
+(char-numeric? \#1)
+(char-alphabetic? #\3)
+(char-whitespace? #\space)
+(char-upper-case? #\A)
+(char-lower-case? #\a)
+(char-upcase #\ñ)
+(char->integer #\space)
+(integer->char 32) ;#\space
+(char->integer (integer->char 5000))
+```
 
 ##### Cadenas
 
 Las cadenas son secuencias finitas de caracteres.
 
-	"hola"
-	"La palabra \"hola\" tiene 4 letras"
+```scheme
+"hola"
+"La palabra \"hola\" tiene 4 letras"
+```
 
 ###### Constructores de cadenas
 
-	(make-string 5 #\o) ⇒ "ooooo"
-	(string #\h #\o #\l #\a) ⇒ "hola"
+```scheme
+(make-string 5 #\o) ⇒ "ooooo"
+(string #\h #\o #\l #\a) ⇒ "hola"
+```
 
 ###### Operaciones con cadenas
 
-	(substring "Hola que tal" 2 4)
-	(string? "hola")
-	(string->list "hola")
-	(string-length "hola")
-	(string-ref "hola" 0)
-	(string-append "hola" "adios")
+```scheme
+(substring "Hola que tal" 2 4)
+(string? "hola")
+(string->list "hola")
+(string-length "hola")
+(string-ref "hola" 0)
+(string-append "hola" "adios")
+```
 
 ###### Comparadores de cadenas
 
-	(string=? "Hola" "hola")
-	(string=? "hola" "hola")
-	(string<? "aab" "cde")
-	(string>=? "www" "qqq")
+```scheme
+(string=? "Hola" "hola")
+(string=? "hola" "hola")
+(string<? "aab" "cde")
+(string>=? "www" "qqq")
+```
 
 #### Parejas
 
 Elemento fundamental de Scheme. Es un tipo compuesto formado por dos
 elementos (no necesariamente del mismo tipo).
 
-	(cons 1 2)        ; cons crea una pareja
-	(cons #t 3)       ; elementos de tipos diferentes
-	(car (cons "hola" 2))  ; elemento izquierdo
-	(cdr (cons "bye" 5))   ; elemento derecho
+```scheme
+(cons 1 2)        ; cons crea una pareja
+(cons #t 3)       ; elementos de tipos diferentes
+(car (cons "hola" 2))  ; elemento izquierdo
+(cdr (cons "bye" 5))   ; elemento derecho
+```
 
 Cuando evaluamos las expresiones anteriores en el intérprete, Scheme
 muestra el resultado de construir la pareja con la sintaxis:
 
-	{elemento izquierdo . elemento derecho}
+```scheme
+{elemento izquierdo . elemento derecho}
+```
 
 Por ejemplo:
 
-	(cons 1 2) ; ⇒ {1 . 2}
+```scheme
+(cons 1 2) ; ⇒ {1 . 2}
+```
 
 Scheme es un lenguaje débilmente tipado y las variables y parejas
 pueden contener cualquier tipo de dato. Incluso otras parejas:
 
-	(define p1 (cons 1 2)) ; definimos una pareja formada por 1 y 2
-	(cons p1 3)            ; definimos una pareja formada por la pareja (1 . 2) y 3
-                           ; ⇒ {{1 . 2} . 3}
-	(cons (cons 1 2) 3)    ; igual que la expresión anterior
-                           ; ⇒ {{1 . 2} . 3}
+```scheme
+(define p1 (cons 1 2)) ; definimos una pareja formada por 1 y 2
+(cons p1 3)            ; definimos una pareja formada por la pareja (1 . 2) y 3
+                       ; ⇒ {{1 . 2} . 3}
+(cons (cons 1 2) 3)    ; igual que la expresión anterior
+                       ; ⇒ {{1 . 2} . 3}
+```
 
 Hay veces que el trabajo de imprimir una pareja no es tan sencillo
 para Scheme. Si la pareja está en la parte derecha de la pareja
 principal el intérprete imprime esto, que no se corresponde con lo que
 esperamos:
 
-	(cons 1 (cons 2 3)) ; ⇒ {1 2 . 3}
+```scheme
+(cons 1 (cons 2 3)) ; ⇒ {1 2 . 3}
+```
 
 Más adelante explicaremos por qué.
 
@@ -378,11 +428,15 @@ definir, crear, recorrer y concatenar listas:
 
 Podemos crear una lista con la función `list`:
 
-	(list 1 2 3 4)     ;list crea una lista
+```scheme
+(list 1 2 3 4)     ;list crea una lista
+```
 
 El intérprete de Scheme R6RS muestra las listas entre llaves:
 
-	(list 1 2 3 4) ;  ⇒ {1 2 3 4}
+```scheme
+(list 1 2 3 4) ;  ⇒ {1 2 3 4}
+```
     
 La forma más básica de trabajar con una lista es usando las funciones
 `car` para obtener su primer elemento y `cdr` para obtener el resto de
@@ -422,7 +476,9 @@ una lista existente usando la función `cons` (también la misma función
 sobre pareja, ya explicaremos también por qué) usando como parámetro
 un elemento y una lista:
 
-    (cons elemento lista) 
+```scheme
+(cons elemento lista) 
+```
 
 Por ejemplo:
 
@@ -444,18 +500,21 @@ También podemos usar la función `append` para concatenar varias listas
 Igual que las parejas, las listas pueden contener distintos tipos de
 datos:
 
-	(list "hola" "que" "tal") ; ⇒ {"hola" "que" "tal"} lista de cadenas
-	(cons "hola" (list 1 2 3 4))  ; ⇒ {"hola" 1 2 3 4} lista de distintos tipos de datos
+```scheme
+(list "hola" "que" "tal") ; ⇒ {"hola" "que" "tal"} lista de cadenas
+(cons "hola" (list 1 2 3 4))  ; ⇒ {"hola" 1 2 3 4} lista de distintos tipos de datos
+```
 
 Una lista puede incluso contener otras listas:
 
-	(list (list 1 2) 3 4 (list 5 6))   ; lista que contiene listas
-    ⇒ {{1 2} 3 4 {5 6}} 
-	(cons (list 1 2) (list 3 4 5)) ; nueva lista añadiendo una lista
-    ⇒ {{1 2} 3 4 5}}
-	(list (cons 1 2) (cons 3 4))  ; lista que contiene parejas
-    ⇒ {{1 . 2} {3 . 4}}
-
+```scheme
+(list (list 1 2) 3 4 (list 5 6))   ; lista que contiene listas
+; ⇒ {{1 2} 3 4 {5 6}} 
+(cons (list 1 2) (list 3 4 5)) ; nueva lista añadiendo una lista
+; ⇒ {{1 2} 3 4 5}}
+(list (cons 1 2) (cons 3 4))  ; lista que contiene parejas
+; ⇒ {{1 . 2} {3 . 4}}
+```
 
 En clase de teoría estudiaremos con más profundidad las listas en
 Scheme, cómo están implementadas y cómo se utilizan para crear otras
@@ -482,37 +541,45 @@ cuatro elementos: el propio `if`, la condición, la expresión que se
 evalúa si la condición es verdadera y la expresión que se evalúa si la
 expresión es falsa:
 
-    (if (> 2 3) "2 es mayor que 3" "2 es menor o igual que 3")
+```scheme
+(if (> 2 3) "2 es mayor que 3" "2 es menor o igual que 3")
+```
 
 Al escribir código en Scheme es habitual colocar el `if` y la
 condición en una línea y las otras dos expresiones en las siguientes
 líneas:
 
-    (if (> 2 3)
-        "2 es mayor que 3"
-        "2 es menor o igual que 3")
+```scheme
+(if (> 2 3)
+    "2 es mayor que 3"
+    "2 es menor o igual que 3")
+```
 
 En las expresiones que devuelven el valor cuando la condición es
 cierta o falsa se puede escribir cualquier expresión de Scheme,
 incluido otro `if`:
 
-    (if (> 2 3)
-        (if (< 10 5)
-            "2 es mayor que 3 y 10 es menor que 5"
-            "2 es mayor que 3 y 10 es mayor o igual que 5")
-        "2 es menor o igual que 3")
+```scheme
+(if (> 2 3)
+    (if (< 10 5)
+        "2 es mayor que 3 y 10 es menor que 5"
+        "2 es mayor que 3 y 10 es mayor o igual que 5")
+    "2 es menor o igual que 3")
+```
 
 Un ejemplo en el que vemos una función que contiene un `if`. La
 siguiente función de tres argumentos devuelve la suma de los últimos
 si el primero es positivo o la resta en caso contrario:
 
-    (define (suma-si-x-positivo x y z)
-        (if (>= x 0)
-            (+ y z)
-            (- y z)))
+```scheme
+(define (suma-si-x-positivo x y z)
+    (if (>= x 0)
+        (+ y z)
+        (- y z)))
 
-    (suma-si-x-positivo 2 3 5) ; ⇒ 8
-    (suma-si-x-positivo -3 3 5) ; ⇒ -2
+(suma-si-x-positivo 2 3 5) ; ⇒ 8
+(suma-si-x-positivo -3 3 5) ; ⇒ -2
+```
 
 #### cond
 
@@ -520,11 +587,13 @@ Cuando tenemos un conjunto de alternativas o para evitar usar ifs
 anidados.  `cond` evalúa una serie de condiciones y devuelve el valor
 de la expresión asociada a la primera condición verdadera.
 
-	(cond
-		((> 3 4) “3 es mayor que 4")
-		((< 2 1) “2 es menor que 1")
-		((> 3 2) “3 es mayor que 2")
-		(else “ninguna condicion es cierta"))
+```scheme
+(cond
+    ((> 3 4) “3 es mayor que 4")
+	((< 2 1) “2 es menor que 1")
+	((> 3 2) “3 es mayor que 2")
+	(else “ninguna condicion es cierta"))
+```
 
 ### Comentarios
 
@@ -552,32 +621,40 @@ Recordamos la fórmula:
 Implementamos la solución de forma modular. Primer definimos la
 función que define el discriminante:
 
-	(define (discriminante a b c)
-		(- (* b b) (* 4 a c)))
+```scheme
+(define (discriminante a b c)
+	(- (* b b) (* 4 a c)))
+```
 
 Después definimos las funciones que devuelven la raíz positiva y la
 raíz negativa, usando la función `discriminante` anterior:
 
-	(define (raiz-pos a b c)
-		(/ (+ (* b -1) (sqrt (discriminante a b c))) (* 2 a)))
+```scheme
+(define (raiz-pos a b c)
+	(/ (+ (* b -1) (sqrt (discriminante a b c))) (* 2 a)))
 
-	(define (raiz-neg a b c)
-		(/ (- (* b -1) (sqrt (discriminante a b c))) (* 2 a)))
+(define (raiz-neg a b c)
+	(/ (- (* b -1) (sqrt (discriminante a b c))) (* 2 a)))
+```
 
 Por último, definimos la función `ecuacion` que invoca a las funciones
 anteriores y devuelve una pareja con los valores resultantes:
 
-	(define (ecuacion a b c)
-		(cons (raiz-pos a b c) (raiz-neg a b c)))
+```scheme
+(define (ecuacion a b c)
+	(cons (raiz-pos a b c) (raiz-neg a b c)))
+```
 
 Lo probamos:
 
-	(ecuacion 1 -5 6)
-	{3 . 2}
-	(ecuacion 2 -7 3)
-	{3 . 1/2}
-	(ecuacion -1 7 -10)
-	{2 . 5}
+```scheme
+(ecuacion 1 -5 6)
+; ⇒ {3 . 2}
+(ecuacion 2 -7 3)
+; ⇒ {3 . 1/2}
+(ecuacion -1 7 -10)
+; ⇒ {2 . 5}
+```
 
 #### Conversión de grados Celsius a Farenheit
 
@@ -599,7 +676,7 @@ Las fórmulas de conversión son las siguientes:
 Primero definimos unas funciones auxiliares que calculan las
 expresiones anteriores:
 
-```
+```scheme
 (define (a-grados-fahrenheit grados-centigrados)
   (+ (* (/ 9 5) grados-centigrados) 32))
 
@@ -609,7 +686,7 @@ expresiones anteriores:
 
 Y ahora ya podemos definir la función principal:
 
-```
+```scheme
 (define (convertir-temperatura grados tipo)
   (cond ((equal? tipo #\F) (list (a-grados-centigrados grados) "grados centigrados"))
         ((equal? tipo #\C) (list (a-grados-fahrenheit grados) "grados fahrenheit"))
@@ -618,7 +695,7 @@ Y ahora ya podemos definir la función principal:
 
 Por ejemplo:
 
-```
+```scheme
 (convertir-temperatura 50 #\F) ; => {10 "grados centigrados"}
 (convertir-temperatura 50 #\C) ; => {122 "grados fahrenheit"}
 ```
@@ -675,7 +752,7 @@ En las prácticas de la asignatura, para realizar pruebas usaremos el
 importar esta nueva librería. Por tanto, debemos añadir en nuestros
 ficheros de prácticas lo siguiente:
 
-```
+```scheme
 (import (rnrs base)
         (rnrs io simple)
         (schemeunit))  
@@ -685,25 +762,28 @@ Una vez importada la librería, ya podemos hacer uso de algunas de sus
 funciones. En concreto, utilizaremos las siguientes:
 
 - **check-true**
-    ```
-    (check-true expr)   
-    ;; Comprueba si su argumento es #t.
-    ;; En caso contrario, se imprime un mensaje de error.
-    ```
+
+```scheme
+(check-true expr)   
+;; Comprueba si su argumento es #t.
+;; En caso contrario, se imprime un mensaje de error.
+```
 
 - **check-false**
-    ```
-    (check-false expr)   
-    ;; Comprueba si su argumento es #f.
-    ;; En caso contrario, se imprime un mensaje de error.
-    ```
+
+```scheme
+(check-false expr)   
+;; Comprueba si su argumento es #f.
+;; En caso contrario, se imprime un mensaje de error.
+```
 
 - **check-equal?**
-    ```
-    (check-equal? resultado-real resultado-esperado)   
-    ;; Comprueba si sus dos argumentos son iguales.
-    ;; En caso contrario, se imprime un mensaje de error.
-    ```
+
+```scheme
+(check-equal? resultado-real resultado-esperado)   
+;; Comprueba si sus dos argumentos son iguales.
+;; En caso contrario, se imprime un mensaje de error.
+```
 
 Con las funciones _check-true_ y _check-false_ validaremos predicados
 (recuerda que en Scheme son funciones que devuelven un valor booleano)
@@ -723,7 +803,7 @@ significa que nuestra función _ecuacion_ es 'CORRECTA' para estas
 pruebas, es decir, que con los valores de entrada utilizados, su
 resultado se corresponde con el esperado.
 
-```
+```scheme
 (check-equal? (ecuacion 1 -5 6) (cons 3 2))
 (check-equal? (ecuacion 2 -7 3) (cons 3 (/ 1 2)) )
 (check-equal? (ecuacion -1 7 -10) (cons 2 5))  
@@ -734,20 +814,20 @@ función _ecuacion_, por ejemplo en el orden de los argumentos al
 invocar a la función auxiliar _raiz-pos_, en la llamada que se hace en
 la parte izquierda de la pareja resultante.
 
-```
+```scheme
 (define (ecuacion a b c)
 	(cons (raiz-pos b a c) (raiz-neg a b c)))
 ```
 
 Con esta nueva definición, si ejecutamos la siguiente prueba:
 
-```
+```scheme
 (check-equal? (ecuacion 1 -5 6) (cons 3 2))
 ```
 
 el resultado será:
 
-```
+```txt
 --------------------
 FAILURE
 actual:     {-1 . 2}
@@ -848,29 +928,39 @@ de Scheme.
 a) Dada la siguiente lista, indica la expresión correcta para que
 Scheme devuelva 5:
 
-	(list 1 2 3 4 5 6 7 8)
+```scheme
+(list 1 2 3 4 5 6 7 8)
+```
 
 b) Dada la siguiente lista, indica la expresión correcta para que
 Scheme devuelva (8).
 
-	(list 1 2 3 4 5 6 7 8)
+```scheme
+(list 1 2 3 4 5 6 7 8)
+```
 
 c) Dada la siguiente lista, indica la expresión correcta para que
 Scheme devuelva 8.
 
-	(list 1 2 3 4 5 6 7 8)
+```scheme
+(list 1 2 3 4 5 6 7 8)
+```
 
 
 d) Dada la siguiente expresión, ¿qué devuelve Scheme?
 
-	(car (cdr (cdr (list 1 (list 2 3) (list 4 5) 6))))
+```scheme
+(car (cdr (cdr (list 1 (list 2 3) (list 4 5) 6))))
+```
 
 e) Dada la siguiente expresión, ¿qué devuelve Scheme?
 
-	(cdr (cdr (list 1 (list 2 3) 4 5)))
+```scheme
+(cdr (cdr (list 1 (list 2 3) 4 5)))
+````
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Antonio Botía, Domingo Gallardo, Cristina Pomares
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
