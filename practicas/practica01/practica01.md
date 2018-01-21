@@ -112,7 +112,7 @@ sucesivamente hasta el 15 que es el F en hexadecimal.
 
 **Pista**: puedes utilizar las funciones `integer->char` y `char->integer`
 
-### Ejercicio 2
+### Ejercicio 2
 
 Supongamos que estamos implementando un **juego de guerra de barcos** en
 el que los barcos están situados en coordenadas del plano definidas
@@ -126,16 +126,16 @@ denominamos el **alcance** del torpedo (ver la siguiente figura):
 <img src="imagenes/barcos.png" width="400px"/>
 
 Cuanto más alta es la velocidad del torpedo, antes termina su
-combustible, con una relación cuadrática. En concreto, la velocidad
-(en km/h) define el tiempo de terminación del combustible (_t_, en
-segundos) con la siguiente expresión:
+combustible. En concreto, el tiempo de terminación del combustible
+(_t_, en **segundos**) depende de la velocidad (en **km/h**) según la
+siguiente expresión:
 
 ```
 t= 50000 / v^2
 ```
 
-Recuerda que conociendo la velocidad de un móvil y el tiempo que está
-moviéndose podemos calcular el espacio recorrido con la siguiente
+Recuerda que conociendo la velocidad y el tiempo que está
+moviéndose un objeto podemos calcular el espacio recorrido con la siguiente
 expresión:
 
 ```
@@ -143,8 +143,8 @@ e = v * t
 ```
 
 Esto es, multiplicando la velocidad por el tiempo resulta el espacio
-en recorrido. Las unidades de la velocidad y el tiempo deben ser
-compatibles. Esto es, si _v_ está en m/s, _t_ deberá estar en
+en recorrido. Las **unidades de la velocidad y el tiempo deben ser
+compatibles**. Esto es, si _v_ está en m/s, _t_ deberá estar en
 segundos y el espacio reorrido resultará en metros.
 
 Dadas todas estas condiciones, debes programar en Scheme la función 
@@ -154,14 +154,14 @@ Dadas todas estas condiciones, debes programar en Scheme la función
 ```
 
 que tome como parámetros las coordenadas `x1`, `y1` del barco 1 que
-lanza el torpedo (en metros), `x2`, `y2` del barco 2 al que se le
-lanza (en metros) y `v` la velocidad del torpedo (en km/h).
+lanza el torpedo (en **metros**), `x2`, `y2` del barco 2 al que se le
+lanza (en **metros**) y `v` la velocidad del torpedo (en **km/h**).
 
 La función debe comprobar si el barco 2 está dentro del alcance del
 torpedo, tal y como lo hemos definido previamente y devolver el 
 booleano correspondiente.
 
-Debes modularizar la implementación, creando las funciones auxiliares
+Debes modularizar la implementación, **creando las funciones auxiliares**
 que necesites para que el código sea legible y auto-documentado (los
 nombres de las funciones y los parámetros deben ser lo más
 descriptivos posibles).
