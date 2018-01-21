@@ -12,8 +12,8 @@
 	- [2.1. Funciones y formas especiales](#2-1)
 	- [2.2. Formas especiales en Scheme: `define`, `if`, `cond`](#2-2)
 	- [2.3. Forma especial `quote` y símbolos](#2-3)
-	- [2.4. Recursión](#2-4)
-	- [2.5. Listas](#2-5)
+	- [2.4. Listas](#2-4)
+	- [2.5. Recursión](#2-5)
     - [2.6. Recursión y listas](#2-6)
 - [3. Tipos de datos compuestos en Scheme](#3)
 	- [3.1. El tipo de dato pareja](#3-1)
@@ -1161,134 +1161,7 @@ parámetros o ligarse a variables.
 x ; ⇒ hola
 ```
 
-### <a name="2-4"></a> 2.4. Recursión
-
-Otra característica fundamental de la programación funcional es la no
-existencia de bucles. Un bucle implica la utilización de pasos de
-ejecución en el programa y esto es característico de la programación
-imperativa. En programación funcional las iteraciones se realizan con
-recursión.
-
-En una definición recursiva siempre tenemos un caso general y un caso
-base. El caso base define el valor que devuelve la función en el caso
-elemental en el que no hay que hacer ningún cálculo. El caso general
-define una expresión que contiene una llamada a la propia función que
-estamos definiendo.
-
-#### 2.4.1 La función `(suma-hasta x)`
-
-Por ejemplo, podemos definir la función `(suma-hasta x)` que devuelve
-la suma de los números hasta el parámetro `x` cuyo valor pasamos en la
-invocación de la función.
-
-Por ejemplo, `(suma-hasta 5)` devolverá `0+1+2+3+4+5 = 15`.
-
-La definición de la función es la siguiente (después explicaremos cómo
-la hemos diseñado)
-
-```scheme
-(define (suma-hasta x)
-   (if (= 0 x)
-      0
-      (+ (suma-hasta (- x 1)) x)))
-```
-
-El **caso base** es el caso en el que `x` vale 0. En este caso devolvemos
-el propio 0, no hay que realizar ningún cálculo.
-
-El **caso general** es en el que se realiza la llamada recursiva. Para
-entender la expresión no es conveniente utilizar el depurador, ni
-hacer trazas, ni *entrar en la recursión*, sino que hay que suponer
-que la llamada recursiva se ejecuta y devuelve el valor que debería
-(*confiamos en la recursión*). Una vez devuelto el valor se transforma
-este valor evaluando el resto de la expresión.
-
-En nuestro el caso general indica lo siguiente:
-
-> Para calcular la suma hasta x, llamamos a la recursión para que
-> calcule la suma hasta x-1, obtenemos el resultado (confiamos en que la
-> función funciona bien) y a ese resultado le sumamos el propio número
-> x.
-
-Siempre es aconsejable usar un ejemplo concreto para probar el caso
-general. Por ejemplo, el caso general de la suma hasta 5 se calcularía
-con la expresión:
-
-```scheme
-(+ (suma-hasta (- 5 1)) 5)
-```
-
-La evaluación de esta función calculará la llamada recursiva
-`(suma-hasta 4)`. Ahí es donde debemos **confiar en que la recursión
-hace bien su trabajo** y que esa llamada devuelve el valor
-resultante de 4+3+2+1, o sea, 10. Una vez obtenido ese valor hay que
-hacer algo más, sumarle el propio número 5.
-
-```(+ (suma-hasta (- 5 1)) 5) =
-(+ (suma-hasta 4) 5) = (confiamos en la recursión: (suma-hasta 4) = 10)
-(+ 10 5) =
-15
-```
-
-Otra característica necesaria del caso general en una definición
-recursiva, que también vemos en este ejemplo, es que **la llamada
-recursiva debe trabajar sobre un caso más sencillo que la llamada
-general**. De esta forma la recursión va descomponiendo el problema
-hasta llegar al caso base y construye la solución a partir de ahí.
-
-En nuestro caso, la llamada recursiva para calcular la suma hasta 5 se
-hace restando 1 al número a calcular la suma hasta, de forma que la
-recursión calcula la suma hasta 4.
-
-#### 2.4.2 Diseño de la función `(suma-hasta x)`
-
-¿Cómo hemos diseñado esta función? ¿Cómo hemos llegado a la solución?
-
-Debemos empezar teniendo claro qué es lo que queremos calcular. Lo
-mejor es utilizar un ejemplo. 
-
-Por ejemplo, `(suma-hasta 5)` devolverá `0+1+2+3+4+5 = 15`. 
-
-Una vez que tenemos esta expresión de un ejemplo concreto debemos
-diseñar el caso general de la recursión. Para ello tenemos que
-encontrar una expresión para el cálculo de `(suma-hasta 5)` que
-contenga una llamada recursiva a un problema más pequeño.
-
-O, lo que es lo mismo, ¿podemos obtener el resultado 15 con lo que nos
-devuelve una llamada recursiva a un número más pequeño y haciendo algo
-más?
-
-Pues sí: para calcular la suma hasta 5, esto es, para obtener 15,
-podemos llamar a la recursión para calcular la suma hasta 4 (devuelve
-10) y a este resultado sumarle el propio 5.
-
-Lo podemos expresar con el siguiente dibujo:
-
-<img src="imagenes/suma-hasta.png" width="600px"/>
-
-Generalizamos este ejemplo y lo expresamos en Scheme de la siguiente
-forma:
-
-```scheme
-(suma-hasta x) = (+ (suma-hasta (- x 1)) x)
-```
-
-Nos falta el caso base de la recursión. Debemos preguntarnos **¿cuál
-es el caso más sencillo del problema, que podemos calcular sin hacer
-ninguna llamada recursiva?**. En este caso podría ser el caso en el
-que `x` es 0, en el que devolveríamos 0.
-
-Podemos ya escribirlo todo en Scheme:
-
-```scheme
-(define (suma-hasta x)
-   (if (= 0 x)
-      0
-      (+ (suma-hasta (- x 1)) x)))
-```
-
-
-### <a name="2-5"></a>2.5. Listas
+### <a name="2-4"></a>2.4. Listas
 
 Otra de las características fundamentales del paradigma funcional es
 la utilización de listas. Ya hemos visto en el seminario de Scheme las
@@ -1301,7 +1174,7 @@ tipeado. Una variable o parámetro no se declara de un tipo y puede
 contener cualquier valor. Sucede igual con las listas: una lista en
 Scheme puede contener cualquier valor, incluyendo otras listas.
 
-#### 2.5.1 Función `list` y forma especial `quote`
+#### 2.4.1 Función `list` y forma especial `quote`
 
 En el seminario de Scheme explicamos que podemos crear listas de forma
 dinámica, llamando a la función `list` y pasándole un número variable
@@ -1375,7 +1248,7 @@ con símbolos en sus primeras posiciones:
 '(1 (/ 2 3) (+ 2 3) (cons 3 4)) ; ⇒ {1 {/ 2 3} {+ 2 3} {cons 3 4}}
 ```
 
-#### 2.5.2 Selección de elementos de una lista: `car` y `cdr`
+#### 2.4.2 Selección de elementos de una lista: `car` y `cdr`
 
 En el seminario vimos también cómo obtener los elementos de una lista.
 
@@ -1393,7 +1266,7 @@ Ejemplos:
 (cdr lista2) ⇒ {3 4}
 ```
 
-#### 2.5.3 Composición de listas: `cons` y `append`
+#### 2.4.3 Composición de listas: `cons` y `append`
 
 Por último, en el seminario vimos también cómo crear nuevas listas a
 partir de ya existentes con las funciones `cons` y `append`.
@@ -1417,6 +1290,134 @@ concatenar dos o más listas
 (define list2 '(hola como estás))
 (append list1 list2) ; ⇒ {1 2 3 4 hola como estás}
 ```
+
+### <a name="2-5"></a> 2.5. Recursión
+
+Otra característica fundamental de la programación funcional es la no
+existencia de bucles. Un bucle implica la utilización de pasos de
+ejecución en el programa y esto es característico de la programación
+imperativa. En programación funcional las iteraciones se realizan con
+recursión.
+
+En una definición recursiva siempre tenemos un caso general y un caso
+base. El caso base define el valor que devuelve la función en el caso
+elemental en el que no hay que hacer ningún cálculo. El caso general
+define una expresión que contiene una llamada a la propia función que
+estamos definiendo.
+
+#### 2.5.1 La función `(suma-hasta x)`
+
+Por ejemplo, podemos definir la función `(suma-hasta x)` que devuelve
+la suma de los números hasta el parámetro `x` cuyo valor pasamos en la
+invocación de la función.
+
+Por ejemplo, `(suma-hasta 5)` devolverá `0+1+2+3+4+5 = 15`.
+
+La definición de la función es la siguiente (después explicaremos cómo
+la hemos diseñado)
+
+```scheme
+(define (suma-hasta x)
+   (if (= 0 x)
+      0
+      (+ (suma-hasta (- x 1)) x)))
+```
+
+El **caso base** es el caso en el que `x` vale 0. En este caso devolvemos
+el propio 0, no hay que realizar ningún cálculo.
+
+El **caso general** es en el que se realiza la llamada recursiva. Para
+entender la expresión no es conveniente utilizar el depurador, ni
+hacer trazas, ni *entrar en la recursión*, sino que hay que suponer
+que la llamada recursiva se ejecuta y devuelve el valor que debería
+(*confiamos en la recursión*). Una vez devuelto el valor se transforma
+este valor evaluando el resto de la expresión.
+
+En nuestro el caso general indica lo siguiente:
+
+> Para calcular la suma hasta x, llamamos a la recursión para que
+> calcule la suma hasta x-1, obtenemos el resultado (confiamos en que la
+> función funciona bien) y a ese resultado le sumamos el propio número
+> x.
+
+Siempre es aconsejable usar un ejemplo concreto para probar el caso
+general. Por ejemplo, el caso general de la suma hasta 5 se calcularía
+con la expresión:
+
+```scheme
+(+ (suma-hasta (- 5 1)) 5)
+```
+
+La evaluación de esta función calculará la llamada recursiva
+`(suma-hasta 4)`. Ahí es donde debemos **confiar en que la recursión
+hace bien su trabajo** y que esa llamada devuelve el valor
+resultante de 4+3+2+1, o sea, 10. Una vez obtenido ese valor hay que
+hacer algo más, sumarle el propio número 5.
+
+```(+ (suma-hasta (- 5 1)) 5) =
+(+ (suma-hasta 4) 5) = (confiamos en la recursión: (suma-hasta 4) = 10)
+(+ 10 5) =
+15
+```
+
+Otra característica necesaria del caso general en una definición
+recursiva, que también vemos en este ejemplo, es que **la llamada
+recursiva debe trabajar sobre un caso más sencillo que la llamada
+general**. De esta forma la recursión va descomponiendo el problema
+hasta llegar al caso base y construye la solución a partir de ahí.
+
+En nuestro caso, la llamada recursiva para calcular la suma hasta 5 se
+hace restando 1 al número a calcular la suma hasta, de forma que la
+recursión calcula la suma hasta 4.
+
+#### 2.5.2 Diseño de la función `(suma-hasta x)`
+
+¿Cómo hemos diseñado esta función? ¿Cómo hemos llegado a la solución?
+
+Debemos empezar teniendo claro qué es lo que queremos calcular. Lo
+mejor es utilizar un ejemplo. 
+
+Por ejemplo, `(suma-hasta 5)` devolverá `0+1+2+3+4+5 = 15`. 
+
+Una vez que tenemos esta expresión de un ejemplo concreto debemos
+diseñar el caso general de la recursión. Para ello tenemos que
+encontrar una expresión para el cálculo de `(suma-hasta 5)` que
+contenga una llamada recursiva a un problema más pequeño.
+
+O, lo que es lo mismo, ¿podemos obtener el resultado 15 con lo que nos
+devuelve una llamada recursiva a un número más pequeño y haciendo algo
+más?
+
+Pues sí: para calcular la suma hasta 5, esto es, para obtener 15,
+podemos llamar a la recursión para calcular la suma hasta 4 (devuelve
+10) y a este resultado sumarle el propio 5.
+
+Lo podemos expresar con el siguiente dibujo:
+
+<img src="imagenes/suma-hasta.png" width="600px"/>
+
+Generalizamos este ejemplo y lo expresamos en Scheme de la siguiente
+forma:
+
+```scheme
+(suma-hasta x) = (+ (suma-hasta (- x 1)) x)
+```
+
+Nos falta el caso base de la recursión. Debemos preguntarnos **¿cuál
+es el caso más sencillo del problema, que podemos calcular sin hacer
+ninguna llamada recursiva?**. En este caso podría ser el caso en el
+que `x` es 0, en el que devolveríamos 0.
+
+Podemos ya escribirlo todo en Scheme:
+
+```scheme
+(define (suma-hasta x)
+   (if (= 0 x)
+      0
+      (+ (suma-hasta (- x 1)) x)))
+```
+
+
 
 ### <a name="2-6"></a> 2.6. Recursión y listas
 
