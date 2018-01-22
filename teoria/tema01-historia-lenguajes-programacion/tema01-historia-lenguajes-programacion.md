@@ -38,7 +38,7 @@
 
 ## <a name="1"/> 1. Historia de los lenguajes de programación
 
-### <a name="1-1"/> 1.1. De las máquina de calcular a los computadores programables ###
+### <a name="1-1"/> 1.1. De las máquinas de calcular a los computadores programables ###
 
 <table>
   <tr>
@@ -52,10 +52,12 @@
   </tr>
 </table>
 
-Desde las primeras calculadoras mecánicas diseñadas en el siglo XVII
-hasta los años 40 del siglo pasado se han inventado multitud de
-máquinas y computadores mecánicos, analógicos o electrónicos que han
-intentado acelerar y mejorar la precisión de los cálculos.
+Desde las [primeras calculadoras
+mecánicas](https://github.com/domingogallardo/historia-computadores#1)
+diseñadas en el siglo XVII hasta los años 40 del siglo pasado se han
+inventado multitud de máquinas y computadores mecánicos, analógicos o
+electrónicos que han intentado acelerar y mejorar la precisión de los
+cálculos.
 
 Todas estas máquinas fueron más o menos sofisticadas y más o menos
 configurables, pero ninguna llegó a tener la capacidad fundamental de
@@ -66,11 +68,13 @@ nunca llegó a construirse).
 
 <img src="imagenes/Alan_Turing.jpg" width="200px" align="right"/>
 
-En 1936 el matemático inglés Alan Turing formalizó la idea de
-computador, utilizando un modelo muy sencillo de procesamiento: una
+En 1936 el matemático inglés [Alan
+Turing](https://en.wikipedia.org/wiki/Alan_Turing) formalizó la idea
+de computador, utilizando un modelo muy sencillo de procesamiento: una
 máquina abstracta con un scanner que lee y escribe 0s y 1s de una
 cinta infinita (memoria) y se mueve y los escribe en función de una
 tabla definida en la máquina (programa). Con esta máquina abstracta
+([Máquina de Turing](https://en.wikipedia.org/wiki/Turing_machine))
 Turing explora la idea de lo computable y lo no computable. ¿Existen
 problemas no computables para los que no es posible inventar un
 algoritmo que los resuelva? Turing demuestra que sí y establece con su
@@ -84,16 +88,17 @@ posible escribir programas que tomen como datos otros programas. Esto
 abre la puerta a la idea de los programas almacenados en memoria (ya
 que son otros datos más) y a la creación de compiladores e intérpretes.
 
-En la década de 1940 hubo una explosión de máquina de computación
-electrónicas y electromecánicas. Fue una década prodigiosa en la que
-se desarrollaron tecnologías cada vez más rápidas y resistentes, y se
-consiguieron enormes avances en la velocidad y precisión de los
-cálculos.
+En la [década de
+1940](https://github.com/domingogallardo/historia-computadores#3) hubo
+una explosión de máquinas de computación electrónicas y
+electromecánicas. Fue una década prodigiosa en la que se desarrollaron
+tecnologías cada vez más rápidas y resistentes, y se consiguieron
+enormes avances en la velocidad y precisión de los cálculos.
 
 <img src="imagenes/John_von_Neumann.gif" width="200px" align="right"/>
 
-Pero no fue hasta 1945 cuando John Von Neumann, que trabajaba en la
-construcción del ENIAC, propuso su famosa arquitectura en la que por
+Pero no fue hasta 1945 cuando [John Von Neumann](https://en.wikipedia.org/wiki/John_von_Neumann), que trabajaba en la
+construcción del [ENIAC](https://en.wikipedia.org/wiki/ENIAC), propuso su famosa arquitectura en la que por
 primera vez se introducen las dos ideas claves de los computadores de
 propósito general: el programa almacenado en memoria y un conjunto de
 instrucciones de procesamiento que incluye el direccionamiento
@@ -101,11 +106,13 @@ indirecto.
 
 Y en 1948, tres años después, se construyó en la universidad de
 Manchester el primer computador electrónico digital de propósito
-general que utilizaba esta arquitectura. Fue diseñado por Max Newmann
-usando la tecnología proporcionada por los ingenieros F.C. Williams y
-Tom Kilburn. Williams había inventado un dispositivo de memoria
-electrónico (la *válvula de Williams*) capaz de sustituir las lentas
-líneas de retardo de mercurio utilizadas hasta ese momento.
+general que utilizaba esta arquitectura (llamado
+[Baby](https://en.wikipedia.org/wiki/Manchester_Small-Scale_Experimental_Machine)). Fue
+diseñado por Max Newmann usando la tecnología proporcionada por los
+ingenieros F.C. Williams y Tom Kilburn. Williams había inventado un
+dispositivo de memoria electrónico (la *válvula de Williams*) capaz de
+sustituir las lentas líneas de retardo de mercurio utilizadas hasta
+ese momento.
 
 <img src="imagenes/baby-mark1.jpg" width="300px" align="right"/>
 
