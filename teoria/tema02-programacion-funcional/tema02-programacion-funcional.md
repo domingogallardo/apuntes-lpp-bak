@@ -63,7 +63,7 @@ un **programa** como:
 > efecto lateral.
 
 Hablaremos más adelante de la no existencia de estado interno
-(variables las que se guardan y se modifican valores) y de la ausencia
+(variables en las que se guardan y se modifican valores) y de la ausencia
 de efectos laterales. Avancemos que estas son también características
 de la **programación declarativa**. En este sentido, la programación
 funcional es un tipo concreto de programación declarativa.
@@ -109,8 +109,8 @@ abstractas. Dos décadas después, cuando los primeros computadores
 electrónicos estaban empezando a utilizarse en grandes empresas y en
 universidades, este formalismo dio origen a algo mucho más tangible y
 práctico: un lenguaje de alto nivel, mucho más expresivo que el
-ensamblador, con el que expresar operaciones y funciones **evaluadas
-en el computador**.
+ensamblador, con el que expresar operaciones y funciones **que pueden
+ser definidas y evaluadas en el computador**.
 
 #### 1.1.2 Historia y características del Lisp
 
@@ -118,9 +118,9 @@ en el computador**.
   el primer lenguaje de programación de alto nivel basado en el
   paradigma funcional.
 * Creado en 1958 por John McCarthy.
-* Lisp es un lenguaje revolucionario e introduce nuevos conceptos de
-  programación no existentes en la época en la que nace: funciones
-  como objetos primitivos, funciones de orden superior, polimorfismo,
+* Lisp fue en su época un lenguaje revolucionario que introdujo nuevos
+  conceptos de programación no existentes entonces: funciones como
+  objetos primitivos, funciones de orden superior, polimorfismo,
   listas, recursión, símbolos, homogeneidad de datos y programas,
   bucle REPL (*Read-Eval-Print Loop*)
 * La herencia del Lisp llega a lenguajes derivados de él (Scheme,
@@ -131,12 +131,12 @@ en el computador**.
 Lisp fue el primer lenguaje de programación interpretado, con muchas
 características dinámicas que se ejecutan en tiempo de ejecución
 (*run-time*). Entre estas características podemos destacar la gestión
-de la memoria (creación y destrucción automática de memoria reservada
+de la memoria (creación y destrucción **automática** de memoria reservada
 para datos), la detección de excepciones y errores en tiempo de
 ejecución o la creación en tiempo de ejecución de funciones anónimas
 (expresiones *lambda*). Todas estas características se ejecutan
 mediante un *sistema de tiempo de ejecución* (*rutime system*)
-presente en el tiempo de ejecución de los programas. A partir del Lisp
+presente en la ejecución de los programas. A partir del Lisp
 muchos otros lenguajes han usado estas características de
 interpretación o de sistemas de tiempo de ejecución. Por ejemplo,
 lenguajes como BASIC, Python, Ruby o JavaScript son lenguajes
@@ -173,23 +173,23 @@ de Lisp y que resaltan sus aspectos funcionales, aunque actualizando
 su sintaxis. Destacamos entre ellos:
 
 - [Clojure](https://en.wikipedia.org/wiki/Clojure)
-- [Erlang](https://en.wikipedia.org/wiki/Erlang_(programming_language)
+- [Erlang](https://en.wikipedia.org/wiki/Erlang_(programming_language))
 
 También hay una tendencia desde mediados de la década de 2000 de
 incluir aspectos funcionales como las _expresiones lambda_ o las
 funciones de orden superior en lenguajes imperativos orientados a
 objetos, dando lugar a lenguajes *multi-paradigma*:
 
-- [Ruby](https://en.wikipedia.org/wiki/Ruby_(programming_language)
-- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)
-- [Groovy](https://en.wikipedia.org/wiki/Groovy_(programming_language)
-- [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language)
-- [Swift](https://en.wikipedia.org/wiki/Swift_(programming_language)
+- [Ruby](https://en.wikipedia.org/wiki/Ruby_(programming_language))
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language))
+- [Groovy](https://en.wikipedia.org/wiki/Groovy_(programming_language))
+- [Scala](https://en.wikipedia.org/wiki/Scala_(programming_language))
+- [Swift](https://en.wikipedia.org/wiki/Swift_(programming_language))
 
 
 Por último, en la década del 2010 también se ha hecho popular un
 lenguaje **exclusivamente funcional** como
-[Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language). Este
+[Haskell](https://en.wikipedia.org/wiki/Haskell_(programming_language)). Este
 lenguaje, a diferencia de Scheme y de otros lenguajes multi-paradigma,
 no tienen ningún elemento imperativo y consigue que todas sus
 expresiones sean puramente funcionales.
@@ -203,11 +203,15 @@ están aplicando sus conceptos. Por ejemplo, solo como muestra,
 mostramos a continuación algunos enlaces a charlas y artículos
 interesantes publicados recientemente sobre programación funcional:
 
-- Mary Rose Cook - [
-A practical introduction to functional programming](https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming)
-- Andrés Marzal - [Por qué deberías aprender programación funcional ya mismo](https://www.youtube.com/watch?v=YU2i3L-euB0)
-- Daniel Dietrich - [Functional Data Structures in Java 8](http://www.javaadvent.com/2015/12/functional-data-structures-in-java-8-with-javaslang.html)
-- Ben Christensen - [Functional Reactive Programming in the Netflix API](https://www.infoq.com/presentations/Netflix-API-rxjava-hystrix)
+- Lupo Montero - [Introducción a la programación funcional en
+  JavaScript](https://medium.com/laboratoria-how-to/introducción-a-la-programación-funcional-en-javascript-parte-1-e0b1d0b2142e) (Blog)
+- Andrés Marzal - [Por qué deberías aprender programación funcional ya
+  mismo](https://www.youtube.com/watch?v=YU2i3L-euB0) (Charla en YouTube)
+- Mary Rose Cook - [A practical introduction to functional
+programming](https://maryrosecook.com/blog/post/a-practical-introduction-to-functional-programming) (Blog)
+- Ben Christensen - [Functional Reactive Programming in the Netflix
+  API](https://www.infoq.com/presentations/Netflix-API-rxjava-hystrix)
+  (Charla en InfoQ)
 
 El auge reciente de estos lenguajes y del paradigma funcional se debe
 a varios factores, entre ellos que es un paradigma que facilita:
@@ -304,7 +308,10 @@ Como Abelson y Sussman comentan en el SICP:
 No hay que confundir una metodología de programación con un paradigma
 de programación. Una metodología de programación proporciona
 sugerencias sobre cómo debemos diseñar, desarrollar y mantener una
-aplicación que va a ser usada por usuarios finales.
+aplicación que va a ser usada por usuarios finales. La programación
+funcional se puede usar con múltiples metodologías de
+programación, debido a que los programas resultantes son muy claros,
+expresivos y fáciles de probar.
 
 ### <a name="1-2"></a> 1.2. Programación declarativa vs. imperativa
 
@@ -318,10 +325,13 @@ Empecemos con lo que conocemos todos: un **programa imperativo**. Se trata
 de un conjunto de instrucciones que se ejecutan una tras otra (pasos
 de ejecución) de forma secuencial. En la ejecución de estas
 instrucciones se van cambiando los valores de las variables y,
-dependiendo de estos valores, se modifica el flujo de control. Para
-entender el funcionamiento de un programa imperativo debemos imaginar
-toda la evolución del programa, los pasos que se ejecutan y cuál es el
-flujo de control en función de los cambios de los valores en las variables.
+dependiendo de estos valores, se modifica el flujo de control de la
+ejecución del programa. 
+
+Para entender el funcionamiento de un programa imperativo debemos
+imaginar toda la evolución del programa, los pasos que se ejecutan y
+cuál es el flujo de control en función de los cambios de los valores
+en las variables.
 
 En la **programación declarativa**, sin embargo, utilizamos un
 paradigma totalmente distinto. Hablamos de *programación declarativa*
@@ -336,8 +346,8 @@ más con algún modelo formal o matemático que con un programa
 tradicional imperativo.  Define un conjunto de reglas y definiciones
 *de estilo matemático*. 
 
-Un ejemplo claro de programación declarativa es una hoja de
-cálculo. Las celdas contiene valores o expresiones matemáticas que se
+Un ejemplo claro de programación declarativa es una **hoja de
+cálculo**. Las celdas contiene valores o expresiones matemáticas que se
 actualizan automáticamente cuando cambiamos los valores de entrada. La
 relación entre valores y resultados es totalmente matemática y para su
 cálculo no tenemos que tener en cuenta pasos de ejecución. Evidente,
@@ -347,17 +357,26 @@ preocupa esa implementación. Podemos no preocuparnos de ella y usar
 únicamente el modelo matemático definido en la hoja.
 
 En la programación funcional se cumplen estas características, porque
-se definen funciones que devuelven un valor a partir de unos
-parámetros de entrada, sin modificar ningún estado del programa ni
-utilizar pasos de ejecución definidos como tales.
+se definen funciones en las que se realizan unas operaciones sobre
+unos parámetros de entrada y se devuelve un valor, sin modificar ningún
+estado del programa ni utilizar pasos de ejecución definidos como
+tales.
 
 El siguiente ejemplo es una **declaración** en Scheme de una función
 que toma como entrada un número y devuelve su cuadrado:
 
-```
-scheme
+```scheme
 (define (cuadrado x)
    (* x x))
+```
+
+La llamada a la función con un parámetro concreto devuelve el
+resultado de evaluar su definición. Debemos pensar que esta evaluación
+se hace de forma instantánea, sin realizar pasos de ejecución ni
+mutación de valores en variables auxiliares.
+
+```scheme
+(cuadrado 4) ; devuelve 16
 ```
 
 La programación declarativa no es exclusiva de los lenguajes
@@ -383,7 +402,7 @@ programar (C, C++, Java, python, etc.)
 
 Veremos que, aunque parece imposible, es posible programar sin
 utilizar estas características. Lo demuestran lenguajes lenguajes de
-programación funcional como Haskell o Clojure.
+programación funcional como Haskell, Clojure o el propio Scheme.
 
 ##### Pasos de ejecución y mutación 
 
@@ -410,12 +429,12 @@ de una lista o de un diccionario.
 
 ##### Mutación y efectos laterales
 
-En programación imperativa es posible trabajar también con referencias
+En programación imperativa es habitual también trabajar con referencias
 y hacer que más de un identificador referencie el mismo valor. Esto
 produce la posibilidad de que la modificación (mutación) del valor a
-través de uno de los identificadores produzca el **efecto lateral**
-(_side effect_ en inglés) de que el valor de un identificador ha
-cambiado sin ejecutar ninguna expresión en la que se utilice
+través de uno de los identificadores produzca un **efecto lateral**
+(_side effect_ en inglés) en el que el valor de un identificador
+cambia sin ejecutar ninguna expresión en la que se utilice
 explícitamente el propio identificador.
 
 Por ejemplo, en la mayoría de lenguajes orientados a objetos los
@@ -435,7 +454,7 @@ p1.getCoordX(); // la coord x de p1 es 10.0
 
 Si el objeto está asignado a más de una variable tendremos el **efecto
 lateral**
-(*[side effects](https://en.wikipedia.org/wiki/Side_effect_(computer_science))*
+(*[side effect](https://en.wikipedia.org/wiki/Side_effect_(computer_science))*)
 en el que el dato guardado en una variable cambia después de una
 sentencia en la que no se ha usado esa variable:
 
@@ -446,8 +465,8 @@ p1.setCoordX(10.0);
 p2.getCoordX(); // la coord x de p2 es 10.0, sin que ninguna sentencia haya modificado p2
 ```
 
-En programación funcional, por contra, las definiciones son
-inmutables, una vez asignado un valor a un identificador no se puede
+En programación funcional, por contra, **las definiciones son
+inmutables**, una vez asignado un valor a un identificador no se puede
 modificar éste. En programación funcional se entienden las variables
 como variables matemáticas, no como referencias a una posiciones de
 memoria que puede ser modificada. Los valores son inmutables y no
@@ -495,11 +514,11 @@ denomina **estado local mutable** en funciones, procedimientos o
 métodos. Se trata la posibilidad de que una invocación a un método o
 una función modifique un cierto estado y de forma que la siguiente
 invocación devuelva un valor distinto. Es una característica básica de
-la programación a objetos, donde los objetos guardan valores que se
-modifican con la invocaciones a sus métodos.
+la programación orientada a objetos, donde los objetos guardan valores
+que se modifican con la invocaciones a sus métodos.
 
 Por ejemplo, en Java, podemos definir un contador que incrementa su
-valor. Cada llamada al método `valor()` devolverá un valor distinto:
+valor: 
 
 ```java
 public class Contador {
@@ -514,7 +533,11 @@ public class Contador {
         return c;
     }
 }
+```
 
+Cada llamada al método `valor()` devolverá un valor distinto:
+
+```java
 Contador cont = new Contador(10);
 cont.valor(); // 11
 cont.valor(); // 12
@@ -530,19 +553,24 @@ int function contador () {
 	c++;
 	return c;
 }
-	
+```
+
+Cada llamada a la función `contador()` devolverá un valor distinto:
+
+```	c
 contador() ;; 1
 contador() ;; 2
 contador() ;; 3
 ```	
 
-Por el contrario, los lenguajes funcionales puros tienen la propiedad
-de *transparencia referencial*: si se sustituye una expresión por su
-valor el resultado final no debe cambiar. Como consecuencia, en
-programación funcional, una función siempre devuelve el mismo valor
-cuando se le llama con los mismos parámetros. Las funciones no
-modifican ningún estado, no acceden a ninguna variable ni objeto
-global y modifican su valor.
+Por el contrario, los lenguajes funcionales tienen la propiedad de
+**transparencia referencial**: es posible sustituir cualquier
+aparición de una expresión por su resultado sin que cambia el
+resultado final del programa. Dicho de otra forma, en programación
+funcional, **una función siempre devuelve el mismo valor cuando se le
+llama con los mismos parámetros**. Las funciones no modifican ningún
+estado, no acceden a ninguna variable ni objeto global y modifican su
+valor.
 
 ##### Resumen
 
@@ -568,19 +596,20 @@ apartados explicaremos más estas características.
 ### <a name="1-3"></a> 1.3 Evaluación de expresiones y definición de funciones
 
 En la asignatura usaremos Scheme como primer lenguaje en el que
-exploraremos la programación funcional. Vamos a ver rápidamente
-algunos ejemplos de programas en Scheme con los que introducir los
-conceptos iniciales de programación funcional. En el seminario de
-Scheme que se imparte en prácticas se estudiará en más profundidad los
-conceptos más importantes del lenguaje: tipos de datos, operadores,
-estructuras de control, intérprete, etc.
+exploraremos la programación funcional.
+
+En el seminario de Scheme que se imparte en prácticas se estudiará en
+más profundidad los conceptos más importantes del lenguaje: tipos de
+datos, operadores, estructuras de control, intérprete, etc.
 
 #### 1.3.1 Evaluación de expresiones
 
-Empezaremos en este apartado viendo cómo se definen y evalúan
-expresiones Scheme. Scheme es un lenguaje que viene del Lisp y
-mantiene sus expresiones prefijas construidas con paréntesis. Después
-veremos cómo construir nuevas funciones en Scheme. 
+Empezamos este apartado viendo cómo se definen y evalúan expresiones
+Scheme. Y después veremos cómo construir nuevas funciones.
+
+Scheme es un lenguaje que viene del Lisp. Una de sus características
+principales es que las expresiones se construyen utilizando
+paréntesis.
 
 Ejemplos de expresiones en Scheme, junto con el resultado de su
 ejecución:
@@ -599,9 +628,10 @@ se dice "**evaluar una expresión**", para reforzar la idea de que se
 tratan de expresiones matemáticas que **siempre devuelven uno y sólo un
 resultado**.
 
-Vemos que en la notación prefija las expresiones se construyen entre
-paréntesis, el primer elemento es el operador y el resto son
-operandos.
+Las expresiones se definen con una notación prefija: el primer
+elemento después del paréntesis de apertura es el **operador** de la
+expresión y el resto de elementos (hasta el paréntesis de cierre) son
+sus operandos.
 
 - Por ejemplo, en la expresión `(+ 2 4 5 6)` el operador es el símbolo
 `+` que representa función _suma_ y los operandos son los números 2,
@@ -724,31 +754,31 @@ modificar y de entender.
 La forma más correcta de definir la función sería usando varias
 funciones auxiliares. Fíjate que es muy importante también poner los
 nombres correctos a cada función, para entender qué hace. Scheme es un
-lenguaje débilmente tipeado y no tenemos la ayuda de los tipos que nos
+lenguaje débilmente tipado y no tenemos la ayuda de los tipos que nos
 dan más contexto de qué es cada parámetro y qué devuelve la función.
 
 ```scheme
 ;
 ; Definición correcta, modular y legible
 ;
-; La función tiempo-impacto2 devuelve el tiempo que tarda
+; La función 'tiempo-impacto' devuelve el tiempo que tarda
 ; en llegar un torpedo a la velocidad v desde la posición
 ; (x1, y1) a la posición (x2, y2)
 ;
 
 (define (tiempo-impacto x1 y1 x2 y2 velocidad)
-    (tiempo-distancia (distancia x1 y1 x2 y2) velocidad))
+    (tiempo (distancia x1 y1 x2 y2) velocidad))
 ;
 ;
-; La función tiempo-distancia devuelve el tiempo que 
+; La función 'tiempo' devuelve el tiempo que 
 ; tarde en recorrer un móvil una distancia d a un velocidad v
 ;
 
-(define (tiempo-distancia distancia velocidad)
+(define (tiempo distancia velocidad)
     (/ distancia velocidad))
 
 ;
-; La función distancia devuelve la distancia entre dos
+; La función 'distancia' devuelve la distancia entre dos
 ; coordenadas (x1, y1) y (x2, y2)
 ;
 
@@ -757,7 +787,7 @@ dan más contexto de qué es cada parámetro y qué devuelve la función.
              (cuadrado (- y2 y1)))))
 
 ;
-; La función cuadrado devuelve el cuadrado de un número
+; La función 'cuadrado' devuelve el cuadrado de un número
 ;
 
 (define (cuadrado x)
@@ -766,7 +796,7 @@ dan más contexto de qué es cada parámetro y qué devuelve la función.
 
 En esta segunda versión definimos más funciones, pero cada una es
 mucho más legible. Además las funciones como `cuadrado`, `distancia` o
-`tiempo-distancia` las vamos a poder reutilizar para otros cálculos.
+`tiempo` las vamos a poder reutilizar para otros cálculos.
 
 
 #### 1.3.3 Funciones puras
@@ -798,8 +828,7 @@ cos, etc. cumplen esta propiedad.
 Un modelo computacional es un formalismo (conjunto de reglas) que
 definen el funcionamiento de un programa. En el caso de los lenguajes
 funcionales basados en la evaluación de expresiones, el modelo
-computacional define cuál va a ser el resultado de evaluar una
-determinada expresión.
+computacional define cuál será el resultado de evaluar una expresión.
 
 El **modelo de sustitución** es un modelo muy sencillo que permite
 definir la semántica de la evaluación de expresiones en lenguajes
@@ -816,17 +845,21 @@ Supongamos un conjunto de definiciones en Scheme:
 ```scheme
 (define (doble x) 
     (+ x x))
+    
 (define (cuadrado y) 
     (* y y))
+    
 (define (f z) 
     (+ (cuadrado (doble z)) 1))
+    
+(define a 2)
 ```
 
 Supongamos que, una vez realizadas esas definiciones, se evalúa la
 siguiente expresión:
 
 ```scheme
-(f (+ 2 1))
+(f (+ a 1))
 ```
 
 ¿Cuál será su resultado? Si lo hacemos de forma intuitiva podemos
@@ -846,74 +879,96 @@ siguientes:
    `define` (se lanzará un error si no existe ese valor).
 3. Si *e* es una expresión del tipo *(f arg1 ... argn)*, donde *f* es
    el nombre de una función primitiva (`+`, `-`, ...), evaluamos uno a
-   uno los argumentos *arg1 ... *argn* (con estas mismas reglas) y
-   llamamos a la función primitiva con los resultados.
+   uno los argumentos *arg1* ... *argn* (con estas mismas reglas) y
+   evaluamos la función primitiva con los resultados.
+   
+La regla 4 tiene dos variantes, dependiendo del orden de
+evaluación que utilizamos.
+
+**Orden aplicativo**
+
 4. Si *e* es una expresión del tipo *(f arg1 ... argn)*, donde *f* es
    el nombre de una función definida con un `define`, tenemos que
-   **sustituir _f_ por su cuerpo**, _reemplazando cada parámetro
-   formal de la función por el correspondiente argumento de la
-   llamada. Después evaluar la expresión resultante usando estas
-   mismas reglas.
+   evaluar primero los argumentos _arg1_ ... _argn_ y después
+   **sustituir _f_ por su cuerpo**, reemplazando cada parámetro formal
+   de la función por el correspondiente argumento evaluado. Después
+   evaluaremos la expresión resultante usando estas mismas reglas.
 
+**Orden normal**
 
-En el punto 4 podemos utilizar dos versiones del modelo (ambas son
-equivalentes): podemos evaluar los argumentos y después hacer las
-sustituciones o podemos hacer las sustituciones con las expresiones sin
-evaluar. En el primer caso estaremos siguiendo un **orden aplicativo** y en
-el segundo un **orden normal**. Ambas formas de evaluación darán
-el mismo resultado si estamos usando un lenguaje declarativo en el que
-las funciones no tienen estado interno. Scheme utiliza el orden aplicativo.
+4. Si *e* es una expresión del tipo *(f arg1 ... argn)*, donde *f* es
+   el nombre de una función definida con un `define`, tenemos que
+   **sustituir _f_ por su cuerpo**, reemplazando cada parámetro formal
+   de la función por el correspondiente argumento sin evaluar. Después
+   evaluar la expresión resultante usando estas mismas reglas.
+
+Ambas formas de evaluación darán el mismo resultado en programación
+funcional. Scheme utiliza el orden aplicativo.
 
 En el siguiente apartado veremos un ejemplo de ambos tipos de
 evaluaciones. 
 
-#### 1.4.1 Orden normal vs. orden aplicativo
+#### 1.4.1 Ejemplo
 
 En el orden aplicativo se realizan las evaluaciones antes de realizar
 las sustituciones, lo que define una evaluación de *dentro a fuera* de
 los paréntesis. Cuando se llega a una expresión primitiva se
-evalúa. 
+evalúa.
 
 En el orden normal se realizan todas las sustituciones hasta que se
 tiene una larga expresión formada por expresiones primitivas; se
 evalúa entonces.
 
-Veamos un ejemplo de cada caso.
+Veamos cómo se evalúa el mismo ejemplo de ambas formas. Supongamos el
+ejemplo anterior.
 
-Supongamos las siguientes definiciones de funciones:
+Definiciones:
 
 ```scheme
 (define (doble x) 
     (+ x x))
+    
 (define (cuadrado y) 
     (* y y))
+    
 (define (f z) 
     (+ (cuadrado (doble z)) 1))
+    
+(define a 2)
 ```
 
-¿Cuál sería el resultado de evaluar `(f (+ 2 1))` con orden
-aplicativo?. Vamos a verlo paso a paso, poniendo entre paréntesis la
-regla de las anteriores que se aplica en cada caso:
+Expresión a evaluar:
+
+```scheme
+(f (+ a 1))
+```
+
+
+Veamos el resultado de la evaluación usando el **modelo de sustitución
+aplicativo**, aplicando paso a paso las reglas anteriores (en cada
+línea pondremos entre paréntesis la regla que aplicamos):
 
 ```
-(f (+ 2 1)) ⇒                ; evaluamos (+ 2 1) por ser + una función primitiva (Regla 3)
-(f 3) ⇒                      ; sustituimos (f 3) por su definición (Regla 4)
-(+ (cuadrado (doble 3)) 1) ⇒ ; sustituimos (doble 3) (Regla 4)
-(+ (cuadrado (+ 3 3)) 1) ⇒   ; evaluamos (+ 3 3) (Regla 3)
-(+ (cuadrado 6) 1) ⇒         ; sustituimos (cuadrado 6) (Regla 4)
-(+ (* 6 6) 1) ⇒              ; evaluamos (* 6 6) (Regla 3)
-(+ 36 1) ⇒                   ; evaluamos (+ 36 1) (Regla 3)
+(f (+ a 1)) ⇒                ; Para evaluar f, evaluamos primero su
+                             ; argumento (+ a 1) (Regla 4); sustituimos a por 2 (Regla 2) 
+(f (+ 2 1)) ⇒                ; Evaluamos (+ 2 1) (Reglas 2 y 3)
+(f 3) ⇒                      ; (Regla 4)
+(+ (cuadrado (doble 3)) 1) ⇒ ; Sustituimos (doble 3) (Regla 4)
+(+ (cuadrado (+ 3 3)) 1) ⇒   ; Evaluamos (+ 3 3) (Reglas 2 y 3)
+(+ (cuadrado 6) 1) ⇒         ; Sustitumos (cuadrado 6) (Regla 4)
+(+ (* 6 6) 1) ⇒              ; Evaluamos (* 6 6) (Reglas 2 y 3)
+(+ 36 1) ⇒                   ; Evaluamos (+ 36 1) (Reglas 2 y 3)
 37
 ```
 
-¿Y en orden normal?
+Y veamos el resultado de usar el **modelo de sustitución normal**:
 
 ```
 (f (+ 2 1)) ⇒                      ; sustituimos (f (+ 2 1)) 
-                                    ; por su definición, con z = (+ 2 1) (Regla 4)
+                                   ; por su definición, con z = (+ 2 1) (Regla 4)
 (+ (cuadrado (doble (+ 2 1))) 1) ⇒ ; sustituimos (doble (+ 2 1)) (Regla 4)
 (+ (cuadrado (+ (+ 2 1) 
-              (+ 2 1))) 1) ⇒       ; sustituimos (cuadrado ...) (Regla 4)
+                (+ 2 1))) 1) ⇒     ; sustituimos (cuadrado ...) (Regla 4)
 (+ (* (+ (+ 2 1) 
          (+ 2 1))
       (+ (+ 2 1) 
@@ -952,6 +1007,7 @@ características funcionales características funcionales de Scheme.
 En concreto, veremos:
 
 - Símbolos y primitiva `quote`
+- Uso de listas
 - Definición de funciones recursivas en Scheme
 
 ### <a name=2-1></a>2.1 Funciones y formas especiales
@@ -970,7 +1026,7 @@ aplicativo ya visto:
   los exteriores.
 
 Las *formas especiales* son expresiones primitivas de Scheme que
-tienen una forma de evaluarse propia, distinta de las funciones.
+tienen una forma de evaluarse propia, distinta de las funciones. 
 
 ### <a name="2-2"></a>2.2. Formas especiales en Scheme: define, if, cond
 
@@ -995,10 +1051,11 @@ evalúa de una forma diferente.
 **Ejemplo**
 
 ```scheme
-(define base 10)
-(define altura 12)
-(define area (/ (* base altura) 2))
+(define base 10)   ; Asociamos a 'base' el valor 10
+(define altura 12) ; Asociamos a 'altura' el valor 12
+(define area (/ (* base altura) 2)) ; Asociamos a 'area' el valor 60
 ```
+
 
 ##### Forma especial `define` para definir funciones
 
@@ -1025,7 +1082,7 @@ de la semántica:
 (define (factorial x)
     (if (= x 0)
         1
-		(* x (factorial (- x 1)))))
+        (* x (factorial (- x 1)))))
 ```
 
 #### 2.2.2. Forma especial `if`
@@ -1046,6 +1103,10 @@ de la semántica:
 
 ```scheme
 (if (> 10 5) (substring "Hola qué tal" (+ 1 1) 4) (/ 12 0))
+
+;; Evaluamos (> 10 5). Como el resultado es #t, evaluamos 
+;; (substring "Hola qué tal" (+ 1 1) 4), que devuelve "la"
+
 ```
 
 #### 2.2.3. Forma especial `cond`
@@ -1079,6 +1140,10 @@ de la semántica:
    ((= 3 1) '3-es-igual-que-1)
    ((> 3 5) '3-es-mayor-que-2)
    (else 'ninguna-condicion-es-cierta))
+
+;; Se evalúan una a una las expresiones (> 3 4),
+;; (< 2 1), (= 3 1) y (> 3 5). Como ninguna de ella
+;; es cierta se devuelve el símbolo 'ninguna-condicion-es-cierta
 ```
 
 ### <a name="2-3"></a>2.3. Forma especial `quote` y símbolos
@@ -1092,9 +1157,10 @@ de la semántica:
 
 **Evaluación**
 
-- Se devuelve el identificador o la expresión **sin evaluar**. La
-  expresión puede ser cualquier expresión correcta de Scheme, datos
-  atómicos, parejas o listas. Se abrevia en con el carácter `'`
+- Se devuelve el identificador o la expresión **sin evaluar**. Si la
+  expresión es compuesta (entre paréntesis), se devuelve una lista. La
+  expresión puede ser cualquier expresión correcta de Scheme. 
+- Se abrevia en con el carácter `'`.
 
 **Ejemplo**
 
@@ -1109,8 +1175,10 @@ del lenguaje de tipo **symbol**. En el paradigma funcional a los
 identificadores se les denomina *símbolos*.
 
 Los símbolos son distintos de las cadenas. Una cadena es un tipo de
-dato compuesto, mientras que los símbolos se almacenan con un valor
-único denominado *valor hash*.
+dato **compuesto** y se guardan en memoria todos y cada uno de los
+caracteres que la forman. Sin embargo, los símbolos son tipos
+atómicos, que se representan en memoria con un único valor determinado
+por el *código hash* del identificador.
 
 Ejemplos de funciones Scheme con símbolos:
 
@@ -1131,7 +1199,7 @@ Ejemplos de funciones Scheme con símbolos:
 ```
 
 Un símbolo puede asociarse o ligarse (*bind*) a un valor (cualquier
-dato *de primera clase*).
+dato *de primera clase*) con la forma especial `define`.
 
 Cuando escribimos un símbolo en el prompt de Scheme el intérprete lo
 evalúa y devuelve su valor:
@@ -1170,7 +1238,7 @@ de nuevo en este apartado, antes de ver algún ejemplo de cómo usar la
 recursión con listas.
 
 Ya hemos visto en dicho seminario que Scheme es un lenguaje débilmente
-tipeado. Una variable o parámetro no se declara de un tipo y puede
+tipado. Una variable o parámetro no se declara de un tipo y puede
 contener cualquier valor. Sucede igual con las listas: una lista en
 Scheme puede contener cualquier valor, incluyendo otras listas.
 
@@ -1199,9 +1267,10 @@ Otro ejemplo:
 ```
 
 La otra forma de crear una lista es de forma estática, utilizando la
-forma especial `quote` vista anteriormente. Esa forma especial detiene la evaluación
-natural de Scheme y devuelve lo siguiente sin evaluar. Si eso es una
-expresión entre paréntesis, Scheme lo interpreta como una lista:
+forma especial `quote` vista anteriormente. Esa forma especial detiene
+la evaluación natural de Scheme y devuelve la expresión que hay a
+continuación sin evaluar. Si esa expresión es compuesta (entre
+paréntesis) se devuelve como una lista, sin evaluar sus elementos
 
 Por ejemplo:
 
@@ -1217,10 +1286,11 @@ Por ejemplo:
 La última lista tiene 3 elementos:
 
 - El número 1
-- La lista {+ 1 1}
-- La lista {* 2 {+ 1 2}}
+- La lista `{+ 1 1}`
+- La lista `{* 2 {+ 1 2}}`
 
-Es posible definir una lista vacía (sin elementos):
+Es posible definir una lista vacía (sin elementos) realizando una
+llamada sin argumentos a la función `list` o utilizando el símbolo `():
 
 ```scheme
 (list) ; ⇒ {}
@@ -1576,7 +1646,7 @@ La función `pair?` nos dice si un objeto es atómico o es una pareja:
 #### 3.1.4. Las parejas pueden contener cualquier tipo de dato
 
 Ya hemos comprobado que Scheme es un lenguaje *débilmente
-tipeado*. Las funciones pueden devolver y recibir distintos tipos de
+tipado*. Las funciones pueden devolver y recibir distintos tipos de
 datos.
 
 Por ejemplo, podríamos definir la siguiente función `suma` que sume
