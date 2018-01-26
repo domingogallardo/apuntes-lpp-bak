@@ -13,7 +13,9 @@
 	- [2.2. Formas especiales en Scheme: `define`, `if`, `cond`](#2-2)
 	- [2.3. Forma especial `quote` y símbolos](#2-3)
 	- [2.4. Listas](#2-4)
-	- [2.5. Recursión](#2-5)
+
+<!--
+    - [2.5. Recursión](#2-5)
     - [2.6. Recursión y listas](#2-6)
 - [3. Tipos de datos compuestos en Scheme](#3)
 	- [3.1. El tipo de dato pareja](#3-1)
@@ -32,6 +34,9 @@
     - [5.5. Generalización](#5-5)
     - [5.6. Funciones de orden superior](#5-6)
 
+-->
+
+<!--
 ## Bibliografía - SICP
 
 En este tema explicamos conceptos de los siguientes capítulos del
@@ -47,6 +52,8 @@ libro *Structure and Intepretation of Computer Programs*:
 - [2.2 - Hierarchical Data and the Closure Property](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2) (Introducción de la sección)
 - [2.2.1 - Representing Sequences](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1)
 - [2.3.1 - Quotation](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-16.html#%_sec_2.3.1)
+
+-->
 
 ## <a name="1"></a> 1. El paradigma de Programación Funcional
 
@@ -1360,6 +1367,9 @@ concatenar dos o más listas
 (define list2 '(hola como estás))
 (append list1 list2) ; ⇒ {1 2 3 4 hola como estás}
 ```
+
+
+<!-- 
 
 ### <a name="2-5"></a> 2.5. Recursión
 
@@ -3449,6 +3459,7 @@ superior `exists`:
             
 ```
 
+-->
 
 ----
 
