@@ -202,7 +202,7 @@ seguimiento de las prácticas será de 0.
 La calificación total será la media ponderada de las calificaciones de
 cada parcial y la media de los 11 cuestionarios de seguimiento,
 condicionado esto último a que se haya superado el mínimo de
-cuestionarios aprovados.
+cuestionarios aprobados.
 
 Ejemplo 1: un estudiante que ha obtenido un 4’5, 5 y 4’5 en los
 exámenes parciales y un 8 en el seguimiento de las clases de
