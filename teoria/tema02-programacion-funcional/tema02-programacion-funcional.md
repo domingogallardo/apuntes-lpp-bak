@@ -473,7 +473,7 @@ Point2D p1 = new Point2D(3.0, 2.0); // la coord x de p1 es 3.0
 p1.getCoordX(); // la coord x de p1 es 3.0
 Point2D p2 = p1;
 p2.setCoordX(10.0);
-p1.getCoordX(); // la coord x de p1 es 10.0, sin que ninguna sentencia haya modificado p2
+p1.getCoordX(); // la coord x de p1 es 10.0, sin que ninguna sentencia haya modificado directamente p1
 ```
 
 En programación funcional, por contra, **las definiciones son
