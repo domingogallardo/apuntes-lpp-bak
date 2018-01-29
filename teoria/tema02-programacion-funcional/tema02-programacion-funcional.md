@@ -451,10 +451,13 @@ identificadores están accediendo al mismo objeto. Si mutamos algún valor
 del objeto a través de un identificador provocamos un efecto lateral
 en los otros identificadores.
 
-Por ejemplo, para modificar los atributos de un objeto en Java:
+Por ejemplo, lo siguiente es un ejemplo de una **mutación** en
+programación imperativa, en la que se modifican los atributos de un
+objeto en Java:
 
 ```java
-Point2D p1 = new Point2D(3.0, 2.0); // la coord x de p1 es 3.0
+Point2D p1 = new Point2D(3.0, 2.0); // creamos un punto 2D con coordX=3.0 y coordY=2.0
+p1.getCoordX(); // la coord x de p2 es 3.0
 p1.setCoordX(10.0);
 p1.getCoordX(); // la coord x de p1 es 10.0
 ```
@@ -467,9 +470,10 @@ sentencia en la que no se ha usado esa variable:
 
 ```java
 Point2D p1 = new Point2D(3.0, 2.0); // la coord x de p1 es 3.0
+p1.getCoordX(); // la coord x de p1 es 3.0
 Point2D p2 = p1;
-p1.setCoordX(10.0);
-p2.getCoordX(); // la coord x de p2 es 10.0, sin que ninguna sentencia haya modificado p2
+p2.setCoordX(10.0);
+p1.getCoordX(); // la coord x de p1 es 10.0, sin que ninguna sentencia haya modificado p2
 ```
 
 En programación funcional, por contra, **las definiciones son
@@ -3465,4 +3469,4 @@ superior `exists`:
 
 Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Domingo Gallardo, Cristina Pomares
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
