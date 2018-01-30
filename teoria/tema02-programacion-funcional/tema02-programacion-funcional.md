@@ -1146,15 +1146,15 @@ de la semántica:
 
 ```scheme
 (cond
-   ((> 3 4) '3-es-mayor-que-4)
-   ((< 2 1) '2-es-menor-que-1)
-   ((= 3 1) '3-es-igual-que-1)
-   ((> 3 5) '3-es-mayor-que-2)
-   (else 'ninguna-condicion-es-cierta))
+   ((> 3 4) "3 es mayor que 4")
+   ((< 2 1) "2 es menor que 1")
+   ((= 3 1) "3 es igual que 1")
+   ((> 3 5) "3 es mayor que 2")
+   (else "ninguna condición es cierta"))
 
 ;; Se evalúan una a una las expresiones (> 3 4),
 ;; (< 2 1), (= 3 1) y (> 3 5). Como ninguna de ella
-;; es cierta se devuelve el símbolo 'ninguna-condicion-es-cierta
+;; es cierta se devuelve la cadena "ninguna condición es cierta".
 ```
 
 ### <a name="2-3"></a>2.3. Forma especial `quote` y símbolos
@@ -1198,7 +1198,7 @@ Ejemplos de funciones Scheme con símbolos:
 (symbol? 'x) ; ⇒ #t
 (symbol? x) ; ⇒ #f ¿Por qué?
 (symbol? 'hola-que<>)
-(symbol⇒string 'hola-que<>)
+(symbol->string 'hola-que<>)
 'mañana
 'lápiz ; aunque sea posible, no vamos a usar acentos en los símbolos
 ; pero sí en los comentarios
@@ -1261,7 +1261,7 @@ de parámetros que son los elementos que se incluirán en la lista:
 
 ```scheme
 (list 1 2 3 4 5) ; ⇒ {1 2 3 4}
-(list 'a 'b c') ; ⇒ {a b c}
+(list 'a 'b 'c) ; ⇒ {a b c}
 (list 1 'a 2 'b 3 'c #t) ; ⇒ {1 a 2 b 3 c #t}
 (list 1 (+ 1 1) (* 2 (+ 1 2))) ; ⇒ {1 2 6}
 ```

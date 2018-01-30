@@ -75,7 +75,7 @@ siguiente:
 
 ```scheme
 #lang r6rs
-(import (rnrs base))
+(import (rnrs))
 ```
 
 3. Finalmente pulsar el botón _Run_ (Ejecutar) para que se cargue ese
@@ -93,11 +93,11 @@ es una directiva de DrRacket que determina qué lenguaje será
 interpretado
 
 ```scheme
-(import (rnrs base))
+(import (rnrs))
 ```
 
-Permite importar una librería en el lenguaje r6rs. En este caso, la
-librería con las funciones básicas del lenguaje. Además de ésta, en la
+Permite importar la librería `rnrs`, que son es la librería que
+contiene todas las funciones del lenguaje r6rs. Además de ésta, en la
 asignatura usaremos otras librerías que se indicarán en los
 correspondientes enunciados de las prácticas cuando sean necesarias.
 
@@ -324,7 +324,7 @@ Se soportan caracteres internacionales y se codifican en UTF-8.
 
 ```scheme
 (char<? #\a #\b)
-(char-numeric? \#1)
+(char-numeric? #\1)
 (char-alphabetic? #\3)
 (char-whitespace? #\space)
 (char-upper-case? #\A)
@@ -589,10 +589,10 @@ de la expresión asociada a la primera condición verdadera.
 
 ```scheme
 (cond
-    ((> 3 4) “3 es mayor que 4")
-	((< 2 1) “2 es menor que 1")
-	((> 3 2) “3 es mayor que 2")
-	(else “ninguna condicion es cierta"))
+    ((> 3 4) "3 es mayor que 4")
+	((< 2 1) "2 es menor que 1")
+	((> 3 2) "3 es mayor que 2")
+	(else "ninguna condicion es cierta"))
 ```
 
 ### Comentarios
@@ -704,12 +704,11 @@ Por ejemplo:
 
 Para imprimir por pantalla en Scheme se pude usar la función
 `display`, similar a la sentencia `print` de muchos otros
-lenguajes. Es necesario importar la librería `io simple`:
+lenguajes. 
 
 ```scheme
 #lang r6rs
-(import (rnrs base)
-        (rnrs io simple))
+(import (rnrs))
 
 (display "\nHola mundo!\n")
 (display "La suma de 2 + 3 es: ")
@@ -753,8 +752,7 @@ importar esta nueva librería. Por tanto, debemos añadir en nuestros
 ficheros de prácticas lo siguiente:
 
 ```scheme
-(import (rnrs base)
-        (rnrs io simple)
+(import (rnrs)
         (schemeunit))  
 ```
 
