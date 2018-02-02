@@ -93,7 +93,7 @@ decimal equivalente.
 n = b3 * 2ˆ3 + b2 * 2ˆ2 + b1 * 2ˆ1 + b0 * 2ˆ0
 ```
 
-**Pista**: puedes utilizar la función `expt`
+Para la implementación de la expresión debes utilizar la función `expt`.
 
 
 b) Implementa la función `(binario-a-hexadecimal b3 b2 b1 b0)` que
