@@ -10,24 +10,21 @@ Para entregar la práctica debes subir a Moodle el fichero
 las soluciones de cada ejercicio separadas por comentarios. Cada
 solución debe incluir:
 
-- la **definición de las funciones** que resuelven el ejercicio
-- una visualización por pantalla de uno de los ejemplos incluidos en
-  el enunciado que **demuestre qué hace la función**, usando la
-  función de `display`
-- y un conjunto de **pruebas** que comprueben su funcionamiento,
-  utilizando el API SchemeUnit.
+- La **definición de las funciones** que resuelven el ejercicio.
+- Un conjunto de **pruebas** que comprueben su funcionamiento, y el de
+  funciones auxiliares que hayamos definido, utilizando el API SchemeUnit.
 
 Por ejemplo, supongamos que el primer ejercicio de la práctica 1 sea
-implementar la función `suma-cuadrados` que vimos en la sesión de
-introducción a Scheme y se proponen en el enunciado los siguientes
-ejemplos:
+implementar la función `suma-cuadrados` que recibe dos números y
+devuelve la suma de sus cuadrados y se proponen en el enunciado los
+siguientes ejemplos:
 
 ```scheme
 (suma-cuadrados 10 10) ; ⇒ 200
 (suma-cuadrados -2 9) ; ⇒  85
 ```
 
-La solución se podría entregar de la siguiente forma:
+La solución se debería entregar de la siguiente forma:
 
 **`practica01.rkt`**:
 
@@ -35,24 +32,31 @@ La solución se podría entregar de la siguiente forma:
 ;; José Fernandez Muñoz
 
 #lang r6rs
-(import (rnrs base)
-        (rnrs io simple)
+(import (rnrs)
         (schemeunit))
-
 
 ;;
 ;; Ejercicio 1: suma-cuadrados
 ;;
 
+;; Función auxiliar cuadrado
+
+(define (cuadrado x)
+    (* x x))
+    
+(display "Probando 'cuadrado'\n")
+
+(check-equal? (cuadrado 2) 4)
+(check-equal? (cuadrado 10) 100)
+(check-equal? (cuadrado -2) 4)
+
+;; Función principal suma-cuadrados
+
 (define (suma-cuadrados x y)
     (+ (* x x) (* y y)))
 
-;; Demostración
-(display "\n\nEjercicio 1\n")
-(display "La suma de los cuadrados de 10 y 10 es: ")
-(display (suma-cuadrados 10 10))
+(display "Probando 'suma-cuadrados'\n")
 
-;; Pruebas
 (check-equal?  (suma-cuadrados 10 10)  200)
 (check-equal?  (suma-cuadrados -2 9)  85)
 (check-equal?  (suma-cuadrados 0.5 9)  81.25)
@@ -65,8 +69,8 @@ La solución se podría entregar de la siguiente forma:
 
 ```
 
-En los casos de prueba se pueden incluir los ejemplos del enunciado
-del ejercicio y alguno más que compruebe que la implementación
+En los casos de prueba se deben incluir los ejemplos del enunciado
+del ejercicio **y alguno más** que compruebe que la implementación
 funciona correctamente.
 
 ## Ejercicios
@@ -93,26 +97,102 @@ n = b3 * 2ˆ3 + b2 * 2ˆ2 + b1 * 2ˆ1 + b0 * 2ˆ0
 
 
 b) Implementa la función `(binario-a-hexadecimal b3 b2 b1 b0)` que
-reciba 4 bits de un número representado en binario y devuelva su
-representación equivalente en hexadecimal.
+reciba 4 bits de un número representado en binario y devuelva el
+carácter correspondiente a su representación en hexadecimal.
 
 ```scheme
-(binario-a-hexadecimal 1 1 1 1) ; ⇒ F
-(binario-a-hexadecimal 0 1 1 0) ; ⇒ 6
-(binario-a-hexadecimal 1 0 1 0) ; ⇒ A
+(binario-a-hexadecimal 1 1 1 1) ; ⇒ #\F
+(binario-a-hexadecimal 0 1 1 0) ; ⇒ #\6
+(binario-a-hexadecimal 1 0 1 0) ; ⇒ #\A
 ```
 
-**Nota**: para realizar esta conversión, como paso intermedio puedes pasar
-primero el número binario a su representación decimal (utilizando la
-función definida en el apartado anterior) y después a su
-correspondiente hexadecimal. Recuerda que la represetación hexadecimal
-de los números decimales del 0 al 9 no cambia, y que el número decimal
-10 se representa con el carácter A, el 11 con el B, y asi
-sucesivamente hasta el 15 que es el F en hexadecimal.
+**Nota**: para realizar esta conversión, como paso intermedio debes
+pasar primero el número binario a su representación decimal
+(utilizando la función definida en el apartado anterior) y después a
+su correspondiente hexadecimal. 
 
-**Pista**: puedes utilizar las funciones `integer->char` y `char->integer`
+Recuerda que la representación hexadecimal de los números decimales
+del 0 al 9 es el carácter correspondiente a ese número, y que el
+número decimal 10 se representa con el carácter A, el 11 con el B, y
+así sucesivamente hasta el 15 que es el F en hexadecimal.
+
+Para la implementación de esta función auxiliar que pasa de decimal a
+hexadecimal debes usar las funciones `integer->char` y
+`char->integer`. En la función `char->ingeger` los caracteres
+consecutivos están asociados con números consecutivos. Por ejemplo, el
+entero correspondiente al carácter `#\A` es uno menos que el
+correspondiente al carácter `#\B`. Los caracteres de números y los de
+letras no son consecutivos.
+
 
 ### Ejercicio 2
+
+Implementa la función `(mayor-de-tres n1 n2 n3)` que reciba tres
+números como argumento y devuelva el mayor de los tres, intentando que
+el número de condiciones sea mínima.
+
+No debes utilizar la función `max`. 
+
+Implementa dos versiones de la función: 
+
+- versión 1: usando la forma especial `if` 
+- versión 2 (llámala `mayor-de-tres-v2`): definiendo una función auxiliar `(mayor x y)` que
+  devuelva el mayor de dos números (deberás usar también la forma
+  especial `if` para implementarla) y construyendo la función
+  `mayor-de-tres-v2` como una composición de llamadas a esta función
+  auxiliar.
+
+```scheme
+(mayor-de-tres 2 8 1) ;; ⇒ 8
+(mayor-de-tres-v2 3 0 3) ;; ⇒ 3
+```
+
+
+
+### Ejercicio 3
+
+Supongamos las definiciones
+
+```scheme
+(define (f x y)
+    (+ (* 2 x) y))
+
+(define (cuadrado x)
+    (* x x))
+```
+
+Realiza la evaluación paso a paso de la siguiente expresión 
+
+```scheme
+(f (cuadrado (+ 2 1)) (+ 1 1))
+```
+
+mediante el **modelo de sustitución**, utilizando tanto el **orden
+aplicativo** y como el **orden normal**.
+
+Escribe la solución entre comentarios en el propio fichero `.rkt` de
+la práctica.
+
+
+### Ejercicio 4
+
+Implementa la función `(tirada-ganadora t1 t2)` que reciba 2 parejas
+como argumento, donde cada pareja representa una tirada con 2 dados
+(contiene dos números). La función debe determinar qué tirada es la
+ganadora, teniendo en cuenta que será aquella cuya suma de sus 2 dados
+esté más próxima al número 7. La función devolverá 1 si `t1` es la
+ganadora, 2 si `t2` es la ganadora o bien 0 si hay un empate. Este
+último caso se producirá cuando la diferencia con 7 de ambas tiradas
+es la misma.
+
+```scheme
+(tirada-ganadora (cons 1 3) (cons 1 6)) ; ⇒ 2
+(tirada-ganadora (cons 1 5) (cons 2 2)) ; ⇒ 1
+(tirada-ganadora (cons 6 2) (cons 3 3)) ; ⇒ 0
+```
+
+
+### Ejercicio 5
 
 Supongamos que estamos implementando un **juego de guerra de barcos** en
 el que los barcos están situados en coordenadas del plano definidas
@@ -173,24 +253,7 @@ Ejemplos:
 (dentro-alcance? 100 200 500 500 20) ; ⇒ #t
 ```
 
-### Ejercicio 3
-
-Implementa la función `(tirada-ganadora t1 t2)` que reciba 2 parejas
-como argumento, donde cada pareja representa una tirada con 2 dados
-(contiene dos números). La función debe determinar qué tirada es la
-ganadora, teniendo en cuenta que será aquella cuya suma de sus 2 dados
-esté más próxima al número 7. La función devolverá 1 si `t1` es la
-ganadora, 2 si `t2` es la ganadora o bien 0 si hay un empate. Este
-último caso se producirá cuando la diferencia con 7 de ambas tiradas
-es la misma.
-
-```scheme
-(tirada-ganadora (cons 1 3) (cons 1 6)) ; ⇒ 2
-(tirada-ganadora (cons 1 5) (cons 2 2)) ; ⇒ 1
-(tirada-ganadora (cons 6 2) (cons 3 3)) ; ⇒ 0
-```
-
-### Ejercicio 4
+### Ejercicio 6
 
 Define la función `tipo-triangulo` que recibe como parámetro las
 coordenadas en el plano de los vértices de un triángulo representados
@@ -222,7 +285,7 @@ Puedes usar la siguiente función auxiliar:
   (< (abs (- x y)) epsilon))
 ```
 
-### Ejercicio 5
+### Ejercicio 7
 
 
 Define la función `calculadora` que recibe una lista como
@@ -243,6 +306,6 @@ Ejemplos:
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Antonio Botía, Domingo Gallardo, Cristina Pomares
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
