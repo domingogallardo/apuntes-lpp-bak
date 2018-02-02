@@ -13,8 +13,6 @@
 	- [2.2. Formas especiales en Scheme: `define`, `if`, `cond`](#2-2)
 	- [2.3. Forma especial `quote` y símbolos](#2-3)
 	- [2.4. Listas](#2-4)
-
-<!--
     - [2.5. Recursión](#2-5)
     - [2.6. Recursión y listas](#2-6)
 - [3. Tipos de datos compuestos en Scheme](#3)
@@ -24,6 +22,7 @@
 - [4. Listas en Scheme](#4)
     - [4.1. Implementación de listas en Scheme](#4-1)
     - [4.2. Listas con elementos compuestos](#4-2)
+<!--
     - [4.3. Funciones recursivas sobre listas](#4-3)
     - [4.4. Funciones con número variable de argumentos](#4-4)
 - [5. Funciones como tipos de datos de primera clase](#5)
@@ -1373,7 +1372,6 @@ concatenar dos o más listas
 ```
 
 
-<!-- 
 
 ### <a name="2-5"></a> 2.5. Recursión
 
@@ -1413,9 +1411,10 @@ el propio 0, no hay que realizar ningún cálculo.
 El **caso general** es en el que se realiza la llamada recursiva. Para
 entender la expresión no es conveniente utilizar el depurador, ni
 hacer trazas, ni *entrar en la recursión*, sino que hay que suponer
-que la llamada recursiva se ejecuta y devuelve el valor que debería
-(*confiamos en la recursión*). Una vez devuelto el valor se transforma
-este valor evaluando el resto de la expresión.
+que **la llamada recursiva se ejecuta y devuelve el valor que
+debería. ¡Debemos confiar en la recursión!**. Una vez devuelto el
+valor, éste se utiliza para completar el resto del cálculo evaluando
+la expresión resultante.
 
 En nuestro el caso general indica lo siguiente:
 
@@ -1436,7 +1435,7 @@ La evaluación de esta función calculará la llamada recursiva
 `(suma-hasta 4)`. Ahí es donde debemos **confiar en que la recursión
 hace bien su trabajo** y que esa llamada devuelve el valor
 resultante de 4+3+2+1, o sea, 10. Una vez obtenido ese valor hay que
-hacer algo más, sumarle el propio número 5.
+terminar el cálculo sumándole el propio número 5.
 
 ```(+ (suma-hasta (- 5 1)) 5) =
 (+ (suma-hasta 4) 5) = (confiamos en la recursión: (suma-hasta 4) = 10)
@@ -1451,8 +1450,7 @@ general**. De esta forma la recursión va descomponiendo el problema
 hasta llegar al caso base y construye la solución a partir de ahí.
 
 En nuestro caso, la llamada recursiva para calcular la suma hasta 5 se
-hace restando 1 al número a calcular la suma hasta, de forma que la
-recursión calcula la suma hasta 4.
+hace calculando la suma hasta 4 (un caso más sencillo).
 
 #### 2.5.2 Diseño de la función `(suma-hasta x)`
 
@@ -1501,17 +1499,36 @@ Podemos ya escribirlo todo en Scheme:
       (+ (suma-hasta (- x 1)) x)))
 ```
 
+Una aclaración sobre el caso general. En la implementación anterior la
+llamada recursiva a `suma-hasta` se realiza en el primer argumento de
+la suma:
+
+```scheme
+(+ (suma-hasta (- x 1)) x)
+```
+
+La expresión anterior es totalmente equivalente a la siguiente
+en la que la llamada recursiva aparece como segundo argumento
+
+```scheme
+(+ x (suma-hasta (- x 1)))
+```
+
+Ambas expresiones son equivalentes porque en programación funcional no
+importa el orden en el que se evalúan los argumentos. Da lo mismo
+evaluarlos de derecha a izquierda que de izquierda a derecha. La
+transparencia referencial garantiza que el resultado es el mismo.
 
 
 ### <a name="2-6"></a> 2.6. Recursión y listas
 
 La utilización de la recursión es muy útil para trabajar con
-estructuras secuenciales, como listas. Lo veremos en profundidad más
-adelante. 
+estructuras secuenciales, como listas. Vamos a empezar viendo unos
+sencillos ejemplos y más adelante veremos algunos más complicadas.
 
 #### 2.6.1 Función recursiva `suma-lista`
 
-Ahora vamos a presentar un primer ejemplo, la función `(suma-lista
+Veamos un primer ejemplo, la función `(suma-lista
 lista-nums)` que recibe como parámetro una lista de números y devuelve
 la suma de todos ellos.
 
@@ -1688,6 +1705,9 @@ ejemplo:
 (cdr c) ; ⇒ #f
 ```
 
+
+
+
 #### 3.1.5. Las parejas son objetos inmutables
 
 Recordemos que en los paradigmas de programación declarativa y
@@ -1730,6 +1750,19 @@ Una pareja puede pasarse como argumento y devolverse en una función:
 
 (suma-parejas '(1 . 5) '(4 . 12)) ; ⇒ {5 . 17}
 ```
+
+Una vez definida esta función `suma-parejas` podríamos ampliar la
+función `suma` que vimos previamente con este nuevo tipo de datos:
+
+```scheme
+(define (suma x y)
+  (cond 
+    ((and (number? x) (number? y)) (+ x y))
+    ((and (string? x) (string? y)) (string-append x y))
+    ((and (pair? x) (pair? y)) (suma-parejas p1 p2))
+    (else 'error)))
+```
+
 
 Y, por último, las parejas *pueden formar parte de otras parejas*. Es
 lo que se denomina la propiedad de clausura de la función `cons`:
@@ -1866,6 +1899,7 @@ letra "r".
 
 Hay definidas 2^4 funciones de este tipo: `caaaar`, `caaadr`, …,
 `cddddr`.
+
 
 ## <a name="4"></a> 4. Listas en Scheme 
 
@@ -2072,6 +2106,8 @@ elementos. Si queremos obtener su segundo elemento (la lista `{1 2
 (define lista '(1 (1 2 3) 3))
 (car (cdr lista)) (list-ref lista 1)
 ```
+
+<!--
 
 ### <a name="4-3"></a> 4.3. Funciones recursivas y listas
 
