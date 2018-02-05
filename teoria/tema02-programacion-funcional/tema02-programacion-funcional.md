@@ -959,8 +959,8 @@ aplicativo**, aplicando paso a paso las reglas anteriores (en cada
 línea pondremos entre paréntesis la regla que aplicamos):
 
 ```
-(f (+ a 1)) ⇒                ; Para evaluar f, evaluamos primero su
-                             ; argumento (+ a 1) (Regla 4); sustituimos a por 2 (Regla 2) 
+(f (+ a 1)) ⇒                ; Para evaluar f, evaluamos primero su argumento (+ a 1) (Regla 4)
+                             ; y sustituimos a por 2 (Regla 2) 
 (f (+ 2 1)) ⇒                ; Evaluamos (+ 2 1) (Reglas 2 y 3)
 (f 3) ⇒                      ; (Regla 4)
 (+ (cuadrado (doble 3)) 1) ⇒ ; Sustituimos (doble 3) (Regla 4)
@@ -974,19 +974,19 @@ línea pondremos entre paréntesis la regla que aplicamos):
 Y veamos el resultado de usar el **modelo de sustitución normal**:
 
 ```
-(f (+ 2 1)) ⇒                      ; sustituimos (f (+ 2 1)) 
-                                   ; por su definición, con z = (+ 2 1) (Regla 4)
-(+ (cuadrado (doble (+ 2 1))) 1) ⇒ ; sustituimos (doble (+ 2 1)) (Regla 4)
-(+ (cuadrado (+ (+ 2 1) 
-                (+ 2 1))) 1) ⇒     ; sustituimos (cuadrado ...) (Regla 4)
-(+ (* (+ (+ 2 1) 
-         (+ 2 1))
-      (+ (+ 2 1) 
-         (+ 2 1))) 1) ⇒            ; evaluamos (+ 2 1) (Regla 3)
+(f (+ a 1)) ⇒                      ; Sustituimos (f (+ a 1)) 
+                                   ; por su definición, con z = (+ a 1) (Regla 4)
+(+ (cuadrado (doble (+ a 1))) 1) ⇒ ; Sustituimos (cuadrado ...) (Regla 4)
+(+ (* (doble (+ a 1))
+      (doble (+ a 1))) 1)          ; Sustituimos (doble  ...) (Regla 4)
+(+ (* (+ (+ a 1) (+ a 1))
+      (+ (+ a 1) (+ a 1))) 1) ⇒    ; Evaluamos a (Regla 2)
+(+ (* (+ (+ 2 1) (+ 2 1))
+      (+ (+ 2 1) (+ 2 1))) 1) ⇒    ; Evaluamos (+ 2 1) (Regla 3)
 (+ (* (+ 3 3)
-      (+ 3 3)) 1) ⇒                ; evaluamos (+ 3 3) (Regla 3)
-(+ (* 6 6) 1) ⇒                    ; evaluamos (* 6 6) (Regla 3)
-(+ 36 1) ⇒                         ; evaluamos (+ 36 1) (Regla 3)
+      (+ 3 3)) 1) ⇒                ; Evaluamos (+ 3 3) (Regla 3)
+(+ (* 6 6) 1) ⇒                    ; Evaluamos (* 6 6) (Regla 3)
+(+ 36 1) ⇒                         ; Evaluamos (+ 36 1) (Regla 3)
 37
 ```
 
