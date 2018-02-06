@@ -1520,6 +1520,69 @@ evaluarlos de derecha a izquierda que de izquierda a derecha. La
 transparencia referencial garantiza que el resultado es el mismo.
 
 
+#### 2.5.3. Función `(alfabeto-hasta char)` ####
+
+Vamos con otro ejemplo. Queremos diseñar una función `(alfabeto-hasta
+char)` que devuelva una cadena que empieza en la letra `a` y termina
+en el carácter que le pasamos como parámetro.
+
+Por ejemplo:
+
+```scheme
+(alfabeto-hasta #\h) ; ⇒ "abcdefgh"
+(alfabeto-hasta #\z) ; ⇒ "abcdefghijklmnopqrstuvwxyz"
+```
+
+Pensamos en el caso general: ¿cómo podríamos llamar a la recursión para que
+nos haga gran parte del trabajo (construya casi toda la cadena con el
+alfabeto)?
+
+Podríamos hacer que la llamada recursiva devolviera el alfabeto hasta
+el carácter previo al que nos pasan como parámetro y después nosotros
+añadir ese carácter a la cadena que devuelve la recursión.
+
+Veamos un ejemplo comcreto:
+
+```txt
+(alfabeto-hasta #\h) = (alfabeto-hasta #\g) + \#h
+```
+
+La llamada recursiva `(alfabeto-hasta #\g)` devolvería la cadena
+`"abcdefg"` (confiando en la recursión) y sólo faltaría añadir la
+última letra.
+
+Para implementar esta idea en Scheme lo único que necesitamos es usar
+la función `string-append` para concatenar cadenas y una función
+auxiliar `(anterior char)` que devuelve el carácter anterior a uno
+dado.
+
+
+```scheme
+(define (anterior char)
+  (integer->char (- (char->integer char) 1)))
+```
+
+El caso general quedaría como sigue:
+
+```scheme
+(alfabeto-hasta char) =
+    (string-append (alfabeto-hasta (anterior char)) (string char))))
+```
+
+Faltaría el caso base. ¿Cuál es el caso más sencillo posible que nos
+pueden pedir? El caso del alfabeto hasta la `#\a`. En ese caso basta
+con devolver la cadena `"a"`.
+
+La función completa quedaría así:
+
+```string
+(define (alfabeto-hasta char)
+  (if (equal? char #\a)
+      "a"
+      (string-append (alfabeto-hasta (anterior char)) (string char))))
+```
+
+
 ### <a name="2-6"></a> 2.6. Recursión y listas
 
 La utilización de la recursión es muy útil para trabajar con
