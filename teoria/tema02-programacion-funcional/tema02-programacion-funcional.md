@@ -1533,8 +1533,9 @@ Por ejemplo:
 (alfabeto-hasta #\z) ; ⇒ "abcdefghijklmnopqrstuvwxyz"
 ```
 
-Pensamos en el caso general: ¿cómo podríamos llamar a la recursión para que
-nos haga gran parte del trabajo (construya casi toda la cadena con el
+Pensamos en el caso general: ¿cómo podríamos invocar a la propia
+función `alfabeto-hasta` para que (confiando en la recursión) nos haga
+gran parte del trabajo (construya casi toda la cadena con el
 alfabeto)?
 
 Podríamos hacer que la llamada recursiva devolviera el alfabeto hasta
