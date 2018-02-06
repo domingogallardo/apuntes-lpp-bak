@@ -2063,8 +2063,7 @@ La expresión equivalente utilizando conses es:
 
 #### 4.2.1. Listas de listas
 
-Si la pareja que guardamos como elemento de la lista es la cabeza de
-otra lista tenemos una lista que contiene a otra lista:
+Hemos visto que podemos construir listas que contienen otras listas:
 
 ```scheme
 (define lista (list 1 (list 1 2 3) 3))
@@ -2076,7 +2075,31 @@ La lista anterior también se puede definir con quote:
 (define lista '(1 (1 2 3) 3))
 ```
 
-El diagrama *box and pointer* de la lista es:
+La lista resultante contiene tres elementos: el primero y el último
+son elementos atómicos (números) y el segundo es otra lista.
+
+Si preguntamos por la longitud de la lista Scheme nos dirá que es una
+lista de 3 elementos:
+
+```scheme
+(length lista) ; ⇒ 3
+```
+
+Y el segundo elemento de la lista es otra lista:
+
+```scheme
+(car (cdr lista)) ; ⇒ {1 2 3}
+```
+
+¿Cómo implementa Scheme esta lista usando parejas?
+
+Al ser una lista de tres elementos lo hará con tres parejas enlazadas
+que terminan en una lista vacía en la parte derecha de la última
+pareja. En las partes izquierdas de esas tres parejas tendremos los
+elementos de la lista propiamente dichos: un 1 y un 3 en la primera y
+última pareja y una lista en la segunda pareja.
+
+El diagrama *box and pointer*:
 
 <img src="imagenes/lista-lista.png" width="500px"/>
 
