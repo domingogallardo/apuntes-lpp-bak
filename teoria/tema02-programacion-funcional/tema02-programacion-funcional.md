@@ -1567,7 +1567,7 @@ El caso general quedaría como sigue:
 
 ```scheme
 (alfabeto-hasta char) =
-    (string-append (alfabeto-hasta (anterior char)) (string char))))
+    (string-append (alfabeto-hasta (anterior char)) (string char))
 ```
 
 Faltaría el caso base. ¿Cuál es el caso más sencillo posible que nos
@@ -1576,7 +1576,7 @@ con devolver la cadena `"a"`.
 
 La función completa quedaría así:
 
-```string
+```scheme
 (define (alfabeto-hasta char)
   (if (equal? char #\a)
       "a"
