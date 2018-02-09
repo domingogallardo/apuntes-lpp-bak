@@ -1542,7 +1542,7 @@ Podríamos hacer que la llamada recursiva devolviera el alfabeto hasta
 el carácter previo al que nos pasan como parámetro y después nosotros
 añadir ese carácter a la cadena que devuelve la recursión.
 
-Veamos un ejemplo comcreto:
+Veamos un ejemplo concreto:
 
 ```txt
 (alfabeto-hasta #\h) = (alfabeto-hasta #\g) + \#h

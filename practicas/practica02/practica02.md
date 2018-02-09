@@ -8,95 +8,53 @@ las soluciones de cada ejercicio separadas por comentarios. Cada
 solución debe incluir:
 
 - La **definición de las funciones** que resuelven el ejercicio.
-- Una visualización por pantalla de uno de los ejemplos incluidos en
-  el enunciado que **demuestre qué hace la función**, usando la
-  función de `display`.
 - Un conjunto de **pruebas** que comprueben su funcionamiento
   utilizando la librería `schemeunit`. 
 
 ## Ejercicios
 
 
-### Ejercicio 1
+### Ejercicio 1 ###
 
-Define la función `(cuenta-simbolos lista)` que reciba una lista de
-elementos y devuelva el número de símbolos que contiene.
-
-```scheme
-(cuenta-simbolos '(2 40 #f)) ; ⇒ 0
-(cuenta-simbolos '(2 4 #f a)) ; ⇒ 1
-(cuenta-simbolos '(2 a "hola" #f hola)) ; ⇒ 2
-```
-
-### Ejercicio 2
-
-a) Implementa las funciones `(menor x y)` y `(mayor x y)` que
-reciben dos números y devuelven el menor y el mayor de ambos. En el caso
-de que los números sean iguales, se devuelve el propio numero.
-
-Ejemplos:
-
-```scheme
-(menor 10 20) ; ⇒ 10
-(mayor 10 20) ; ⇒ 20
-(menor 20 20) ; ⇒ 20
-(mayor 20 20) ; ⇒ 20
-```
-
-b) Supongamos la expresión 
-
-```scheme
-(mayor (+ 2 3) (menor (- 10 2) (* 2 2)))
-```
-
-Realiza la evaluación paso a paso de esta expresión mediante el **modelo
-de sustitución**, utilizando tanto el **orden aplicativo** y como el **orden
-normal**.
-
-Escribe la solución entre comentarios en el propio fichero `.rkt` de
-la práctica.
-
-c) Implementa la función recursiva `(minimo lista)` que recibe una
-lista con números como argumento y devuelve el menor número de la
+Implementa la función recursiva `(máximo lista)` que recibe una lista
+con números como argumento y devuelve el mayor número de la
 lista. Suponemos listas de 1 o más elementos.
 
-Para la implementación debes usar la función `menor` definida en el
-apartado anterior.
+Para la implementación debes usar la función `mayor` definida en la
+práctica anterior.
 
-**Pista**: Podemos expresar el caso general de la recursión de la siguiente forma:
+**Pista**: Podemos expresar el caso general de la recursión de la
+siguiente forma:
 
-> El mínimo de los elementos de una lista es el menor entre
-> el primer elemento de la lista y el mínimo del resto de la lista.
+> El máximo de los elementos de una lista es el mayor entre
+> el primer elemento de la lista y el máximo del resto de la lista.
 
 Ejemplos:
 
 ```scheme
-(minimo '(9 8 6 4 3)) ; ⇒ 3
-(minimo '(9 8 3 6 4)) ; ⇒ 3
+(maximo '(9 8 6 4 3)) ; ⇒ 9
+(maximo '(1 -1 3 6 4)) ; ⇒ 6
 ```
 
-#### Ejercicio 3
 
-Implementa la función `(binario-a-decimal lista-bits)` que reciba una lista de bits que representan
-un número en binario (el primer elemento será el bit más significativo) y devuelva el número decimal
-equivalente. 
+### Ejercicio 2 ###
 
-**Pista**: puedes utilizar la función length.
+a) Implementa el predicado recursivo `(pertenece? elem lista)` que
+reciba un dato y una lista y comprueba si el elemento pertenece a
+la lista.
 
 ```scheme
-(binario-a-decimal '(1 1 1 1)) ; ⇒ 15
-(binario-a-decimal '(1 1 0)) ; ⇒ 6
-(binario-a-decimal '(1 0)) ; ⇒ 2
+(pertenece? 'a '(b c d e)) ; ⇒ #f
+(pertenece? 10 '(1 20 10 40 10)) ; ⇒ #t
+(pertenece? (cons 1 2) (list (cons 2 3) (cons 3 4) (cons 9 0))) ; ⇒ #f
 ```
 
-#### Ejercicio 4
-
-Implementa el predicado `(repetidos? lista)` que recibe una lista y
+b) Implementa el predicado recursivo `(repetidos? lista)` que recibe una lista y
 devuelve `#t` si algún elemento está repetido en la lista, y `#f` en
 caso contrario.
 
-**Pista**: puedes definir y utilizar la función auxiliar
-(member? elem lista), que comprueba si un elemento está en la lista
+**Pista**: puedes utilizar la función anterior
+(pertenece? elem lista), que comprueba si un elemento está en la lista.
 
 ```scheme
 (repetidos? '(1 2 3 5 4 5 6)) ; ⇒ #t
@@ -104,20 +62,104 @@ caso contrario.
 (repetidos? '(#t #f #t #t #t)) ; ⇒ #t
 ```
 
-#### Ejercicio 5
 
-Implementa el predicado `(adyacentes-iguales? lista)` que recibe una lista de elementos
-y devuelve #t si tiene al menos dos elementos adyacentes iguales o #f en caso contrario. 
+### Ejercicio 3 ###
+
+a) Dado el siguiente _box & pointer_, escribe las sentencias en Scheme
+(usando el mínimo número de llamadas a `list` y `cons`) que definen a `p1`, `p2` y `p3`.
+
+<img src="imagenes/box-and-pointer.png" width="400px"/>
+
+b) Explica si `p1`, `p2` y `p3` son listas y cuántos elementos tienen
+(en el caso en que lo sean).
+
+c) Escribe las expresiones que:
+
+   1. devuelve 3 utilizando `p3`
+   2. devuelve 5 utilizando `p3` 
+
+d) Dado el siguiente diagrama caja y punter, escribe las sentencias en
+Scheme (usando llamadas a `list` y `cons`) que definen `p1`.
+
+<img src="imagenes/box-and-pointer2.png" width="500px"/>
+
+## Ejercicio 4 ##
+
+Implementa la función `(binario-a-decimal lista-bits)` que reciba una lista de bits que representan
+un número en binario (el primer elemento será el bit más significativo) y devuelva el número decimal
+equivalente. 
+
+**Pista**: puedes utilizar la función `length`.
 
 ```scheme
-(adyacentes-iguales? '(12 30 5  5 2)) ; ⇒ #t
-(adyacentes-iguales? '("esto" "es" "una" "lista" "de" "strings")) ; ⇒ #f
-(adyacentes-iguales? (list (cons 1 2) (cons 1 2) (cons 3 4))) ; ⇒ #t
-(adyacentes-iguales? '(12 30 #t #\a 5 #f #f)) ; ⇒ #t
+(binario-a-decimal '(1 1 1 1)) ; ⇒ 15
+(binario-a-decimal '(1 1 0)) ; ⇒ 6
+(binario-a-decimal '(1 0)) ; ⇒ 2
+```
+
+### Ejercicio 5 ###
+
+Implementa la función recursiva `(ordenada-creciente? lista-nums)`
+que recibe como argumento una lista de números y devuelve `#t` si los
+números de la lista están ordenados de forma creciente o `#f` en
+caso contrario. Suponemos listas de 1 o más elementos.
+
+```scheme
+(ordenada-creciente? '(-1 23 45 59 99))  ; ⇒ #t
+(ordenada-creciente? '(12 50 -1 293 1000))  ; ⇒ #f
+(ordenada-creciente? '(3))  ; ⇒ #t
+```
+
+
+### Ejercicio 6 ###
+
+Implementa la función recursiva `(cadena-mayor lista)` que recibe un
+lista de cadenas y devuelve una pareja con la cadena de mayor longitud
+y dicha longitud.  En el caso de que haya más de una cadena con la
+máxima longitud, se devolverá la última de ellas que aparezca en la
+lista.
+
+**Pista**: puedes utilizar la función `string-length`
+
+```scheme
+(cadena-mayor '("vamos" "a" "obtener" "la" "cadena" "mayor")) ; ⇒  {"obtener" . 7}
+(cadena-mayor '("prueba" "con" "maximo" "igual")) ; ⇒ {"maximo" . 6} 
+(cadena-mayor '("hola")) ; ⇒ {"hola" . 4} 
+```
+
+
+### Ejercicio 7 ###
+
+a) Implementa las funciones `(inc-izq pareja)` y `(inc-der pareja)`
+definidas de la siguiente forma:
+
+- `(inc-izq pareja)`: devuelve una nueva pareja con la parte izquierda
+  incrementada en 1.
+- `(inc-der pareja)`: devuelve una nueva pareja con la parte derecha
+  incrementada en 1.
+
+Ejemplos:
+```
+(inc-izq (cons 10 20))  ; ⇒ {11 . 20}
+(inc-der (cons 10 20))  ; ⇒ {10 . 21}
+```
+
+b) Implementa la función recursiva `(cuenta-impares-pares lista-num)`
+que devuelva una pareja cuya parte izquierda sea la cantidad de
+números impares de la lista y la parte derecha la cantidad de números
+pares. Debes utilizar las funciones auxiliares definidas en el
+apartado anterior. También puedes utilizar las funciones predefinidas
+`even?` y `odd?`.
+
+Ejemplos:
+
+```scheme
+(cuenta-impares-pares '(3 2 1 4 8 7 6 5)) ; ⇒ {4 . 4}
+(cuenta-impares-pares '(3 1 5))           ; ⇒ {3 . 0}
 ```
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Antonio Botía, Domingo Gallardo, Cristina Pomares
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
