@@ -1,3 +1,4 @@
+
 # Práctica 2: Programación funcional en Scheme
 
 ## Entrega de la práctica
@@ -113,23 +114,6 @@ caso contrario. Suponemos listas de 1 o más elementos.
 
 ### Ejercicio 6 ###
 
-Implementa la función recursiva `(cadena-mayor lista)` que recibe un
-lista de cadenas y devuelve una pareja con la cadena de mayor longitud
-y dicha longitud.  En el caso de que haya más de una cadena con la
-máxima longitud, se devolverá la última de ellas que aparezca en la
-lista.
-
-**Pista**: puedes utilizar la función `string-length`
-
-```scheme
-(cadena-mayor '("vamos" "a" "obtener" "la" "cadena" "mayor")) ; ⇒  {"obtener" . 7}
-(cadena-mayor '("prueba" "con" "maximo" "igual")) ; ⇒ {"maximo" . 6} 
-(cadena-mayor '("hola")) ; ⇒ {"hola" . 4} 
-```
-
-
-### Ejercicio 7 ###
-
 a) Implementa las funciones `(inc-izq pareja)` y `(inc-der pareja)`
 definidas de la siguiente forma:
 
@@ -157,6 +141,26 @@ Ejemplos:
 (cuenta-impares-pares '(3 2 1 4 8 7 6 5)) ; ⇒ {4 . 4}
 (cuenta-impares-pares '(3 1 5))           ; ⇒ {3 . 0}
 ```
+
+### Ejercicio 7 ###
+
+Implementa la función recursiva `(cadena-mayor lista)` que recibe un
+lista de cadenas y devuelve una pareja con la cadena de mayor longitud
+y dicha longitud.  En el caso de que haya más de una cadena con la
+máxima longitud, se devolverá la última de ellas que aparezca en la
+lista.
+
+En el caso en que la lista sea vacía se devolverá la pareja con la
+cadena vacía y un 0 (la longitud de la lista vacía).
+
+**Pista**: puedes utilizar la función `string-length`
+
+```scheme
+(cadena-mayor '("vamos" "a" "obtener" "la" "cadena" "mayor")) ; ⇒  {"obtener" . 7}
+(cadena-mayor '("prueba" "con" "maximo" "igual")) ; ⇒ {"maximo" . 6} 
+(cadena-mayor '()) ; ⇒ {"" . 0} 
+```
+
 
 ----
 
