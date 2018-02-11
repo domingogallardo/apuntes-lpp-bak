@@ -22,17 +22,16 @@
 - [4. Listas en Scheme](#4)
     - [4.1. Implementación de listas en Scheme](#4-1)
     - [4.2. Listas con elementos compuestos](#4-2)
-<!--
     - [4.3. Funciones recursivas sobre listas](#4-3)
     - [4.4. Funciones con número variable de argumentos](#4-4)
 - [5. Funciones como tipos de datos de primera clase](#5)
     - [5.1. Forma especial `lambda`](#5-1)
     - [5.2. Funciones como argumentos de otras funciones](#5-2)
+<!-- 
     - [5.3. Funciones que devuelven otras funciones](#5-3)
     - [5.4. Funciones en estructuras de datos](#5-4)
     - [5.5. Generalización](#5-5)
     - [5.6. Funciones de orden superior](#5-6)
-
 -->
 
 <!--
