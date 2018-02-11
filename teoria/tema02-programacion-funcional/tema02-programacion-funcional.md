@@ -2194,7 +2194,6 @@ elementos. Si queremos obtener su segundo elemento (la lista `{1 2
 (car (cdr lista)) (list-ref lista 1)
 ```
 
-<!--
 
 ### <a name="4-3"></a> 4.3. Funciones recursivas y listas
 
@@ -2897,6 +2896,8 @@ devuelve la invocación de `g` con `x`:
    (+ x x))
 (aplica-2 suma-5 doble 3) ; ⇒ 11
 ```
+
+<!--
 
 ### <a name="5-3"></a> 5.3. Funciones que devuelven funciones
 
