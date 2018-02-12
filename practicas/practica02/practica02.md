@@ -79,8 +79,8 @@ c) Escribe las expresiones que:
    1. devuelve 3 utilizando `p3`
    2. devuelve 5 utilizando `p3` 
 
-d) Dado el siguiente diagrama caja y punter, escribe las sentencias en
-Scheme (usando llamadas a `list` y `cons`) que definen `p1`.
+d) Dado el siguiente diagrama caja y puntero, escribe las sentencias en
+Scheme (usando llamadas a `list` y `cons`) que definen `p4`.
 
 <img src="imagenes/box-and-pointer2.png" width="500px"/>
 
