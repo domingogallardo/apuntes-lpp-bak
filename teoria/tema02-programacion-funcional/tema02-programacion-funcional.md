@@ -2403,7 +2403,7 @@ con los números pares de la lista que le pasamos como parámetro:
    (cond
       ((null? lista) '())
 	  ((even? (car lista)) (cons (car lista)
-	                             (filtra-pares (cdr lista))))
+       (filtra-pares (cdr lista))))
       (else (filtra-pares (cdr lista)))))
 ```
 
@@ -2574,7 +2574,7 @@ en la lista de argumentos variables y llamamos a la función
 ## <a name="5"></a>5. Funciones como tipos de datos de primera clase
 
 Hemos visto que la característica fundamental de la programación
-fundamental es la definición de funciones. Hemos visto también que no
+funcional es la definición de funciones. Hemos visto también que no
 producen efectos laterales y no tienen estado. Una función toma unos
 datos como entrada y produce un resultado como salida.
 
