@@ -27,14 +27,10 @@
 - [5. Funciones como tipos de datos de primera clase](#5)
     - [5.1. Forma especial `lambda`](#5-1)
     - [5.2. Funciones como argumentos de otras funciones](#5-2)
-<!-- 
     - [5.3. Funciones que devuelven otras funciones](#5-3)
     - [5.4. Funciones en estructuras de datos](#5-4)
-    - [5.5. Generalización](#5-5)
-    - [5.6. Funciones de orden superior](#5-6)
--->
+    - [5.5. Funciones de orden superior](#5-5)
 
-<!--
 ## Bibliografía - SICP
 
 En este tema explicamos conceptos de los siguientes capítulos del
@@ -50,8 +46,6 @@ libro *Structure and Intepretation of Computer Programs*:
 - [2.2 - Hierarchical Data and the Closure Property](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2) (Introducción de la sección)
 - [2.2.1 - Representing Sequences](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.1)
 - [2.3.1 - Quotation](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-16.html#%_sec_2.3.1)
-
--->
 
 ## <a name="1"></a> 1. El paradigma de Programación Funcional
 
@@ -2896,7 +2890,93 @@ devuelve la invocación de `g` con `x`:
 (aplica-2 suma-5 doble 3) ; ⇒ 11
 ```
 
-<!--
+
+### 5.2.1. Generalización ###
+
+La posibilidad de pasar funciones como parámetros de otras es una
+poderosa herramienta de abstracción. Por ejemplo, supongamos que
+queremos calcular el sumatorio de `a` hasta `b`:
+
+```scheme
+(define (sum-x a b)
+    (if (> a b)
+        0
+        (+ a (sum-x (+ a 1) b))))
+
+(sum-x 1 10) ; ⇒ 55
+```
+
+Supongamos ahora que queremos calcular el sumatorio de `a` hasta `b`
+sumando los números al cuadrado:
+
+```scheme
+(define (sum-cuadrado-x a b)
+    (if (> a b)
+        0
+        (+ (* a a) (sum-cuadrado-x (+ a 1) b))))
+
+(sum-cuadrado-x 1 10) ; ⇒ 385
+```
+
+Y el sumatorio de `a` hasta `b` sumando los cubos:
+
+```scheme
+(define (sum-cubo-x a b)
+    (if (> a b)
+        0
+        (+ (* a a a) (sum-cubo-x (+ a 1) b))))
+
+(sum-cubo-x 1 10) ; ⇒ 3025
+```
+
+Vemos que el código de las tres funciones anteriores es muy similar,
+cada función la podemos obtener haciendo un *copy-paste* de otra
+previa. Lo único que cambia es la función a aplicar a cada número de
+la serie.
+
+Siempre que hagamos *copy-paste* al programar tenemos que empezar a
+sospechar que no estamos generalizando suficientemente el código. Un
+*copy-paste* arrastra también *bugs* y obliga a realizar múltiples
+modificaciones del código cuando en el futuro tengamos que cambiar
+cosas.
+
+La posibilidad de pasar una función como parámetro es una herramienta
+poderosa a la hora de generalizar código. En este caso, lo único que
+cambia en las tres funciones anteriores es la función a aplicar a los
+números de la serie. Podemos tomar esa función como un parámetro
+adicional y definir una función genérica `sum-f-x` que generaliza las
+tres funciones anteriores. Tendríamos el sumatorio desde `a` hasta `b`
+de `f(x)`:
+
+```scheme
+(define (sum-f-x f a b)
+    (if (> a b)
+        0
+        (+ (f a) (sum-f-x f (+ a 1) b))))
+```
+
+Las funciones anteriores son casos particulares de esta función que
+las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta
+10 de `x` al cubo:
+
+```scheme
+(define (cubo x)
+    (* x x x))
+
+(sum-f-x cubo 1 10) ; ⇒ 3025
+```
+
+
+También podemos utilizar una expresión lambda en la invocación a
+`sum-f` que construya la función que queremos aplicar a cada
+número. Por ejemplo, podemos sumar la expresión (n/(n-1)) para todos
+los números del 2 al 100:
+  
+```scheme
+(sum-f-x (lambda (n) (/ n (- n 1))) 2 100)
+```
+
+
 
 ### <a name="5-3"></a> 5.3. Funciones que devuelven funciones
 
@@ -2920,43 +3000,106 @@ función que creamos en tiempo de ejecución, durante la evaluación de
 la función principal.
 
 La función que se devuelve se denomina **clausura**
-([closure](https://en.wikipedia.org/wiki/Closure_(computer_programming))
-en inglés). Veremos por qué en uno de los siguientes temas, cuando
-hablemos del uso de funciones como objetos de primera clase en
-programación imperativa junto con ámbitos de variables. 
+([Wikipedia](https://es.wikipedia.org/wiki/Clausura_(informática))). Y
+decimos que la función que ha construido la clausura es una **función
+constructora**.
+
 
 #### Función `sumador`
 
-Vamos a empezar con un ejemplo muy sencillo. Una función que devuelve
-otra que suma `k` a un número:
+Vamos a empezar con un ejemplo muy sencillo. Definimos una función
+constructora que crea en su ejecución una función que suma
+`k` a un número:
 
 ```scheme
-(define (sumador k)
+(define (construye-sumador k)
    (lambda (x)
        (+ x k)))
 ```
 
-La función `(sumador k)` construye otra función de 1 argumento que
-suma `k` al argumento. Si invocamos a `sumador` se devolverá otra
-función:
+El cuerpo de la función `(construye-sumador k)` está formado por una
+expresión lambda. Cuando se invoca a `construye-sumador` se evalúa
+esta expresión lambda y se devuelve el procedimiento creado. 
+
+En este caso se construye otra función de 1 argumento que suma `k` al
+argumento. 
+
+Por ejemplo, podemos invocar a `construye-sumador` pasando 10 como parámetro:
 
 ```scheme
-(sumador 10) ; => #<procedure>
+(construye-sumador 10) ; => #<procedure>
 ```
 
-Esa función que se devuelve debe invocarse con un argumento y
-devolverá el resultado de sumar 10 a ese argumento:
+Como hemos dicho, se devuelve un procedimiento, una función. Esta
+función devuelta debe invocarse con un argumento y devolverá el
+resultado de sumar 10 a ese argumento:
 
 ```scheme
-(define f (sumador 10))
+(define f (construye-sumador 10))
 (f 3) ; => 13
 ```
 
-O también, de una forma más concisa:
+También podemos invocar directamente a la función que devuelve la
+función constructora, sin guardarla en una variable:
 
 ```scheme
-((sumador 10) 3) ; => 13
+((construye-sumador 10) 3) ; => 13
 ```
+
+Dependiendo del parámetro que le pasemos a la función constructora
+obtendremos una función sumadora que sume un número u otro. Por
+ejemplo para obtener una función sumadora que suma 100:
+  
+```scheme
+(define g (construye-sumador 100))
+(g 3) ; => 103
+```
+
+¿Cómo funciona la clausura? ¿Por qué la invocación a `(g 3)`
+devuelve 103?.
+
+Aquí hay que apartarse bastante del modelo de evaluación de
+sustitución que hemos visto y utilizar un nuevo modelo en el que se
+tiene en cuenta los ámbitos de las variables.
+
+No vamos a explicar en detalle este modelo, pero sí dar unas breves
+pinceladas.
+
+Recordemos la definición de `construye-sumador`:
+
+```scheme
+(define (construye-sumador k)
+   (lambda (x)
+       (+ x k)))
+```
+
+Y supongamos que realizamos las siguientes invocaciones:
+
+```scheme
+(define g (construye-sumador 100))
+(g 3) ; => 103
+```
+
+Podemos explicar lo que sucede en la evaluación de estas funciones de
+la siguiente forma:
+
+- Cuando invocamos a `construye-sumador` con un valor concreto para
+  `k` (por  ejemplo 100), queda vinculado el valor de 100 al parámetro
+  `k` en el ámbito local de la función.
+- En este ámbito local la expresión lambda crea una función. Esta
+  función creada en el ámbito local **captura** este ámbito local, con
+  sus variables y sus valores (en este caso la variable `k` y su valor
+  100).
+- Cuando se invoca a la función desde fuera (cuando llamamos a `g` en
+  el ejemplo) se ejecuta el cuerpo de la función `(+ x k)` con `x`
+  valiendo el parámetro (3) y el valor de `k` se obtiene del ámbito
+  capturado (100).
+
+El hecho de que función creada en el ámbito local capture este ámbito
+es lo que hace que se denomine una **clausura** (del inglés
+**closure**). La función _se cierra_ sobre el ámbito capturado y puede
+utilizar sus variables.
+
 
 #### Función `componedor` 
 
@@ -2988,6 +3131,138 @@ número:
 ```scheme
 (h 4) ; => 32
 ```
+
+#### Usos reales de las funciones constructoras ####
+
+Las funciones que construyen otras funciones permiten un alto nivel de
+configuración y de generalización en la programación.
+
+Por ejemplo, un par de ejemplos de uso en problemas reales:
+
+1. Posibilidad de definir funciones configurables sin tener que
+  depender de variables globales o parámetros adicionales.
+2. Posibilidad de modificar funciones ya construidas, añadiéndoles condiciones
+  a comprobar antes o cálculos a realizar después.
+
+
+##### Ejemplo de funciones constructoras para definir funciones configurables #####
+
+Supongamos que queremos definir una función `logger` a la que le
+llamemos con una cadena para que imprima un mensaje de log.
+
+Queremos poder configurar el prefijo del mensaje de log, de forma que
+sólo tengamos que definirlo una vez, al crear la función
+`logger`. Después llamaremos a la función `logger` pasándole
+únicamente el mensaje de log.
+
+Lo podemos hacer con la siguiente función constructora:
+
+```scheme
+(define (construye-logger str-prefijo)
+  (lambda (x)
+    (display (string-append str-prefijo x "\n"))))
+```
+
+Por ejemplo, definimos distintos loggers y los probamos:
+
+```scheme
+(define logger (construye-logger "Módulo acceso red: "))
+
+(logger "Error en el acceso a BD")
+(logger "Intentando conexión a red")
+; Módulo acceso red: Error en el acceso a BD
+; Módulo acceso red: Intentando conexión a red
+
+(define logger2 (construye-logger "Módulo correo electrónico: "))
+
+(logger2 "Enviando e-mail")
+(logger2 "Problemas al recibir mensaje")
+; Módulo correo electrónico: Enviando e-mail
+; Módulo correo electrónico: Problemas al recibir mensaje
+
+(define logger3 (construye-logger "Módulo acceso a SO: "))
+
+(logger3 "Intentando abrir fichero")
+(logger3 "Sin espacio de memoria")
+; Módulo acceso a SO: Intentando abrir fichero
+; Módulo acceso a SO: Sin espacio de memoria
+```
+
+
+##### Ejemplo de funciones constructoras para modificar funciones ya construidas #####
+
+Recordemos la función `divisores`:
+
+```scheme
+(define (lista-hasta x)
+   (if (= x 0)
+      '()
+      (cons x (lista-hasta (- x 1)))))
+
+(define (divisor? x y)
+      (= 0 (mod y x)))
+
+(define (filtra-divisores lista x)
+   (cond
+      ((null? lista) '())
+      ((divisor? (car lista) x) (cons (car lista)
+                                      (filtra-divisores (cdr lista) x)))
+      (else (filtra-divisores (cdr lista) x))))
+
+(define (divisores x)
+   (filtra-divisores (lista-hasta x) x))
+```
+
+Un problema de la función anterior `divisores` es que si le pasamos un
+número negativo entra en un bucle infinito.
+
+Podemos definir la siguiente función general a la que le pasamos una
+función de un argumento `f` y devuelve la función f "segura" a la que
+sólo se va a invocar si el parámetro es mayor o igual que 0:
+
+```scheme
+(define (construye-segura-menor-cero f)
+  (lambda (x)
+    (if (>= x 0)
+        (f x)
+        'error)))
+```
+
+Podemos entonces "segurizar" la función `divisores`:
+
+```scheme
+(define divisores-segura (construye-segura-menor-cero divisores))
+(divisores-segura 10) ; => {10 5 2 1}
+(divisores-segura -10) ; => error
+```
+
+La función `(construye-segura-menor-cero f)` se puede aplicar para
+"segurizar" cualquier función, no sólo `divisores`:
+
+```scheme
+(define sqrt-segura (construye-segura-menor-cero sqrt))
+(sqrt-segura 100) ; => 10
+(sqrt-segura -100) ; => error
+```
+
+Se podría generalizar aún más la función "segurizadora" haciendo que
+la condición a cumplir por el número sea otra función que también pasamos:
+  
+```scheme
+(define (construye-segura condicion f)
+  (lambda (x)
+    (if (condicion x)
+        (f x)
+        'error)))
+```
+
+La forma de definir una función `divisores` segura con esta nueva
+función sería:
+  
+```scheme
+(define divisores-segura2 (construye-segura (lambda (x) (>= x 0)) divisores))
+```
+
 
 ### <a name="5-4"></a> 5.4. Funciones en estructuras de datos
 
@@ -3086,82 +3361,9 @@ Un ejemplo de uso:
 (aplica-funcs lista-funcs 5) ; ⇒ 46656
 ```
 
-### <a name="5-5"></a> 5.5 Generalización
 
-La posibilidad de pasar funciones como parámetros de otras es una
-poderosa herramienta de abstracción. Por ejemplo, supongamos que
-queremos calcular el sumatorio de `a` hasta `b`:
 
-```scheme
-(define (sum-x a b)
-    (if (> a b)
-        0
-        (+ a (sum-x (+ a 1) b))))
-
-(sum-x 1 10) ; ⇒ 55
-```
-
-Supongamos ahora que queremos calcular el sumatorio de `a` hasta `b`
-sumando los números al cuadrado:
-
-```scheme
-(define (sum-cuadrado-x a b)
-    (if (> a b)
-        0
-        (+ (* a a) (sum-cuadrado-x (+ a 1) b))))
-
-(sum-cuadrado-x 1 10) ; ⇒ 385
-```
-
-Y el sumatorio de `a` hasta `b` sumando los cubos:
-
-```scheme
-(define (sum-cubo-x a b)
-    (if (> a b)
-        0
-        (+ (* a a a) (sum-cubo-x (+ a 1) b))))
-
-(sum-cubo-x 1 10) ; ⇒ 3025
-```
-
-Vemos que el código de las tres funciones anteriores es muy similar,
-cada función la podemos obtener haciendo un *copy-paste* de otra
-previa. Lo único que cambia es la función a aplicar a cada número de
-la serie.
-
-Siempre que hagamos *copy-paste* al programar tenemos que empezar a
-sospechar que no estamos generalizando suficientemente el código. Un
-*copy-paste* arrastra también *bugs* y obliga a realizar múltiples
-modificaciones del código cuando en el futuro tengamos que cambiar
-cosas.
-
-La posibilidad de pasar una función como parámetro es una herramienta
-poderosa a la hora de generalizar código. En este caso, lo único que
-cambia en las tres funciones anteriores es la función a aplicar a los
-números de la serie. Podemos tomar esa función como un parámetro
-adicional y definir una función genérica `sum-f-x` que generaliza las
-tres funciones anteriores. Tendríamos el sumatorio desde `a` hasta `b`
-de `f(x)`:
-
-```scheme
-(define (sum-f-x f a b)
-    (if (> a b)
-        0
-        (+ (f a) (sum-f-x f (+ a 1) b))))
-```
-
-Las funciones anteriores son casos particulares de esta función que
-las generaliza. Por ejemplo, para calcular el sumatorio desde 1 hasta
-10 de `x` al cubo:
-
-```scheme
-(define (cubo x)
-    (* x x x))
-
-(sum-f-x cubo 1 10) ; ⇒ 3025
-```
-
-### <a name="5-6"></a> 5.6. Funciones de orden superior
+### <a name="5-5"></a> 5.5. Funciones de orden superior
 
 Llamamos funciones de orden superior (*higher order functions* en
 inglés) a las funciones que toman otras como parámetro o devuelven
@@ -3173,23 +3375,13 @@ tienen ya predefinidas algunas funciones de orden superior que
 permiten tratar listas o *streams* de una forma muy concisa y
 compacta.
 
-Para trabajar con las funciones de orden superior sobre listas
-definidas en Scheme R6RS hay que importar la librería de utilidades
-sobre listas con la instrucción `(import (rnrs lists (6)))`:
-
-```scheme
-#lang r6rs
-(import (rnrs base)
-        (rnrs lists (6)))
-```
-
 Las funciones que veremos son:
 
 - `map`
 - `filter`
 - `exists`
 - `for-all`
-- `fold-right`
+- `fold-right` y `fold-left`
 
 Para las tres primeras funciones veremos también una implementación
 recursiva que nos ayudará a comprobar su funcionamiento. 
@@ -3202,7 +3394,7 @@ funcional que permite hacer código muy conciso y expresivo.
 La combinación de funciones de nivel superior con listas es una de las
 características más potentes de la programación funcional.
 
-#### 5.6.1. Función `map`
+#### 5.5.1. Función `map`
 
 Veamos de nuevo la función `map`. Recordemos que `map` aplica una
 función a cada uno de los elementos de la lista que pasamos como
@@ -3219,16 +3411,27 @@ sumar cada pareja de números de una lista:
 (define (suma-pareja pareja)
     (+ (car pareja) (cdr pareja)))
 
-(map suma-pareja (list (cons 2 4) (cons 3 6) (cons 5 3))) ; ⇒ {6 9 8}
+(map suma-pareja '((2 . 4) (3 . 6) (5 . 3))) ; ⇒ {6 9 8}
 ```
 
 También podríamos hacerlo con una expresión lambda:
 
 ```scheme
 (map (lambda (pareja)
-         (+ (car pareja) (cdr pareja))) (list (cons 2 4) (cons 3 6) (cons 5 3))) 
+         (+ (car pareja) (cdr pareja))) '((2 . 4) (3 . 6) (5 . 3))) 
 ; ⇒ {6 9 8}
 ```
+
+
+Un último ejemplo, en el que usamos `map` para transformar una lista
+de símbolos en una lista con sus longitudes:
+
+```scheme
+(map (lambda (s) 
+        (string-length (symbol->string s))) '(Esta es una lista de símbolos))
+; => {4 2 3 5 2 8}
+```
+
 
 > CONSEJO DE USO  
 > La función `map` recibe una lista de *n* elementos y devuelve otra
@@ -3272,7 +3475,7 @@ Ejemplos:
 ```
 
 
-#### 5.6.2. Función `filter`
+#### 5.5.2. Función `filter`
 
 Veamos otra función de orden superior que trabaja sobre listas.
 
@@ -3293,9 +3496,20 @@ siguiente expresión:
 
 ```scheme
 (filter (lambda (pareja)
-            (>= (car pareja) (cdr pareja))) (list (cons 10 4) (cons 2 4) (cons 8 8) (cons 10 20)))
+            (>= (car pareja) (cdr pareja))) '((10 . 4) (2 . 4) (8 . 8) (10 . 20)))
 ; ⇒ {{10 . 4} {8 . 8}}
 ```
+
+Y un último ejemplo: filtramos todos los símbolos con longitud menor
+de 4.
+
+```scheme
+(filter (lambda (s) 
+           (>= (string-length (symbol->string s)) 4))
+           '(Esta es una lista de símbolos))
+; => {Esta lista símbolos}
+```
+
 
 > CONSEJO DE USO  
 > La función `filter` recibe una lista de *n* elementos y devuelve
@@ -3316,7 +3530,7 @@ Podemos implementar la función `filter` de forma recursiva:
     (else (mi-filter pred (cdr lista)))))
 ```
 
-#### 5.6.3. Función `exists`
+#### 5.5.3. Función `exists`
 
 La función de orden superior `exists` recibe un predicado y una lista
 y comprueba si algún elemento de la lista cumple ese predicado.
@@ -3331,7 +3545,7 @@ Ejemplo de uso:
 
 ¿Cuál sería la implementación recursiva de la función `exists`? 
 
-#### 5.6.4. Función `for-all`
+#### 5.5.4. Función `for-all`
 
 La función de orden superior `for-all` recibe un predicado y una lista
 y comprueba que todos los elementos de la lista cumplen ese predicado.
@@ -3347,7 +3561,7 @@ Ejemplo de uso:
 ¿Cuál sería la implementación recursiva de la función `for-all`?
 
 
-#### 5.6.5. Función `fold-right`
+#### 5.5.5. Función `fold-right`
 
 Veamos ahora la función `(fold-right func base lista)` que permite
 recorrer una lista aplicando una función binaria de forma acumulativa
@@ -3357,19 +3571,8 @@ de una lista.
 
 La explicación de su funcionamiento es la siguiente:
 
-> El resultado de hacer `(fold-rigt f base lista)` de una función `f`
-> **de dos argumentos**, un dato base y una lista, es el resultado de
-> aplicar de derecha a izquierda la función `f` en cascada a cada dato
-> de la lista y al resultado de la invocación `f` anterior. La primera
-> invocación a `f` se hace con el último dato de la lista y el caso
-> base.
-
-> La función de plegado `f` debe tener dos parámetros: `(f dato
-> result)` el primero (`dato`) se irá cogiendo de la lista y el
-> segundo (`result`) se obtendrá del resultado de la aplicación
-> anterior de `f`.
-
-Por ejemplo, supongamos la función de dos argumentos que suma dos valores. 
+Por ejemplo, supongamos que la función de plegado se una función que
+suma dos valores.
 
 ```scheme
 (define (suma dato resultado)
@@ -3378,65 +3581,92 @@ Por ejemplo, supongamos la función de dos argumentos que suma dos valores.
 
 Llamamos a los parámetros `dato` y `resultado` para remarcar que el
 primer parámetro se va a coger de la lista y el segundo del resultado
-calculado. La llamada a `fold-right` funcionaría de la siguiente
-forma:
+calculado.
 
+Veamos qué pasa cuando hacemos un `fold-right` con esta función suma y
+la lista '(1 2 3) y con el número 0 como base:
+  
 ```scheme
-(fold-right suma 0 '(1 2 3)) = 
-(suma 1 (suma 2 (suma 3 0))) = 
-(suma 1 (suma 2 3)) =
-(suma 1 5) =
-6
+(fold-right suma 0 '(1 2 3)) ; => 6
 ```
 
-Vemos que se llama en cascada de derecha a izquierda a la función
-`suma` comenzando con el último número de la lista (el `3`) y el caso
-base que se pasa en la invocación a `fold-right` (el `0`).
+La función `suma` se va a ir aplicando a todos los elementos de la
+lista de derecha a izquierda, empezando por el valor base (0) y el
+último elemento de la lista (3) y cogiendo el resultado obtenido y
+utilizándolo como nuevo parámetro `resultado` en la siguiente llamada.
 
-Podemos comprobar la potencia de la función `fold-right` con los
-siguientes ejemplos
+En concreto, la secuencia de llamadas a la función `suma` serán las
+siguientes:
 
 ```scheme
-(fold-right string-append "" '("hola" "que" "tal")) ; ⇒ "holaquetal"
+(suma 3 0) ; => 3
+(suma 2 3) ; => 5
+(suma 1 5) ; => 6
+```
+
+Otro ejemplo de uso:
+
+```scheme
+(fold-right string-append "****" '("hola" "que" "tal")) ; ⇒ "holaquetal****"
+```
+
+En este caso la secuencia de llamadas a `string-append` que se van a
+producir son:
+  
+```scheme
+(string-append "tal" "****") ; => "tal****"
+(string-append "que" "tal****") ; => "quetal****"
+(string-append "hola" "quetal****") ; => "holaquetal****"
+```
+
+Otros ejemplos:
+
+```scheme
 (fold-right (lambda (x y) (* x y)) 1 '(1 2 3 4 5 6 7 8)) ; ⇒ 40320
 (fold-right cons '() '(1 2 3 4)) ; ⇒ {1 2 3 4}
 ```
 
-Veamos un último ejemplo. Supongamos que queremos definir una función
-que sume todos los números de una lista de parejas:
+Un último ejemplo:
 
 ```scheme
+(define (suma-parejas lista-parejas)
+    (fold-right (lambda (pareja resultado)
+                   (+ (car pareja) (cdr pareja) resultado)) 0 lista-parejas))
+
 (suma-parejas (list (cons 3 6) (cons 2 9) (cons -1 8) (cons 9 3))) ; ⇒ 39
 ```
 
-Podemos hacerlo usando `fold-right` con una función de plegado que
-realice la suma de los números de la pareja de la lista y del
-resultado ya sumado.
+##### Función `fold-left` #####
 
-La función de plegado sería:
+La función `fold-left` es similar a `fold-right` con la diferencia de
+que la secuencia de aplicaciones de la función de plegado se hace de
+izquierda a derecha en lugar de derecha a izquierda.
 
-```scheme
-(define (suma-pareja-numero pareja resultado)
-    (+ (car pareja) (cdr pareja) resultado))
-```
-
-Y podríamos definir `suma-parejas` como:
+La función de plegado también cambia, porque tiene invertidos sus
+argumentos:
 
 ```scheme
-(define (suma-parejas lista)
-    (fold-right suma-pareja-numero 0 lista))
+(f resultado dato)
 ```
 
-También lo podríamos hacer todo con una expresión lambda:
+Por ejemplo:
 
 ```scheme
-(define (suma-parejas lista)
-    (fold-right (lambda (pareja resultado)
-                   (+ (car pareja) (cdr pareja) resultado)) 0 lista))
+(fold-right - 0 '(1 2 3)) ; =>
 ```
+
+La secuencia de llamadas a `-` son:
+
+```scheme
+(- 0 3) ; => -3
+(- -3 2) ; => -5
+(- -5 1) ; => -6
+```
+
 
 > CONSEJO DE USO  
-> La función `fold-right` recibe una lista de datos y devuelve un único resultado
+> Las funciones `fold-right` o `fold-left` reciben una lista de datos y devuelven un único resultado
+
 
 ##### Implementación de `fold-right`
 
@@ -3449,7 +3679,7 @@ Podríamos implementar de forma recursiva la función `fold-right`:
       (func (car lista) (mi-fold-right func base (cdr lista)))))
 ```
 
-#### 5.6.6. Uso de funciones de orden superior
+#### 5.5.6. Uso de funciones de orden superior
 
 El uso de funciones de orden superior y las expresiones lambda
 proporciona muchísima expresividad en un lenguaje de programación. Es
@@ -3586,7 +3816,35 @@ superior `exists`:
             
 ```
 
--->
+
+##### Función divisores #####
+
+Un último ejemplo en el que implementamos la función `(divisores n)`
+utilizando una función de orden superior.
+
+Suponemos que tenemos definidas las funciones `(numeros-hasta n)` y
+`(divisor? x n)`:
+
+```scheme
+(define (numeros-hasta n)
+  (if (= 0 n)
+      '()
+      (cons n (numeros-hasta (- n 1)))))
+
+(define (divisor? x n)
+  (= 0 (mod n x)))
+```
+
+Entonces la función `(divisores n)` se implementaría de la siguiente forma:
+
+
+```scheme
+(define (divisores n)
+  (filter (lambda (x)
+            (divisor? x n)) (numeros-hasta n)))
+```
+
+
 
 ----
 
