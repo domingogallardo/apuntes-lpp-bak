@@ -17,7 +17,7 @@ solución debe incluir:
 
 ### Ejercicio 1 ###
 
-Implementa la función recursiva `(multiplo-de n lista-nums)` que
+Implementa la **función recursiva** `(multiplo-de n lista-nums)` que
 recibe un número `n` y un lista de números y devuelve una lista con
 los booleanos resultantes de comprobar si cada número de la lista es
 múltiplo de `n`.
@@ -30,7 +30,7 @@ Ejemplo:
 
 ### Ejercicio 2 ###
 
-Define la función recursiva `(calcular-lista lista)` que recibe una lista que
+Define la **función recursiva** `(calcular-lista lista)` que recibe una lista que
 contiene símbolos (operadores +,-,*,/) y parejas de números
 (operandos), representando operaciones matemáticas. Se considera que
 la lista siempre está bien formada, con sus elementos en este orden:
@@ -46,7 +46,7 @@ Ejemplos:
 
 ### Ejercicio 3 ###
 
-Escribe la función recursiva `(expande lista-parejas)` que reciba una
+Escribe la **función recursiva** `(expande lista-parejas)` que reciba una
 lista de parejas que contienen un dato y un número y devuelva una
 lista donde se hayan "expandido" las parejas, añadiendo tantos
 elementos como el número que indique cada pareja.
@@ -64,7 +64,7 @@ Ejemplo:
 
 ### Ejercicio 4 ###
 
-a) Implementa la función recursiva `(resultados‐quiniela lista‐parejas)`
+a) Implementa la **función recursiva** `(resultados‐quiniela lista‐parejas)`
 que devuelve una lista de 1, X, 2 a partir de una lista de parejas que
 representa resultados de partidos de fútbol. El resultado es 1 cuando
 el número izquierdo de la pareja es mayor que el derecho, un 2 cuando
@@ -79,7 +79,7 @@ es al revés, y una X cuando los dos números son iguales.
 (resultados-quiniela '((3 . 2) (4 . 3) (3 . 5)))  ; ⇒ {1 1 2}
 ```
 
-b) Implementa la función recursiva `(cuenta-resultados resultado lista-resultados)`
+b) Implementa la **función recursiva** `(cuenta-resultados resultado lista-resultados)`
 donde `resultado` puede ser un uno, una equis o un dos y cuenta el
 número de ese resultado en la lista de partidos.
 
@@ -91,7 +91,7 @@ Ejemplo:
 (cuenta-resultados 2 '((1 . 2) (4 . 4) (3 . 5) (6 . 2) (9 . 9))) ; ⇒ 2
 ```
 
-c) Implementa la función recursiva `(cuenta-resultados-lista
+c) Implementa la **función recursiva** `(cuenta-resultados-lista
 lista-resultados)` que devuelva una lista de tres elementos que
 representan el número de 1s, de Xs y de 2s existentes en la lista de
 resultados original.
@@ -108,14 +108,15 @@ incremente el número de la lista situado en la posición `n`.
 
 ### Ejercicio 5 ###
 
-Implementa una función recursiva `(filtra-simbolos lista-simbolos
+Implementa una **función recursiva** `(filtra-simbolos lista-simbolos
 lista-num)` que recibe una lista de símbolos y una lista de números
 enteros (ambas de la misma longitud) y devuelve una lista de
 parejas. Cada pareja está formada por el símbolo de la i-ésima
-posición de `lista-simbolos` y el número entero situado esa posición
-de `lista-num`, siempre y cuando dicho número se corresponda con la
-longitud de la cadena correspondiente al símbolo. Puedes utilizar las
-funciones predefinidas `string-length` y `symbol->string`.
+posición de `lista-simbolos` y el número entero situado en esa
+posición de `lista-num`, siempre y cuando dicho número se corresponda
+con la longitud de la cadena correspondiente al símbolo. Puedes
+utilizar las funciones predefinidas `string-length` y
+`symbol->string`.
 
 Ejemplo:
 
