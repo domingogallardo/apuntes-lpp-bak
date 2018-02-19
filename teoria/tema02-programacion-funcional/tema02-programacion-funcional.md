@@ -3396,16 +3396,35 @@ características más potentes de la programación funcional.
 
 #### 5.5.1. Función `map`
 
-Veamos de nuevo la función `map`. Recordemos que `map` aplica una
-función a cada uno de los elementos de la lista que pasamos como
-parámetro:
+Comenzamos con la función `map`. La palabra `map` viene del inglés
+`mapping` o transformación. Se trata de una función que **transforma**
+una lista aplicando a todos sus elementos una función de
+transformación que se pasa como parámetro.
+
+En concreto, la función recibe otra función y una lista:
 
 ```scheme
-(map cuadrado '(1 2 3 4 5)) ; ⇒ {1 4 9 25}
+(map funcion lista)
 ```
 
-Otro ejemplo, en el que obtenemos una lista de números resultantes de
-sumar cada pareja de números de una lista:
+Y devuelve la lista resultante de aplicar la función a todos los
+elementos de la lista.
+
+Por ejemplo:
+
+```scheme
+(map cuadrado '(1 2 3 4 5)) ; ⇒ {1 4 9 16 25}
+```
+
+La lista resultante es el resultado de construir una lista nueva
+aplicando la función `cuadrado` a todos los elementos de la lista
+original.
+
+La función de transformación debe ser compatible con los elementos de
+la lista original. Por ejemplo, si la lista es una lista de parejas,
+la función de transformación debe recibir una pareja. Veamos un
+ejemplo de este caso, en el que a partir de una lista de parejas
+obtenemos una lista con las sumas de cada pareja:
 
 ```scheme
 (define (suma-pareja pareja)
@@ -3439,7 +3458,7 @@ de símbolos en una lista con sus longitudes:
 
 ##### Implementación de `map`
 
-¿Cómo se podría implementar `map` de forma recursiva? Llamamos a la
+¿Cómo se podría implementar `map` de forma recursiva? Definimos la
 función `mi-map`. La implementación es la siguiente:
 
 ```scheme
@@ -3571,7 +3590,7 @@ de una lista.
 
 La explicación de su funcionamiento es la siguiente:
 
-Por ejemplo, supongamos que la función de plegado se una función que
+Por ejemplo, supongamos que la función de plegado es una función que
 suma dos valores.
 
 ```scheme
@@ -3652,7 +3671,7 @@ argumentos:
 Por ejemplo:
 
 ```scheme
-(fold-left - 0 '(1 2 3)) ; =>
+(fold-left - 0 '(1 2 3)) ; => -6
 ```
 
 La secuencia de llamadas a `-` son:
@@ -3699,8 +3718,8 @@ pocas líneas.
 
 ##### Función `(suma-n n lista)`
 
-No lo hemos hecho hasta ahora, pero es posible utilizar en el cuerpo
-de las expresiones lambda los parámetros de la función principal en la
+Como hemos visto en las clausuras, es posible utilizar en el cuerpo de
+las expresiones lambda los parámetros de la función principal en la
 que se usa esta expresión. Veamos un ejemplo.
 
 Supongamos que queremos definir una función `(suma-n n lista)` que
@@ -3743,7 +3762,7 @@ lista es una función que suma este número a cada elemento. La variable
 valor de los elementos de la lista.
 
 ```scheme
-(suma-n '(1 2 3 4) 10) = (map (lambda (x) (+ x 10)) (11 12 13 14)) =  (11 12 13 14)
+(suma-n 10 '(1 2 3 4) 10) => (map #<prodedure-que-suma-10-a-x> (1 2 3 4)) =  (11 12 13 14)
 ```
 
 ##### Composición de funciones de orden superior
@@ -3777,9 +3796,9 @@ que un umbral (por ejemplo, 10).
 
 ```scheme
 (define lista-parejas (list (cons 1 2) 
-	                        (cons 3 8) 
-							(cons 2 3) 
-							(cons 9 6)))
+                            (cons 3 8) 
+                            (cons 2 3) 
+                            (cons 9 6)))
 (cuenta-mayores-que 10 lista-parejas) ; => 2
 ```
 
