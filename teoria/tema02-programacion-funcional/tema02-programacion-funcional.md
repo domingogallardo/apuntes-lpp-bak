@@ -3330,7 +3330,7 @@ El caso general de la recursión de la función `aplica-funcs` se define
 entonces como:
 
 ```
-(aplica-funcs lista-funcs x) = ((car lista-funcs) (aplica-funcs (cdr lista-funcs)))
+(aplica-funcs lista-funcs x) = ((car lista-funcs) (aplica-funcs (cdr lista-funcs) x))
 ```
 
 El caso base sería en el que la lista de funciones tiene sólo una
