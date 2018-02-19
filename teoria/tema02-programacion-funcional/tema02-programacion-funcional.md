@@ -3346,8 +3346,8 @@ La implementación completa es:
 
 ```scheme
 (define (aplica-funcs lista-funcs x)
-    (if (null? (cdr lista-funcs))
-        ((car lista-funcs) x)
+    (if (null? lista-funcs)
+        x
         ((car lista-funcs)
             (aplica-funcs (cdr lista-funcs) x))))
 ```
@@ -3652,7 +3652,7 @@ argumentos:
 Por ejemplo:
 
 ```scheme
-(fold-right - 0 '(1 2 3)) ; =>
+(fold-left - 0 '(1 2 3)) ; =>
 ```
 
 La secuencia de llamadas a `-` son:
@@ -3668,7 +3668,7 @@ La secuencia de llamadas a `-` son:
 > Las funciones `fold-right` o `fold-left` reciben una lista de datos y devuelven un único resultado
 
 
-##### Implementación de `fold-right`
+##### Implementación de `fold-right` y `fold-left`
 
 Podríamos implementar de forma recursiva la función `fold-right`:
 
@@ -3678,6 +3678,16 @@ Podríamos implementar de forma recursiva la función `fold-right`:
       base
       (func (car lista) (mi-fold-right func base (cdr lista)))))
 ```
+
+Y la función `fold-left`:
+
+```scheme
+(define (mi-fold-left func base lista)
+  (if (null? lista)
+      base
+      (func (mi-fold-left func base (cdr lista)) (car lista))))
+```
+
 
 #### 5.5.6. Uso de funciones de orden superior
 
@@ -3742,7 +3752,26 @@ Dado que muchas de las anteriores funciones de orden superior
 devuelven listas, es muy común componer las llamadas, de forma que la
 salida de una haga de entrada de otra.
 
-Por ejemplo, supongamos que tenemos una lista de parejas de números y
+Por ejemplo, podemos implementar una función que sume un número
+`n` a todos los elementos de una lista (igual que la anterior) y
+después que sume todos los elementos resultantes.
+
+Lo podríamos hacer reutilizando el código del ejemplo anterior, y
+añadiendo una llamada a `fold-right` para que haga la suma:
+
+```scheme
+(define (suma-n-total n lista)
+   (fold-right + 0
+       (map (lambda (x) (+ x n)) lista)))
+```
+
+Funcionaría de la siguiente forma:
+
+```scheme
+(suma-n-total 100 '(1 2 3 4))  => 410
+```
+
+Otro ejemplo. Supongamos que tenemos una lista de parejas de números y
 queremos contar aquellas parejas cuya suma de ambos números es mayor
 que un umbral (por ejemplo, 10).
 
@@ -3813,7 +3842,6 @@ superior `exists`:
 (define (letra-en-pal? caracter palabra)
   (exists (lambda (c)
             (equal? c caracter)) (string->list palabra)))
-            
 ```
 
 
