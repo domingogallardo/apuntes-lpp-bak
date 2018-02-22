@@ -561,8 +561,7 @@ tenemos que salirnos del paradigma funcional, importando una librería
 de Scheme que permite mutar las parejas.
 
 No es importante la implementación, la dejamos aquí como referencia y
-para poder probar la _memoization_. Veremos con más detalle esta
-implementación en el tema de programación imperativa.
+para poder probar la _memoization_. 
 
 ```scheme
 (import (rnrs)
