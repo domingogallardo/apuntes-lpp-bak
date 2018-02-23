@@ -969,6 +969,8 @@ Curva de Hilbert de nivel 7 con trazo de longitud 5:
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Domingo Gallardo, Cristina Pomares
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
+
