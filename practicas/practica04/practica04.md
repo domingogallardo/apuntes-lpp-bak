@@ -1,4 +1,4 @@
-# Práctica 4: Funciones como datos de primera clase
+# Práctica 4: Funciones como datos de primera clase y funciones de orden superior
 
 ## Entrega de la práctica
 
@@ -11,94 +11,186 @@ solución debe incluir:
 - Un conjunto de **pruebas** que comprueben su funcionamiento
   utilizando la librería `schemeunit`.
   
-**Nota:** No es necesario incluir demostraciones de las funciones con
-`display`, pero sí un par de pruebas por cada función con `schemeunit`
-para comprobar su correcto funcionamiento.
 
 ## Ejercicios
 
-### Ejercicio 1
+### Ejercicio 1 ###
 
-a) Implementa la función `(aplica-funciones lista-parejas)` de forma
-recursiva. La función recibe una lista de parejas cuya parte izquierda
-es una función y la parte derecha un argumento para dicha función, y
-devuelve la lista con los resultados de aplicar cada función a su
-argumento.
+Implementa, utilizando funciones de orden superior, las funciones
+`longitud-impar`, `suma-longitudes` y `mayusculas` que reciben una
+lista de símbolos y devuelven:
+
+- `(longitud-impar lista-simbolos)`: una lista con aquellos símbolos
+  que tienen longitud impar.
+- `(suma-longitudes lista-simbolos)`: la suma de las longitudes
+  de todos los símbolos de la lista.
+- `(mayusculas lista-simbolos)`: una lista con los símbolos escritos
+  en mayúscula.
+  
+**Pista**: Puedes usar las funciones `symbol->string`,
+`string->symbol` y `string-upcase`.
+
+
+Ejemplos:
+
+```scheme
+(longitud-impar '(me gusta LPP porque aprendo nuevos paradigmas de programación)) 
+; ⇒ {gusta LPP aprendo}
+(suma-longitudes '(me gusta LPP porque aprendo nuevos paradigmas de programación))
+; ⇒ 53
+(mayusculas '(me gusta LPP porque aprendo nuevos paradigmas de programación))
+; ⇒ {ME GUSTA LPP PORQUE APRENDO NUEVOS PARADIGMAS DE PROGRAMACIÓN}
+```
+
+
+### Ejercicio 2 ###
+
+Implementa utilizando funciones de orden las funciones
+`(resultados‐quiniela lista‐parejas)`, `(cuenta-resultados resultado
+lista-resultados)` y `(cuenta-resultados-lista lista-resultados)` de
+la práctica 3.
+
+
+
+### Ejercicio 3 ###
+
+Sin utilizar el intérprete DrRacket, rellena los siguientes huecos
+para obtener el resultado esperado. Después usa el intérprete para
+comprobar si has acertado.
+
+a)
+
+```scheme 
+(______ list 0 '(1 2 3))
+; ⇒ {1 {2 {3 0}}}
+```
+
+
+b)
+
+```scheme
+(______ list "hola" '("como" "estas" "adios"))
+; ⇒ {{{"hola" "como"} "estas"} "adios"}
+```
+
+Los siguientes apartados se realizan a partir de la siguiente lista:
+
+```scheme
+(define lista '((2 . 7) (3 . 5) (10 . 4) (5 . 5)))
+```
+
+
+c) Queremos obtener una lista donde cada número es la suma de las parejas que son pares
+
+```scheme
+(filter ________
+        (________ (lambda (x) (+ (car x)
+                                 (cdr x)))
+               lista))
+; ⇒ {8 14 10}
+```
+
+
+d) Queremos obtener una lista de parejas invertidas donde la "nueva" parte izquierda es mayor que la derecha.
+
+```scheme
+(filter ___________
+        (map ____________ lista))
+; ⇒ {{7 . 2} {5 . 3}}
+```
+
+e) Queremos obtener una lista cuyos elementos son las partes izquierda de aquellas parejas cuya suma sea par.
+
+```
+(fold-right __________ '()
+        (_________ (lambda (x) (even? (+ (car x) (cdr x)))) lista))
+; ⇒ {3 10 5}
+```
+
+
+
+### Ejercicio 4 ###
+
+a) Implementa las funciones constructoras `(make-multiplicador k)` y
+`(make-exponenciador k)` similares al ejemplo visto en teoría
+`(make-sumador k)`.
+
+La función `make-multiplicador` construye una función multiplicadora
+por `k`. Y la función `make-exponenciador` construye una función de un
+argumento `x` que eleva `k` a `x`.
+
+**Pista**: Una diferencia importante entre ambas funciones es que
+`(make-exponenciador k)` debe fijar a `k` el primer parámetro de la
+función `expt`, mientras que `(make-sumador k)` y `(make-multiplicador
+k)` fijan el segundo parámetro.
 
 Ejemplo:
 
 ```scheme
-(aplica-funciones (list (cons even? 6) (cons null? '(4)) (cons list 8) (cons car '(1 2 3))  
-; ⇒ {#t #f {8} 1}
+(define f1 (make-multiplicador 10))
+(f1 3) ; ⇒ 30
+(define f2 (make-multiplicador 5))
+(f2 3) ; ⇒ 15
+(define f3 (make-exponenciador 2))
+(f3 3) ; ⇒ 8
+(define f4 (make-exponenciador 5))
+(f4 3) ; ⇒ 125
 ```
 
-b) Implementa la función anterior usando una función de orden
-superior. Defínela con el nombre `aplica-funciones-FOS`
 
-c) Implementa la función `(suma-impares-pares lista-num)` de la
-práctica 3 utilizando la función de orden superior `fold-right`.
-
-### Ejercicio 2
-
-Implementa, usando funciones de orden superior, las funciones
-siguientes funciones de la práctica 3:
-
-- `(edad-total lista-personas)`
-- `(filtra-sexo sexo personas)`
-- `(mayores-edad edad personas)`
-- `(mayores-edad-sexo edad sexo personas)`
-
-En el caso de la última función, no debes llamar a las funciones
-anteriores, sino usar una llamada a una única función de orden
-superior en su cuerpo.
-
-
-### Ejercicio 3
-
-a) Utilizando una función de orden superior, implementa la función
-`(resultados‐quiniela lista‐parejas)` que devuelve una lista de 1, X,
-2 a partir de una lista de parejas que representa resultados de
-partidos de fútbol. El resultado es 1 cuando el número izquierdo de la
-pareja es mayor que el derecho, un 2 cuando es al revés, y una X
-cuando los dos números son iguales.
-
-**Pista**: Puedes definir una función `(resultado-partido partido)`
-  que reciba una pareja y devuelva 1, X o 2.
-
-```scheme
-(resultados-quiniela '((1 . 2) (4 . 4) (3 . 5) (6 . 2) (9 . 9)))  ; ⇒ {2 X 2 1 X}
-(resultados-quiniela '((2 . 2))) ; ⇒ {X}
-(resultados-quiniela '((3 . 2) (4 . 3) (3 . 5)))  ; ⇒ {1 1 2}
-```
-
-b) Utilizando una composición de funciones de orden superior,
-implementa la función `(cuenta-resultados resultado lista-resultados)`
-donde `resultado` puede ser un uno, una equis o un dos y cuenta el
-número de ese resultado en la lista de partidos.
+b) Generaliza las funciones anteriores definiendo la función
+`(fija-arg f i k)` que recibe una función de dos argumentos `f`, un
+valor `i` que indica si queremos fijar el primer parámetro (cuando
+i = 1) o el segundo parámetro (i = 2) y el valor `k` al que fijamos el
+parámetro correspondiente.
 
 Ejemplo:
 
 ```scheme
-(cuenta-resultados 'X '((1 . 2) (4 . 4) (3 . 5) (6 . 2) (9 . 9))) ; ⇒ 2
+(define f1 (fija-arg + 2 10) 8)
+(f1 8) ; ⇒ 18
+(define f2 (fija-arg expt 1 2))
+(f2 4) ; ⇒ 16
+(define f3 (fija-arg string-append 2 "****"))
+(f3 "Hola") ; ⇒ "Hola****"
 ```
 
-c) Usando la función anterior escribe la función
-`(cuenta-resultados-quiniela lista-resultados)` que recibe un lista de
-parejas que representan partidos de fútbol, y debe devolver una lista
-con el número de unos, número de X y número doses que hay en la
-quiniela. No hace falta que sea recursiva ni implementarla con
-funciones de orden superior.
+### Ejercicio 5 ###
 
+
+a) Implementa usando funciones de orden superior la función `(suma-n-izq n
+lista-parejas)` que recibe una lista de parejas y devuelve otra lista
+a la que hemos sumado `n` a todas las partes izquierdas.
+
+Ejemplo
 
 ```scheme
-(cuenta-resultados-quiniela '((1 . 2) (4 . 4) (3 . 5) (6 . 2) (9 . 9)))  ; ⇒ {1 2 2}
-(cuenta-resultados-quiniela '((2 . 2))) ; ⇒ {0 1 0}
-(cuenta-resultados-quiniela '((3 . 2) (4 . 3) (3 . 5)))  ; ⇒ {2 0 1}
+(suma-n-izq 10 '((1 . 3) (0 . 9) (5 . 8) (4 . 1)))
+; ⇒ {{11 . 3} {10 . 9} {15 . 8} {14 . 1}}
 ```
 
-### Ejercicio 4
 
-Utilizando una composición de las funciones de orden superior
+b) Implementa usando funciones de orden superior la función `(aplica-2 func
+lista-parejas)` que recibe una función de dos argumentos y una lista
+de parejas y devuelve una lista con el resultado de aplicar esa
+función a los elementos izquierdo y derecho de cada pareja.
+
+Ejemplo:
+
+```scheme
+(aplica-2 + '((2 . 3) (1 . -1) (5 . 4)))
+; ⇒ {5 0 9}
+(aplica-2 (lambda (x y)
+             (if (even? x)
+                 y
+                 (* y -1))) '((2 . 3) (1 . 3) (5 . 4) (8 . 10)))
+; ⇒ {3 -3 -4 10}
+```
+
+
+### Ejercicio 6 ###
+
+a) Utilizando una composición de las funciones de orden superior
 `fold-right` y `map`, implementa la función `(cadena-mayor lista)` que
 recibe un lista de cadenas y devuelve una pareja con la cadena de
 mayor longitud y dicha longitud.  En el caso de que haya más de una
@@ -108,79 +200,25 @@ aparezca en la lista.
 ```scheme
 (cadena-mayor '("vamos" "a" "obtener" "la" "cadena" "mayor")) ; ⇒  {"obtener" . 7}  
 (cadena-mayor '("prueba" "con" "maximo" "igual")) ; ⇒ {"maximo" . 6} 
-(cadena-mayor '("hola")) ; ⇒ {"hola" 4} 
+(cadena-mayor '("hola")) ; ⇒ {"hola" . 4} 
 ``` 
 
-### Ejercicio 5
-
-a) Define las funciones `(min-lista lista)` y `(max-lista lista)`,
-de forma que devuelvan el mínimo o el máximo de una lista respectivamente,
-utilizando la función de orden superior `fold-right`.
-
-**Pista**: Puedes usar como dato base de la función `fold-right`
-el primer dato de la lista.
+b) La función `map` de Scheme también puede mapear una función de dos
+argumentos sobre dos listas. Por ejemplo:
 
 ```scheme
-(min-lista '(20 10 23 101 90 19 45)) ; ⇒ 10
-(max-lista '(20 10 23 101 90 19 45)) ; ⇒ 101
+(map (lambda (x y)
+         (+ x y)) '(1 2 3 4) '(4 4 4 4))
+; ⇒ {5 6 7 8}
 ```
 
-b) Utilizando funciones de orden superior, define las siguientes funciones:
+Implementa la función `(filtra-simbolos lista-simbolos lista-num)` de
+de la práctica 3, usando una composición de funciones en las que se
+use `map` como en el ejemplo anterior.
 
-- `(max-car-pareja lista-parejas)`: devuelve el max de todos los car de las parejas de la lista
-- `(min-car-pareja lista-parejas)`: devuelve el min de todos los car de las parejas de la lista
-- `(max-cdr-pareja lista-parejas)`: devuelve el max de todos los cdr de las parejas de la lista
-- `(min-cdr-pareja lista-parejas)`: devuelve el min de todos los cdr de las parejas de la lista
-
-Ejemplo:
-
-```scehem
-(max-car-pareja (list (cons 21 30)
-                      (cons 34 65)
-                      (cons 99 12)
-                      (cons 45 86))) ; ⇒  99
-
-(min-cdr-pareja (list (cons 21 30)
-                      (cons 34 65)
-                      (cons 99 12)
-                      (cons 45 86))) ; ⇒ 12
-```
-
-
-c) Define la función `(min-max-pareja lista pred parte-pareja)` que
-generaliza las funciones anteriores, usando la función de orden
-superior `fold-right`. El argumento `pred` puede ser la función `>` o
-`<` y el argumento `parte-pareja` la función `car` o `cdr`.
-
-Ejemplos:
-
-```scheme
-(min-max-pareja (list (cons 20 30) (cons 21 34) (cons 18 45)) > car) ; ⇒ 21
-(min-max-pareja (list (cons 20 30) (cons 21 34) (cons 18 45)) > cdr) ; ⇒ 45)
-```
-
-d) Define por último la función `(bounding-box-puntos lista-parejas)`
-que reciba una lista de puntos2D (parejas) y devuelva el bounding-box
-que engloba a todos los puntos.  El bounding-box a devolver será en
-forma de pareja, representado por los puntos inferior izquierdo y
-superior derecho del rectángulo. Debes usar la función definida
-en el apartado anterior.
-
-Ejemplo:
-
-```scheme
-(bounding-box-puntos (list (cons 2  2) 
-                           (cons 30  20)
-                           (cons 10 0)
-                           (cons 1 10)
-                           (cons 15 12)
-                           (cons 35 10))) 
-; ⇒ {{1 . 0} . {35 . 20}}
-; DrRacket lo muestra así: {{1 . 0} 35 . 20}
-```
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Antonio Botía, Domingo Gallardo, Cristina Pomares  
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
