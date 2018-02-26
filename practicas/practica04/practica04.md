@@ -147,12 +147,14 @@ parámetro correspondiente.
 Ejemplo:
 
 ```scheme
-(define f1 (fija-arg + 2 10) 8)
+(define f1 (fija-arg + 2 10))
 (f1 8) ; ⇒ 18
 (define f2 (fija-arg expt 1 2))
-(f2 4) ; ⇒ 16
+(f2 5) ; ⇒ 32
 (define f3 (fija-arg string-append 2 "****"))
 (f3 "Hola") ; ⇒ "Hola****"
+(define f4 (fija-arg string-append 1 "****"))
+(f4 "Hola") ; ⇒ "****Hola"
 ```
 
 ### Ejercicio 5 ###
