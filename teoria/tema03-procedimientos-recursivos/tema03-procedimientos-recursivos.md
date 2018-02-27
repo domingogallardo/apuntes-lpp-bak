@@ -238,9 +238,9 @@ Diferenciamos entre procedimientos y procesos: un **procedimiento** es un
 algoritmo y un **proceso** es la ejecución de ese algoritmo.
 
 Es posible definir _procedimientos recursivos_ que generen _procesos
-iterativos_ (como los bucles en programación imperativa) en los que no
+iterativos_ (como los bucles en programación imperativa) en los que **no
 se dejen llamadas recursivas en espera ni se incremente la pila de la
-recursión. Para ello construimos la recursión de forma que en cada
+recursión**. Para ello construimos la recursión de forma que en cada
 llamada se haga un cálculo parcial y en el caso base se pueda devolver
 directamente el resultado obtenido.
 
@@ -273,7 +273,7 @@ factorial y el argumento `result` es un parámetro adicional en el que
 se van guardando los resultados intermedios.
 
 En cada llamada recursiva, `n` se va haciendo cada vez más pequeño y
-`result` se va acercando al resultado a devolver. Al final de la
+en `result` se va acumulando el cálculo del factorial. Al final de la
 recursión el factorial debe estar calculado en `result` y se devuelve.
 
 Veamos la secuencia de llamadas:
@@ -287,6 +287,18 @@ Veamos la secuencia de llamadas:
 24
 ```
 
+Antes de realizar cada llamada recursiva se realiza el cálculo del
+resultado parcial, que se guarda en el parámetro `result`. Después se
+realiza la llamada con el nuevo valor calculado de `n` y de `result`.
+
+Al final, cuando `n` vale `1` se devuelve el valor calculado de
+`result`. Este valor es el resultado completo de la recursión, ya que
+no hay que hacer ninguna operación más con él. A diferencia de los
+procesos recursivos, en los que se quedan llamadas en espera en la
+pila de la recursión, en los procesos iterativos no hay ninguna
+llamada en espera. El resultado devuelto por el caso base es
+directamente la solución de la recursión.
+
 Es importante el valor inicial de `resultado`. La función `factorial`
 se encarga de inicializar este parámetro. En este caso es el mismo
 valor del número `n` a calcular el factorial. 
@@ -294,7 +306,9 @@ valor del número `n` a calcular el factorial.
 La secuencia de llamadas recursivas acumula en la variable `result` el
 valor del factorial:
 
-```4 * 3 * 2 * 1 = 24```
+```
+4 * 3 * 2 * 1 = 24
+```
 
 
 #### 1.3.2. Versión iterativa de mi-length
@@ -319,6 +333,11 @@ La solución es la siguiente:
       result
       (mi-length-iter (cdr lista) (+ result 1))))
 ```
+
+Fijaros que, al igual que en la versión iterativa de factorial, no hay
+ninguna llamada a ningúna función que recoja el resultado de la
+llamada recursiva y haga algo con él. Directamente el resultado de la
+llamada recursiva es el resultado final de la recursión.
 
 #### 1.3.3. Función `suma-lista` usando recursión por la cola
 
