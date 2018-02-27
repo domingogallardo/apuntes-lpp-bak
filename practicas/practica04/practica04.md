@@ -127,14 +127,14 @@ k)` fijan el segundo parámetro.
 Ejemplo:
 
 ```scheme
-(define f1 (make-multiplicador 10))
-(f1 3) ; ⇒ 30
-(define f2 (make-multiplicador 5))
-(f2 3) ; ⇒ 15
-(define f3 (make-exponenciador 2))
-(f3 3) ; ⇒ 8
-(define f4 (make-exponenciador 5))
-(f4 3) ; ⇒ 125
+(define multiplica-por-10 (make-multiplicador 10))
+(multiplica-por-10 3) ; ⇒ 30
+(define multiplica-por-5 (make-multiplicador 5))
+(multiplica-por-5 3) ; ⇒ 15
+(define 2-elevado-a (make-exponenciador 2))
+(2-elevado-a 3) ; ⇒ 8
+(define 5-elevado-a (make-exponenciador 5))
+(5-elevado-a 3) ; ⇒ 125
 ```
 
 
@@ -147,14 +147,14 @@ parámetro correspondiente.
 Ejemplo:
 
 ```scheme
-(define f5 (fija-arg + 2 10))
-(f5 8) ; ⇒ 18
-(define f6 (fija-arg expt 1 2))
-(f6 5) ; ⇒ 32
-(define f7 (fija-arg string-append 2 "****"))
-(f7 "Hola") ; ⇒ "Hola****"
-(define f8 (fija-arg string-append 1 "****"))
-(f8 "Hola") ; ⇒ "****Hola"
+(define suma-10 (fija-arg + 2 10))
+(suma-10 8) ; ⇒ 18
+(define 2-elevado-a (fija-arg expt 1 2))
+(2-elevado-a 5) ; ⇒ 32
+(define añade-asteriscos (fija-arg string-append 2 "****"))
+(añade-asteriscos "Hola") ; ⇒ "Hola****"
+(define precede-asteriscos (fija-arg string-append 1 "****"))
+(precede-asteriscos "Hola") ; ⇒ "****Hola"
 ```
 
 ### Ejercicio 5 ###
