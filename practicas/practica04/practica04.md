@@ -134,7 +134,7 @@ Ejemplo:
 ```
 
 
-b) La diferencia importante entre las funciones es que
+b) La diferencia fundamental entre las funciones anteriores es que
 `(construye-exponenciador k)` debe fijar a `k` el primer parámetro de
 la función `expt`, mientras que `(construye-sumador k)` y
 `(construye-multiplicador k)` fijan el segundo parámetro.
