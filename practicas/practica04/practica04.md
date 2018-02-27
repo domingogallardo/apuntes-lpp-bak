@@ -119,10 +119,6 @@ La función `construye-multiplicador` construye una función multiplicadora
 por `k`. Y la función `construye-exponenciador` construye una función de un
 argumento `x` que eleva `k` a `x`.
 
-**Pista**: Una diferencia importante entre ambas funciones es que
-`(construye-exponenciador k)` debe fijar a `k` el primer parámetro de la
-función `expt`, mientras que `(construye-sumador k)` y `(construye-multiplicador
-k)` fijan el segundo parámetro.
 
 Ejemplo:
 
@@ -138,7 +134,12 @@ Ejemplo:
 ```
 
 
-b) Generaliza las funciones anteriores definiendo la función
+b) La diferencia importante entre las funciones es que
+`(construye-exponenciador k)` debe fijar a `k` el primer parámetro de
+la función `expt`, mientras que `(construye-sumador k)` y
+`(construye-multiplicador k)` fijan el segundo parámetro.
+
+Podemos generalizar estas funciones definiendo la función
 `(fija-arg f i k)` que recibe una función de dos argumentos `f`, un
 valor `i` que indica si queremos fijar el primer parámetro (cuando
 i = 1) o el segundo parámetro (i = 2) y el valor `k` al que fijamos el
@@ -149,8 +150,8 @@ Ejemplo:
 ```scheme
 (define suma-10 (fija-arg + 2 10))
 (suma-10 8) ; ⇒ 18
-(define elevado-2-a (fija-arg expt 1 2))
-(elevado-2-a 5) ; ⇒ 32
+(define elevado-3-a (fija-arg expt 1 3))
+(elevado-3-a 5) ; ⇒ 243
 (define añade-asteriscos (fija-arg string-append 2 "****"))
 (añade-asteriscos "Hola") ; ⇒ "Hola****"
 (define precede-asteriscos (fija-arg string-append 1 "****"))
