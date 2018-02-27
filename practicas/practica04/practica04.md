@@ -131,10 +131,10 @@ Ejemplo:
 (multiplica-por-10 3) ; ⇒ 30
 (define multiplica-por-5 (construye-multiplicador 5))
 (multiplica-por-5 3) ; ⇒ 15
-(define 2-elevado-a (construye-exponenciador 2))
-(2-elevado-a 3) ; ⇒ 8
-(define 5-elevado-a (construye-exponenciador 5))
-(5-elevado-a 3) ; ⇒ 125
+(define elevado-2-a (construye-exponenciador 2))
+(elevado-2-a 3) ; ⇒ 8
+(define elevado-5-a (construye-exponenciador 5))
+(elevado-5-a 3) ; ⇒ 125
 ```
 
 
@@ -149,8 +149,8 @@ Ejemplo:
 ```scheme
 (define suma-10 (fija-arg + 2 10))
 (suma-10 8) ; ⇒ 18
-(define 2-elevado-a (fija-arg expt 1 2))
-(2-elevado-a 5) ; ⇒ 32
+(define elevado-2-a (fija-arg expt 1 2))
+(elevado-2-a 5) ; ⇒ 32
 (define añade-asteriscos (fija-arg string-append 2 "****"))
 (añade-asteriscos "Hola") ; ⇒ "Hola****"
 (define precede-asteriscos (fija-arg string-append 1 "****"))
