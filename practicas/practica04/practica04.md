@@ -80,7 +80,8 @@ Los siguientes apartados se realizan a partir de la siguiente lista:
 ```
 
 
-c) Queremos obtener una lista donde cada número es la suma de las parejas que son pares
+c) Queremos obtener una lista donde cada número es la suma de las
+parejas que son pares
 
 ```scheme
 (filter ________
@@ -91,7 +92,8 @@ c) Queremos obtener una lista donde cada número es la suma de las parejas que s
 ```
 
 
-d) Queremos obtener una lista de parejas invertidas donde la "nueva" parte izquierda es mayor que la derecha.
+d) Queremos obtener una lista de parejas invertidas donde la "nueva"
+parte izquierda es mayor que la derecha.
 
 ```scheme
 (filter ___________
@@ -99,7 +101,8 @@ d) Queremos obtener una lista de parejas invertidas donde la "nueva" parte izqui
 ; ⇒ {{7 . 2} {5 . 3}}
 ```
 
-e) Queremos obtener una lista cuyos elementos son las partes izquierda de aquellas parejas cuya suma sea par.
+e) Queremos obtener una lista cuyos elementos son las partes izquierda
+de aquellas parejas cuya suma sea par.
 
 ```
 (fold-right __________ '()
