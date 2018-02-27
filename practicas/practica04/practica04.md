@@ -111,29 +111,29 @@ e) Queremos obtener una lista cuyos elementos son las partes izquierda de aquell
 
 ### Ejercicio 4 ###
 
-a) Implementa las funciones constructoras `(make-multiplicador k)` y
-`(make-exponenciador k)` similares al ejemplo visto en teoría
-`(make-sumador k)`.
+a) Implementa las funciones constructoras `(construye-multiplicador k)` y
+`(construye-exponenciador k)` similares al ejemplo visto en teoría
+`(construye-sumador k)`.
 
-La función `make-multiplicador` construye una función multiplicadora
-por `k`. Y la función `make-exponenciador` construye una función de un
+La función `construye-multiplicador` construye una función multiplicadora
+por `k`. Y la función `construye-exponenciador` construye una función de un
 argumento `x` que eleva `k` a `x`.
 
 **Pista**: Una diferencia importante entre ambas funciones es que
-`(make-exponenciador k)` debe fijar a `k` el primer parámetro de la
-función `expt`, mientras que `(make-sumador k)` y `(make-multiplicador
+`(construye-exponenciador k)` debe fijar a `k` el primer parámetro de la
+función `expt`, mientras que `(construye-sumador k)` y `(construye-multiplicador
 k)` fijan el segundo parámetro.
 
 Ejemplo:
 
 ```scheme
-(define multiplica-por-10 (make-multiplicador 10))
+(define multiplica-por-10 (construye-multiplicador 10))
 (multiplica-por-10 3) ; ⇒ 30
-(define multiplica-por-5 (make-multiplicador 5))
+(define multiplica-por-5 (construye-multiplicador 5))
 (multiplica-por-5 3) ; ⇒ 15
-(define 2-elevado-a (make-exponenciador 2))
+(define 2-elevado-a (construye-exponenciador 2))
 (2-elevado-a 3) ; ⇒ 8
-(define 5-elevado-a (make-exponenciador 5))
+(define 5-elevado-a (construye-exponenciador 5))
 (5-elevado-a 3) ; ⇒ 125
 ```
 
