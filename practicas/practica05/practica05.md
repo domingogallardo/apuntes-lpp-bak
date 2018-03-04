@@ -1,6 +1,6 @@
-## Práctica 5: Procedimientos recursivos
+# Práctica 5: Procedimientos recursivos
 
-### Entrega de la práctica
+## Entrega de la práctica
 
 Para entregar la práctica debes subir a Moodle el fichero
 `practica05.rkt` con una cabecera inicial con tu nombre y apellidos, y
@@ -13,107 +13,115 @@ solución debe incluir:
 
 ## Ejercicios
 
-### Ejercicio 1
 
-Define utilizando recursión por la cola (_tail recursion_) la función
-`(min-lista lista)` de la práctica anterior que recibe una lista
-numérica y devuelve el mínimo de sus elementos.
+### Ejercicio 1  ###
+
+a) Implementa **utilizando recursión por la cola** la versión iterativa de la función
+`(cuadrado-lista lista)` que toma como argumento una lista de números
+y devuelve una lista con sus cuadrados.
+
+La función `cuadrado-lista` deberá llamar a la función
+`cuadrado-lista-iter` que es la que implementa propiamente la versión
+iterativa usando recursión por la cola.
 
 Ejemplo:
 
 ```scheme
-(min-lista '(2 5 9 12 5 0 4)) ; ⇒ 0
+(cuadrado-lista '(2 3 4 5)) ; ⇒ (4 9 16 25)
 ```
 
-### Ejercicio 2
 
-Define utilizando recursión por la cola (_tail recursion_) la función
-`(aplica-funciones lista-parejas)` de la práctica anterior, que recibe
-una lista de parejas `{{función . argumento} ...}` y devuelve la lista
-con los resultados de aplicar cada función al argumento situado en la
-parte derecha de la pareja.
+b) Define **utilizando recursión por la cola** la función `(max-lista
+lista)` que recibe una lista numérica y devuelve el máximo de sus
+elementos.
 
 Ejemplo:
 
 ```scheme
-(aplica-funciones (list (cons list 2) (cons even? 5) (cons not #f))) 
-; ⇒ {{2} #f #t}
+(max-lista '(2 5 9 12 5 0 4)) ; ⇒ 12
+```
+
+
+### Ejercicio 2 ###
+
+Implementa **utilizando recursión por la cola** las funciones
+`expande-pareja` y `expande` de la práctica 3.
+
+```scheme
+(expande-pareja (cons 'a 4)) ; ⇒ {a a a a}
+(expande '((#t . 3) ("LPP" . 2) (b . 4)))
+⇒ {#t #t #t "LPP" "LPP" b b b b}
 ```
 
 
 ### Ejercicio 3
 
-Implementa la función `(composicion-conmutativa lista-parejas x)`
-mediante recursión por la cola (_tail recursion_), que recibe una
-lista de parejas formadas por 2 funciones y debe devolver una lista
-cuyos elementos serán #t o #f dependiendo de si la composición del par
-de funciones correspondiente es o no conmutativa. La primera función
-de la composición se aplicará con el argumento x recibido.
+Implementa **utilizando recursión por la cola** función `(aplica-funciones
+lista-parejas)` que recibe una lista de parejas `{{función
+. argumento} ...}` y devuelve la lista con los resultados de aplicar
+cada función al argumento situado en la parte derecha de la pareja.
 
-Es decir, se trata de comprobar para todo par de funciones `{f . g}`
-contenidas en una pareja, si se cumple `f(g(x)) = g(f(x))`.
-                        
+Ejemplo:
+
+```scheme
+(aplica-funciones (list (cons sqrt 16) (cons list 2) (cons even? 5) (cons not #f))) 
+; ⇒ {4 {2} #f #t}
+```
+
+### Ejercicio 4 ###
+
+a) Implementa utilizando recursión por la cola la función
+`binario-a-decimal` que reciba una cadena con un número arbitrario de
+0s y 1s y devuelva el número decimal correspondiente a ese número
+binario.
+
 Ejemplos:
 
 ```scheme
-(composicion-conmutativa 
-    (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))) 10) ; ⇒ {#t}
-(composicion-conmutativa 
-    (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))
-          (cons (lambda(x) (* x 2)) (lambda(x) (/ x 5)))) 10) ; ⇒ {#t #t}
-(composicion-conmutativa 
-    (list (cons (lambda(x) (+ x 2)) (lambda(x) (- x 5)))
-          (cons (lambda(x) (* x 2)) (lambda(x) (+ x 5)))) 10) ; ⇒ {#t #f}
-(composicion-conmutativa 
-    (list (cons (lambda(x) (/ x 2)) (lambda(x) (- x 5)))) 10) ; ⇒ {#f}
+(binario-a-decimal "101") ; ⇒ 5
+(binario-a-decimal "101101") ; ⇒ 45
 ```
 
-### Ejercicio 4
+Ejemplos:
 
-Define la función `(pascal-memo fila col lista)` que devuelve la posición
-`(fila, col)` del Triángulo de Pascal visto en teoría, utilizando la
-técnica _memoization_. 
-
-Debes modificar la función `get` que hay en teoría cambiándola por la
-siguiente para que funcione correctamente cuando la clave es una pareja:
+b) Implementa, utilizando recursión por la cola, la función
+`decimal-a-hexadecimal` que recibe un número decimal y devuelve una
+lista con el número hexadecimal correspondiente en forma de cadena:
 
 ```scheme
-(define (busca-pareja pareja-key lista)
-  (cond ((null? lista) #f)
-        ((equal? (caar lista) pareja-key) (car lista))
-        (else (busca-pareja pareja-key (cdr lista)))))
-        
-(define (get pareja-key lista)
-  (define record (busca-pareja pareja-key (cdr lista)))
-  (if (not record)
-      '()
-      (cdr record)))
+(decimal-a-hexadecimal 200) ; ⇒ "C8"
+(decimal-a-hexadecimal 999) ; ⇒ "3E7"
 ```
 
-
-### Ejercicio 5
+### Ejercicio 5 ###
 
 a) Usando gráficos de tortuga, implementa la función
 `(piramide-hexagonal lado decremento)` que dibuje hexágonos
-concéntricos.
+concéntricos con el lado inicial `lado` y que cada vez vaya
+decrementando ese valor con el `decremento`.
 
 Por ejemplo, la llamada a `(piramide-hexagonal 150 10)` debe dibujar
 la siguiente figura:
 
+**Pista**: el desplazamiento que debe realizar la tortuga antes de
+dibujar cada hexágono es de `decremento`, en la dirección del ángulo
+que va al centro del hexágono.
+
 <img src="imagenes/hexagono.png" width="300px"/>
 
-b) Define la función `(alfombra-sierpinski tam)` que construya la
+b) Define la función `(alfombra-sierpinski tam min)` que construya la
 Alfombra de Sierpinski (una variante del Triágulo de Sierpinski que
 hemos visto en teoría) de lado `tam` píxeles utilizando gráficos de
 tortuga. 
 
-Por ejemplo, la llamada a `(alfombra-sierpinski 500)` debe dibujar la
+Por ejemplo, la llamada a `(alfombra-sierpinski 500 6)` debe dibujar la
 siguiente figura:
 
 <img src="imagenes/alfombra-sierpinski.png" width="400px"/>
 
+
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Antonio Botía, Domingo Gallardo, Cristina Pomares  
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
