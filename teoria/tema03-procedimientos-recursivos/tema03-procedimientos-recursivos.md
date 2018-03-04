@@ -297,7 +297,8 @@ no hay que hacer ninguna operación más con él. A diferencia de los
 procesos recursivos, en los que se quedan llamadas en espera en la
 pila de la recursión, en los procesos iterativos no hay ninguna
 llamada en espera. El resultado devuelto por el caso base es
-directamente la solución de la recursión.
+directamente la solución de la recursión, no queda nada por hacer con
+este resultado.
 
 Es importante el valor inicial de `resultado`. La función `factorial`
 se encarga de inicializar este parámetro. En este caso es el mismo
@@ -528,7 +529,7 @@ El código completo es el siguiente:
 ```
 
 Con esta implementación ya no se tiene un coste exponencial y se puede
-calcular el valor de números como Pascal(
+calcular el valor de números como Pascal(40, 20):
 
 ```scheme
 (pascal 40 20)
@@ -642,7 +643,7 @@ imposible de utilizar.
 
 Vamos a terminar el apartado sobre procedimientos recursivos con un
 último ejemplo algo distinto de los vistos hasta ahora. Usaremos la
-recursión para dibujar figuras fractale usando los denominados
+recursión para dibujar figuras fractales usando los denominados
 *gráficos de tortuga*. Para dibujar las figuras tendremos que utilizar
 un estilo de programación no funcional, dibujando los distintos trazos
 de las figuras con pasos de ejecución secuenciales. Para ello usaremos
@@ -889,13 +890,13 @@ Para dibujar una curva de Hilbert de orden i a la *derecha* de la tortuga:
 
 	1. Gira la tortuga -90
 	2. Dibuja una curva de orden i-1 a la izquierda
-	3. Avanza w dibujando
+	3. Avanza long dibujando
 	4. Gira 90
 	5. Dibuja una curva de orden i-1 a la derecha
-	6. Avanza w dibujando
+	6. Avanza long dibujando
 	7. Dibuja una curva de orden i-1 a la derecha
 	8. Gira 90
-	9. Avanza w dibujando
+	9. Avanza long dibujando
 	10. Dibuja una curva de orden i-1 a la izquierda
 	11. Gira -90
 
