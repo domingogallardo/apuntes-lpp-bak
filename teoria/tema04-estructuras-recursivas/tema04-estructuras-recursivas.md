@@ -8,7 +8,7 @@
     - [1.2 Funciones recursivas sobre listas estructuradas](#1-2)
 - [2 Árboles](#2)
     - [2.1 Definición de árboles en Scheme](#2-1)
-    - [2.2 Funciones recursivas sobre árboles](#2-2)
+<!--    - [2.2 Funciones recursivas sobre árboles](#2-2) 
 
 ## Bibliografía - SICP
 
@@ -16,6 +16,8 @@ En este tema explicamos conceptos de los siguientes capítulos del libro *Struct
 
 - [1.2.2 - Tree Recursion](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.2)
 - [2.2.2 - Hierarchical Structures](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.2)
+
+-->
 
 ## <a name="1"></a> 1 Listas estructuradas
 
@@ -39,6 +41,13 @@ recorrido lineal, iterando por sus elementos.
 En este apartado vamos a ampliar este concepto y estudiar cómo
 trabajar con *listas que contienen otras listas*.
 
+Veremos que esto cambia fundamentalmente la estructura de las listas y
+de las funciones que van a operar con ellas. El cambio fundamental es
+que la función `car lista` puede devolver dos tipos de elementos: 
+
+- Un elemento de la lista (del tipo de elementos que hay en la lista)
+- Otra lista (formada por el tipo de elementos de la lista)
+
 ### <a name="1-1"></a> 1.1 Definición y ejemplos
 
 Las listas en Scheme pueden tener cualquier tipo de elementos,
@@ -56,15 +65,15 @@ el contexto de la programación funcional _expresiones-S_
 Por ejemplo, la lista estructurada:
 
 ```
-{a b {c d e} {f {g h}}}
+'(a b (c d e) (f (g h)))
 ```
 
 es una lista estructurada con 4 elementos:
 
 - El elemento `'a`, una hoja
 - El elemento `'b`, otra hoja
-- La lista plana `{c d e}`
-- La lista estructurada `{f {g h}}`
+- La lista plana `'(c d e)`
+- La lista estructurada `'(f (g h))`
 
 Se puede construir con cualquiera de las siguientes expresiones:
 
@@ -77,7 +86,7 @@ Una lista formada por parejas la consideraremos una lista plana, ya
 que no contiene ninguna sublista. Por ejemplo, la lista
 
 ```
-{{a . 3} {b . 5} {c . 12}}
+'((a . 3) (b . 5) (c . 12))
 ```
 
 es una lista plana de tres elementos (hojas) que son parejas.
@@ -101,7 +110,7 @@ una lista es o no una hoja. Por ejemplo, supongamos la siguiente
 lista:
 
 ```
-{{1 2} 3 4 {5 6}}
+'((1 2) 3 4 (5 6))
 ```
 
 Es una lista de 4 elementos, siendo el primero y el último otras
@@ -190,23 +199,29 @@ elementos.
 
 Por ejemplo, las expresiones de Scheme son listas estructuradas:
 
-	(= 4 (+ 2 2))
-	(if (= x y) (* x y) (+ (/ x y) 45))
-	(define (factorial x) (if (= x 0) 1 (* x (factorial (- x 1)))))
+```scheme
+(= 4 (+ 2 2))
+(if (= x y) (* x y) (+ (/ x y) 45))
+(define (factorial x) (if (= x 0) 1 (* x (factorial (- x 1)))))
+```
 
 El análisis sintáctico de una oración puede generar una lista
 estructurada de símbolos, en donde se agrupan los distintos elementos
 de la oración:
 
-	{{Juan} {compró} {la entrada {de los Miserables}} {el viernes por la tarde}}
+```scheme
+'((Juan) (compró) (la entrada (de los Miserables)) (el viernes por la tarde))
+```
 
 Una página HTML, con sus distintos elementos, unos dentro de otros,
 también se puede representar con una lista estructurada:
 
-	{{<h1> Mi lista de la compra </h1>}
-	  {<ul> {<li> naranjas </li>}
-            {<li> tomates </li>}
-            {<li> huevos </li>} </ul>}}
+```scheme
+'((<h1> Mi lista de la compra </h1>)
+  (<ul> (<li> naranjas </li>)
+        (<li> tomates </li>)
+        (<li> huevos </li>} </ul>))
+```
 
 
 #### 1.1.3 *Pseudo árboles* con niveles
@@ -215,8 +230,8 @@ Las listas estructuradas definen una estructura de niveles, donde la
 lista inicial representa el primer nivel, y cada sublista representa
 un nivel inferior. Los datos de las listas representan las hojas.
 
-Por ejemplo, la representación en forma de niveles de la lista `{{a b
-c} d e}` es la siguiente:
+Por ejemplo, la representación en forma de niveles de la lista `((a b
+c) d e)` es la siguiente:
 
 <img src="imagenes/expresion-e-1.png" width="350px"/>
 
@@ -231,9 +246,11 @@ de la lista.
 Otro ejemplo. ¿Cuál sería la representación en niveles de la siguiente
 lista estructurada?:
 
-	{let {{x 12}
-	      {y 5}}
-	   {+ x y}}}
+```scheme
+'(let ((x 12)
+       (y 5))
+    (+ x y))
+```
 
 <img src="imagenes/expresion-e-2.png" width="300px"/>
 
@@ -250,11 +267,15 @@ Por ejemplo:
 (num-hojas '((1 2) (3 4 (5) 6) (7))) ⇒ 7
 ```
 
-Podemos definir la función obteniendo el primer elemento y el resto de
-la lista, y contando recursivamente el número de hojas del primer
-elemento y del resto. Al ser una lista estructurada, el primer
-elemento puede ser a su vez otra lista, por lo que llamamos a la
-recursión para contar sus hojas.
+Como hemos comentado antes, una cuestión clave en las funciones que
+vamos a construir sobre listas estructuradas es que el `car` de una
+lista estructurada puede ser a su vez otra lista.
+
+Para calcular el número de hojas de una lista podemos obtener el
+primer elemento y el resto de la lista, y contar recursivamente el
+número de hojas del primer elemento y del resto. Al ser una lista
+estructurada, el primer elemento puede ser a su vez otra lista, por lo
+que llamamos a la recursión para contar sus hojas.
 
 La definición de este caso general usando _pseudocódigo_ es:
 
@@ -266,10 +287,25 @@ La definición de este caso general usando _pseudocódigo_ es:
 
 Como casos base, podemos considerar cuando la lista es vacía (el
 número de hojas es 0) y cuando la lista no es tal, sino que es un dato
-(una hoja), en cuyo caso es 1. La implementación en Scheme es:
+(una hoja), en cuyo caso es 1. La implementación en Scheme de la
+formulación anterior es:
 
 
+```scheme
+(define (num-hojas lista)
+  (cond
+    ((null? lista) 0)
+    ((hoja? (car lista)) (+ 1 (num-hojas (cdr lista))))
+    (else (+ (num-hojas (car lista))
+             (num-hojas (cdr lista))))))
 ```
+
+Podemos simplificar y hacer más elegante la función si no hacemos la
+comprobación de `hoja?` en el caso general, sino que llamamos siempre
+a la recursión por el `car` y por el `cdr`. Cuando el `car` sea una
+hoja llamaremos también a la recursión, y devolveremos 1:
+
+```scheme
 (define (num-hojas lista)
    (cond
       ((null? lista) 0)
@@ -365,7 +401,7 @@ estructura jerárquica de las listas estructuradas.
 - `(aplana lista)`: devuelve una lista plana con todas las hojas de la lista
 - `(pertenece-lista? dato lista)`: busca una hoja en una lista
   estructurada
-- `(nivel-lista dato lista)`: devuelve el nivel en el que se encuentra
+- `(nivel-hoja dato lista)`: devuelve el nivel en el que se encuentra
   un dato en una lista
 - `(cuadrado-lista lista)`: eleva todas las hojas al cuadrado
   (suponemos que la lista estructurada contiene números)
@@ -440,10 +476,10 @@ Con funciones de orden superior:
                  (pertenece-FOS? elem x))) lista))
 ```
 
-##### `(nivel-lista dato lista)`
+##### `(nivel-hoja dato lista)`
 
 Veamos como última función que explora una lista estructurada la
-función `(nivel-lista dato lista)` que recorre la lista buscando el
+función `(nivel-hoja dato lista)` que recorre la lista buscando el
 dato y devuelve el nivel en que se encuentra. Si el dato no se
 encuentra en la lista, se devolverá -1. Si el dato se encuentra en más
 de un lugar de la lista se devolverá el nivel mayor.
@@ -595,18 +631,18 @@ Por ejemplo, el árbol anterior lo representaremos en Scheme con la
 siguiente lista:
 
 ```scheme
-{+ {5} {* {2} {3}} {10}}
+'(+ (5) (* (2) (3)) (10))
 ```
 
 Los elementos de esta lista son:
 
 - El primer elemento es el símbolo `+`, el dato valor de la raíz del
   árbol
-- El segundo elemento es la lista `{5}`, que representa el árbol hoja
+- El segundo elemento es la lista `'(5)`, que representa el árbol hoja
   formado por un 5
-- El tercer elemento es la lista `{* {2} {3}}`, que representa el
+- El tercer elemento es la lista `'(* (2) (3))`, que representa el
   árbol con un dato `*` y dos hijos
-- El cuarto elemento es la lista `{10}`, que representa el árbol hoja
+- El cuarto elemento es la lista `'(10)`, que representa el árbol hoja
   formado por un 10
 
 Podríamos definir el árbol con la siguiente sentencia:
@@ -678,12 +714,12 @@ los siguientes valores:
 - La llamada `(dato-tree arbol1)` devuelve el dato que hay en la raíz
   del árbol, el símbolo `+`
 - La invocación `(hijos-tree arbol1)` devuelve una lista de tres
-  elementos, los árboles hijos: `{{5} {* {2} {3}} {10}}`:
-    - El primer elemento es la lista `{5}`, que representa el árbol
+  elementos, los árboles hijos: `'((5) (* (2) (3)) (10))`:
+    - El primer elemento es la lista `'(5)`, que representa el árbol
       hoja formado por el `5`
-    - El segundo es la lista `{* {2} {3}}`, que representa el árbol
+    - El segundo es la lista `'(* (2) (3))`, que representa el árbol
       formado por el `*` en su raíz y las hojas `2` y `3`
-    - El tercero es la lista `{10}`, que representa el árbol hoja
+    - El tercero es la lista `'(10)`, que representa el árbol hoja
       `10`.
 - El primer elemento de la lista de hijos es un árbol hoja:
   `(hoja-tree? (car (hijos-tree arbol1))) ⇒ #t`
@@ -751,6 +787,7 @@ abstracción de listas y árboles:
 
 <img src="imagenes/barrera-abstraccion.png" width="550px">
 
+<!--
 ### <a name="2-2"></a>2.2 Funciones recursivas sobre árboles
 
 Vamos a diseñar las siguientes funciones recursivas:
@@ -997,8 +1034,12 @@ la que obtenemos el máximo plegando la lista con la función `max`.
 Por último sumamos 1 para devolver la altura del árbol completo (un
 nivel más que el nivel máximo de los hijos).
 
+-->
+
+
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Domingo Gallardo, Cristina Pomares
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
+
