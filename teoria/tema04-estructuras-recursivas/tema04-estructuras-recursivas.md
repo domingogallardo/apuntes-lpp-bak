@@ -676,9 +676,8 @@ del tipo de dato, en este caso **tree** (vamos a hacer una mezcla un
 poco extraña, escribiendo el nombre del tipo de dato en inglés, y el
 nombre de las funciones en castellano).
 
-Definimos dos conjuntos de funciones: **constructores** para construir
-un nuevo árbol y **selectores** para obtener los elementos del
-árbol. Vamos a empezar por los selectores.
+Las funciones que permiten obtener los elementos que constituyen un
+dato compuesto reciben el nombre de **selectores**.
 
 **Selectores**
 
@@ -746,34 +745,6 @@ obtener los elementos que nos interesen:
 (dato-tree (car (hijos-tree (cadr (hijos-tree arbol1))))) ; ⇒ 2
 ```
 
-**Constructores**
-
-Funciones que permiten construir un nuevo árbol:
-
-```scheme
-(define (make-tree dato lista-arboles)  
-   (cons dato lista-arboles))
-
-(define (make-hoja-tree dato) 
-    (make-tree dato '()))
-```
-
-- La función `(make-tree dato lista-arboles)` recibe un dato y una
-  lista de árboles y devuelve un árbol formado por el dato en su raíz
-  y la lista de hijos.
-- La función `(make-hoja-tree dato)` recibe un dato y devuelve un
-  árbol hoja (un árbol sin hijos).
-
-El árbol anterior se puede construir con las siguientes llamadas a los
-constructores:
-
-```scheme
-(make-tree '+ (list (make-hoja-tree 5)
-                             (make-tree '* 
-                                        (list (make-hoja-tree 2) 
-                                              (make-hoja-tree 3)))
-                             (make-hoja-tree 10)))
-```
 
 #### 2.1.3 Diferencia entre árboles y listas estructuradas
 
