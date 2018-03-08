@@ -362,7 +362,7 @@ Como casos base, la altura de una lista vacía o de una hoja (dato) es 0.
 
 En Scheme:
 
-```
+```scheme
 (define (altura x)
    (cond 
       ((null? x) 0)
@@ -374,7 +374,7 @@ En Scheme:
 
 Por ejemplo:
 
-```
+```scheme
 (altura '(1 (2 3) 4)) ⇒ 2
 (altura '(1 (2 (3)) 3)) ⇒ 3
 ```
@@ -563,7 +563,7 @@ parámetro.
 Devuelve una lista estructurada igual que la original con el resultado
 de aplicar a cada uno de sus hojas la función f
  
-```
+```scheme
 (define (map-lista f lista)
   (cond ((null? lista) '())
         ((hoja? lista) (f lista))
@@ -573,7 +573,7 @@ de aplicar a cada uno de sus hojas la función f
 	
 Por ejemplo:
 
-```
+```scheme
 (map-lista (lambda (x) (* x x)) '(2 3 (4 (5)))) ⇒ (4 9 (16 (25))
 ```
 
