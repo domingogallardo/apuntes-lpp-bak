@@ -306,15 +306,15 @@ a la recursión por el `car` y por el `cdr`. Cuando el `car` sea una
 hoja llamaremos también a la recursión, y devolveremos 1:
 
 ```scheme
-(define (num-hojas lista)
+(define (num-hojas x)
    (cond
-      ((null? lista) 0)
-      ((hoja? lista) 1)
-      (else (+ (num-hojas (car lista))
-               (num-hojas (cdr lista))))))
+      ((null? x) 0)
+      ((hoja? x) 1)
+      (else (+ (num-hojas (car x))
+               (num-hojas (cdr x))))))
 ```
 
-Hay que hacer notar que el parámetro `lista` puede ser tanto una lista
+Hay que hacer notar que el parámetro `x` puede ser tanto una lista
 como un dato atómico. Estamos aprovechándonos de la característica de
 Scheme de ser débilmente tipeado para hacer un código bastante
 conciso.
@@ -363,12 +363,12 @@ Como casos base, la altura de una lista vacía o de una hoja (dato) es 0.
 En Scheme:
 
 ```
-(define (altura lista)
+(define (altura x)
    (cond 
-      ((null? lista) 0)
-      ((hoja? lista) 0)
-      (else (max (+ 1 (altura (car lista)))
-                 (altura (cdr lista))))))
+      ((null? x) 0)
+      ((hoja? x) 0)
+      (else (max (+ 1 (altura (car x)))
+                 (altura (cdr x))))))
 
 ```
 
@@ -414,13 +414,13 @@ estructura jerárquica de las listas estructuradas.
 Devuelve una lista plana con todas las hojas de la lista.
 
 ```scheme
-(define (aplana lista)
+(define (aplana x)
   (cond
-    ((null? lista) '())
-    ((hoja? lista) (list lista))
+    ((null? x) '())
+    ((hoja? x) (list x))
     (else 
-     (append (aplana (car lista))
-             (aplana (cdr lista))))))
+     (append (aplana (car x))
+             (aplana (cdr x))))))
 ```
 
 Por ejemplo:
@@ -444,15 +444,15 @@ Con funciones de orden superior:
 
 ##### `(pertenece-lista? dato lista)`
 
-Comprueba si el dato x aparece en la lista estructurada. 
+Comprueba si el `dato` aparece en la lista estructurada. 
 
 ```scheme
-(define (pertenece? x lista)
+(define (pertenece? dato x)
   (cond 
-    ((null? lista) #f)
-    ((hoja? lista) (equal? x lista))
-    (else (or (pertenece? x (car lista))
-              (pertenece? x (cdr lista))))))
+    ((null? x) #f)
+    ((hoja? x) (equal? dato x))
+    (else (or (pertenece? dato (car x))
+              (pertenece? dato (cdr x))))))
 ```
 
 Ejemplos:
@@ -529,11 +529,11 @@ Devuelve una lista estructurada con la misma estructura y sus números
 elevados al cuadrado.
 
 ```scheme
-(define (cuadrado-lista lista)
-  (cond ((null? lista) '())
-        ((hoja? lista) (* lista lista))
-        (else (cons (cuadrado-lista (car lista))
-                    (cuadrado-lista (cdr lista))))))
+(define (cuadrado-lista x)
+  (cond ((null? x) '())
+        ((hoja? x) (* x x))
+        (else (cons (cuadrado-lista (car x))
+                    (cuadrado-lista (cdr x))))))
 ```
 
 Por ejemplo:
