@@ -17,7 +17,7 @@ En este tema explicamos conceptos de los siguientes capítulos del libro *Struct
 - [1.2.2 - Tree Recursion](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.2)
 - [2.2.2 - Hierarchical Structures](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.2)
 
--->
+-->  
 
 ## <a name="1"></a> 1 Listas estructuradas
 
@@ -363,12 +363,12 @@ Como casos base, la altura de una lista vacía o de una hoja (dato) es 0.
 En Scheme:
 
 ```scheme
-(define (altura x)
+(define (altura nodo)
    (cond 
-      ((null? x) 0)
-      ((hoja? x) 0)
-      (else (max (+ 1 (altura (car x)))
-                 (altura (cdr x))))))
+      ((null? nodo) 0)
+      ((hoja? nodo) 0)
+      (else (max (+ 1 (altura (car nodo)))
+                 (altura (cdr nodo))))))
 
 ```
 
