@@ -306,15 +306,15 @@ a la recursión por el `car` y por el `cdr`. Cuando el `car` sea una
 hoja llamaremos también a la recursión, y devolveremos 1:
 
 ```scheme
-(define (num-hojas x)
+(define (num-hojas nodo)
    (cond
-      ((null? x) 0)
-      ((hoja? x) 1)
-      (else (+ (num-hojas (car x))
-               (num-hojas (cdr x))))))
+      ((null? nodo) 0)
+      ((hoja? nodo) 1)
+      (else (+ (num-hojas (car nodo))
+               (num-hojas (cdr nodo))))))
 ```
 
-Hay que hacer notar que el parámetro `x` puede ser tanto una lista
+Hay que hacer notar que el parámetro `nodo` puede ser tanto una lista
 como un dato atómico. Estamos aprovechándonos de la característica de
 Scheme de ser débilmente tipeado para hacer un código bastante
 conciso.
@@ -669,12 +669,12 @@ y los hijos y la función para construir un árbol nuevo. Estas
 funciones proporcionarán lo que se denomina _barrera de abstracción_
 del tipo datos *árbol*.
 
-Una _barrera de abstracción_ es un conjunto de funciones que permiten
-trabajar con un tipo de datos escondiendo su implementación. Por
-convenio, en todas las funciones ponemos el mismo sufijo, el nombre
-del tipo de dato, en este caso **tree** (vamos a hacer una mezcla un
-poco extraña, escribiendo el nombre del tipo de dato en inglés, y el
-nombre de las funciones en castellano).
+En todos los nombres de las funciones de la barrera de abstracción
+añadimos el sufijo `-arbol`.
+
+Definimos dos conjuntos de funciones: constructores para construir un
+nuevo árbol y selectores para obtener los elementos del árbol. Vamos a
+empezar por los selectores.
 
 Las funciones que permiten obtener los elementos que constituyen un
 dato compuesto reciben el nombre de **selectores**.
@@ -684,35 +684,35 @@ dato compuesto reciben el nombre de **selectores**.
 Funciones que obtienen los elementos de un árbol:
 
 ```scheme
-(define (dato-tree arbol) 
+(define (dato-arbol arbol) 
     (car arbol))
 
-(define (hijos-tree arbol) 
+(define (hijos-arbol arbol) 
     (cdr arbol))
 
-(define (hoja-tree? arbol) 
-   (null? (hijos-tree arbol)))
+(define (hoja-arbol? arbol) 
+   (null? (hijos-arbol arbol)))
 ```
 
 Es importante tener claro los tipos devueltos por las dos primeras
 funciones:
 
-- `(dato-tree arbol)`: devuelve el dato de la raíz del árbol.
-- `(hijos-tree arbol)`: devuelve una lista de árboles hijos. En
+- `(dato-arbol arbol)`: devuelve el dato de la raíz del árbol.
+- `(hijos-arbol arbol)`: devuelve una lista de árboles hijos. En
   algunas ocasiones llamaremos *bosque* a una lista de árboles.
 
 Por ejemplo, en el árbol `arbol1` las funciones anteriores devuelven
 los siguientes valores:
 
 ```scheme
-(dato-tree arbol1) ; ⇒ +
-(hijos-tree arbol1) ; ⇒ {{5} {* {2} {3}} {10}}
-(hoja-tree? (car (hijos-tree arbol1))) ; ⇒ #t
+(dato-arbol arbol1) ; ⇒ +
+(hijos-arbol arbol1) ; ⇒ {{5} {* {2} {3}} {10}}
+(hoja-arbol? (car (hijos-arbol arbol1))) ; ⇒ #t
 ```
 
-- La llamada `(dato-tree arbol1)` devuelve el dato que hay en la raíz
+- La llamada `(dato-arbol arbol1)` devuelve el dato que hay en la raíz
   del árbol, el símbolo `+`
-- La invocación `(hijos-tree arbol1)` devuelve una lista de tres
+- La invocación `(hijos-arbol arbol1)` devuelve una lista de tres
   elementos, los árboles hijos: `'((5) (* (2) (3)) (10))`:
     - El primer elemento es la lista `'(5)`, que representa el árbol
       hoja formado por el `5`
@@ -721,28 +721,55 @@ los siguientes valores:
     - El tercero es la lista `'(10)`, que representa el árbol hoja
       `10`.
 - El primer elemento de la lista de hijos es un árbol hoja:
-  `(hoja-tree? (car (hijos-tree arbol1))) ⇒ #t`
+  `(hoja-arbol? (car (hijos-arbol arbol1))) ⇒ #t`
 				   
 Es muy importante considerar en cada caso con qué tipo de dato estamos
 trabajando y usar la barrera de abstracción adecuada en cada caso:
 
-- La función `hijos-tree` siempre devuelve una lista de árboles, que
+- La función `hijos-arbol` siempre devuelve una lista de árboles, que
   podemos recorrer usando `car` y `cdr`.
-- El `car` de una lista de árboles (devuelta por `hijos-tree`) siempre
+- El `car` de una lista de árboles (devuelta por `hijos-arbol`) siempre
   es un árbol y debemos de usar las funciones de su barrera de
-  abstracción: `dato-tree` e `hijos-tree`.
-- La función `dato-tree` devuelve un dato de árbol, del tipo que
+  abstracción: `dato-arbol` e `hijos-arbol`.
+- La función `dato-arbol` devuelve un dato de árbol, del tipo que
   guardemos en el árbol.
 
 Por ejemplo, para obtener el número 2 en el árbol anterior tendríamos
 que hacer lo siguiente: acceder al segundo elemento de la lista de
 hijos, después al primer hijo de éste y por último acceder a su
-dato. Recordemos que `hijos-tree` devuelve la lista de árboles hijos,
+dato. Recordemos que `hijos-arbol` devuelve la lista de árboles hijos,
 por lo que utilizaremos las funciones `car` y `cdr` para recorrerlas y
 obtener los elementos que nos interesen:
 
 ```scheme
-(dato-tree (car (hijos-tree (cadr (hijos-tree arbol1))))) ; ⇒ 2
+(dato-arbol (car (hijos-arbol (cadr (hijos-arbol arbol1))))) ; ⇒ 2
+```
+
+
+**Constructores**
+
+Funciones que permiten construir un nuevo árbol:
+
+```scheme
+(define (construye-arbol dato lista-arboles)  
+   (cons dato lista-arboles))
+```
+
+- La función `(construye-arbol dato lista-arboles)` recibe un dato y una
+  lista de árboles y devuelve un árbol formado por el dato en su raíz
+  y la lista de hijos.
+- La función `(construye-hoja-arbol dato)` recibe un dato y devuelve un
+  árbol hoja (un árbol sin hijos).
+
+El árbol anterior se puede construir con las siguientes llamadas a los
+constructores:
+
+```scheme
+(construye-arbol '+ (list (construye-hoja-arbol 5)
+                             (construye-arbol '* 
+                                        (list (construye-hoja-arbol 2)
+                                              (construye-hoja-arbol 3)))
+                             (make-hoja-tree 10)))
 ```
 
 
@@ -763,32 +790,32 @@ abstracción de listas y árboles:
 
 Vamos a diseñar las siguientes funciones recursivas:
 
-* `(suma-datos-tree tree)`: devuelve la suma de todos los nodos
-* `(to-list-tree tree)`: devuelve una lista con los datos del árbol
-* `(cuadrado-tree tree)`: eleva al cuadrado todos los datos de un
+* `(suma-datos-arbol tree)`: devuelve la suma de todos los nodos
+* `(to-list-arbol tree)`: devuelve una lista con los datos del árbol
+* `(cuadrado-arbol tree)`: eleva al cuadrado todos los datos de un
   árbol manteniendo la estructura del árbol original
-* `(map-tree f tree)`: devuelve un árbol con la estructura del árbol
+* `(map-arbol f tree)`: devuelve un árbol con la estructura del árbol
   original aplicando la función f a subdatos.
-* `(altura-tree tree)`: devuelve la altura de un árbol
+* `(altura-arbol tree)`: devuelve la altura de un árbol
 
 Todas comparten un patrón similar de recursión mutua.
 
-#### 2.2.1 `(suma-datos-tree tree)`
+#### 2.2.1 `(suma-datos-arbol tree)`
 
 Vamos a implementar una función recursiva que sume todos los datos de
 un árbol.
 
 Un árbol siempre va a tener un dato y una lista de hijos (que puede
-ser vacía) que obtenemos con las funciones `dato-tree` e
-`hijos-tree`. Podemos plantear entonces el problema de sumar los datos
+ser vacía) que obtenemos con las funciones `dato-arbol` e
+`hijos-arbol`. Podemos plantear entonces el problema de sumar los datos
 de un árbol como la suma del dato de su raíz y lo que devuelva la
 llamada a una función auxiliar que sume los datos de su lista de hijos
 (un bosque):
 
 ```scheme
-(define (suma-datos-tree tree)
-    (+ (dato-tree tree)
-       (suma-datos-bosque (hijos-tree tree))))
+(define (suma-datos-arbol tree)
+    (+ (dato-arbol tree)
+       (suma-datos-bosque (hijos-arbol tree))))
 ```
 
 Esta función suma los datos de **UN** árbol. La podemos utilizar
@@ -799,7 +826,7 @@ entonces para construir la siguiente función que suma una lista de
 (define (suma-datos-bosque bosque)
    (if (null? bosque)
        0
-       (+ (suma-datos-tree (car bosque)) (suma-datos-bosque (cdr bosque)))))
+       (+ (suma-datos-arbol (car bosque)) (suma-datos-bosque (cdr bosque)))))
 ```
 
 Tenemos una recursión mutua: para sumar los datos de una lista de
@@ -810,7 +837,7 @@ lista vacía y ésta devolverá 0.
 
 
 ```scheme
-(suma-datos-tree arbol2) ; 212⇒
+(suma-datos-arbol arbol2) ; 212⇒
 ```
 
 **Versión alternativa con funciones de orden superior**
@@ -820,19 +847,19 @@ conseguir una versión más concisa y elegante utilizando funciones de
 orden superior:
 
 ```scheme
-(define (suma-datos-tree-fos tree)
-    (+ (dato-tree tree)
-       (fold-right + 0 (map suma-datos-tree-fos (hijos-tree tree)))))
+(define (suma-datos-arbol-fos tree)
+    (+ (dato-arbol tree)
+       (fold-right + 0 (map suma-datos-arbol-fos (hijos-arbol tree)))))
 ```	
 
 La función `map` aplica la propia función que estamos definiendo a
-cada uno de los árboles de `(hijos-tree tree)`, devolviendo una lista
+cada uno de los árboles de `(hijos-arbol tree)`, devolviendo una lista
 de números. Esta lista de número la sumamos haciendo un `fold-right +
 0`. Una traza de su funcionamiento sería la siguiente:
 
 ```scheme
-(suma-datos-tree-fos '(1 (2 (3) (4)) (5) (6 (7)))) ⇒
-(+ 1 (fold-right + 0 (map suma-datos-tree-fos '((2 (3) (4)) 
+(suma-datos-arbol-fos '(1 (2 (3) (4)) (5) (6 (7)))) ⇒
+(+ 1 (fold-right + 0 (map suma-datos-arbol-fos '((2 (3) (4)) 
                                                 (5)
                                                 (6 (7)))))) ⇒
 (+ 1 (fold-right + '(9 5 13))) ⇒
@@ -840,20 +867,20 @@ de números. Esta lista de número la sumamos haciendo un `fold-right +
 28
 ```
 
-#### 2.2.2 `(to-list-tree tree)`
+#### 2.2.2 `(to-list-arbol tree)`
 
-Queremos diseñar una función `(to-list-tree tree)` que devuelva una
+Queremos diseñar una función `(to-list-arbol tree)` que devuelva una
 lista con los datos del árbol en un recorrido *preorden*.
 
 ```scheme
-(define (to-list-tree tree)
-   (cons (dato-tree tree)
-         (to-list-bosque (hijos-tree tree))))
+(define (to-list-arbol tree)
+   (cons (dato-arbol tree)
+         (to-list-bosque (hijos-arbol tree))))
 
 (define (to-list-bosque bosque)
    (if (null? bosque)
        '()
-       (append (to-list-tree (car bosque))
+       (append (to-list-arbol (car bosque))
                (to-list-bosque (cdr bosque)))))
 ```
 
@@ -867,96 +894,96 @@ de nodos del resto de árboles (que devuelve la llamada recursiva).
 Ejemplo:
 
 ```scheme
-(to-list-tree '(* (+ (5) (* (2) (3)) (10)) (- (12)))) 
+(to-list-arbol '(* (+ (5) (* (2) (3)) (10)) (- (12)))) 
 ; ⇒ (* + 5 * 2 3 10 - 12)
 ```
 
 Una definición alternativa usando funciones de orden superior:
 
 ```scheme
-(define (to-list-tree-fos tree)
-    (cons (dato-tree tree)
-          (fold-right append '() (map to-list-tree-fos (hijos-tree tree)))))
+(define (to-list-arbol-fos tree)
+    (cons (dato-arbol tree)
+          (fold-right append '() (map to-list-arbol-fos (hijos-arbol tree)))))
 ```
 
 Esta versión es muy elegante y concisa. Usa la función `map` que
 aplica una función a los elementos de una lista y devuelve la lista
-resultante. Como lo que devuelve `(hijos-tree tree)` es precisamente
+resultante. Como lo que devuelve `(hijos-arbol tree)` es precisamente
 una lista de árboles podemos aplicar a sus elementos cualquier función
 definida sobre árboles. Incluso la propia función que estamos
 definiendo (¡confía en la recursión!).
 
-#### 2.2.3 `(cuadrado-tree tree)`
+#### 2.2.3 `(cuadrado-arbol tree)`
 
-Veamos ahora la función `(cuadrado-tree tree)` que toma un árbol de
+Veamos ahora la función `(cuadrado-arbol tree)` que toma un árbol de
 números y devuelve un árbol con la misma estructura y sus datos
 elevados al cuadrado:
 
 ```scheme
-(define (cuadrado-tree tree)
-   (make-tree (cuadrado (dato-tree tree))
-                   (cuadrado-bosque (hijos-tree tree))))  
+(define (cuadrado-arbol tree)
+   (make-arbol (cuadrado (dato-arbol tree))
+                   (cuadrado-bosque (hijos-arbol tree))))  
 
 (define (cuadrado-bosque bosque)
    (if (null? bosque)
        '()
-       (cons (cuadrado-tree (car bosque))
+       (cons (cuadrado-arbol (car bosque))
                (cuadrado-bosque (cdr bosque)))))
 ```
 
 Ejemplo:
 
 ```scheme
-(cuadrado-tree '(2 (3 (4) (5)) (6))) 
+(cuadrado-arbol '(2 (3 (4) (5)) (6))) 
 ; ⇒ (4 (9 (16) (25)) (36))
 ```
 
 Versión 2, con `map`:
 
 ```scheme
-(define (cuadrado-tree tree)
-   (make-tree (cuadrado (dato-tree tree))
-   	          (map cuadrado-tree (hijos-tree tree))))
+(define (cuadrado-arbol tree)
+   (make-arbol (cuadrado (dato-arbol tree))
+   	          (map cuadrado-arbol (hijos-arbol tree))))
 ```
 
-#### 2.2.4 `map-tree`
+#### 2.2.4 `map-arbol`
 
-La función `map-tree` es una función de orden superior que generaliza
+La función `map-arbol` es una función de orden superior que generaliza
 la función anterior. Definimos un parámetro adicional en el que se
 pasa la función a aplicar a los elementos del árbol.
 
 ```scheme
-(define (map-tree f tree)
-   (make-tree (f (dato-tree tree))
-              (map-bosque f (hijos-tree tree))))  
+(define (map-arbol f tree)
+   (make-arbol (f (dato-arbol tree))
+              (map-bosque f (hijos-arbol tree))))  
 
 (define (map-bosque f bosque)
    (if (null? bosque)
        '()
-       (cons (map-tree f (car bosque))
+       (cons (map-arbol f (car bosque))
              (map-bosque f (cdr bosque)))))
 ```
 
 Ejemplos:
 
 ```scheme
-(map-tree cuadrado '(2 (3 (4) (5)) (6)))
+(map-arbol cuadrado '(2 (3 (4) (5)) (6)))
 ; ⇒ (4 (9 (16) (25)) (36))
-(map-tree (lambda (x) (+ x 1)) '(2 (3 (4) (5)) (6)))
+(map-arbol (lambda (x) (+ x 1)) '(2 (3 (4) (5)) (6)))
 ; ⇒ (3 (4 (5) (6)) (7))
 ```
 
 Con `map`:
 
 ```scheme
-(define (map-tree f tree)
-  (make-tree (f (dato-tree tree))
+(define (map-arbol f tree)
+  (make-arbol (f (dato-arbol tree))
              (map (lambda (x)
-                    (map-tree f x)) (hijos-tree tree))))
+                    (map-arbol f x)) (hijos-arbol tree))))
 ```
 
 
-#### 2.2.5. `altura-tree`
+#### 2.2.5. `altura-arbol`
 
 Vamos por último a definir una función que devuelve la altura de un
 árbol (el nivel del nodo de mayor nivel). Un nodo hoja tiene de altura
@@ -965,15 +992,15 @@ Vamos por último a definir una función que devuelve la altura de un
 Solución 1:
 
 ```scheme
-(define (altura-tree tree)
-   (if (hoja-tree? tree)
+(define (altura-arbol tree)
+   (if (hoja-arbol? tree)
        0
-       (+ 1 (max-altura-bosque (hijos-tree tree)))))  
+       (+ 1 (max-altura-bosque (hijos-arbol tree)))))  
 
 (define (max-altura-bosque bosque)
     (if (null? bosque)
         0
-        (max (altura-tree (car bosque))
+        (max (altura-arbol (car bosque))
              (max-altura-bosque (cdr bosque)))))
 ```
 
@@ -981,18 +1008,18 @@ Ejemplos:
 
 
 ```scheme
-(altura-tree '(2)) ;  ⇒ 0
-(altura-tree '(4 (9 (16) (25)) (36))) ; ⇒ 2
+(altura-arbol '(2)) ;  ⇒ 0
+(altura-arbol '(4 (9 (16) (25)) (36))) ; ⇒ 2
 ```
 
 Solución con funciones de orden superior:
 
 ```scheme
-(define (altura-tree-fos tree)
-   (if (hoja-tree? tree)
+(define (altura-arbol-fos tree)
+   (if (hoja-arbol? tree)
        0
        (+ 1 (fold-right max 0
-               (map altura-tree-fos (hijos-tree tree))))))
+               (map altura-arbol-fos (hijos-arbol tree))))))
 ```
 	
 La función `map` mapea sobre los árboles hijos la propia función que
