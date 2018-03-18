@@ -747,7 +747,7 @@ obtener los elementos que nos interesen:
 ```
 
 
-**Constructores**
+**Constructor**
 
 Definimos una función constructora que abstrae la construcción de un
 árbol y encapsula su implementación concreta. Para construir un árbol
@@ -776,8 +776,7 @@ Y para definir un árbol con 3 hijos:
                                          (construye-arbol 5 '()) 
 										 (construye-arbol 9 '())))
 ```
-El árbol 1 anterior se puede construir con las siguientes llamadas a los
-constructores:
+El árbol 1 anterior se puede construir con las siguientes llamadas al constructor:
 
 ```scheme
 (construye-arbol '+ (construye-arbol 5 '())
@@ -899,7 +898,7 @@ lista con los datos del árbol en un recorrido *preorden*.
 La función utiliza una *recursión mutua*: para listar todos los nodos,
 añadimos el dato a la lista de nodos que nos devuelve la función
 `to-list-bosque`. Esta función coge una lista de árboles (un *bosque*)
-y devuelve la lista *inorden* de sus nodos. Para ello, concatena la
+y devuelve la lista *preorden* de sus nodos. Para ello, concatena la
 lista de los nodos de su primer elemento (el primer árbol) a la lista
 de nodos del resto de árboles (que devuelve la llamada recursiva).
 
@@ -1046,7 +1045,7 @@ nivel más que el nivel máximo de los hijos).
 
 ## <a name="3"></a> 3 Arboles binarios
 
-### <a name="3-1"></a>3.1 Definición de árboles en Scheme
+### <a name="3-1"></a>3.1 Definición de árboles binarios en Scheme
 
 Los árboles binarios son árboles cuyos nodos tienen 0, 1 o 2
 hijos. Por ejemplo, el árbol mostrado en la siguiente figura es un
@@ -1107,7 +1106,7 @@ binarios. Terminamos todos los nombres de las funciones con el sufijo
 (define arbolb-vacio '())
 ```
 
-**Constructores**
+**Constructor**
 
 ```scheme
 (define (construye-arbolb dato hijo-izq hijo-der)
