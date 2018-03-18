@@ -8,7 +8,10 @@
     - [1.2 Funciones recursivas sobre listas estructuradas](#1-2)
 - [2 Árboles](#2)
     - [2.1 Definición de árboles en Scheme](#2-1)
-<!--    - [2.2 Funciones recursivas sobre árboles](#2-2) 
+    - [2.2 Funciones recursivas sobre árboles](#2-2) 
+- [3 Árboles binarios](#3)
+    - [3.1 Definición de árboles binarios en Scheme](#3-1)
+	- [3.2 Funciones recursivas sobre árboles binarios](#3-2) 
 
 ## Bibliografía - SICP
 
@@ -17,7 +20,6 @@ En este tema explicamos conceptos de los siguientes capítulos del libro *Struct
 - [1.2.2 - Tree Recursion](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-11.html#%_sec_1.2.2)
 - [2.2.2 - Hierarchical Structures](https://mitpress.mit.edu/sicp/full-text/book/book-Z-H-15.html#%_sec_2.2.2)
 
--->  
 
 ## <a name="1"></a> 1 Listas estructuradas
 
@@ -800,17 +802,17 @@ la barrera de abstracción de listas y árboles:
 
 Vamos a diseñar las siguientes funciones recursivas:
 
-* `(suma-datos-arbol tree)`: devuelve la suma de todos los nodos
-* `(to-list-arbol tree)`: devuelve una lista con los datos del árbol
-* `(cuadrado-arbol tree)`: eleva al cuadrado todos los datos de un
+* `(suma-datos-arbol arbol)`: devuelve la suma de todos los nodos
+* `(to-list-arbol arbol)`: devuelve una lista con los datos del árbol
+* `(cuadrado-arbol arbol)`: eleva al cuadrado todos los datos de un
   árbol manteniendo la estructura del árbol original
-* `(map-arbol f tree)`: devuelve un árbol con la estructura del árbol
+* `(map-arbol f arbol)`: devuelve un árbol con la estructura del árbol
   original aplicando la función f a subdatos.
-* `(altura-arbol tree)`: devuelve la altura de un árbol
+* `(altura-arbol arbol)`: devuelve la altura de un árbol
 
 Todas comparten un patrón similar de recursión mutua.
 
-#### 2.2.1 `(suma-datos-arbol tree)`
+#### 2.2.1 `(suma-datos-arbol arbol)`
 
 Vamos a implementar una función recursiva que sume todos los datos de
 un árbol.
@@ -1042,7 +1044,154 @@ la que obtenemos el máximo plegando la lista con la función `max`.
 Por último sumamos 1 para devolver la altura del árbol completo (un
 nivel más que el nivel máximo de los hijos).
 
+## <a name="3"></a> 3 Arboles binarios
 
+### <a name="3-1"></a>3.1 Definición de árboles en Scheme
+
+Los árboles binarios son árboles cuyos nodos tienen 0, 1 o 2
+hijos. Por ejemplo, el árbol mostrado en la siguiente figura es un
+árbol binario.
+
+<img src="imagenes/binario-2.png" width="300px"/>
+
+A diferencia de los árboles genéricos vistos anteriormente un árbol
+binario no puede tener más de dos hijos.
+
+Los representaremos en Scheme utilizando una lista de tres elementos:
+
+- Dato
+- Hijo izquierdo (otro árbol binario)
+- Hijo derecho (otro árbol binario)
+
+En el caso en que no exista el hijo izquierdo o el derecho (o ambos)
+utilizaremos una lista vacía para indicar un nodo vacío.
+
+De esta manera, un nodo hoja con el dato 10 se representará en Scheme con la lista:
+
+```scheme
+'(10 () ())
+```
+
+Por ejemplo, representamos el árbol de la figura anterior con la
+siguiente lista:
+
+```scheme
+'(40 (18 (3 () ())
+         (23 ()
+		     (29 () ())))
+     (52 (47 () ())
+	     ()))
+```
+
+#### 3.1.2 Barrera de abstracción ####
+
+Definimos la siguiente barrera de abstracción para los árboles
+binarios. Terminamos todos los nombres de las funciones con el sufijo
+`-arbolb` (árbol binario).
+
+**Selectores**
+
+```scheme
+(define (dato-arbolb arbol)
+   (car arbol))
+   
+(define (hijo-izq-arbolb arbol)
+   (cadr arbol))
+
+(define (hijo-der-arbolb arbol)
+   (caddr arbol))
+   
+(define (vacio-arbolb? x)
+   (null? x))
+
+(define arbolb-vacio '())
+```
+
+**Constructores**
+
+```scheme
+(define (construye-arbolb dato hijo-izq hijo-der)
+    (list dato hijo-izq hijo-der))
+```
+
+Por ejemplo, para construir un árbol con 10 en la raíz y 8 en su hijo
+izquierdo y 15 en su derecho utilizando el constructor de la barrera
+de abstracción:
+
+```scheme
+(define arbolb1
+   (construye-arbolb 10 (construye-arbolb 8 arbolb-vacio arbolb-vacio)
+                        (construye-arbolb 15 arbolb-vacio arbolb-vacio)))
+```
+
+Otro ejemplo, el árbol binario de la figura anterior utilizando el
+constructor de la barrera de abstracción:
+
+```scheme
+(define arbolb2
+   (construye-arbolb 40 
+                    (construye-arbolb 18
+                                      (construye-arbolb 3 arbolb-vacio arbolb-vacio)
+                                      (construye-arbolb 23 
+                                                        arbolb-vacio
+                                                        (construye-arbolb 29 
+                                                                          arbolb-vacio
+                                                                          arbolb-vacio)))
+                    (construye-arbolb 52
+                                      (construye-arbolb 47 arbolb-vacio arbolb-vacio)
+                                      arbolb-vacio)))
+```
+
+### <a name="3-2"></a>3.2 Funciones recursivas sobre árboles binarios
+
+Veamos las siguientes funciones recursivas sobre árboles binarios:
+
+* `(suma-datos-arbolb arbol)`: devuelve la suma de todos los nodos
+* `(to-list-arbolb arbol)`: devuelve una lista con los datos del árbol
+* `(cuadrado-arbolb arbol)`: eleva al cuadrado todos los datos de un
+  árbol manteniendo la estructura del árbol original
+
+**suma-datos-arbolb**
+
+```scheme
+(define (suma-datos-arbolb arbol)
+   (if (vacio-arbolb? arbol)
+      0
+      (+ (dato-arbolb arbol)
+         (suma-datos-arbolb (hijo-izq-arbolb arbol))
+         (suma-datos-arbolb (hijo-der-arbolb arbol)))))
+
+(suma-datos-arbolb arbolb2) ; ⇒ 212
+```
+
+
+
+**to-list-arbolb**
+
+```scheme
+(define (to-list-arbolb arbol)
+   (if (vacio-arbolb? arbol)
+      '()
+      (cons (dato-arbolb arbol)
+            (append (to-list-arbolb (hijo-izq-arbolb arbol))
+                    (to-list-arbolb (hijo-der-arbolb arbol))))))
+
+(to-list-arbolb arbolb2) ; ⇒ (40 18 3 23 29 52 47)
+```
+
+
+**cuadrado-arbolb**
+
+```scheme
+(define (cuadrado-arbolb arbol)
+   (if (vacio-arbolb? arbol)
+      arbolb-vacio
+      (construye-arbolb (cuadrado (dato-arbolb arbol))
+                        (cuadrado-arbolb (hijo-izq-arbolb arbol))
+                        (cuadrado-arbolb (hijo-der-arbolb arbol)))))
+
+(cuadrado-arbolb arbolb1) ; ⇒ (100 (64 () ()) (225 () ()))
+```
 ----
 
 Lenguajes y Paradigmas de Programación, curso 2017-18  
