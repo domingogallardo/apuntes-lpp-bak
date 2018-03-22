@@ -289,23 +289,11 @@ La definición de este caso general usando _pseudocódigo_ es:
 
 Como casos base, podemos considerar cuando la lista es vacía (el
 número de hojas es 0) y cuando la lista no es tal, sino que es un dato
-(una hoja), en cuyo caso es 1. La implementación en Scheme de la
-formulación anterior es:
+(una hoja), en cuyo caso es 1.
 
-
-```scheme
-(define (num-hojas lista)
-  (cond
-    ((null? lista) 0)
-    ((hoja? (car lista)) (+ 1 (num-hojas (cdr lista))))
-    (else (+ (num-hojas (car lista))
-             (num-hojas (cdr lista))))))
-```
-
-Podemos simplificar y hacer más elegante la función si no hacemos la
-comprobación de `hoja?` en el caso general, sino que llamamos siempre
-a la recursión por el `car` y por el `cdr`. Cuando el `car` sea una
-hoja llamaremos también a la recursión, y devolveremos 1. 
+En la implementación siguiente llamamos siempre a la recursión por el
+`car` y por el `cdr`. Si el `car` es una lista o una hoja se
+determinará dentro de esa llamada recursiva.
 
 ```scheme
 (define (num-hojas x)
