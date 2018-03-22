@@ -847,8 +847,8 @@ orden superior:
 
 ```scheme
 (define (suma-datos-arbol-fos arbol)
-    (+ (dato-arbol arbol)
-       (fold-right + 0 (map suma-datos-arbol-fos (hijos-arbol arbol)))))
+   (fold-right + (dato-arbol arbol) 
+       (map suma-datos-arbol-fos (hijos-arbol arbol)))))
 ```	
 
 La función `map` aplica la propia función que estamos definiendo a
@@ -858,11 +858,10 @@ de números. Esta lista de número la sumamos haciendo un `fold-right +
 
 ```scheme
 (suma-datos-arbol-fos '(1 (2 (3) (4)) (5) (6 (7)))) ⇒
-(+ 1 (fold-right + 0 (map suma-datos-arbol-fos '((2 (3) (4)) 
+   (fold-right + 1 (map suma-datos-arbol-fos '((2 (3) (4)) 
                                                 (5)
                                                 (6 (7)))))) ⇒
-(+ 1 (fold-right + '(9 5 13))) ⇒
-(+ 1 27) ⇒
+(fold-right + 1 '(9 5 13))) ⇒
 28
 ```
 
