@@ -1,41 +1,32 @@
 # Seminario 2: Seminario de Swift
 
-[Lenguajes y Paradigmas de Programación](https://moodle2015-16.ua.es/moodle/course/view.php?id=4802), curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
 
 ## Contenidos
 
 - [1. El lenguaje de programación Swift](#1)
 - [2. Ejecución de programas Swift](#2)
-    - [2.1. Ejecución en IBM Swift Sandbox](#2-1)
+    - [2.1. Ejecución en una máquina Docker](#2-1)
     - [2.2. Instalación en MacOs](#2-2)
     - [2.3. Instalación en Linux Ubuntu](#2-3)
-    - [2.4. Máquina Vagrant con Swift](#2-4)
-        - [2.4.1. Instalación de la máquina virtual Vagrant](#2-4-1)
-        - [2.4.2. (Windows) Conexión ssh mediante PuTTY](#2-4-2)
-        - [2.4.3. Directorio compartido entre el ordenador *host* y la máquina virtual](#2-4-3)
     - [2.5. Editor de código Atom](#2-5)
 - [3. Un tour de Swift](#3)
 
 ## <a name="0"></a> Bibliografía y referencias
 
 - Documentación sobre Swift
-    - [The Swift Programming Language (ePub)](https://swift.org/documentation/TheSwiftProgrammingLanguage(Swift3.1)
     - [The Swift Programming Language (html)](https://developer.apple.com/library/prerelease/content/documentation/Swift/Conceptual/Swift_Programming_Language/index.html)
     - [Recursos Swift en Apple](https://developer.apple.com/swift/resources/)
     - [swift.org](https://swift.org)
 - Swift Open Source
     - [Repositorio `swift` en GitHub](https://github.com/apple/swift): repositorio principal de Swift, que contiene el código fuente del compilador Swift, la biblioteca estándar y SourceKit.
     - [Repositorio `swift-evolution` en GitHub](https://github.com/apple/swift-evolution): documentos relacionados con la evolución continua de Swift, incluyendo objetivos de las próximas versiones y propuestas de cambios y extensiones de Swift.
-- Vagrant
-    - [Documentación de Vagrant](https://www.vagrantup.com/docs/)
-- Atom
-    - [Manual de Atom](https://atom.io/docs/v1.5.3/)
 
 ## <a name="1"></a> 1. El lenguaje de programación Swift
 
-Swift
-[(enlace a la Wikipedia)](https://en.wikipedia.org/wiki/Swift_(programming_language)
+Swift [(enlace a la
+Wikipedia)](https://en.wikipedia.org/wiki/Swift_(programming_language))
 es un lenguaje de programación compilado, de propósito general y
 multi-paradigma desarrollado por Apple. Swift se presentó en la
 edición 2014 de la Conferencia de Desarrolladores de Apple
@@ -46,8 +37,8 @@ diciembre de 2015 se hizo _open source_ bajo la licencia Apache 2.0,
 para las plataformas Apple y Linux. Los cambios en el lenguaje son
 propuestos y discutidos por la comunidad en un proceso denominado
 [Swift evolution](https://github.com/apple/swift-evolution). En la
-actualidad se ha estabilizado la versión 3 del lenguaje y se está
-desarrollando la versión 4 que se presentará a finales de 2017.
+actualidad se ha estabilizado la versión 4 del lenguaje y se está
+desarrollando la versión 5 que se presentará a finales de 2018.
  
 La siguiente descripción se ha extraído del repositorio GitHub de
 Swift:
@@ -69,27 +60,161 @@ Swift:
 
 ## <a name="2"></a> 2. Ejecución de programas Swift
 
-Presentamos varias posibles configuraciones para poder ejecutar programas
-Swift en cualquier sistema operativo (Mac, Windows o Linux): 
+Es posible descargar el compilador de Swift en los sistemas operativos
+Mac (utilizando el entorno de desarrollo Xcode) o Linux.
 
-- Ejecución on-line en un entorno de IBM (IBM Swift Sandbox).
-- Ejecución local en MacOS.
-- Ejecución local en Ubuntu.
-- Ejecución local en una máquina virtual Vagrant.
+Para la asignatura recomendamos utilizar una máquina Docker basada en
+la distribución Linux que hace posible su utilización en Windows y Mac
+sin instalar Xcode.
 
-### <a name="2-1"></a> 2.1. Ejecución en IBM Swift Sandbox
+A continuación explicamos las distintas formas de ejecutar programas
+Swift.
 
-IBM mantiene un entorno de edición y ejecución on-line de Swift con el
-que es posible editar, salvar y ejecutar programas Swift:
-[IBM Swift Sandbox](https://swift.sandbox.bluemix.net/). 
+### <a name="2-1"></a> 2.1. Ejecución en una máquina Docker
 
-<img src="imagenes/bluemix.png" width="700px"/>
+[Docker](https://docs.docker.com) es una tecnología que ha tenido una gran expansión en los
+últimos años. Permite construir máquinas virtuales ligeras que
+utilizan el mismo sistema operativo de la máquina host. Estas máquinas
+virtuales se denominan contenedores y, al compartir el propio sistema
+operativo en el que se están ejecutando, su gestión (construcción,
+arranque, parada, etc.) es muchísimo más rápida que las máquinas
+virtuales tradicionales.
+
+Docker se controla desde línea de comando, desde la aplicación
+Terminal de Mac o el PowerShell de Windows. Existen comandos docker
+para descargar imágenes, lanzar y parar contenedores, montar
+directorios de la máquina host en contenedores, etc. Nosotros sólo
+utilizaremos el comando `docker run` para lanzar un contenedor, pero
+te recomendamos que investigues y pruebes más comandos y que conozcas
+mejor esta interesante tecnología. Puedes empezar por la guía [Get
+started with Docker](https://docs.docker.com/get-started/).
+
+Usaremos la [imagen Docker
+swift:4.0.3](https://hub.docker.com/_/swift/), que contiene el
+comando `swift` necesario para compilar y ejecutar aplicaciones Swift.
+
+#### Instalación de Docker ####
+
+Debes instalar la versión de Docker CE (_Community Edition_)
+correspondiente a tu sistema operativo. Descárgalo [desde esta
+página](https://www.docker.com/community-edition) y sigue las
+instrucciones correspondientes a tu sistema operativo.
+
+#### Instalación y ejecución de la imagen Swift ####
+
+Una vez instalado Docker, abre un terminal y lanza el siguiente
+comando:
+
+```text
+$ docker pull swift:4.0.3
+```
+
+El comando descarga la imagen `swift:4.0.3` a nuestro ordenador. Una
+vez descargada lanzamos el contenedor con el siguiente comando:
+
+```text
+$ docker run --privileged -it --rm -v "${PWD}:/home" swift:4.0.3 /bin/bash
+```
+
+El contenedor arranca en muy pocos segundos y aparece su prompt,
+indicando que ya estás dentro de él y puedes ejecutar cualquier
+comando linux:
+
+```text
+root@97265a262a58:/# ls
+bin  boot  dev	etc  home  lib	lib64  media  mnt  opt	proc  root  run  sbin  srv  sys  tmp  usr  var
+root@97265a262a58:/# 
+```
+
+Lanzamos el intérprete de Swift con el comando `swift`:
+    
+```text
+root@97265a262a58:/# swift
+Welcome to Swift version 4.0.3 (swift-4.0.3-RELEASE). Type :help for assistance.
+1> "hola".uppercased()
+$R0: String = "HOLA"
+2>
+```
+
+Una vez hayamos terminado de trabajar podemos salir del intérprete
+de Swift y del contenedor de la siguiente forma:
+
+```text
+3> :quit
+root@97265a262a58:/# exit
+```
 
 
-Es un entorno bastante completo, que tiene la ventaja de poder usarse
-sin necesidad de realizar ninguna instalación en local. El
-inconveniente obvio es que estamos a expensas de tener una conexión a
-Internet y de que el entorno no esté caído.
+#### Directorio compartido entre el ordenador _host_ y el contenedor ####
+
+
+El argumento `-v "${PWD}:/home"` del comando anterior hace que el
+contenedor monte el directorio actual en su directorio `/home`. De
+esta forma podemos editar los programas Swift en el ordenador
+anfitrión y ejecutarlos desde línea de comando en el contenedor.
+
+Recomendamos utilizar un editor de textos orientado a la programación
+para editar los programas Swift en el ordenador anfitrión. Más
+adelante comentaremos los editores Atom y Visual Studio Code, pero
+cualquier otro editor orientado a programación te puede valer
+(Sublime, Xcode en el Mac, etc.)
+
+Vamos a probar a usar el directorio compartido:
+
+1. Editamos en el directorio actual del ordenador anfitrión un
+   programa llamado `holaMundo.swift`.
+
+**Fichero `holaMundo.swift`**:
+
+```swift
+// Primer programa Swift
+
+var str = "Mensaje"
+str = "Hola mundo!"
+print(str)
+
+// Vamos a sumar dos números
+
+var firstNumber = 2
+var secondNumber = 3
+var totalSum = firstNumber + secondNumber
+firstNumber = firstNumber + 1
+secondNumber = secondNumber + 1
+totalSum = firstNumber + secondNumber
+print("El resultado de la suma es = \(totalSum)")
+```
+
+2. Arrancamos el contenedor swift:
+
+```text
+$ docker run --privileged -it --rm -v "${PWD}:/home" swift:4.0.3 /bin/bash
+```
+
+3. Compilamos y ejecutamos el programa desde el contenedor, cambiando al directorio `/home` (el directorio compartido) y ejecutando el comando swift:
+
+```text
+root@3131534ce480:/# cd /home
+root@3131534ce480:~# swift holaMundo.swift 
+Hola mundo!
+El resultado de la suma es = 7
+```
+
+4. Prueba a cambiar cualquier cosa en el programa desde el editor en
+   el ordenador anfitrión y a volver a ejecutar el programa desde el
+   contenedor. Verás que el directorio está realmente compartido
+   y que el programa se ejecuta con las modificaciones que has
+   introducido.
+
+5. Cuando termines de trabajar con la máquina vagrant recuerda salir
+   de ella. El argumento `--rm` del comando `docker run` hace que el
+   contenedor se elimine al terminar su ejecución.
+   
+```text
+root@3131534ce480:~# exit
+exit
+~/swift $ 
+```
+
 
 ### <a name="2-2"></a> 2.2. Instalación en MacOS
 
@@ -115,203 +240,13 @@ $ tar xzf swift-<VERSION>-<PLATFORM>.tar.gz
 // Actualizar el PATH o mover usr/bin/swift al directorio /usr/bin
 ```
 
-### <a name="2-4"></a> 2.4. Máquina Vagrant con Swift
-
-Es posible también utilizar una máquina virtual Vagrant con la versión
-Linux de Swift para realizar las prácticas. De esta forma todos
-trabajaremos con el mismo entorno, independientemente del sistema
-operativo que tengamos.
-
-#### <a name="2-4-1"></a> 2.4.1. Instalación de la máquina virtual Vagrant
-
-Veamos los pasos para construir una máquina virtual Linux (Ubuntu
-14.04) con Swift gestionada por Vagrant. Funcionan tanto para Windows
-como para Mac OS X:
-
-1. Instala VirtualBox
-   [https://www.virtualbox.org/wiki/Downloads](https://www.virtualbox.org/wiki/Downloads).
-2. Instala Vagrant
-   [https://www.vagrantup.com/downloads.html](https://www.vagrantup.com/downloads.html).
-3. Crea un directorio llamado `swift` en la ruta que desees.
-4. Crea dentro de este directorio un fichero llamado `Vagrantfile` con
-   el siguiente contenido. Este fichero define la configuración base
-   de la máquina Vagrant, incluyendo el script de aprovisionamiento
-   que instala paquetes de linux y descarga e instala Swift.
-
-    **Fichero `Vagrantfile`**:
-
-    ```
-    # -*- mode: ruby -*-
-    # vi: set ft=ruby :
-
-    SWIFT_VERSION = "swift-3.0.2-RELEASE"
-    SWIFT_URL = "https://swift.org/builds/swift-3.0.2-release/ubuntu1404/swift-3.0.2-RELEASE/swift-3.0.2-RELEASE-ubuntu14.04.tar.gz"
-
-    Vagrant.configure(2) do |config|
-
-        config.vm.box = "ubuntu/trusty64"
-
-        config.vm.provider "virtualbox" do |vb|
-        # Display the VirtualBox GUI when booting the machine
-            vb.gui = false
-            # Customize the amount of memory on the VM:
-            vb.memory = "1024"
-        end
-
-        config.vm.provision "fix-no-tty", type: "shell" do |s|
-            s.privileged = false
-            s.inline = "sudo sed -i '/tty/!s/mesg n/tty -s \\&\\& mesg n/' /root/.profile"
-        end
-
-        # Aprovisionamiento inline
-        config.vm.provision "shell", inline: <<-SHELL
-            sudo apt-get -y install -f clang libicu-dev
-            wget -q #{SWIFT_URL}
-            tar xzf #{SWIFT_VERSION}-ubuntu14.04.tar.gz
-            sudo chown -R vagrant #{SWIFT_VERSION}-ubuntu14.04 
-            sudo mv #{SWIFT_VERSION}-ubuntu14.04 /usr/local 
-            echo "export PATH=/usr/local/#{SWIFT_VERSION}-ubuntu14.04/usr/bin:\"${PATH}\"" >> /home/vagrant/.bashrc
-        SHELL
-    end
-    ```
-
-5. Abre un terminal, muévete al directorio `swift` y lanza el commando
-   `vagrant up`:
-
-    ```
-    $ cd swift
-    $ vagrant up
-    ```
-
-    Este comando pone en marcha la máquina Vagrant y realiza el
-    aprovisionamiento (instalación de los paquetes iniciales) si es la
-    primera vez que lo lanzamos.
-
-6. Una vez en marcha la máquina Vagrant y realizado su
-   aprovisionamiento podemos logearnos en ella conectándonos a ella
-   por `ssh`. Si tu sistema operativo es Windows deberás conectarte a
-   la máquina usando PuTTY (ver siguiente apartado):
-
-    ```
-    $ vagrant ssh
-    Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 3.13.0-113-generic x86_64)
-    vagrant:~$
-    ```
-
-    Una vez en la máquina vagrant, lanzamos el intérprete de Swift y debe funcionar correctamente:
-    
-    ```
-    vagrant:~$ swift
-    Welcome to Swift version 3.0.2 (swift-3.0.2-RELEASE). Type :help for assistance.
-    1> 
-    ```
-
-7. Una vez hayamos terminado de trabajar, podemos salir del intérprete
-   de Swift y de vagrant de la siguiente forma:
-
-    ```
-    1> :quit
-    vagrant:~$ exit
-    $ vagrant halt
-    ```
-
-    El comando `vagrant halt` detiene la máquina virtual y la deja apagada hasta la siguiente vez que hagamos `vagrant up` 
-
-#### <a name="2-4-2"></a> 2.4.2. (Windows) Conexión ssh mediante PuTTY
-
-En Windows es conveniente instalar la utilidad
-[PuTTY](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)
-para conectarse a la máquina Vagrant mediante ssh. Una vez en marcha
-la máquina virtual (después del comando `vagrant up`), hay que
-realizar una conexión ssh con los siguientes parámetros:
-
-- Dirección IP: 127.0.0.1
-- Puerto: 2222
-- login: vagrant
-- password: vagrant
-
-
-#### <a name="2-4-3"></a> 2.4.3. Directorio compartido entre el ordenador *host* y la máquina virtual
-
-En la máquina Vagrant se monta automáticamente el directorio del
-ordenador anfitrión en el que se se encuentra el fichero `Vagrantfile`
-(el que hemos llamado `swift`). Se monta en el directorio
-`/vagrant`. Lo podemos comprobar moviéndonos a ese directorio en la
-máquina vagrant y examinando su contenido:
-
-```text
-vagrant:~$ cd /vagrant
-vagrant:~$ ls -l
--rw-r--r-- 1 vagrant vagrant  1035 Mar  6 10:21 Vagrantfile
-```
-
-De esta forma es muy cómodo editar los programas Swift en el ordenador
-anfitrión en este directorio y ejecutarlos desde línea de comando en
-la máquina Vagrant.  Recomendamos utilizar un editor de textos
-orientado a la programación (Atom, Sublime, Xcode en el Mac, etc.). En
-la siguiente sección podemos ver cómo instalar Atom.
-
-Probamos a usar el directorio compartido:
-
-1. Editamos en el directorio `swift` del ordenador anfitrión un
-   programa llamado `holaMundo.swift`.
-
-    **Fichero `holaMundo.swift`**:
-
-    ```swift
-    // Primer programa Swift
-
-    var str = "Mensaje"
-    str = "Hola mundo!"
-    print(str)
-
-    // Vamos a sumar dos números
-
-    var firstNumber = 2
-    var secondNumber = 3
-    var totalSum = firstNumber + secondNumber
-    firstNumber = firstNumber + 1
-    secondNumber = secondNumber + 1
-    totalSum = firstNumber + secondNumber
-    print("El resultado de la suma es = \(totalSum)")
-    ```
-
-2. Arrancamos la máquina vagrant y nos conectamos a ella:
-
-    ```
-    $ vagrant up
-    $ vagrant ssh
-    ```
-
-3. Lanzamos el programa desde la máquina vagrant, cambiando al directorio `/vagrant` (el directorio compartido) y ejecutando el comando swift:
-
-    ```text
-    $ cd /vagrant
-    vagrant:~$ swift holaMundo.swift
-    Hola mundo!
-    El resultado de la suma es = 7
-    ```
-
-4. Prueba a cambiar cualquier cosa en el programa desde el editor en
-   el ordenador anfitrión y a volver a ejecutar el programa desde la
-   máquina vagrant. Verás que el directorio está realmente compartido
-   y que el programa se ejecuta con las modificaciones que has
-   introducido.
-
-5. Cuando termines de trabajar con la máquina vagrant recuerda salir
-   de ella y apagarla desde el anfitrión:
-
-    ```
-    vagrant:~$ exit
-    $ vagrant halt
-    ```
-
-### <a name="2-5"></a> 2.5. Editor de código Atom
+### <a name="2-5"></a> 2.5. Editor de código
 
 Para editar código Swift puedes usar cualquier editor orientado a
-programación. Aconsejamos [Atom](https://atom.io), un editor
-desarrollado por GitHub con características muy interesantes. Puedes
-instalarlo en cualquier plataforma.
+programación. Aconsejamos [Atom](https://atom.io) o [Visual Studio
+Code](https://code.visualstudio.com). Ambos son multi-plataforma.
+
+#### Atom ####
 
 Atom es un editor modular en el que se pueden instalar múltiples
 extensiones desarrolladas por terceros. Para programar con swift es
@@ -325,7 +260,21 @@ Settings > Install Packages**):
 
 <img src="imagenes/atom.png" width="700px"/>
 
-Puedes consultar los conceptos básicos de Atom, y el manual completo en [este enlace](http://flight-manual.atom.io/getting-started/sections/atom-basics/).
+Puedes consultar los conceptos básicos de Atom y el manual completo en [este enlace](http://flight-manual.atom.io/getting-started/sections/atom-basics/).
+
+#### Visual Studio Code ####
+
+Es recomendable instalar la extensión `Swift Language` que realiza un
+coloreado de sintaxis de Swift.
+
+Para trabajar de forma más cómoda podemos abrir el terminal integrado
+**Ver > Terminal integrado** y lanzar el contenedor de Swift en ese
+terminal.
+
+<img src="imagenes/vcode.png" width="700px"/>
+
+Puedes consultar los conceptos básicos de Visual Studio Code y el
+manual completo en [este enlace](https://code.visualstudio.com/docs).
 
 ## <a name="3"></a> 3. Un tour de Swift
 
@@ -337,6 +286,10 @@ fundamentales del lenguaje. En los temas siguientes de la asignatura
 (Tema 5 - Programación Funcional con Swift y Tema 6 - Programación
 Orientada a Objetos con Swift) profundizaremos en aspectos como
 funciones, genéricos, clases o protocolos.
+
+Te recomendamos que crees un fichero llamado `seminario.swift` y que
+vayas copiando y probando en él todos los ejemplos que aparecen a
+continuación. 
 
 La tradición sugiere que el primer programa en un nuevo lenguaje
 debería imprimir las palabras "Hello, world!" en la pantalla. En
