@@ -25,20 +25,19 @@ Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad d
 
 ## <a name="1"></a> 1. El lenguaje de programación Swift
 
-Swift [(enlace a la
-Wikipedia)](https://en.wikipedia.org/wiki/Swift_(programming_language))
-es un lenguaje de programación compilado, de propósito general y
+[Swift](https://en.wikipedia.org/wiki/Swift_(programming_language)) es
+un lenguaje de programación compilado, de propósito general y
 multi-paradigma desarrollado por Apple. Swift se presentó en la
-edición 2014 de la Conferencia de Desarrolladores de Apple
-(WWDC). Durante el año 2014 se desarrolló la versión 1.2 y en la WWDC
-2015 se presentó Swift 2, una actualización importante del
-lenguaje. Inicialmente fue un lenguaje propietario, pero el 3 de
-diciembre de 2015 se hizo _open source_ bajo la licencia Apache 2.0,
-para las plataformas Apple y Linux. Los cambios en el lenguaje son
-propuestos y discutidos por la comunidad en un proceso denominado
-[Swift evolution](https://github.com/apple/swift-evolution). En la
-actualidad se ha estabilizado la versión 4 del lenguaje y se está
-desarrollando la versión 5 que se presentará a finales de 2018.
+Conferencia de Desarrolladores de Apple (WWDC) de 2014. Durante el año
+2014 se desarrolló la versión 1.2 y en la WWDC 2015 se presentó Swift
+2, una actualización importante del lenguaje. Inicialmente fue un
+lenguaje propietario, pero el 3 de diciembre de 2015 se hizo _open
+source_ bajo la licencia Apache 2.0, para las plataformas Apple y
+Linux. Los cambios en el lenguaje son propuestos y discutidos por la
+comunidad en un proceso denominado [Swift
+evolution](https://github.com/apple/swift-evolution). En la actualidad
+se ha estabilizado la versión 4 del lenguaje y se está desarrollando
+la versión 5 que se presentará a finales de 2018.
  
 La siguiente descripción se ha extraído del repositorio GitHub de
 Swift:
@@ -64,8 +63,9 @@ Es posible descargar el compilador de Swift en los sistemas operativos
 Mac (utilizando el entorno de desarrollo Xcode) o Linux.
 
 Para la asignatura recomendamos utilizar una máquina Docker basada en
-la distribución Linux que hace posible su utilización en Windows y Mac
-sin instalar Xcode.
+la distribución Linux. La utilización de la máquina Docker hace
+posible su utilización en Windows y Mac sin instalar Xcode y permite
+un entorno unificado en el que hacer las prácticas.
 
 A continuación explicamos las distintas formas de ejecutar programas
 Swift.
@@ -148,21 +148,29 @@ root@97265a262a58:/# exit
 #### Directorio compartido entre el ordenador _host_ y el contenedor ####
 
 
-El argumento `-v "${PWD}:/home"` del comando anterior hace que el
+El argumento `-v "${PWD}:/home"` del comando `docker run` hace que el
 contenedor monte el directorio actual en su directorio `/home`. De
 esta forma podemos editar los programas Swift en el ordenador
 anfitrión y ejecutarlos desde línea de comando en el contenedor.
 
 Recomendamos utilizar un editor de textos orientado a la programación
 para editar los programas Swift en el ordenador anfitrión. Más
-adelante comentaremos los editores Atom y Visual Studio Code, pero
+adelante hablaremos de los editores Atom y Visual Studio Code, pero
 cualquier otro editor orientado a programación te puede valer
 (Sublime, Xcode en el Mac, etc.)
 
 Vamos a probar a usar el directorio compartido:
 
-1. Editamos en el directorio actual del ordenador anfitrión un
-   programa llamado `holaMundo.swift`.
+1. Nos movemos en el ordenador anfitrión a un directorio en el que
+   trabajaremos con los programas en Swift:
+   
+```test
+~ $ cd swift
+~/swift $ 
+```
+
+2. Creamos en el directorio actual un programa llamado
+   `holaMundo.swift`.
 
 **Fichero `holaMundo.swift`**:
 
@@ -184,13 +192,15 @@ totalSum = firstNumber + secondNumber
 print("El resultado de la suma es = \(totalSum)")
 ```
 
-2. Arrancamos el contenedor swift:
+3. Arrancamos el contenedor swift:
 
 ```text
 $ docker run --privileged -it --rm -v "${PWD}:/home" swift:4.0.3 /bin/bash
 ```
 
-3. Compilamos y ejecutamos el programa desde el contenedor, cambiando al directorio `/home` (el directorio compartido) y ejecutando el comando swift:
+4. Compilamos y ejecutamos el programa desde el contenedor, cambiando
+   al directorio `/home` (el directorio compartido) y ejecutando el
+   comando swift:
 
 ```text
 root@3131534ce480:/# cd /home
@@ -199,14 +209,14 @@ Hola mundo!
 El resultado de la suma es = 7
 ```
 
-4. Prueba a cambiar cualquier cosa en el programa desde el editor en
+5. Prueba a cambiar cualquier cosa en el programa desde el editor en
    el ordenador anfitrión y a volver a ejecutar el programa desde el
    contenedor. Verás que el directorio está realmente compartido
    y que el programa se ejecuta con las modificaciones que has
    introducido.
 
-5. Cuando termines de trabajar con la máquina vagrant recuerda salir
-   de ella. El argumento `--rm` del comando `docker run` hace que el
+6. Cuando termines de trabajar con el contenedor Docker recuerda salir
+   de él. El argumento `--rm` del comando `docker run` hace que el
    contenedor se elimine al terminar su ejecución.
    
 ```text
@@ -380,7 +390,7 @@ elementos escribiendo el índice o la clave en los corchetes. Se
 permite una coma después del último elemento.
 
 ```swift
-var listaCompra = ["huevos", "agua", "tomates", "pant"]
+var listaCompra = ["huevos", "agua", "tomates", "pan"]
 listaCompra[1] = "botella de agua"
 
 var trabajos = [
