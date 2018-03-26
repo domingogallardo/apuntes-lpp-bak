@@ -415,7 +415,7 @@ Devuelve una lista plana con todas las hojas de la lista.
     ((hoja? x) (list x))
     (else 
      (append (aplana (car x))
-             (aplana (cdr c))))))
+             (aplana (cdr x))))))
 ```
 Por ejemplo:
 
