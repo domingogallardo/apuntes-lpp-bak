@@ -362,7 +362,7 @@ En Scheme:
 (define (altura x)
    (cond 
       ((null? x) 0)
-      ((hoja? c) 0)
+      ((hoja? x) 0)
       (else (max (+ 1 (altura (car x)))
                  (altura (cdr x))))))
 ```
@@ -478,8 +478,8 @@ Ejemplos:
 ```scheme
 (nivel-hoja 'b '(a b (c))) ; ⇒ 1
 (nivel-hoja 'b '(a (b) c)) ; ⇒ 2
-(nivel-hoja 'b '(a (b) d ((b)))) ; ⇒ 2
-(nivel-hoja 'b '(a c d ((e)))) ; ⇒ 0
+(nivel-hoja 'b '(a (b) d ((b)))) ; ⇒ 3
+(nivel-hoja 'b '(a c d ((e)))) ; ⇒ -1
 ```
 
 ```scheme
@@ -848,7 +848,7 @@ orden superior:
 ```scheme
 (define (suma-datos-arbol-fos arbol)
    (fold-right + (dato-arbol arbol) 
-       (map suma-datos-arbol-fos (hijos-arbol arbol)))))
+       (map suma-datos-arbol-fos (hijos-arbol arbol))))
 ```	
 
 La función `map` aplica la propia función que estamos definiendo a
