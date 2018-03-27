@@ -13,7 +13,104 @@ solución debe incluir:
 
 ## Ejercicios
 
-### Ejercicio 1
+
+
+### Ejercicio 1 ###
+
+a.1) Escribe la sentencia en Scheme que define el siguiente árbol
+genérico y escribe **utilizando las funciones de la barrera de
+abstracción de árboles** una expresión que devuelva el número 10.
+
+<img src="imagenes/arbol.png" width="400px"/>
+
+```
+(define arbol '(_________))
+(check-equal? __________ 10)
+```
+
+
+a.2) Escribe la sentencia en Scheme que define el siguiente árbol
+binario y escribe **utilizando las funciones de la barrera de
+abstracción de árboles binarios** una expresión que devuelva el número 29.
+
+<img src="imagenes/arbol-binario.png" width="230px"/>
+
+```
+(define arbolb '(_________))
+(check-equal? __________ 29)
+```
+
+
+b.1) Las funciones que suman los datos de un árbol utilizando
+recursión mutua y que hemos visto en teoría son las siguientes:
+
+```scheme
+(define (suma-datos-arbol arbol)
+    (+ (dato-arbol arbol)
+       (suma-datos-bosque (hijos-arbol arbol))))
+
+(define (suma-datos-bosque bosque)
+    (if (null? bosque)
+        0
+        (+ (suma-datos-arbol (car bosque)) 
+           (suma-datos-bosque (cdr bosque)))))
+```
+
+
+Si realizamos la siguiente llamada a la función `suma-datos-bosque`,
+siendo `arbol` el definido anteriormente:
+
+```scheme
+(suma-datos-bosque (hijos-arbol arbol))
+```
+
+1. ¿Qué devuelve la invocación a `(suma-datos-arbol (car bosque))` que
+  se realiza dentro de la función?
+2. ¿Qué devuelve la primera llamada recursiva a `suma-datos-bosque`?
+
+Escribe la contestación a estas preguntas como comentarios en el
+fichero de la práctica.
+
+b.2) La función de orden superior que hemos visto en teoría y que
+realiza también la suma de los datos de un árbol es:
+
+```scheme
+(define (suma-datos-arbol-fos arbol)
+   (fold-right + (dato-arbol arbol) 
+       (map suma-datos-arbol-fos (hijos-arbol arbol))))
+```	
+
+Si realizamos la siguiente llamada a la función, siendo `arbol` el
+definido anteriormente:
+
+```scheme
+(suma-datos-arbol-fos arbol)
+```
+
+1. ¿Qué devuelve la invocación a `map` dentro de la función?
+2. ¿Cuáles son las invocaciones a la función `+` que se realizan
+   durante la ejecución de `fold-right`? Enumera en orden esas
+   invocaciones, indicando sus parámetros y el valor devuelto en cada
+   una de ellas.
+
+### Ejercicio 2 ###
+
+Implementa dos versiones de la función `(to-string-arbol arbol)` que
+recibe un árbol de símbolos y devuelve la cadena resultante de
+concatenar todos los símbolos en recorrido preorden. 
+
+Una versión con recursión mutua y otra (llamada `to-string-arbol-fos`)
+con una única función en la que se use funciones de orden superior.
+
+
+```scheme
+(define arbol '(a (b (c (d)) (e)) (f)))
+(to-string-arbol arbol) ⇒ "abcdef"
+```
+
+
+
+<!--
 
 a) Utilizando recursión mutua, define la función `(cuenta-pred-tree
 pred tree)` que recibe un árbol y un predicado y cuenta todos los nodos
@@ -118,8 +215,11 @@ Ejemplos:
 (calcula-tree-op-conmutativo '(* (+ (2) (* (3) (+ (4) (* (3) (2) (2))))) (2))) ; ⇒ 100
 ```
 
+-->
+
+
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Antonio Botía, Domingo Gallardo, Cristina Pomares  
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
