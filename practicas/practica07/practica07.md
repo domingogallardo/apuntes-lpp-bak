@@ -80,8 +80,9 @@ definido en el apartado anterior:
 
 1. ¿Qué devuelve la invocación a `map` dentro de la función?
 2. ¿Qué invocaciones se realizan a la función `+` durante la ejecución
-   de `fold-right`? Enuméralas en orden, indicando sus parámetros y el
-   valor devuelto en cada una de ellas.
+   de `fold-right` sobre la lista devuelta por la invocación a `map`?
+   Enuméralas en orden, indicando sus parámetros y el valor devuelto
+   en cada una de ellas.
 
 
 b.1) Escribe la sentencia en Scheme que define el siguiente árbol
@@ -108,8 +109,8 @@ con una única función en la que se use funciones de orden superior.
 Ejemplo:
 
 ```scheme
-(define arbol '(a (b (c (d)) (e)) (f)))
-(to-string-arbol arbol) ⇒ "abcdef"
+(define arbol2 '(a (b (c (d)) (e)) (f)))
+(to-string-arbol arbol2) ⇒ "abcdef"
 ```
 
 
