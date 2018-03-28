@@ -32,20 +32,7 @@ abstracción de árboles** una expresión que devuelva el número 10.
 (check-equal? __________ 10)
 ```
 
-
-a.2) Escribe la sentencia en Scheme que define el siguiente árbol
-binario y escribe **utilizando las funciones de la barrera de
-abstracción de árboles binarios** una expresión que devuelva el número 29.
-
-<img src="imagenes/arbol-binario.png" width="230px"/>
-
-```
-(define arbolb '(_________))
-(check-equal? __________ 29)
-```
-
-
-b.1) Las funciones que suman los datos de un árbol utilizando
+a.2) Las funciones que suman los datos de un árbol utilizando
 recursión mutua y que hemos visto en teoría son las siguientes:
 
 ```scheme
@@ -62,7 +49,7 @@ recursión mutua y que hemos visto en teoría son las siguientes:
 
 
 Si realizamos la siguiente llamada a la función `suma-datos-bosque`,
-siendo `arbol` el definido en el apartado a.1):
+siendo `arbol` el definido en el apartado anterior:
 
 ```scheme
 (suma-datos-bosque (hijos-arbol arbol))
@@ -75,7 +62,7 @@ siendo `arbol` el definido en el apartado a.1):
 Escribe la contestación a estas preguntas como comentarios en el
 fichero de la práctica.
 
-b.2) La función de orden superior que hemos visto en teoría y que
+a.3) La función de orden superior que hemos visto en teoría y que
 realiza también la suma de los datos de un árbol es:
 
 ```scheme
@@ -85,7 +72,7 @@ realiza también la suma de los datos de un árbol es:
 ```	
 
 Si realizamos la siguiente llamada a la función, siendo `arbol` el
-definido en el apartado a.1):
+definido en el apartado anterior:
 
 ```scheme
 (suma-datos-arbol-fos arbol)
@@ -95,6 +82,20 @@ definido en el apartado a.1):
 2. ¿Qué invocaciones se realizan a la función `+` durante la ejecución
    de `fold-right`? Enuméralas en orden, indicando sus parámetros y el
    valor devuelto en cada una de ellas.
+
+
+b.1) Escribe la sentencia en Scheme que define el siguiente árbol
+binario y escribe **utilizando las funciones de la barrera de
+abstracción de árboles binarios** una expresión que devuelva el número 29.
+
+<img src="imagenes/arbol-binario.png" width="230px"/>
+
+```
+(define arbolb '(_________))
+(check-equal? __________ 29)
+```
+
+
 
 ### Ejercicio 2 ###
 
