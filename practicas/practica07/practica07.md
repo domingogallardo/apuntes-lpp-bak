@@ -13,6 +13,10 @@ solución debe incluir:
 
 ## Ejercicios
 
+**Importante**: Copia al principio de la práctica las funciones de las
+barreras de abstracción de árboles y árboles binarios y utiliza esas
+funciones en todos los ejercicios cuando estés realizando operaciones
+sobre árboles.
 
 
 ### Ejercicio 1 ###
@@ -58,7 +62,7 @@ recursión mutua y que hemos visto en teoría son las siguientes:
 
 
 Si realizamos la siguiente llamada a la función `suma-datos-bosque`,
-siendo `arbol` el definido anteriormente:
+siendo `arbol` el definido en el apartado a.1):
 
 ```scheme
 (suma-datos-bosque (hijos-arbol arbol))
@@ -81,27 +85,26 @@ realiza también la suma de los datos de un árbol es:
 ```	
 
 Si realizamos la siguiente llamada a la función, siendo `arbol` el
-definido anteriormente:
+definido en el apartado a.1):
 
 ```scheme
 (suma-datos-arbol-fos arbol)
 ```
 
 1. ¿Qué devuelve la invocación a `map` dentro de la función?
-2. ¿Cuáles son las invocaciones a la función `+` que se realizan
-   durante la ejecución de `fold-right`? Enumera en orden esas
-   invocaciones, indicando sus parámetros y el valor devuelto en cada
-   una de ellas.
+2. ¿Qué invocaciones se realizan a la función `+` durante la ejecución
+   de `fold-right`? Enuméralas en orden, indicando sus parámetros y el
+   valor devuelto en cada una de ellas.
 
 ### Ejercicio 2 ###
 
 Implementa dos versiones de la función `(to-string-arbol arbol)` que
 recibe un árbol de símbolos y devuelve la cadena resultante de
-concatenar todos los símbolos en recorrido preorden. 
-
-Una versión con recursión mutua y otra (llamada `to-string-arbol-fos`)
+concatenar todos los símbolos en recorrido preorden. Debes implementar
+una versión con recursión mutua y otra (llamada `to-string-arbol-fos`)
 con una única función en la que se use funciones de orden superior.
 
+Ejemplo:
 
 ```scheme
 (define arbol '(a (b (c (d)) (e)) (f)))
@@ -110,113 +113,138 @@ con una única función en la que se use funciones de orden superior.
 
 
 
-<!--
+### Ejercicio 3 ###
 
-a) Utilizando recursión mutua, define la función `(cuenta-pred-tree
-pred tree)` que recibe un árbol y un predicado y cuenta todos los nodos
-que cumplan el predicado.
+Decimos que un árbol está ordenado cuando cumple las siguientes
+propiedades:
 
-```scheme
-(cuenta-pred-tree even? '(1 (2) (3 (4) (5 (6))) (7))) ; ⇒ 3
-```
+- La raíz es mayor que las raíces de sus hijos.
+- Las raíces de sus hijos están en orden creciente.
+- Todos los hijos son árboles que están ordenados.
 
-b) Define la función anterior usando funciones de orden superior.
+Por ejemplo, en la siguiente figura, el primer árbol está ordenado. El
+segundo árbol no lo está, porque las raíces de sus hijos no están en
+orden creciente. Y el tercer árbol no lo está porque hay una raíz de
+un hijo (el único) es mayor que la propia raíz. 
 
+<img src="imagenes/arboles-ordenados.png" width="500px"/>
 
-### Ejercicio 2
-
-Define la función `(nivel-bosque nivel bosque)` que recibe dos
-argumentos: una lista de árboles y un número indicando un nivel. La
-función debe devolver una lista con los nodos del nivel indicado de
-todos los árboles. Puedes usar funciones de orden superior y/o
-recursión mutua.
-
-Ejemplo:
-
-<img src="imagenes/bosque.png" width="350px"/>
-
-```scheme
-(define bosque '((1 (2 (3))) (4 (5) (6)) (7 (8) (9 (0)))))
-(nivel-bosque 1 bosque) ; ⇒ '(2 5 6 8 9)
-```
-
-### Ejercicio 3
-
-Implementa la función `(suma-ramas-tree tree)` que reciba un árbol de
-números y devuelva una lista con cada una de las sumas de todas sus
-ramas. Puedes usar funciones de orden superior y/o recursión mutua.
-
-Ejemplo:
-
-<img src="imagenes/suma-ramas.png" width="250px"/>
-
-```scheme
-(suma-ramas-tree '(35 (10 (4) (6)) (25 (25)))) ; ⇒ '(49 51 85)
-(suma-ramas-tree '(50 (10 (4) (6)) (25 (25)))) ; ⇒ '(64 66 100)
-```
-
-### Ejercicio 4
-
-Escribe el predicado `(suma-hijos-tree? tree)` que recibe un árbol de
-números enteros y recorre el árbol devolviendo `#t` en caso de que para
-todos sus nodos (excepto los nodos hoja) se cumpla que la suma de las
-raíces de los hijos coincida con el dato del nodo. Puedes usar
-funciones de orden superior y/o recursión mutua.
-
-Ejemplos:
-
-<img src="imagenes/suma-hijos-tree.png" width="600px"/>
-
-```scheme
-(suma­-hijos-­tree? tree1) ; ⇒  #t
-(suma-­hijos-­tree? tree2) ; ⇒  #f
-(suma-hijos-tree? tree3) ; ⇒  #f
-```
-
-### Ejercicio 5
-
-a) Implementa la función `(calcula-tree tree)` que reciba como
-argumento un árbol que representa una expresión aritmética (con los
-símbolos `+`, `-`, `*` y `/` en los nodos y números en las hojas) y
-devuelva su resultado. Puedes usar funciones de orden superior,
-recursión mutua y/o funciones auxiliares.  Suponemos que todos los
-subárboles del árbol que se recibe tienen dos hijos (excepto los
-subárboles hoja).
-
-Puedes ayudarte del siguiente procedimiento:
-
-```swift
-(define (operador op)
-    (cond
-        ((equal? op '+) +)
-        ((equal? op '-) -)
-        ((equal? op '*) *)
-        ((equal? op '/) /)))
-```
+Implementa la función `(ordenado-arbol? arbol)` que compruebe si un
+árbol cumple las condiciones anteriores. Puedes usar FOS, recursión
+mutua y/o funciones auxiliares.
 
 Ejemplos:
 
 ```scheme
-(calcula-tree '(- (+ (5) (2)) (3))) ; ⇒ 4
-(calcula-tree '(* (- (2) (+ (3) (* (4) (/ (6) (2))))) (2))) ; ⇒ -26
+(ordenado-arbol? '(10 (5) (7))) ⇒ #t
+(ordenado-arbol? '(50 (10 (4) (6) (8)) (25 (15)))) ⇒ #t
+(ordenado-arbol? '(10 (8) (7))) ⇒ #f
+(ordenado-arbol? '(6 (5) (7))) ⇒ #f
+(ordenado-arbol? '(50 (10 (4) (6) (11)) (25) (15))) ⇒ #f
 ```
 
-b) Implementa la función `(calcula-tree-op-conmutativo tree)` que
-reciba como argumento un árbol que al igual que en el apartado
-anterior, representa una expresión aritmética, y debe devolver el
-resultado de su evaluación. A diferencia del apartado anterior, el
-árbol que se recibe solo contiene los operadores conmutativos `+` y
-`*`, y el número de hijos de los subárboles puede ser mayor de 2.
+### Ejercicio 4 ###
 
-Ejemplos:
+a) Implementa la función `(veces a b arbol)` que busca en el árbol arbol
+los valores a y b y devuelve una pareja con el número de veces que
+aparece a y el número de veces que aparece b. Debe recorrerse el árbol
+una única vez. Los valores a y b siempre serán distintos. Puedes usar
+recursión o funciones de orden superior.
 
-```swift
-(calcula-tree-op-conmutativo '(+ (* (5) (2) (6)) (3))) ; ⇒ 63
-(calcula-tree-op-conmutativo '(* (+ (2) (* (3) (+ (4) (* (3) (2) (2))))) (2))) ; ⇒ 100
+
+```scheme
+(define arbol '(1 (1 (1)) (2 (3) (2)) (1 (2) (3))))
+(veces 1 2 arbol) => {4 . 3}
+(veces 4 3 arbol) => {0 . 2}
+(veces 4 5 arbol) => {0 . 0}
 ```
 
--->
 
+b) Define la función `(es-camino? lista arbol)` que debe comprobar si
+la secuencia de elementos de la lista se corresponde con un camino
+del árbol que empieza en la raíz y que termina exactamente en una
+hoja. Suponemos que `lista` contiene al menos un elemento
+
+Por ejemplo, la lista ```'(a b a)``` sí que es camino en el siguiente árbol,
+pero la lista ```'(a b)``` no.
+
+<img src="imagenes/es-camino.png" width="300px"/>
+
+Ejemplos: suponiendo que `arbol` es el árbol definido por la figura
+anterior:
+
+
+```scheme
+(es-camino? '(a b a) arbol) ⇒ #t
+(es-camino? '(a b) arbol) ⇒ #f
+(es-camino? '(a b a b) arbol) ⇒ #f
+```
+
+
+c) Escribe la función `(nodos-nivel nivel arbol)` que reciba un nivel
+y un árbol genérico y devuelva una lista con todos los nodos que se
+encuentran en ese nivel.
+
+<img src="imagenes/nodos-nivel.png" width="250px"/>
+
+Ejemplos, suponiendo que `arbol` es el árbol definido por la figura anterior:
+
+```scheme
+(nodos-nivel 0 arbol) ⇒ '(1)
+(nodos-nivel 1 arbol) ⇒ '(2 6)
+(nodos-nivel 2 arbol) ⇒ '(3 5 7)
+(nodos-nivel 3 arbol) ⇒ '(4 2)
+```
+
+### Ejercicio 5 ###
+
+
+a) Define la función `(pertenece? dato arbolb)` que recibe un dato y
+un árbol binario ordenado y que busque **eficientemente** el dato (realizando
+el menor recorrido posible) en el árbol binario ordenado.
+
+```scheme
+(define arbolb '(40 (18 (3 () ())
+                        (23 ()
+                            (29 () ())))
+                    (52 (47 () ())
+                        ())))
+(pertenece? 29 arbolb) ⇒ #t
+(pertenece? 42 arbolb) ⇒ #f
+```
+
+b) Un árbol binario está ordenado cuando todos sus hijos de la rama
+izquierda son menores que el dato de la raíz y los de la rama derecha
+son mayores y, a su vez, los árboles binarios de las ramas izquierda y
+derecha también están ordenados. 
+
+Escribe el procedimiento `(ordenado-arbolb? arbolb)` que reciba un
+árbol binario como argumento y devuelva verdadero si está ordenado y
+falso si no lo está.
+
+**Pista**: Implementa como funciones auxiliares las funciones
+`(menor-arbolb arbolb)` y `(mayor-arbolb arbolb)` que devuelvan el
+menor y mayor número respectivamente de un árbol binario.
+
+<img src="imagenes/ordenado-arbolb.png" width="400px"/>
+
+
+c) Dado un árbol binario y un camino definido como una lista de símbolos:
+`'(< > = > > =)` en el que:
+
+- `<`: indica que nos vamos por la rama izquierda
+- `>`: indica que nos vamos por la rama derecha
+- `=`: indica que nos quedamos con el dato de ese nodo.
+
+Implementa la función `(camino-b-tree b-tree camino)` que devuelva una
+lista con los datos recogidos por el camino.
+
+<img src="imagenes/arbol-binario2.png" width="250px"/>
+
+```scheme
+(camino-b-tree b-tree '(= < < = > =)) ⇒ '(9 3 4)
+(camino-b-tree b-tree '(> = < < =)) ⇒ '(15 10)
+```
 
 ----
 
