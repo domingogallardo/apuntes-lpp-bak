@@ -860,8 +860,8 @@ de números. Esta lista de número la sumamos haciendo un `fold-right +
 (suma-datos-arbol-fos '(1 (2 (3) (4)) (5) (6 (7)))) ⇒
    (fold-right + 1 (map suma-datos-arbol-fos '((2 (3) (4)) 
                                                 (5)
-                                                (6 (7)))))) ⇒
-(fold-right + 1 '(9 5 13))) ⇒
+                                                (6 (7))))) ⇒
+(fold-right + 1 '(9 5 13)) ⇒
 28
 ```
 
