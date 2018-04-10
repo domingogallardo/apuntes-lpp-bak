@@ -700,7 +700,6 @@ func devuelveSuma() -> (() -> Int) {
         y += 5
         return y
     }
-    suma()
     return suma
 }
 
@@ -861,8 +860,8 @@ class Cuadrado: FiguraConNombre {
     }
 }
 let test = Cuadrado(longitudLado: 5.2, nombre: "Mi cuadrado de prueba")
-test.area()
-test.descripcionSencilla()
+print(test.area())
+print(test.descripcionSencilla())
 ```
 
 > EXPERIMENTO  
@@ -1008,6 +1007,7 @@ inicializador devolverá `nil`.
 ```swift
 if let valorConvertido = Valor(rawValue: 3) {
     let descripcionTres = valorConvertido.descripcionSencilla()
+    print(descripcionTres)
 }
 ```
 
@@ -1181,7 +1181,7 @@ Otro ejemplo usando una función:
 ```swift
 extension Int { 
     func repetir(task: () -> ()) { 
-        for i in 0...self { 
+        for _ in 0...self { 
             task() 
         } 
     } 
@@ -1226,7 +1226,7 @@ func itemRepetido<Item>(_ item: Item, numeroDeVeces: Int) -> [Item] {
     }
     return resultado
 }
-itemRepetido("knock", numeroDeVeces:4)
+print(itemRepetido("knock", numeroDeVeces:4))
 ```
 
 Puedes hacer formas genéricas de funciones y métodos, así como de
@@ -1242,3 +1242,27 @@ var posibleInteger: ValorOpcional<Int> = .ninguno
 posibleInteger = .alguno(100)
 ```
 
+Es posible usar `where` justo antes del cuerpo para especificar una
+lista de requisitos. Por ejemplo, para requerir el tipo que debe
+implementar un protocolo, para requerir que dos tipos sean los mismos
+o para requerir que una clase tenga una superclase determinada.
+
+
+```swift
+
+func elementosComunes<T: Sequence, U: Sequence>(_ izq: T, _ der: U) -> Bool
+    where T.Iterator.Element: Equatable, T.Iterator.Element == U.Iterator.Element {
+        for izqItem in izq {
+            for derItem in der {
+                if izqItem == derItem {
+                    return true
+                }
+            }
+        }
+        return false
+}
+
+print(elementosComunes([1, 2, 3], [3]))
+```
+
+Si se escribe `<T: Equatable>` es equivalente a escribir `<T> ... where T: Equatable`.
