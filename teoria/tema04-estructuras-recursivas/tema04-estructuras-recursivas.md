@@ -762,15 +762,15 @@ Y para definir un árbol con 3 hijos:
 ```scheme
 (define arbol4 (construye-arbol 10 (list (construye-arbol 2 '())
                                          (construye-arbol 5 '()) 
-										 (construye-arbol 9 '())))
+                                         (construye-arbol 9 '())))
 ```
 El árbol 1 anterior se puede construir con las siguientes llamadas al constructor:
 
 ```scheme
-(construye-arbol '+ (construye-arbol 5 '())
-                    (construye-arbol '* (list (construye-arbol 2 '())
-                                              (construye-arbol 3 '())))
-                    (construye-arbol 10 '()))
+(construye-arbol '+ (list (construye-arbol 5 '())
+                          (construye-arbol '* (list (construye-arbol 2 '())
+                                                    (construye-arbol 3 '())))
+                          (construye-arbol 10 '()))
 ```
 
 #### 2.1.3 Diferencia entre árboles y listas estructuradas
@@ -936,12 +936,12 @@ Ejemplo:
 ; ⇒ (4 (9 (16) (25)) (36))
 ```
 
-Versión 2, con `map`:
+Versión 2, con la función de orden superior `map`:
 
 ```scheme
-(define (cuadrado-arbol arbol)
+(define (cuadrado-arbol-fos arbol)
    (construye-arbol (cuadrado (dato-arbol arbol))
-   	                (map cuadrado-arbol (hijos-arbol arbol))))
+   	                (map cuadrado-arbol-fos (hijos-arbol arbol))))
 ```
 
 #### 2.2.4 `map-arbol`
@@ -974,10 +974,10 @@ Ejemplos:
 Con `map`:
 
 ```scheme
-(define (map-arbol f arbol)
+(define (map-arbol-fos f arbol)
   (construye-arbol (f (dato-arbol arbol))
              (map (lambda (x)
-                    (map-arbol f x)) (hijos-arbol arbol))))
+                    (map-arbol-fos f x)) (hijos-arbol arbol))))
 ```
 
 
@@ -1087,9 +1087,13 @@ binarios. Terminamos todos los nombres de las funciones con el sufijo
 (define (hijo-der-arbolb arbol)
    (caddr arbol))
    
-(define (vacio-arbolb? x)
-   (null? x))
+(define (vacio-arbolb? arbol)
+   (null? arbol))
 
+(define (hoja-arbolb? arbol)
+   (and (vacio-arbolb? (hijo-izq-arbolb arbol))
+        (vacio-arbolb? (hijo-der-arbolb arbol))))
+   
 (define arbolb-vacio '())
 ```
 
