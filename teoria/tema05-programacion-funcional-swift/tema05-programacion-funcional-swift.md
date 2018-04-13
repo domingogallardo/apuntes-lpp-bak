@@ -9,11 +9,12 @@
 - [4. Recursión](#4)
 - [5. Tipos](#5)
 - [6. Opcionales](#6)
+<!--
 - [7. Inmutabilidad](#7)
 - [8. Clausuras](#8)
 - [9. Funciones de orden superior](#9)
 - [10. Genéricos](#10)
-
+-->
 ----
 
 ### Bibliografía
@@ -29,17 +30,12 @@
 
 ### <a name="1"></a> 1. Introducción
 
-Te recomendamos que leas los primeros apartados del
+Te recomendamos que leas el
 [seminario de Swift](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md),
 en el que se introduce el lenguaje y se explica cómo ejecutar
 programas en este lenguaje:
 
 - [El lenguaje de programación Swift](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md#-1-el-lenguaje-de-programación-swift)
-- [Ejecución de programas Swift en IBM Swift Sandbox](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md#-21-ejecución-en-ibm-swift-sandbox)
-- [Valores simples (primer apartado de Un tour de Swift)](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md#valores-simples)
-
-De esta forma podrás probar los distintos ejemplos que presentamos en
-este tema.
 
 Swift es un lenguaje principalmente imperativo, pero en su diseño se
 han introducido conceptos modernos de programación funcional,
@@ -427,60 +423,38 @@ y el resto de la siguiente forma.
 
 ```swift
 let a = [10, 20, 30, 40, 50, 60]
-let primero = a[0]
-let resto = a[1..<a.endIndex]
+let primero = a.first!
+let resto = a.dropFirst()
 ```
 
-En `resto` se guarda un `ArraySlice`. Es una vista de un rango de
-elementos del array, en este caso el que va desde la posición 1 hasta
-la 5 (la posición inicial de un array es la 0).
+En `primero` se guarda el número 10. El símbolo `!` sirve para
+_desenvolver el opcional_ que devuelve `first` (veremos después este
+concepto).
 
-Un `ArraySlice` puede situarse sobre cualquier zona de un array. Por
-ejemplo:
+En `resto` se guarda un `ArraySlice` del 20 al 60. Es una vista de un
+rango de elementos del array, en este caso el que va desde la posición
+1 hasta la 5 (la posición inicial de un array es la 0).
+
+Un `ArraySlice` en un un `Array`:
 
 ```swift
-let b = a[2...3]
-// b: ArraySlice<Int> = 2 values {
-//  [2] = 30
-//  [3] = 40
-//}
+let resto = Array(a.dropFirst())
 ```
 
-Podemos acceder al primer elemento de un `ArraySlice` usando su
-atributo `startIndex`:
+De esta forma podemos definir la función recursiva que suma los
+valores de un Array de la siguiente forma:
 
 ```swift
-print(b.startIndex) // => 2
-print(b[b.startIndex]) // => 3
-```
-
-Para trabajar con funciones recursivas de una forma similar a cómo lo
-hacíamos con las listas de Scheme vamos a ir cambiando el rango
-conforme nos movemos por el `ArraySlice`. Iremos obteniendo el primer
-elemento de la colección y avanzando el índice de comienzo, de forma
-similar a como hacíamos con las funciones _car_ y _cdr_ (o _primero_ y
-_resto_):
-
-```
-let primero = valores[valores.startIndex]
-let resto = valores[valores.startIndex+1..<valores.endIndex]
-```
-
-De esta forma podemos definir una función recursiva que recorre un
-`ArraySlice`:
-
-```swift
-func sumaValores(valores: ArraySlice<Int>) -> Int {
-  if valores.isEmpty {
-    return 0
+func sumaValores(_ valores: [Int]) -> Int {
+  if let primero = valores.first {
+      let resto = Array(valores.dropFirst())
+      return primero + sumaValores(resto)
   } else {
-    let primero = valores[valores.startIndex]
-    let resto = valores[valores.startIndex+1..<valores.endIndex]
-    return primero + sumaValores(valores: resto)
+      return 0
   }
 }
-print(sumaValores(valores: [1,2,3,4,5,6,7,8]))
-// 36
+
+print(sumaValores([1,2,3,4,5,6,7,8])) // 36
 ```
 
 Veremos que las colecciones en Swift implementan funciones de orden
@@ -785,17 +759,16 @@ Podemos definir también una función recursiva `makeLista(array:[Int])`
 que devuelve una lista a partir de una array de enteros:
 
 ```swift
-func makeLista(array: ArraySlice<Int>) -> Lista {
- if (array.isEmpty) {
-   return .vacia
- } else {
-   let primero = array[array.startIndex]
-   let resto = array[array.startIndex+1..<array.endIndex]
-   return .cons(primero, makeLista(array: resto))
- }
+func make(lista: [Int]) -> Lista {
+    if let primero = lista.first {
+        let resto = Array(lista.dropFirst())
+        return Lista.cons(primero, make(lista: resto))
+    } else {
+        return Lista.vacia
+    }
 }
 
-let lista = makeLista(array: [1,2,3,4,5])
+let lista = make(lista: [1,2,3,4,5])
 
 print(suma(lista: lista))
 // Imprime 15
@@ -914,7 +887,8 @@ unwrapping_) del valor opcional:
 
 ```swift
 if numeroConvertido != nil {
-    print("numeroConvertido tiene un valor entero de \(numeroConvertido!).")
+    let numero = numeroConvertido!
+    print("numeroConvertido tiene un valor entero de \(numero).")
 }
 // Imprime "numeroConvertido tiene un valor entero de 123."
 ```
