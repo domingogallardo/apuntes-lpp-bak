@@ -39,7 +39,7 @@ proporcionalmente a este número máximo.
 
 
 ```swift
-let respuestas = [0,0,1,1,2,1,2,3,5,8,1,8,2,2,2,6,8]
+let respuestas = [0,0,1,1,2,1,2,3,5,8,1,8,2,2,2,6]
 print("Valores: \(respuestas)" )
 let frec = obtenerFrecuencias(respuestas: respuestas)
 print("Frecuencias: \(frec)")
