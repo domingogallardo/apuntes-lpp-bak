@@ -476,7 +476,7 @@ var cadenaOpcional: String? = "Hola"
 print(cadenaOpcional == nil)
 
 var nombreOpcional: String? = "John Appleseed"
-var saludo = "Hello!"
+var saludo = "Hola!"
 if let nombre = nombreOpcional {
     saludo = "Hola, \(nombre)"
 }
@@ -520,9 +520,6 @@ switch verdura {
 
 > EXPERIMENTO  
 > Intenta eliminar el caso por defecto. ¿Qué error obtienes?
-
-Date cuenta de cómo `let` puede usarse en un patrón para asignar a una
-constante el valor que empareja esa parte del patrón.
 
 Después de ejecutar el código dentro del caso que se empareja, el
 programa sale de la sentencia `switch`. La ejecución no continua con
@@ -730,7 +727,7 @@ Las funciones son en la realidad un caso especial de clausuras:
 bloques de código que pueden ser llamados después.  El código en la
 clausura tiene acceso a cosas como variables y funciones que estaban
 disponibles en el ámbito (*scope*) en el que se creó la clausura,
-incluso si la clausura se está en un ámbito distinto cuando se
+incluso si la clausura está en un ámbito distinto cuando se
 ejecuta; ya viste un ejemplo de esto con las funciones
 anidadas. Puedes escribir una clausura rodeando el código con llaves
 (`{}`). Usa `in` para separar los argumentos del cuerpo.
