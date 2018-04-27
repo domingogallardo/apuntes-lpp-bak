@@ -1,4 +1,4 @@
-## Práctica 8: Introducción y programación funcional en Swift
+## Práctica 8: Programación funcional en Swift (1)
 
 Para entregar la práctica debes subir a Moodle el fichero
 `practica08.swift` con una cabecera inicial con tu nombre y apellidos,
