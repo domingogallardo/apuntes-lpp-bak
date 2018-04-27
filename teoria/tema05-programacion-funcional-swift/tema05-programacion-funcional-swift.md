@@ -9,12 +9,10 @@
 - [4. Recursión](#4)
 - [5. Tipos](#5)
 - [6. Opcionales](#6)
-<!--
 - [7. Inmutabilidad](#7)
 - [8. Clausuras](#8)
 - [9. Funciones de orden superior](#9)
 - [10. Genéricos](#10)
--->
 ----
 
 ### Bibliografía
@@ -24,7 +22,9 @@
     - [Collection Types](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/CollectionTypes.html#//apple_ref/doc/uid/TP40014097-CH8-ID105)
     - [Functions](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Functions.html#//apple_ref/doc/uid/TP40014097-CH10-ID158)
     - [Closures](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Closures.html#//apple_ref/doc/uid/TP40014097-CH11-ID94)
-    - [Enumerations](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145)
+    -
+      [Enumerations](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Enumerations.html#//apple_ref/doc/uid/TP40014097-CH12-ID145)
+    - [Generics](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179)
 - [Biblioteca estándar de Swift](https://developer.apple.com/library/ios/documentation/General/Reference/SwiftStandardLibraryReference/)
 
 
@@ -1107,11 +1107,22 @@ referencia. Comentaremos más diferencias en el tema de programación
 orientada a objetos.
 
 
-### <a name="8"></a> 8. Expresiones de clausuras
+### <a name="8"></a> 8. Clausuras
 
 Ya hemos visto previamente que en Swift las funciones son objetos de
 primera clase del lenguaje y que es posible definir funciones y
-pasarlas como parámetro de otras funciones.
+pasarlas como parámetro de otras funciones. 
+
+También es posible construir clausuras, funciones definidas en el
+ámbito de otras funcionas y devueltas como resultados.
+
+Veremos primero cómo definir de forma compacta funciones que se pasan
+como parámetro de otras, utilizando _expresiones de clausuras_. Y
+después veremos cómo las clausuras definidas en el interior de otras
+funciones capturan las variables definidas en el ámbito de la función principal.
+
+
+#### Expresiones de clausuras ####
 
 Swift permite definir expresiones compactas con las que construir
 estas funciones que se pasan como parámetro de otras funciones. Se
@@ -1456,6 +1467,51 @@ incrementaDiez()
 // devuelve 40
 ```
 
+#### Mutación de variables capturadas ####
+
+Las clausuras también pueden modificar el valor de las variables
+capturadas. Veamos un ejemplo:
+  
+```swift
+
+var x = 1
+
+func construyeFunc() -> (Int) -> Int {
+    var x = 10
+
+    func prueba(_ a: Int) -> Int {
+        x = a + x
+        return x
+    }
+    return prueba
+}
+
+let f = construyeFunc()
+print(f(10)) // Imprime 20
+print(f(10)) // Imprime 30
+let g = construyeFunc()
+print(g(10)) // Imprime 20
+print(x) // Imprime 1
+```
+
+La clausura `prueba` **captura la variable `x` definida en el ámbito
+de `construyeFunc`** y la utiliza en su cuerpo. La variable capturada
+queda ligada a la clausura y es utilizada cada vez que la clausura se
+invoca.
+
+En la primera invocación a la clausura se pasa como parámetro `a` el
+valor 10, que se suma a la variable capturada. De esta forma la
+variable capturada pasa a valer 20.
+
+En la segunda invocación a la clausura el valor de `x` será 20, por lo
+que devolverá 30.
+
+La segunda vez que llamamos a `construyeFunc` se crea un nuevo ámbito
+local con una nueva variable `x` que se inicializa a 10. Esa nueva
+variable es el que captura la nueva clausura que se devuelve. Por eso
+al invocarla (en la llamada `g(10)`) se devuelve 20.
+
+
 #### Las clausuras son tipos de referencia
 
 En el ejemplo anterior, `incrementaSiete` e `incrementaDiez` son
@@ -1731,6 +1787,6 @@ print(vacia(cdr(cdr(cdr(lista)!)!)!)) // Imprime true
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016–17  
+Lenguajes y Paradigmas de Programación, curso 2017–18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Domingo Gallardo
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
