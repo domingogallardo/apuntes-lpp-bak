@@ -39,7 +39,7 @@ proporcionalmente a este número máximo.
 
 
 ```swift
-let respuestas = [0,0,1,1,2,1,2,3,5,8,1,8,2,2,2,6]
+let respuestas = [0,0,1,1,2,1,2,3,5,1,2,2,2,6]
 print("Valores: \(respuestas)" )
 let frec = obtenerFrecuencias(respuestas: respuestas)
 print("Frecuencias: \(frec)")
@@ -74,7 +74,7 @@ Histograma
 ### Ejercicio 2 ###
 
 Implementa en Swift la **función recursiva**
-`compruebaParejas(_:funcion)` con el siguiente perfil:
+`compruebaParejas(_:funcion:)` con el siguiente perfil:
 
 ```
 ([Int], (Int) -> Int) -> [(Int, Int)]
@@ -100,15 +100,18 @@ print(compruebaParejas([2, 4, 16, 5, 10, 100, 105], funcion: cuadrado))
 ### Ejercicio 3 ###
 
 Implementa en Swift un tipo enumerado recursivo que permita construir
-árboles binarios de enteros. El enumerado debe tener un caso en el que
-guardar tres valores (un `Int`, y dos árboles binarios: el hijo
-izquierdo y el hijo derecho) y otro caso constante: un árbol binario
-vacío. Llamaremos al tipo `ArbolBinario` y a los casos `nodo` y `vacio`.
+árboles binarios de enteros. El enumerado debe tener 
+
+- un caso en el que guardar tres valores: un `Int` y dos árboles
+binarios (el hijo izquierdo y el hijo derecho)
+- otro caso constante: un árbol binario vacío 
+
+Llamaremos al tipo `ArbolBinario` y a los casos `nodo` y `vacio`.
 
 Impleméntalo de forma que el siguiente ejemplo funcione correctamente:
 
 ```swift
-let arbol: ArbolBinario = .nodo(8, .nodo(2, .vacio, .vacio), .node(12, .vacio, .vacio))
+let arbol: ArbolBinario = .nodo(8, .nodo(2, .vacio, .vacio), .nodo(12, .vacio, .vacio))
 ```
 
 Implementa también la función `suma(arbolb:)` que reciba una instancia de
@@ -122,7 +125,7 @@ print(suma(arbolb: arbol))
 ### Ejercicio 4 ###
 
 Implementa en Swift la **función recursiva**
-`coinciden(parejas: [(Int,Int)]>, funcion: (Int)->Int)` que devuelve
+`coinciden(parejas: [(Int,Int)], funcion: (Int)->Int)` que devuelve
 un array de booleanos que indica si el resultado de aplicar la función
 al primer número de cada pareja coincide con el segundo.
 
@@ -207,7 +210,7 @@ func esPar(x: Int) -> Bool {
 }
 
 print("La suma del árbol genérico es: \(suma(arbol: arbol10, cumplen: esPar))")
-// Imprime: 36
+// Imprime: La suma del árbol genérico es: 28
 ```
 
 
