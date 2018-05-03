@@ -1678,6 +1678,30 @@ cadenas.reduce("", +)
 // devuelve "PatatasArrozHuevos"
 ```
 
+#### Combinación de funciones de orden superior ####
+
+Cuando el resultado de aplicar una función de orden superior a una
+colección es otra colección es posible aplicar otra función de
+orden superior a este resultado.
+
+Por ejemplo, la siguiente sentencia devuelve todos los números pares
+del array inicial elevados al cuadrado:
+
+
+```swift
+let numeros = [1,2,3,4,5,6,7,8,9,10]
+numeros.filter{$0 % 2 == 0}.map{$0*$0}
+// Devuelve el array [4,16,36,64,100]
+```
+
+Y la siguiente devuelve la suma números mayores de 100:
+
+```swift
+let numeros = [103, 2, 330, 42, 532, 6, 125]
+numeros.filter{$0 >= 100}.reduce(0,+)
+// Devuelve 1090
+```
+
 
 ### <a name="10"></a> 10. Genéricos
 
