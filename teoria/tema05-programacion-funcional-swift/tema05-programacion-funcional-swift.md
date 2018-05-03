@@ -921,6 +921,21 @@ Podemos leer el código anterior de la siguiente forma: "Si el `Int`
 opcional devuelto por `Int(posibleNumero)` contiene un valor, define
 la constante `numeroVerdadero` con el valor contenido en el opcional".
 
+Si tenemos **varios opcionales** es posible comprobar que todos ellos son
+distintos de `nil` usando varios `let` en el mismo `if`:
+
+```swift
+var x1: Int? = pedirNumUsuario()
+var x2: Int? = pedirNumUsuario()
+var x3: Int? = pedirNumUsuario()
+if let dato1 = x1, let dato2 = x2, let dato3 = x3 {
+   let suma = dato1+dato2+dato3
+   print("Ningún nil y la suma de todos los datos es: \(suma)")
+} else {
+   print("Algún dato del usuario es nil")
+}
+```
+
 
 #### Ejemplos de uso de opcionales
 
