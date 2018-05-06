@@ -25,12 +25,12 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 - [4. Métodos](#4)
 - [5. Herencia](#5)
 - [6. Inicialización](#6)
-- [7. Protocolos](#7)
+<!--- [7. Protocolos](#7)
 - [8. Casting de tipos](#8)
 - [9. Extensiones](#9)
 - [10. Funciones operador](#10)
 - [11. Genericos](#11)
-
+-->
 
 ----
 
@@ -42,12 +42,12 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
     - [Methods](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID234)
     - [Inheritance](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID193=)
     - [Initialization](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID203)
-    - [Protocolos](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267)
+<!--    - [Protocolos](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267)
     - [Casting de tipos](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338)
     - [Extensiones](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151)
     - [Funciones operador](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28)
     - [Genéricos](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179)
-
+-->
 
 ### <a name="1"></a> 1. Introducción, historia y características de la Programación Orientada a Objetos
 
@@ -210,34 +210,40 @@ struct UnaEstructura {
 ```
 
 ```swift
-struct Resolucion {
-    var ancho = 0
-    var alto = 0
+struct CoordsPantalla {
+    var posX = 0
+    var posY = 0
 }
-class ModoVideo {
-    var resolucion = Resolucion()
-    var entrelazado = false
-    var frameRate = 0.0
-    var nombre: String?
+
+class Ventana {
+    var esquina = CoordsPantalla()
+    var altura = 0
+    var anchura = 0
+    var visible = true
+    var etiqueta: String?
 }
 ```
 
-El ejemplo define una nueva estructura llamada `Resolucion`, que
-describe una resolución de una pantalla basada en píxeles. La
-estructura tiene dos propiedades almacenadas llamadas `ancho` y
-`alto`. Las propiedades son constantes o variables que se almacenan en
-la instancia de la clase o de la estructura. El compilador infiere que
-estas dos propiedades son `Int` al inicializarlas a los valores
-iniciales de 0.
+El ejemplo define una nueva estructura llamada `CoordsPantalla`, que
+describe una coordenada de pantalla con posiciones basadas en
+píxeles. La estructura tiene dos propiedades almacenadas llamadas
+`posX` y `posY`. Las propiedades son constantes o variables que se
+almacenan en la instancia de la clase o de la estructura. El
+compilador infiere que estas dos propiedades son `Int` al
+inicializarlas a los valores iniciales de 0.
 
-El ejemplo también define una nueva clase llamada `ModoVideo` que
-describe un modo de vídeo específico para una pantalla de vídeo. Esta
-clase tiene cuatro propiedades variables. La primera, `resolucion`, se
-inicializa con una instancia nueva de una estructura `Resolucion` y se
-infiere que es de tipo `Resolucion`. El resto de propiedades son
-`entrelazado`, un `Bool` que se inicializa a `false`, `frameRate`, un
-`Double` que se inicializa a 0.0 y `nombre`, un `String` opcional que
-se inicializa a `nil` porque no se le asigna un valor inicial.
+El ejemplo también define una nueva clase llamada `Ventana` que
+describe una ventana en una pantalla. Esta clase tiene cinco
+propiedades variables. La primera, `esquina`, se inicializa con una
+instancia nueva de una estructura `CoorsPantalla` y se infiere que es
+de tipo `CoordsPantalla`. Representa la posición superior izquierda de
+la pantalla. Las propiedades `altura` y `anchura` representan el
+número de píxeles de las dimensiones de la pantalla. Se inicializan
+a 0. La propiedad `visible` es un `Bool` que indica si la ventana es
+visible en pantalla. Por ejemplo, una ventana que esté minimizada no
+será visible. Por último, `etiqueta` representa el nombre que aparece
+en la parte superior de la ventana. Es un `String` opcional que se
+inicializa a `nil` porque no se le asigna un valor inicial.
 
 #### Instancias de clases y estructuras
 
@@ -248,8 +254,8 @@ instancia de una estructura o una clase. La sintaxis para crear ambas
 es similar:
 
 ```swift
-let unaResolucion = Resolucion()
-let unModoVideo = ModoVideo()
+let unasCoordsPantalla = CoordsPantalla()
+let unaVentana = Ventana()
 ```
 
 La forma más sencilla de inicialización es la anterior. Se utiliza el
@@ -267,13 +273,13 @@ Se puede acceder y modificar las propiedades usando la _sintaxis de
 punto_:
 
 ```swift
-print("El ancho de unaResolucion es \(unaResolucion.ancho)")
-// Imprime "El ancho de unaResolucion es 0
-print("El ancho de unModoVideo es \(unModoVideo.resolucion.ancho)")
-// Imprime el ancho de unModoVideo es 0
-unModoVideo.resolucion.ancho = 1280
-print("El ancho de unModoVideo es ahora \(unModoVideo.resolucion.ancho)")
-// Imprime "El ancho de unModoVideo es ahora 1280"
+print("La posición x de unasCoordsPantalla es \(unasCoordsPantalla.posX)")
+// Imprime "La posición x de unasCoordsPantalla es 0"
+print("La posición y de la esquina de la venana es \(unaVentana.esquina.posY)")
+// Imprime "La posición y de la esquina de la venana es 0")
+unaVentana.esquina.posY = 900
+print("La posición y de la esquina de la venana es ahora \(unaVentana.esquina.posY)")
+// Imprime "La posición y de la esquina de la venana es ahora 900")
 ```
 
 #### Inicialización de las estructuras por sus propiedades
@@ -283,7 +289,7 @@ en el que damos valor a todas sus propiedades. En las clases no se
 puede usar esta inicialización por defecto.
 
 ```swift
-let vga = Resolucion(ancho: 640, alto: 480)
+let coords = CoordsPantalla(posX: 200, posY: 400)
 ```
 
 #### Estructuras y enumeraciones son tipos valor
@@ -297,28 +303,26 @@ estructuras. Las estructuras y las enumeraciones son tipos valor en
 Swift.
 
 ```swift
-let hd = Resolucion(ancho: 1920, alto: 1080)
-var cine = hd
-cine.ancho = 2048
-print("cine tiene ahora \(cine.ancho) píxeles de ancho")
-// Imprime "cine tiene ahora 2048 píxeles de ancho"
-print("hd tiene todavía \(hd.ancho) píxeles de ancho")
-// Imprime "hd tiene todavía 1920 píxeles de ancho"
+let coords1 = CoordsPantalla(posX: 600, posY: 600)
+var coords2 = coords1
+coords2.posX = 1000
+print("coords2 tiene ahora como posición x: \(coords2.posX)")
+// imprime: "coords2 tiene ahora como posición x: 1000"
+print("coords1 tiene todavía la posición x: \(coords1.posX)")
+// imprime: "coords1 tiene todavía la posición x: 600"
 ```
 
-En el ejemplo se declara una constante llamada `hd` y se asigna a una
-instancia de `Resolucion` inicializada con el ancho y el alto del
-vídeo full HD (1920x1080). Después se declara una variable llamada
-`cine` y se asigna al valor actual de `hd`. Debido a que `Resolucion`
+En el ejemplo se declara una constante llamada `coords1` y se asigna a una
+instancia de `CoordsPantalla` inicializada con la posición x de 600 y
+la posición y de 600. Después se declara una variable llamada
+`coords2` y se asigna al valor actual de `coors1`. Debido a que `CoordsPantalla`
 es una estructura, se crea _una copia_ de la instancia existente y
-esta nueva copia se asigna a `cine`. Aunque ahora `cine` y `hd` tienen
-el mismo `ancho` y `alto`, son dos instancias completamente
-distintas. Después, la propiedad `ancho` de `cine` se actualiza para
-que tenga el valor del estándar 2K usado para proyecciones de cine
-digital (2048x1080).
+esta nueva copia se asigna a `coords2`. Aunque ahora `coords2` y `coords1` tienen
+las mismas `posX` y `posY`, son dos instancias completamente
+distintas. Después, la propiedad `posX` de `coords2` se actualiza a 1000.
 
-Podemos comprobar que la propiedad se modifica, pero que el valor del
-ancho en `hd` sigue siendo el mismo.
+Podemos comprobar que la propiedad se modifica, pero que el valor de
+`posX` en `coords1` sigue siendo el mismo.
 
 #### Las clases son tipos referencia
 
@@ -329,47 +333,44 @@ referencia a la misma instancia existente.
 Veamos un ejemplo:
 
 ```swift
-let diezOchenta = ModoVideo()
-diezOchenta.resolucion = hd
-diezOchenta.entrelazado = true
-diezOchenta.frameRate = 25.0
-diezOchenta.nombre = "1080i"
-
-let tambienDiezOchenta = diezOchenta
-tambienDiezOchenta.frameRate = 30.0
-print("La propiedad frameRate de diezOchenta es ahora \(diezOchenta.frameRate)")
-// Imprime "La propiedad frameRate de diezOchenta es ahora 30.0"
+let ventana1 = Ventana()
+ventana1.esquina = coords1
+ventana1.altura = 800
+ventana1.anchura = 800
+ventana1.etiqueta = "Finder"
+let ventana2 = ventana1
+ventana2.anchura = 1000
+print("La propiedad anchura de ventana1 es ahora \(ventana1.anchura)")
+// imprime "La propiedad anchura de ventana1 es ahora 1000"
 ```
 
-Declaramos una constante llamada `diezOchenta` inicializada con una
-instancia nueva de la clase `ModoVideo`. Le asignamos a la propiedad
-`resolucion` una copia de la resolución anterior `hd`. Después
-declaramos que es entrelazado, que el _frame rate_ es de 25.0 y que el
-nombre es `"1080i"`.
+Declaramos una constante llamada `ventana1` inicializada con una
+instancia nueva de la clase `Ventana`. Le asignamos a la propiedad
+`esquina` una copia de la resolución anterior `coords1`. Después
+declaramos la altura, anchura y etiqueta de la ventana.
 
-Después, `diezOchenta` se asigna a una nueva constante llamada
-`tambienDiezOchenta`, y el _frame rate_ se modifica. Debido a que son
-tipos de referencia, `diezOchenta` y `tambienDiezOchenta` se refieren
-a la misma instancia de `ModoVideo`. Son sólo dos nombres distintos
+Después, `ventana1` se asigna a una nueva constante llamada
+`ventan2`, y la anchura se modifica. Debido a que son
+tipos de referencia, `ventana1` y `ventana2` se refieren
+a la misma instancia de `Ventana`. Son sólo dos nombres distintos
 para la misma única instancia.
 
-Hay que hacer notar que `diezOchenta` y `tambienDiezOchenta` se
+Hay que hacer notar que `ventana1` y `ventana2` se
 declaran con `let` como constantes. Sin embargo, podemos modificar sus
-propiedades debido a que los valores que contienen `diezOchenta` y
-`tambienDiezOchenta` son constantes que no han cambiado. Esas
-variables no "almacenan" instancias de `ModoVideo`, sino que se
-"refieren" a una instancia de `ModoVideo`. Es la propiedad `frameRate`
+propiedades debido a que no se ha reasignado su instancia a la que se
+refieren". Esas variables no "almacenan" instancias de `Ventana`, sino que se
+"refieren" a una instancia de la clase. Es la propiedad `anchura`
 de la instancia subyacente la que se cambia, no los valores de las
-referencias constantes a la instancia de `ModoVideo`.
+referencias constantes a la instancia de `Ventana`.
 
 A diferencia de las clases, una instancia de un `struct` definida con
 un `let` define como constantes todas sus propiedades. Por ejemplo, el
 siguiente código generaría un error:
 
 ```swift
-let hd = Resolucion(ancho: 1920, alto: 1080)
-hd.ancho = 2080
-// error: cannot assign to property: 'hd' is a 'let' constant
+let coords3 = CoordsPantalla(posX: 400, posY: 400)
+coords3.posX = 800
+// error: cannot assign to property: 'coords3' is a 'let' constant
 ```
 
 #### Operadores de identidad
@@ -382,10 +383,10 @@ esto, Swift proporciona dos operadores de identidad:
 - No idéntico a (`!==`)
 
 ```swift
-if diezOchenta === tambienDiezOchenta {
-    print("diezOchenta y tambienDiezOchenta se refieren a la misma instancia de ModoVideo.")
+if ventana1 === ventana2 {
+    print("ventana1 y ventana2 se refierena a la misma instancia de ventana.")
 }
-// Imprime "diezOchenta y tambienDiezOchenta se refieren a la misma instancia de ModoVideo."
+// Imprime "ventana1 y ventana2 se refierena a la misma instancia de ventana."
 ```
 
 Estos operadores "idéntico a" no son los mismos que los de "igual a"
@@ -1135,12 +1136,12 @@ Los métodos del tipo se invocan también con la sintaxis de punto,
 escribiendo el nombre del tipo. Por ejemplo:
 
 ```swift
-class UnaClase {
+class NuevaClase {
     static func unMetodoDelTipo() {
         print("Hola desde el tipo")
     }
 }
-UnaClase.unMetodoDelTipo()
+NuevaClase.unMetodoDelTipo()
 ```
 
 Dentro del cuerpo del método, la propiedad implícita `self` se refiere
@@ -1154,84 +1155,33 @@ un método del tipo se referirá a otras propiedades o métodos de nivel
 del tipo. Se puede utilizar estos nombres sin necesidad de añadir el
 prefijo del nombre del tipo.
 
-Veamos un ejemplo en el que se define una estructura llamada
-`ContadorNivel` que sigue el progreso de un jugador a través de los
-distintos niveles de un juego. Suponemos que varios jugadores juegan
-al juego y que todos los niveles del juego (con excepción del nivel
-uno) están bloqueados cuando el juego se juega por primera vez. 
-
-Cada vez que un jugador termina un nivel, ese nivel se desbloquea para
-todos los demás jugadores. La estructura `ContadorNivel` usa
-propiedades y métodos del tipo para mantener la información de qué
-niveles del juego han sido desbloqueados. También mantiene la
-información del nivel actual para un jugador individual.
+Por ejemplo, podemos añadir a la clase `Ventana` una propiedad
+y método de clase con la que almacenar instancias de ventanas. Inicialmente
+guardamos un array vacío.
 
 ```swift
-struct ContadorNivel {
-    var nivelActual = 1
-    static var nivelMasAltoDesbloqueado = 1
-    
-    static func desbloquea(nivel: Int) {
-        if nivel > nivelMasAltoDesbloqueado {
-           nivelMasAltoDesbloqueado = nivel }
-    }
+class Ventana {
 
-    static func desbloqueado(nivel: Int) -> Bool {
-        return nivel <= nivelMasAltoDesbloqueado
-    }
+    // Propiedades
     
-    mutating func avanzar(nivel n: Int) -> Bool {
-        if ContadorNivel.desbloqueado(nivel: n) {
-            nivelActual = n
-            return true
-        } else {
-            return false
-        }
+
+    static var ventanas: [Ventana] = []
+    static func registrar(ventana: Ventana) {
+        ventanas.append(ventana)
     }
 }
 ```
 
-La estructura `ContadorNivel` se puede usar junto con la clase `Jugador`:
+Cada vez que creamos una ventana podemos llamar al método `registrar`
+de la clase para añadirlo a la colección de ventanas de la clase:
 
 ```swift
-class Jugador {
-    var contadorNivel = ContadorNivel()
-    let nombreJugador: String
-    
-    func completado(nivel n: Int) {
-        ContadorNivel.desbloquea(nivel: n+1)
-        contadorNivel.avanzar(nivel: n+1)
-    }
-    
-    init(nombre: String) {
-        nombreJugador = nombre
-    }
-}
+let v1 = Ventana()
+Ventana.registrar(ventana: v1)
+print("Se han registrado \(Ventana.ventanas.count) ventanas")
+// Imprime "Se han registrado 1 ventanas"
 ```
 
-Podemos crear una instancia de la clase `Jugador` para un jugador
-nuevo, y comprobar qué pasa cuando el jugador completa el nivel uno:
-
-```swift
-var jugador = Jugador(nombre: "Lucía")
-jugador.completado(nivel: 1)
-print("el mayor nivel desbloqueado es ahora \(ContadorNivel.nivelMasAltoDesbloqueado)")
-// Imprime "el mayor nivel desbloqueado es ahora 2"
-```
-
-Si creamos un segundo jugador, que intenta moverse a un nivel que no
-ha sido desbloqueado por ningún jugador, el intento de establecer el
-nuevo nivel falla:
-
-```swift
-jugador = Jugador(nombre: "Anabel")
-if jugador.contadorNivel.avanzar(nivel: 6) {
-    print("el jugador está ahora en el nivel 6")
-} else {
-    print("el nivel 6 no ha sido desbloqueado todavía")
-}
-// Imprime "el nivel 6 no ha sido desbloqueado todavía"
-```
 
 ### <a name="5"></a> 5. Herencia
 
@@ -1674,21 +1624,16 @@ En el ejemplo anterior se comprueba también que es posible inicializar
 constantes. Por ejemplo, la propiedad `text` está definida con un
 `let` y se inicializa en el inicializador.
 
-Por último, es posible definir valores por defecto a los
-inicializadores que sean sobreescritos por otros inicializadores, así
-como invocar a otros inicializadores más básicos en otros:
+Por último, es posible definir más de un inicializador, así como
+invocar a inicializadores más básicos desde otros. Si definimos un
+inicializador en una estructura los inicializadores por defecto dejan
+de funcionar, es necesario escribirlos también.
 
 ```swift
-struct Tamaño {
-    var ancho = 0.0, alto = 0.0
-}
-struct Punto {
-    var x = 0.0, y = 0.0
-}
 struct Rectangulo {
     var origen = Punto()
     var tamaño = Tamaño()
-    init() {}
+    init(){}
     init(origen: Punto, tamaño: Tamaño) {
         self.origen = origen
         self.tamaño = tamaño
@@ -1708,6 +1653,8 @@ let centroRectangulo = Rectangulo(centro: Punto(x: 4.0, y: 4.0),
                         tamaño: Tamaño(ancho: 3.0, alto: 3.0))
 // el origen de centroRectangulo es (2.5, 2.5) y su tamaño (3.0, 3.0)
 ```
+
+<!--
 
 ### <a name="7"></a> 7. Protocolos
 
@@ -2949,8 +2896,10 @@ if let topItem = stackOfStrings.topItem {
 // Imprime "El ítem en el tope de la pila es tres."
 ```
 
+-->
+
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016–17  
+Lenguajes y Paradigmas de Programación, curso 2017–18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Domingo Gallardo
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
