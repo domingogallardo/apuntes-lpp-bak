@@ -179,13 +179,13 @@ Ejemplo:
 
 ```swift
 let listaAlumnos = [("Pepe", 8.45, 3.75, 6.05, 1), 
-                    ("Maria", 9.1, 7.5, 5.18, 1), 
+                    ("Maria", 9.1, 7.5, 8.18, 1), 
                     ("Jose", 8.0, 6.65, 7.96, 1),
-                    ("Carmen", 6.25, 1.2, 7.41, 2), 
-                    ("Felipe", 5.65, 0.25, 7.16, 3), 
-                    ("Carla", 6.25, 1.25, 6.23, 2), 
+                    ("Carmen", 6.25, 1.2, 5.41, 2), 
+                    ("Felipe", 5.65, 0.25, 3.16, 3), 
+                    ("Carla", 6.25, 1.25, 4.23, 2), 
                     ("Luis", 6.75, 0.25, 4.63, 2), 
-                    ("Loli", 3.0, 1.25, 5.19, 3)]
+                    ("Loli", 3.0, 1.25, 2.19, 3)]
 imprimirListadosNotas(listaAlumnos)
 ```
  
@@ -252,9 +252,9 @@ C) Nota media de todos los alumnos en forma de tupla `(media_p1, media_p2, media
 
 ```swift
 var tupla = listaAlumnos._____________________________________ )
-tupla = (tupla.0 / Double(listaAlumnos.count), tupla.1 / Double(listaAlumnos.count))
+tupla = (tupla.0 / Double(listaAlumnos.count), tupla.1 / Double(listaAlumnos.count), tupla.2 / Double(listaAlumnos.count))
 print(tupla)
-// Resultado: (6.6812499999999995, 2.7624999999999997)
+// Resultado: (6.6812499999999995, 2.7624999999999997, 5.2262500000000003)
 ```
 
 ### Ejercicio 5
