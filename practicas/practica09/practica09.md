@@ -149,8 +149,8 @@ creciente)
 decreciente de nota) 
 - listado 3: array ordenado por la nota del parcial 2 (orden creciente
 de nota) 
-- listado 4: array ordenado por nota del parcial 2 y año de
-matriculación (orden decreciente de nota y año) 
+- listado 4: array ordenado por año de matriculación y nota del
+  cuestionario (orden decreciente de año y nota) 
 - listado 5: array ordenado por nota que necesita obtener en el
 parcial 3 para aprobar la asignatura en la convocatoria de Junio
 (orden decreciente de nota necesaria)
