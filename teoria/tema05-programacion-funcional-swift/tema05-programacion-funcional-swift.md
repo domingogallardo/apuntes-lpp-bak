@@ -1654,20 +1654,20 @@ Por ejemplo:
 ```swift
 let cadenas = ["Patatas", "Arroz", "Huevos"]
 cadenas.reduce(0, {(i: Int, c: String) -> Int in
-                      c.characters.count + i })
+                      c.count + i })
 // devuelve 18
 ```
 
 Es posible simplificar la notación anterior:
 
 ```swift
-cadenas.reduce(0, {$1.characters.count + $0})
+cadenas.reduce(0, {$1.count + $0})
 ```
 
 También se puede utilizar la notación de clausura al final:
 
 ```swift
-cadenas.reduce(0) {$1.characters.count + $0}
+cadenas.reduce(0) {$1.count + $0}
 ```
 
 La combinación se hace de izquierda a derecha:
