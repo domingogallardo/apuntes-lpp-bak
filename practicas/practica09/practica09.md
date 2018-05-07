@@ -326,8 +326,14 @@ func parse(exp: String) -> (op1: Operando, op2: Operando, op: Operacion)?
 Tendrás que definir **funciones auxiliares** para implementar esta
 función. 
 
-**AYUDA**: Puedes usar la pista del ejercicio 2 para dividir la cadena
-y separar los operandos.
+**AYUDA**: 
+
+Para construir un array con las palabras que aparecen en la frase, puedes usar la siguiente sentencia:
+
+```swift
+let arrayPalabras = frase.characters.split{$0 == " "}.map(String.init)
+```
+
 
 Ejemplos:
 
