@@ -15,7 +15,7 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 
 -->
 
-## Tema 7: Programación Orientada a Objetos con Swift
+## Tema 6: Programación Orientada a Objetos con Swift
 
 ### Contenidos
 
