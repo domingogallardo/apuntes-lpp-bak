@@ -331,9 +331,8 @@ función.
 Para construir un array con las palabras que aparecen en la frase, puedes usar la siguiente sentencia:
 
 ```swift
-let arrayPalabras = frase.characters.split{$0 == " "}.map(String.init)
+let arrayPalabras = frase.split(separator: " ").map(String.init)
 ```
-
 
 Ejemplos:
 
