@@ -1,164 +1,380 @@
-## Práctica 10: Introducción y programación funcional en Swift
+## Práctica 10: Programación Orientada a Objetos en Swift 1
 
 Para entregar la práctica debes subir a Moodle el fichero
 `practica10.swift` con una cabecera inicial con tu nombre y apellidos,
-y las soluciones de cada ejercicio separadas por comentarios. Cada
-solución debe incluir:
-
-- La **definición de las funciones** que resuelven el ejercicio.
-- Una visualización por pantalla de todos los ejemplos incluidos en el
-  enunciado que **demuestren qué hace la función**.
-
-#### Seminario de Swift
-
-Antes de proceder a realizar los ejercicios de la práctica, debes
-completar el
-[seminario de Swift](https://github.com/domingogallardo/apuntes-lpp/blob/master/seminarios/seminario2-swift/seminario2-swift.md)
-hasta el apartado de **Enumeraciones**.
+y las soluciones de cada ejercicio separadas por comentarios.
 
 
-#### Ejercicio 1
+### Ejercicio 1 ###
 
-Escribe unas funciones en Swift que permitan calcular e imprimir las
-frecuencias de un conjunto de respuestas, representadas como un array
-de `Int`. Puedes definir las funciones que consideres necesario.
+a) El siguiente código usa observadores de propiedades y una variable
+del tipo (estática). 
 
-Como ejemplo de funcionamiento puedes ver el siguiente código:
+¿Qué se imprime al final de su ejecución? Reflexiona sobre el
+funcionamiento del código, compruébalo con el compilador y experimenta
+haciendo cambios y comprobando el resultado.
+
+```swift
+struct Valor {
+    var valor: Int = 0 {
+        willSet {
+            Valor.z += newValue
+        }        
+        didSet {
+            if valor > 10 {
+                valor = 10
+            }
+        }
+    }
+    static var z = 0
+}
+
+var c1 = Valor()
+var c2 = Valor()
+c1.valor = 20
+c2.valor = 8
+print(c1.valor + c2.valor + Valor.z)
+```
+
+b) El siguiente código utiliza la inicialización de una clase. 
+
+¿Qué errores tiene? ¿Qué se imprimiría en su ejecución una vez
+arreglado? Intenta descubrirlo sin utilizar el compilador. Prueba
+distintas formas de arreglar el código cambiando lo mínimo posible de
+lo ya definido (por ejemplo, no debes cambiar la función
+`prueba`). Compruébalo con el compilador.
+
+```swift
+
+func prueba(x: Int) -> Int? {
+    if x < 100 {
+        return nil
+    } else {
+        return x
+    }
+}
+
+class A {
+    var a = prueba(x: 100)
+    var b, c: Int
+    init() {}
+    init(b: Int) {
+        self.b = c
+    }
+}
+
+let a = A(b: 0)
+let b: Int = a.a
+print("El valor de a.a es: \(b)")
+```
+
+c) Escribe un ejemplo de código en el que definas una relación de
+herencia entre una clase base y una clase derivada. Comprueba en el
+código que un objeto de la clase derivada hereda las propiedades y
+métodos de la clase base.
+
+Investiga sobre lo el funcionamiento de la herencia en Swift. Escribe
+ejemplos en donde compruebes este funcionamiento. Algunos ejemplos de
+preguntas que puedes investigar (puedes añadir tú más preguntas):
+
+- ¿Se puede sobreescribir el valor de una propiedad almacenada? ¿Y
+calculada? 
+- ¿Se puede añadir un observador a una propiedad de la clase base en
+  una clase derivada?
+- ¿Hereda la clase derivada propiedades y métodos estáticos de la clase base?
+- ¿Cómo se puede llamar a la implementación de un método de la clase
+  base en una sobreescritura de ese mismo método en la clase derivada?
+
+### Ejercicio 2 ###
+
+Supongamos la siguiente clase `MisPalabras`:
 
 
 ```swift
-let respuestas = [0,0,1,1,2,1,2,3,5,8,1,8,2,2,2,6,8]
-print("Valores: \(respuestas)" )
-let frec = obtenerFrecuencias(respuestas: respuestas)
-print("Frecuencias: \(frec)")
-print("\nHistograma")
-print("----------")
-imprimir(frecuencias: frec, maxAsteriscos: 10)
+class MisPalabras {
+    var guardadas: [String] = []
+    func guarda(palabra: String) {
+        guardadas = guardadas + [palabra]
+    }
+}
+
+let palabras = MisPalabras()
+palabras.guarda(palabra: "Hola")
+palabras.guarda(palabra: "me")
+palabras.guarda(palabra: "llamo")
+palabras.guarda(palabra: "Yolanda")
+print(palabras.guardadas)
+// ["Hola", "me", "llamo", "Yolanda"]
 ```
 
-Sacaría por pantalla lo siguiente:
+Debes añadir una **propiedad calculada** `logitud` que devuelva la suma de las
+longitudes de todas las palabras guardadas (usa una función de orden
+superior para calcular esta suma). 
 
+Haz también que sea una **propiedad modificable** de la siguiente forma:
 
-```
-Valores: [0, 0, 1, 1, 2, 1, 2, 3, 5, 8, 1, 8, 2, 2, 2, 6, 8]
-Frecuencias: [2, 4, 5, 1, 0, 1, 1, 0, 3]
-
-Histograma
-----------
-0: ****
-1: ********
-2: **********
-3: **
-4: 
-5: **
-6: **
-7: 
-8: ******
-```
-
-El parámetro `maxAsteriscos` define el número de asteriscos de la
-frecuencia máxima (en el caso anterior, el valor 2). Todos los demás
-asteriscos están escalados proporcionalmente a este número máximo.
-
-
-#### Ejercicio 2
-
-**2.a)** Implementa en Swift la **función recursiva**
-`compruebaParejas(_:funcion)` que recibe dos parámetros: un
-`ArraySlice` de enteros y una función que recibe un entero y devuelve
-un entero. La función devolverá un array de tuplas que contiene las
-tuplas formadas por aquellos números contiguos del primer array que
-cumplan que el número es el resultado de aplicar la función al número
-situado en la posición anterior.
+- Si se intenta asignar un valor mayor o igual que la longitud de las cadenas
+  guardadas, o un número negativo, no se hace nada.
+- Si se asigna un valor menor que la longitud de las cadenas se deben
+  dejar guardadas sólo las palabras que suman esa longitud, recortando la última
+  de ellas si es necesario.
 
 Ejemplo:
 
 ```swift
-func cuadrado(x: Int) -> Int {
-   return x * x
+
+print(palabras.longitud)
+// 18
+palabras.longitud = 10
+print(palabras.guardadas)
+// ["Hola", "me", "llam"]
+```
+
+**Ayuda**: Puedes utilizar la siguiente función `recorta` para
+recortar una palabra:
+
+```swift
+func recorta(_ palabra: String, hasta: Int) -> String {
+    if hasta >= palabra.count {
+        return palabra
+    } else {
+       let start = palabra.startIndex
+       let end =  palabra.index(start, offsetBy: hasta)
+       return String(palabra[start..<end])
+    }
 }
-compruebaParejas([2, 4, 16, 5, 10, 100, 105], funcion: cuadrado)
-// devuelve [(2,4), (4,16), (10,100)]
+print(recorta("Hola", hasta: 2))
+// Ho
+print(recorta("Hola", hasta: 3))
+// Hol
+print(recorta("Hola", hasta: 4))
+// Hola
+print(recorta("Hola", hasta: 5))
+// Hola
 ```
 
-**2.b)** Implementa en Swift la **función recursiva**
-`coinciden(parejas:ArraySlice<(Int,Int)>, funcion: (Int)->Int)` que devuelve un array de booleanos que
-indica si el resultado de aplicar la función al primer número de
-cada pareja coincide con el segundo.
+### Ejercicio 3
+
+En este ejercicio vamos a trabajar con estructuras y clases
+geométricas: `Punto`, `Tamaño`, `Rectangulo` y `Circulo`. Vamos a
+definir propiedades almacenadas y propiedades calculadas para todas
+las figuras geométricas.
+
+- Para usar la función `sqrt` debes importar la librería `Foundation`:
 
 ```swift
-let array = [(2,4), (4,14), (4,16), (5,25), (10,100)]
-func cuadrado(x: Int) -> Int {
-   return x * x
+import Foundation
+```
+
+- El valor de la constante matemática _pi_ lo puedes obtener con la
+  propiedad `Double.pi`.
+
+**Estructuras `Punto` y `Tamaño`**
+
+Las debes declarar tal y como aparecen en los apuntes.
+
+**Clase `Rectangulo`**
+
+- Propiedades de instancia almacenadas: 
+    - `origen` (`Punto`) que contiene las coordenadas de la esquina
+      inferior izquierda del rectángulo.
+    - `tamaño` (`Tamaño`) que contiene las dimensiones del rectángulo. 
+    - Ambas propiedades se inicializan en un inicializador.
+- Propiedades de instancia calculadas: 
+    - `centro` (`Punto`, de lectura y escritura) que devuelve el
+      centro del rectángulo. El `setter` modifica la posición del
+      rectángulo manteniendo fijo su tamaño.
+    - `area` (`Double`, sólo lectura ) que devuelve el área del rectángulo. 
+
+**Clase `Circulo`**
+
+- Propiedades de instancia almacenadas:
+    - `centro` (`Punto`) que contiene las coordenadas del centro del
+      círculo.
+    - `radio` (`Double`) que contiene la longitud del radio.
+    - Ambas propiedades se inicializan en un inicializador.
+- Propiedades de instancia calculadas:
+    - `area` (`Double`, de lectura y escritura) que devuelve el área
+      del círculo. El `setter` modifica el tamaño del círculo (su
+      radio), manteniéndolo en la misma posición.
+
+**Estructura `AlmacenFiguras`**
+
+- Propiedades de tipo almacenadas:
+    - `rectangulos` y `circulos` que contienen respectivamente arrays
+      de rectángulos y círculos inicializados a arrays vacíos.
+    - Se actualizan con cada nueva figura creada. En los
+      inicializadores de `Rectangulo` y `Circulo` se debe
+      incluir el código que añade la instancia recién creada al almacén
+      de figuras.
+- Propiedades de tipo calculadas:
+    - `numFiguras` (`Int`) que devuelve el número total de figuras creadas.
+    - `areaTotal` (`Double`) que devuelve la suma total de las áreas
+      de todas las figuras creadas.
+
+<!-- Nota -->
+<table>
+<tr><td>
+
+<p><stong>Nota</strong></p>
+
+<p>La definición anterior del almacén de figuras no es demasiado correcta,
+porque se utiliza una variable distinta para cada tipo de figura, sin
+generalizar. En la práctica de la semana que viene veremos cómo
+mejorarlo utilizando protocolos.</p>
+
+</td></tr></table>
+<!-- Final de la nota -->
+
+Implementa las estructuras y clases anteriores y escribe algunos
+ejemplos de código para probarlas.
+
+
+### Ejercicio 4
+
+En este ejercicio deberás implementar un conjunto de clases con las que podamos "simular" una carrera de coches.
+
+#### Función `random`
+
+Utilizaremos la función del sistema `random()` que devuelve un número
+aleatorio. Hay que importar la librería `Glibc` (en Linux) y
+`Foundation` (en iOS) para usarla.
+
+A continuación puedes ver un ejemplo de su utilización en un método de
+tipo del enumerado `MarcaCoche` para devolver una marca aleatoria de
+coche:
+
+
+```swift
+import Glibc
+
+func rand(n: Int) -> Int {
+    return random() % n
 }
-print("Resultado coinciden:  \(coinciden(parejas: ArraySlice(array), funcion: cuadrado))\n")
-// Imprime: Resultado coinciden:  [true, false, true, true, true]
+
+enum MarcaCoche: Int {
+    case Mercedes=0, Ferrari, RedBull, McLaren
+    
+    static func random() -> MarcaCoche {
+        let maxValue = McLaren.rawValue
+        
+        let r = rand(maxValue+1)
+        return MarcaCoche(rawValue: r)!
+    }
+
+}
 ```
 
+#### Enumerados y clases que gestionan los vehículos
 
-#### Ejercicio 3
+Deberás implementar los siguientes enumerados y clases, con las propiedades indicadas.
 
-Supongamos que estamos escribiendo un programa que debe tratar
-movimientos de cuentas bancarias. Define un enumerado `Movimiento `
-con valores asociados con el que podamos representar:
+**Enumerado `MarcaCoche`** 
 
-- Depósito (valor asociado: `(Double)`)
-- Cargo de un recibo (valor asociado: `(String, Double)`)
-- Cajero (valor asociado: `(Double)`)
+- Posibles valores: `Mercedes`, `Ferrari`, `RedBull` y `McLaren`
+- Método del tipo `random()` que devuelva aleatoriamente uno de los
+  valores (consultar el código anterior).
 
-Y define la función `aplica(movimientos:[Movimiento])` que reciba un
-array de movimientos y devuelva el dinero resultante de acumular todos
-los movimientos.
+**Enumerado `TipoCambio`**
 
-Ejemplo:
+- Posibles valores: `Automatico` o `Manual`
+- Método del tipo `random()` que devuelve uno de esos valores.
 
+**Clase base `Coche`**
+
+- Propiedades de instancia almacenadas: `velocidadActual` (`Double`),
+  `marcha` (`Int`), `distanciaRecorrida` (`Double`) y `marca`
+  (`MarcaCoche`).
+- Propiedad de instancia calculada: `descripcion` (`String`), que
+  devuelve la marca del coche.
+- Propiedades del tipo: Constantes `velocidadMaxima` (`Double`) y
+  `marchaMaxima` (`Int`) inicializadas a 150.0 y 6
+
+**Subclase `CocheAutomatico`**
+
+- Hereda de `Coche` y sobreescribe la descripción, añadiendo la cadena
+  "Automático".
+
+**Subclase `CocheManual`**
+
+- Hereda de `Coche` y sobreescribe la descripción, añadiendo la cadena
+  "Manual".
+
+**Observadores de propiedades en las subclases**
+
+La velocidad de un coche manual se modifica cambiando su propiedad
+`marcha` y la de un coche automático cambiando su propiedad
+`velocidadActual`. En cada caso hay que definir observadores de
+propiedades que modifiquen la otra propiedad.
+
+La velocidad se calcula a partir de la marcha según la siguiente expresión:
 
 ```swift
-let movimientos: [Movimiento] = [.deposito(830.0), .cargoRecibo("Gimnasio", 45.0), .deposito(400.0), .cajero(100.0)]
-print(aplica(movimientos: movimientos))
-// Imprime 1085.0
+velocidadActual = 25.0 * marcha
 ```
 
+Y la marcha se calcula a partir de la velocidad con la expresión que
+puedes encontrar en los
+[apuntes](http://domingogallardo.github.io/lpp/teoria/Tema06-ProgramacionOrientadaObjetosSwift.html).
 
-#### Ejercicio 4
+**Distancia recorrida e información en pantalla**
 
-Implementa en Swift un tipo enumerado recursivo que permita construir
-árboles binarios de enteros. El enumerado debe tener un caso en el que
-guardar tres valores (un `Int`, y dos árboles binarios: el hijo
-izquierdo y el hijo derecho) y otro caso constante: un árbol binario
-vacío. Llamaremos al tipo `ArboBinario` y a los casos `nodo` y `vacio`.
+Suponemos que se cambia la velocidad del coche cada hora y que en cada
+cambio de velocidad se actualiza la propiedad `distanciaRecorrida`,
+que irá acumulando la distancia recorrida por el coche desde su
+inicialización. Cada vez que se cambia la velocidad también se
+imprimirá la velocidad actual y la marca del coche en pantalla (ver el
+ejemplo al final del ejercicio). Esto se puede implementar también en
+los observadores.
 
-Impleméntalo de forma que el siguiente ejemplo funcione correctamente:
+#### Clase Carrera
+
+Debes implementar las clases anteriores y una clase `Carrera` con la
+que simular una carrera de `n` coches que conducen durante `k` horas.
+
+Un ejemplo de uso de la clase `Carrera`:
 
 ```swift
-let arbol: ArbolBinario = .nodo(8, .nodo(2, .vacio, .vacio), .node(12, .vacio, .vacio))
+let carrera = Carrera(numCoches: 2, horas: 3)
+print("\nDescripción de la carrera:")
+carrera.descripcion()
+print("\n!!! Comienza la carrera !!!")
+carrera.empezar()
+print("\n!!! Clasificación !!!")
+carrera.clasificacion()
 ```
 
-Implementa también la función `suma(_:)` que reciba una instancia de
-árbol binario y devuelva la suma de todos sus nodos:
+Y su correspondiente salida por pantalla:
 
-```swift
-print(suma(arbol))
-// Imprime: 22
+```text
+Descripción de la carrera:
+2 coches con una duración de 3 horas
+ McLaren Automatico
+ Mercedes Manual
+
+!!! Comienza la carrera !!!
+
+Horas transcurridas 1
+McLaren Automatico viajando a 141.0 kilómetros por hora con la marcha 6
+Mercedes Manual viajando a 25.0 kilómetros por hora con la marcha 1
+
+Horas transcurridas 2
+McLaren Automatico viajando a 114.0 kilómetros por hora con la marcha 5
+Mercedes Manual viajando a 25.0 kilómetros por hora con la marcha 1
+
+Horas transcurridas 3
+McLaren Automatico viajando a 105.0 kilómetros por hora con la marcha 5
+Mercedes Manual viajando a 100.0 kilómetros por hora con la marcha 4
+
+!!! Clasificación !!!
+1. McLaren Automatico (360.0 kilómetros recorridos)
+2. Mercedes Manual (150.0 kilómetros recorridos)
 ```
-
-#### Ejercicio 5
-
-Responde a las siguientes preguntas de tipo test.
-
-<img src="imagenes/test-1.png" width="600px"/>
-<img src="imagenes/test-2.png" width="600px"/>
-<img src="imagenes/test-3.png" width="500px"/>
-<img src="imagenes/test-4.png" width="600px"/>
 
 
 ----
 
-Lenguajes y Paradigmas de Programación, curso 2016-17  
+Lenguajes y Paradigmas de Programación, curso 2017-18  
 © Departamento Ciencia de la Computación e Inteligencia Artificial, Universidad de Alicante  
-Antonio Botía, Domingo Gallardo, Cristina Pomares  
-
-
-
-
+Domingo Gallardo, Cristina Pomares, Antonio Botía, Francisco Martínez
 

@@ -1982,8 +1982,8 @@ En la [biblioteca estándar de
 Swift](https://developer.apple.com/documentation/swift) se definen
 distintos protocolos como `Collection` y `Equatable` que describen
 abstracciones comunes. Muchos de estos protocolos incorporan
-implementaciones por defecto mediante extensiones definidas en la
-propia biblioteca estándar.
+implementaciones por defecto de algunos de sus métodos mediante
+extensiones definidas en la propia biblioteca estándar.
 
 Veamos por ejemplo el protocolo
 [`Equatable`](https://developer.apple.com/documentation/swift/equatable). Se
