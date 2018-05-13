@@ -25,12 +25,11 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
 - [4. Métodos](#4)
 - [5. Herencia](#5)
 - [6. Inicialización](#6)
-<!--- [7. Protocolos](#7)
+- [7. Protocolos](#7)
 - [8. Casting de tipos](#8)
 - [9. Extensiones](#9)
 - [10. Funciones operador](#10)
 - [11. Genericos](#11)
--->
 
 ----
 
@@ -42,12 +41,11 @@ https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift
     - [Methods](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Methods.html#//apple_ref/doc/uid/TP40014097-CH15-ID234)
     - [Inheritance](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Inheritance.html#//apple_ref/doc/uid/TP40014097-CH17-ID193=)
     - [Initialization](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Initialization.html#//apple_ref/doc/uid/TP40014097-CH18-ID203)
-<!--    - [Protocolos](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267)
+    - [Protocolos](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID267)
     - [Casting de tipos](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/TypeCasting.html#//apple_ref/doc/uid/TP40014097-CH22-ID338)
     - [Extensiones](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Extensions.html#//apple_ref/doc/uid/TP40014097-CH24-ID151)
     - [Funciones operador](https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/AdvancedOperators.html#//apple_ref/doc/uid/TP40014097-CH27-ID28)
     - [Genéricos](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Generics.html#//apple_ref/doc/uid/TP40014097-CH26-ID179)
--->
 
 ### <a name="1"></a> 1. Introducción, historia y características de la Programación Orientada a Objetos
 
@@ -1654,7 +1652,6 @@ let centroRectangulo = Rectangulo(centro: Punto(x: 4.0, y: 4.0),
 // el origen de centroRectangulo es (2.5, 2.5) y su tamaño (3.0, 3.0)
 ```
 
-<!--
 
 ### <a name="7"></a> 7. Protocolos
 
@@ -1663,8 +1660,14 @@ y otros requisitos que encajan en una tarea particular o un trozo de
 funcionalidad. El protocolo puede luego ser _adoptado_ (_adopted_) por
 una clase, estructura o enumarción para proporcionar una
 implementación real de esos requisitos. Cualquier tipo que satisface
-los requerimientos de un protocolo se dice que _se ajusta_ (_conform_)
-a ese protocolo.
+los requerimientos de un protocolo se dice que _se ajusta_ o _cumple_
+(_conform_) ese protocolo.
+
+Además de especificar los requisitos de los tipos que cumplen el
+protocolo, también se puede **extender un protocolo** (lo veremos más
+adelante, cuando hablemos de **extensiones**) para proporcionar una
+implementación de algunos de los métodos requeridos por el protocolo.
+
 
 #### Sintaxis
 
@@ -1972,6 +1975,58 @@ ni de tipo `NaveEstelar`, incluso aunque las instancias que hay tras
 de escena son do esos tipos. Por ser del tipo `TieneNombre` sabemos
 que tiene una propiedad `nombreCompleto` que podemos usar sobre la
 variable iteradora.
+
+#### Protocolos de la biblioteca estándar de Swift ####
+
+En la [biblioteca estándar de
+Swift](https://developer.apple.com/documentation/swift) se definen
+distintos protocolos como `Collection` y `Equatable` que describen
+abstracciones comunes. Muchos de estos protocolos incorporan
+implementaciones por defecto mediante extensiones definidas en la
+propia biblioteca estándar.
+
+Veamos por ejemplo el protocolo
+[`Equatable`](https://developer.apple.com/documentation/swift/equatable). Se
+trata de un protocolo importante que define las operaciones de
+igualdad (`==`) y diferencia (`!=`). Debemos implementar la operación
+de igualdad en cualquier clase que se ajuste al protocolo, pero la
+operación de diferencia ya tiene una implementación por defecto.
+
+Un ejemplo:
+
+```swift
+struct Punto3D: Equatable {
+    let x, y, z: Double
+
+    init(x: Double, y: Double, z: Double) {
+        self.x = x 
+        self.y = y 
+        self.z = z 
+    }
+
+    static func == (izquierda: Punto3D, derecha: Punto3D) -> Bool {
+        return
+            izquierda.x == derecha.x &&
+            izquierda.y == derecha.y &&
+            izquierda.z == derecha.z
+    }
+}
+
+let p1 = Punto3D(x: 0.0, y: 0.0, z: 0.0)
+let p2 = Punto3D(x: 0.0, y: 0.0, z: 0.0)
+
+print(p1 == p2)
+// Imprime true
+print(p1 != p2)
+// Imprime false
+```
+
+El operador `==` se define en la propia estructura. Se utiliza la
+palabra `static` para indicar que se trata de un operador que estamos
+sobrecargando (hablaremos más adelante de los operadores).
+
+El operador `!=` que se usa en la última instrucción se define en una
+implementación por defecto.
 
 
 ### <a name="8"></a> 8. Casting de tipos
@@ -2335,7 +2390,6 @@ Entre otras cosas, las extensiones pueden:
 - Hacer que un tipo existente se ajuste a un protocolo
 
 
-
 #### Sintaxis
 
 Para declarar una extensión hay que usar la palabra clave `extension`:
@@ -2370,9 +2424,14 @@ var p = Persona(edad: 15, nombreCompleto: "Lucía")
 p.mayorEdad // false
 ```
 
-En este otro ejemplo añadimos cinco propiedades de instancia
-calculadas al tipo de Swift Double, para proporcionar un soporte
-básico para trabajar con unidades de distancia:
+Es posible incluso extender clases de las librerías estándar de
+Swift, como `Int`, `Double`, `Array`, etc.
+
+Por ejemplo, podemos añadir propiedades calculadas a la clase Double
+para trabajar con unidades de distancia. Las siguientes propiedades
+convierten una cantidad en las unidades correspondientes a su
+equivalente en metros:
+
 
 ```swift
 extension Double {
@@ -2382,6 +2441,8 @@ extension Double {
     var mm: Double { return self / 1_000.0 }
     var ft: Double { return self / 3.28084 }
 }
+let distancia = 11.km
+// En distancia tendremos 11000 metros
 let unaPulgada = 25.4.mm
 print("Una pulgada es \(unaPulgada) metros")
 // Una pulgada es 0.0254 metros
@@ -2397,19 +2458,16 @@ añadirse a un literal en punto flotante con la sintaxis del punto,
 como una forma de usar el valor del literal para ejecutar conversiones
 de distancia.
 
-En este ejemplo, un valor `Double` de 1.0 se considera que representa
-"un metro". Esto por lo que la propiedad calculada `m` devuelve
-`self` - la expresión `1.m` devuelve el valor `Double` de 1.0.
+Por ejemplo, cuando se escribe `11.km` se pide el valor de la
+propiedad calculada `km` de la instancia `11`. La propiedad calculada
+devuelve el resultado de multiplicar `11` por `1000`, esto es, los
+metros correspondientes a 11 kilómetros.
 
-Otras unidades requieren alguna conversión para expresarse como un
-valor medido en metros. Un kilómetro es 1,000 metros, por lo que la
-propiedad calculada `km` multiplica el valor por 1_000.00 para
-conventirlo en un número expresado en metros. De forma similar, hay
-3.28084 pies en un metro, por lo que la propiedad calculada `ft`
-divide el valor `Double` subyacente por 3.28084, para conventirlo de
-pies a metros.
+De forma similar, hay 3.28084 pies en un metro, por lo que la
+propiedad calculada `ft` divide el valor `Double` subyacente por
+3.28084, para conventirlo de pies a metros.
 
-Estas propieades son propiedades calculadas de solo lectura, por lo
+Estas propiedades son propiedades calculadas de solo lectura, por lo
 que se expresan sin la palabra clave `get`, por brevedad. Sus valores
 devueltos son de tipo `Double`, y pueden usarse en cálculos
 matemáticos en cualquier sitio que se acepte un `Double`:
@@ -2487,8 +2545,25 @@ propiedades:
 #### Métodos
 
 Las extensiones pueden añadir nuevos métodos de instancia y nuevos
-métodos del tipo. El siguiente ejemplo añade un nuevo método de
+métodos del tipo. 
+
+Por ejemplo, podemos añadir el método `descripcion()` a la estructura `Persona`:
+
+```swift
+extension Persona {
+    func descripcion() -> String {
+        return "Me llamo \(nombreCompleto) y tengo \(edad) años"
+    }
+}
+
+let reedRichards = Persona(edad: 40, nombreCompleto: "Reed Richards")
+print(reedRichards.descripcion())
+```
+
+También podemos añadir métodos a clases y estructuras importadas. Por
+ejemplo podemos añadir un nuevo método de
 instancia llamado `repeticiones` al tipo `Int`:
+
 
 ```swift
 extension Int {
@@ -2644,18 +2719,18 @@ print(algoRepresentableComoTexto.descripcionTextual)
 ```
 
 #### Implementación de métodos de un protocolo
-     
-Los protocolos pueden extenderse para proporcionar implementaciones de
-métodos y propiedades a todos los tipos que se ajustan a él. Esto
-permite definir conductas en los propios protocolos, más que en cada
-tipo individual o en una función global.
 
-Por ejemplo, el protocolo `RandomNumberGenerator` puede ser extendido
-para proporcionar un método `randomBool()`, que usa el resultado del
+Podemos definir extensiones en los protocolos para proporcionar
+implementaciones de métodos y propiedades a todos los tipos que se
+ajustan a él. Esto permite definir conductas en los propios
+protocolos, más que en cada tipo individual o en una función global.
+
+Por ejemplo, el protocolo `GeneradorNumerosAleatorios` puede ser extendido
+para proporcionar un método `boolAleatorio()`, que usa el resultado del
 `random()` requerido para devolver un valor `Bool` aleatorio:
 
 ```swift
-extension RandomNumberGenerator {
+extension GeneradorNumerosAleatorios {
     func randomBool() -> Bool {
         return random() > 0.5
     }
@@ -2667,7 +2742,7 @@ a él adquieren automáticamente esta implementación sin ninguna
 modificación adicional.
 
 ```
-let generator = LinearCongruentialGenerator()
+let generator = GeneradorLinealCongruente()
 print("Un número aleatorio: \(generator.random())")
 // Imprime "Un número aleatorio: 0.37464991998171"
 print("Y un booleano aleatorio: \(generator.randomBool())")
@@ -2677,6 +2752,62 @@ print("Y un booleano aleatorio: \(generator.randomBool())")
 El tipo que se ajusta al protocolo puede proporcionar su propia
 implementación, que se usará en lugar de la proporcionada por la extensión.
 
+#### Restricción en las extensiones de un protocolo ####
+
+En la definición de una extensión de un protocolo es posible definir
+restricciones que deben cumplir los tipos que lo cumplen. Los métodos
+y propiedades de la extensión sólo estarán disponibles en aquellos
+tipos que cumplan estos requisitos.
+
+Los requisitos se definen usando una cláusula genérica `where`.
+
+Por ejemplo, podemos definir una extensión al protocolo `Collection`
+que se aplique a cualquier colección cuyos elementos cumplen el
+protocolo `Equatable`. De esta forma nos aseguramos de que los
+operadores `==` y `!=` están definidos y podemos usarlos en la extensión:
+
+```swift
+extension Collection where Element: Equatable {
+    func allEqual() -> Bool {
+        for element in self {
+            if element != self.first {
+                return false
+            }
+        }
+        return true
+    }
+}
+```
+
+El método `allEqual()` devuelve `true` si y sólo si todos los
+elementos en la colección son iguales.
+
+Un ejemplo:
+
+```swift
+let numerosIguales = [100, 100, 100, 100, 100]
+let numerosDiferentes = [100, 100, 200, 100, 200]
+```
+
+Dado que ambos arrays cumplen el protocolo `Collection` y los enteros
+cumplen el protocolo `Equatable` podemos usar el método `allEqual()`: 
+
+```
+print(numerosIguales.allEqual())
+// Prints "true"
+print(numerosDiferentes.allEqual())
+// Prints "false"
+```
+
+En una colección de una clase que no cumple el protocolo
+`Equatable` no se puede utilizar el método de la extensión:
+
+```swift
+let tormenta = Persona(edad: 32, nombreCompleto: "Ororo Munroe")
+let superHeroes = [tormenta, peterParker, reedRichards]
+print(superHeroes.allEqual())
+//error: type 'Persona' does not conform to protocol 'Equatable'
+```
 
 ### <a name="10"></a> 10. Funciones operadoras
 
@@ -2694,17 +2825,18 @@ posición de dos dimensiones:
 ```swift
 struct Vector2D {
     var x = 0.0, y = 0.0
-}
-func + (izquierdo: Vector2D, derecho: Vector2D) -> Vector2D {
-    return Vector2D(x: izquierdo.x + derecho.x, y: izquierdo.y + derecho.y)
+    static func + (izquierdo: Vector2D, derecho: Vector2D) -> Vector2D {
+        return Vector2D(x: izquierdo.x + derecho.x, y: izquierdo.y + derecho.y)
+    }
 }
 ```
 
-La función operador se define como una función global con un un nombre
-de función que empareja con el operador a sobrecargar (`+`). Debido a
-que la suma aritmética se define como un operador binario, esta
-función operador toma dos parámetros de entrada de tipo `Vector2D` y
-devuelve un único valor de salida, también de tipo `Vector2D`.
+La función operador se define como una función estática con un un
+nombre de función que empareja con el operador a sobrecargar
+(`+`). Debido a que la suma aritmética se define como un operador
+binario, esta función operador toma dos parámetros de entrada de tipo
+`Vector2D` y devuelve un único valor de salida, también de tipo
+`Vector2D`.
 
 En esta implementación, llamamos a los parámetros de entrada
 `izquierdo` y `derecho` para representar las instancias de `Vector2D`
@@ -2739,8 +2871,11 @@ escribir el modificador `prefix` o `postfix` antes de la palabra clave
 `func` en la declaración de la función operador:
 
 ```swift
-prefix func - (vector: Vector2D) -> Vector2D {
-    return Vector2D(x: -vector.x, y: -vector.y)
+struct Vector2D {
+   ...
+   static prefix func - (vector: Vector2D) -> Vector2D {
+       return Vector2D(x: -vector.x, y: -vector.y)
+   }
 }
 ```
 
@@ -2759,22 +2894,25 @@ let tambienPositivo = -negativo
 
 #### Operadores de equivalencia
 
-Las clases y estructuras construidas no tienen una implementación por
-defecto de los operadores "igual a" (`==`) y "no igual a" (`!=`). No
-es posible para Swift adivinar qué valores serán "iguales" en nuestras
-clases, porque el significado de "igual" depende del papel que esos
-tipos juegan en nuestro código.
+Como ya hemos visto, las clases y estructuras construidas no tienen
+una implementación por defecto de los operadores "igual a" (`==`) y
+"no igual a" (`!=`). No es posible para Swift adivinar qué valores
+serán "iguales" en nuestras clases, porque el significado de "igual"
+depende del papel que esos tipos juegan en nuestro código.
 
 Para poder usar los operadores de igualdad en nuestros propios tipos,
 debemos proporcionar una implementación de la misma forma que para
-otros operadores infijos:
+otros operadores infijos.
+
+Lo hacemos definiendo una extensión que cumple el protocolo
+`Equatable`. De esta forma, como ya hemos visto anteriormente,
+conseguimos la implementación por defecto del operador `!=`:
 
 ```swift
-func == (izquierdo: Vector2D, derecho: Vector2D) -> Bool {
-    return (izquierdo.x == derecho.x) && (izquierdo.y == derecho.y)
-}
-func != (izquierdo: Vector2D, derecho: Vector2D) -> Bool {
-    return !(izquierdo == derecho)
+extension Vector2D: Equatable {
+   static func == (izquierdo: Vector2D, derecho: Vector2D) -> Bool {
+       return (izquierdo.x == derecho.x) && (izquierdo.y == derecho.y)
+   }
 }
 ```
 
@@ -2782,9 +2920,10 @@ En el ejemplo anterior se implementa un operador "igual a" (`==`) que
 comprueba si dos instancias de `Vector2D` tienen valores
 equivalentes. En el contexto del `Vector2D` tiene sentido considerar
 "igual" como "ambas instancias tienen los mismos valores x e y", por
-lo que esta es la lógica usada por la implementación. También se
-implementa el operador "no igual a" (`!=`), que simplemente devuelve
-el inversa del resultado del operador "igual a".
+lo que esta es la lógica usada por la implementación. 
+
+La implementación por defecto del operador "no igual a" (`!=`),
+simplemente devuelve el inversa del resultado del operador "igual a".
 
 Ahora podemos usar estos operadores para chequear si dos instancias de
 `Vector2D` son equivalentes:
@@ -2792,10 +2931,13 @@ Ahora podemos usar estos operadores para chequear si dos instancias de
 ```swift
 let dosTres = Vector2D(x: 2.0, y: 3.0)
 let otroDosTres = Vector2D(x: 2.0, y: 3.0)
+let unoDos = Vector2D(x: 1.0, y: 2.0)
 if dosTres == otroDosTres {
-    print("Los dos vectores son equivalentes.")
+    print("Los vectores \(dosTres) y \(otroDosTres) son equivalentes.")
 }
-// Los dos vectores son equivalentes
+if (unoDos != dosTres) {
+    print("Los vectores \(unoDos) y \(dosTres) son distintos.")
+}
 ```
 
 ### <a name="11"></a> 11. Genéricos
@@ -2895,8 +3037,6 @@ if let topItem = stackOfStrings.topItem {
 }
 // Imprime "El ítem en el tope de la pila es tres."
 ```
-
--->
 
 ----
 
