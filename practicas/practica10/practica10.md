@@ -314,8 +314,9 @@ velocidadActual = 25.0 * marcha
 ```
 
 Y la marcha se calcula a partir de la velocidad con la expresión que
-puedes encontrar en los
-[apuntes](http://domingogallardo.github.io/lpp/teoria/Tema06-ProgramacionOrientadaObjetosSwift.html).
+puedes encontrar en los apuntes de teoría, en la definición de la
+clase `CocheAutomatico`.
+
 
 **Distancia recorrida e información en pantalla**
 

@@ -1,15 +1,14 @@
 
 <!--
 
+Para el curso que viene:
+ - Incluir modificador 'opcional' en protocolos
+
 Cosas importantes que no contamos, que habría que contar (si hubiera 
 tiempo en la última sesión):
 
 - Un protocolo puede extender otro protocolo (o más de uno)
 https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID280
-
-- Las extensiones pueden usarse para añadir una implementación por
-  defecto a un protocolo
-https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/Protocols.html#//apple_ref/doc/uid/TP40014097-CH25-ID521
 
 - Ampliar el tema de genéricos con type constraints y cláusula where
 
