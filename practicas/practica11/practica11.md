@@ -57,7 +57,7 @@ nombre en orden alfabético.
 
 Una vez definidos los operadores necesarios comprueba que funcionan
 correctamente creando varios equipos, insertándolos en un array y
-llamando al método `sort`.
+llamando al método `sorted`.
 
 
 ## Ejercicio 2 ##
@@ -68,19 +68,19 @@ a) Completa el bucle con el código que comprueba el tipo de la variable
 de su tipo.
 
 ```swift
-protocol A {
+protocol X {
    var x: Int { get }
 }
-class B: A {
+class Xb: A {
    var x = 0
    var b = 0
 }
-class C: A {
+class Xc: A {
    var x = 1
    var c = 0
 }
 
-var array[A] = [B(), C()]
+var array: [X] = [Xb(), Xc()]
 for i in array {
    //
    // Código a completar
