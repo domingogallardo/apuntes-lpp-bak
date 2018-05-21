@@ -188,16 +188,7 @@ explicados.
 Al final de cada sesión de prácticas se realizará un **cuestionario de
 seguimiento**, una pequeña prueba tipo test sobre los ejercicios
 realizados y los conceptos asociados. La nota final de seguimiento
-de las sesiones prácticas será la media de estas calificaciones,
-siempre que se supere la siguiente condición:
-
-**Se deberá aprobar como mínimo** :
-
-- **3 de los 5 cuestionarios del bloque 1**
-- **4 de los 6 cuestionarios del bloque 2 y 3**
-
-En el caso en que no se alcance el mínimo indicado, la calificación de
-seguimiento de las prácticas será de 0.
+de las sesiones prácticas será la media de estas calificaciones.
 
 La calificación total será la media ponderada de las calificaciones de
 cada parcial y la media de los 11 cuestionarios de seguimiento,
@@ -205,13 +196,13 @@ condicionado esto último a que se haya superado el mínimo de
 cuestionarios aprobados.
 
 Ejemplo 1: un estudiante que ha obtenido un 4’5, 5 y 4’5 en los
-exámenes parciales y un 8 en el seguimiento de las clases de
-prácticas obtendría de nota final:
+exámenes parciales y un 8 en los cuestionarios de prácticas obtendría
+de nota final:
 
 8 * 0'1 + 4’5 * 0’3 + 5 * 0’3 + 4’5 * 0’3 = 5
 
 Ejemplo 2: un estudiante con las mismas calificaciones en los
-parciales pero sin seguimiento de las clases de prácticas:
+parciales pero con un 0 en los cuestionarios de prácticas:
 
  
 0 + 4’5 * 0’3 + 5 * 0’3 + 4’5 * 0’3 = 4’2
