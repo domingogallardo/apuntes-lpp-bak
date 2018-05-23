@@ -169,9 +169,6 @@ Define el protocolo `Figura` que contiene:
 - Propiedades de sólo lectura `area` (`Double`) y `tamaño` (`Tamaño`)
   que devuelven el tamaño (alto y ancho) de la figura.
 
-Consideraremos el tamaño de un triángulo calculando las diferencias
-entre las coordenadas mínimas y máximas en x e y.
-
 
 #### Extensiones
 
@@ -191,9 +188,9 @@ creando. Reescribe también la implementación de `areaTotal`. Modifica
 los inicializadores en las clases geométricas para que se incluya la
 figura recién creada en esta propiedad.
 
-- Escribe el método de clase `cuentaTipos(figuras: [Figura]) -> (Int, Int, Int)`
-que recibe un array de figuras y devuelve una tupla con tres enteros:
-número de rectángulos, número de círculos y número de triángulos. La
+- Escribe el método de clase `cuentaTipos(figuras: [Figura]) -> (Int, Int)`
+que recibe un array de figuras y devuelve una tupla con dos enteros:
+número de rectángulos y número de círculos. La
 función debe imprimir por cada figura del array, su descripción
 por defecto proporcionada por el protocolo y el tipo de figura y sus
 características específicas.
