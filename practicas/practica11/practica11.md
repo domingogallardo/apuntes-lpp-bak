@@ -188,8 +188,8 @@ creando. Reescribe también la implementación de `areaTotal`. Modifica
 los inicializadores en las clases geométricas para que se incluya la
 figura recién creada en esta propiedad.
 
-- Escribe el método de clase `cuentaTipos(figuras: [Figura]) -> (Int, Int)`
-que recibe un array de figuras y devuelve una tupla con dos enteros:
+- Escribe el método de clase `cuentaTipos() -> (Int, Int)`
+que recorra el array de figuras y devuelva una tupla con dos enteros:
 número de rectángulos y número de círculos. La
 función debe imprimir por cada figura del array, su descripción
 por defecto proporcionada por el protocolo y el tipo de figura y sus
