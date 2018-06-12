@@ -610,7 +610,7 @@ enum CaracterControlASCII: Character {
 Se puede devolver el valor bruto de la siguiente forma:
 
 ```
-let nuevaLinea = CaracterControlASCII.LineFeed.rawValue
+let nuevaLinea = CaracterControlASCII.lineFeed.rawValue
 ```
 
 También se puede hacer de forma implícita cuando el tipo subyacente es
